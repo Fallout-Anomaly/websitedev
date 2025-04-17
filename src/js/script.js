@@ -154,7 +154,7 @@ async function loadStaffData() {
 	console.log('Staff sections container found, attempting to load staff data...');
 	staffSectionsContainer.innerHTML = '<div class="fallout-card error-card" style="grid-column: 1 / -1; text-align: center;"><div class="terminal-text"><p><i class="fas fa-spinner fa-spin icon"></i> Loading staff roster...</p></div></div>';
 	try {
-		const response = await fetch('../src/data/staff.json');
+		const response = await fetch('/websitedev/src/data/staff.json');
 		if(!response.ok) {
 			throw new Error(`HTTP error fetching staff.json: ${response.status} ${response.statusText}`);
 		}
