@@ -10,11 +10,11 @@ function loadNavLinks() {
 
 const links = [
     { href: '/index.html', text: 'HOME' },
-    { href: '/pages/about.html', text: 'ABOUT' },
-    { href: '/pages/guide.html', text: 'GUIDE' },
-    { href: '/pages/staff.html', text: 'STAFF' },
-    { href: '/pages/apply.html', text: 'APPLY' },
-    { href: '/pages/donate.html', text: 'DONATE' }
+    { href: 'pages/about.html', text: 'ABOUT' },
+    { href: 'pages/guide.html', text: 'GUIDE' },
+    { href: 'pages/staff.html', text: 'STAFF' },
+    { href: 'pages/apply.html', text: 'APPLY' },
+    { href: 'pages/donate.html', text: 'DONATE' }
 ];
 
     links.forEach(link => {
