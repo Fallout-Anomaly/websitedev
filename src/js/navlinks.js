@@ -8,14 +8,14 @@ function loadNavLinks() {
     navLinks.setAttribute('role', 'navigation');
     navLinks.setAttribute('aria-label', 'Main navigation');
 
-    const links = [
-        { href: '../index.html', text: 'HOME' },
-        { href: '../pages/about.html', text: 'ABOUT' },
-        { href: '../pages/guide.html', text: 'GUIDE' },
-        { href: '../pages/staff.html', text: 'STAFF' },
-        { href: '../pages/apply.html', text: 'APPLY' },
-        { href: '../pages/donate.html', text: 'DONATE' }
-    ];
+const links = [
+    { href: 'index.html', text: 'HOME' },
+    { href: 'pages/about.html', text: 'ABOUT' },
+    { href: 'pages/guide.html', text: 'GUIDE' },
+    { href: 'pages/staff.html', text: 'STAFF' },
+    { href: 'pages/apply.html', text: 'APPLY' },
+    { href: 'pages/donate.html', text: 'DONATE' }
+];
 
     links.forEach(link => {
         const li = document.createElement('li');
