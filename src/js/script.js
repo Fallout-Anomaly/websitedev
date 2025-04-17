@@ -112,7 +112,7 @@ async function loadFooter() {
 	}
 	document.body.classList.add('footer-loading');
 	try {
-		const response = await fetch('src/components/footer.html');
+		const response = await fetch('../src/components/footer.html');
 		if(!response.ok) throw new Error(`Failed to load footer: ${response.status} ${response.statusText}`);
 		const footerHtml = await response.text();
 		const footerContainer = document.createElement('div');
