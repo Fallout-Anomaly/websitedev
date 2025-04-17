@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Nomad",
+    "rank": "Lead Developer",
+    "role": "Project lead, Quests, Support",
+    "image": "https://cdn.discordapp.com/guilds/1113971680419782666/users/96138617981792256/avatars/8f0e15e99330e459b96b2a9fe896fd25.webp?size=1024"
+  },
+  {
+    "name": "Eizer",
+    "rank": "Assistant Lead Developer",
+    "role": "Perks, Factions, Patching",
+    "image": "https://cdn.discordapp.com/avatars/152040815621963776/b043af5a54cb3573a60e3574e98db575.webp?size=1024"
+  },
+  {
+    "name": "Stiles",
+    "rank": "Senior Developer",
+    "role": "Previs, Weapons, Schematics",
+    "image": "https://cdn.discordapp.com/avatars/485596984351391744/965d6eab50f22411bb98eaf8f5881952.webp?size=1024"
+  },
+  {
+    "name": "Zatos",
+    "rank": "Senior Developer",
+    "role": "Weapons, Balancing, Bug Fixing",
+    "image": "https://cdn.discordapp.com/avatars/698920922404487168/0d5f63fe407f9e585612762d5c2667b0.webp?size=1024"
+  },
+  {
+    "name": "Ferud",
+    "rank": "Developer",
+    "role": "Balancing, Leveled lists, Bug Fixing",
+    "image": "https://cdn.discordapp.com/avatars/1084643399400960021/aa86a9a8efebdd9578560909a627e8ac.webp?size=1024"
+  },
+  {
+    "name": "Baked",
+    "rank": "Developer",
+    "role": "HUD, General support",
+    "image": "https://cdn.discordapp.com/guilds/1113971680419782666/users/337455184579919874/avatars/6c2628813730c76f37c18e9d7f75ddcc.webp?size=1024"
+  },
+  {
+    "name": "Thumblesteen",
+    "rank": "Developer (On Leave)",
+    "role": "Development",
+    "image": "https://cdn.discordapp.com/avatars/186270357789868033/82d0d9466a22f28d46903ab07c988c5d.webp?size=1024"
+  },
+  {
+    "name": "John",
+    "rank": "Developer (On Leave)",
+    "role": "Former contributor",
+    "image": "https://cdn.discordapp.com/avatars/556236275603210251/ce9c4aaa304551f483a0be87242d68a2.webp?size=1024"
+  },
+  {
+    "name": "Hawkins",
+    "rank": "Head Admin",
+    "role": "Server oversight, Moderation, Administration",
+    "image": "https://cdn.discordapp.com/avatars/281730257390796810/959b41962ffdcd8d0ea6d39e6463c8a8.webp?size=1024"
+  },
+  {
+    "name": "Cat",
+    "rank": "Community Manager",
+    "role": "Community engagement, Feedback, Event coordination",
+    "image": "https://cdn.discordapp.com/avatars/176283923628687360/14f0d9b594fc7377e38268798cfcde93.webp?size=1024"
+  },
+  {
+    "name": "Keldar",
+    "rank": "Media Team",
+    "role": "Video editing, Trailers, Promotional content",
+    "image": "https://cdn.discordapp.com/avatars/249915454636687360/ebf8d82cd43549b726f728121ee5ebeb.webp?size=1024"
+  },
+  {
+    "name": "Sully",
+    "rank": "Media Team",
+    "role": "Visual content, Video production, Marketing assets",
+    "image": "https://cdn.discordapp.com/avatars/579831041267597334/0695c9aaddcc852a9ff78568c6de0493.webp?size=1024"
+  },
+  {
+    "name": "PatrickJr.",
+    "rank": "Website Dev",
+    "role": "Web development",
+    "image": "https://cdn.discordapp.com/avatars/219086664587280385/0d6d65544e59beb7e89fa3757dd4a629.webp?size=512"
+   }
+]
