@@ -55,6 +55,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 });
 
+const homeLink = document.querySelector('a[href="index.html"]');
+    const currentPage = window.location.pathname;
+
+    // Adjust the "HOME" link based on current page
+    if (currentPage.includes("index.html")) {
+        homeLink.href = "index.html";
+    } else {
+        homeLink.href = "../index.html";
+    }
+
+
 function initializeSite() {
 	console.log('Initializing general site features...');
 	const loadingScreen = document.querySelector('.loading-screen');
