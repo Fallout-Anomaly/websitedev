@@ -1,37 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Fallout Anomaly - About Us">
-		<title>FALLOUT ANOMALY - ABOUT</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-		<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="../src/css/style.css">
-		<link rel="icon" href="data:image/svg+xml,
-    
-									<svg
-										xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-										<text y='.9em' font-size='90'>☢️</text>
-									</svg>">
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about Fallout Anomaly, a hardcore Fallout 4 modlist focusing on realism, survival, and challenging gameplay.">
+    <title>FALLOUT ANOMALY - ABOUT</title>
+
+    <!-- ================================================== -->
+    <!-- ========= Open Graph / Social Media Meta ========= -->
+    <!-- ================================================== -->
+    <meta property="og:title" content="About Fallout Anomaly" />
+    <meta property="og:description" content="Learn about Fallout Anomaly, a hardcore Fallout 4 modlist focusing on realism, survival, and challenging gameplay." />
+    <meta property="og:url" content="https://fallout-anomaly.github.io/websitedev/pages/about.html" />
+    <meta property="og:site_name" content="Fallout Anomaly" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://s3.amazonaws.com/guildtag/file/14763/84412-8ff9de.png" />
+    <meta property="og:image:width" content="500" />
+    <meta property="og:image:height" content="500" />
+
+    <!-- ================================================== -->
+    <!-- ============ Twitter Card Meta Tags ============ -->
+    <!-- ================================================== -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="About Fallout Anomaly" />
+    <meta name="twitter:description" content="Learn about Fallout Anomaly, a hardcore Fallout 4 modlist focusing on realism, survival, and challenging gameplay." />
+    <meta name="twitter:image" content="https://s3.amazonaws.com/guildtag/file/14763/84412-8ff9de.png" />
+    <!-- <meta name="twitter:site" content="@[YourSiteTwitterHandle]" /> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../src/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+            <text y='.9em' font-size='90'>☢️</text>
+        </svg>">
+</head>
 	<body class="body-textured crt">
 		<nav class="nav-menu">
 			<div class="nav-menu-container">
 				<a href="index.html" class="nav-logo">
 					<i class="fas fa-radiation icon"></i> FALLOUT ANOMALY </a>
 				<div id="nav-links-container">
-					<!-- Nav links will be loaded here -->
 				</div>
 			</div>
 		</nav>
 		<div class="loading-screen">
 			<div class="pip-os-boot">
-				<!-- Boot messages will be loaded here -->
 			</div>
+				<div class="continue-prompt hidden">Press any key or click to continue...</div>			
 		</div>
 		<div class="main-content">
-			<!-- Hero Section -->
 			<div class="fallout-card hero-card">
 				<div class="fallout-card-header">
 					<i class="fas fa-info-circle icon"></i>
@@ -41,7 +58,6 @@
 					<p class="overview-text"> Fallout Anomaly is a true hardcore experience, bringing you as close to realism as possible with mods like Damn Apocalypse, Better Locational Damage, and much more. Packed with new weapons and armor to face harsher challenges, Anomaly also features new enemy types, quests, settlement items, and a complete assortment of textures to elevate your game to modern standards. </p>
 				</div>
 			</div>
-			<!-- Main Content Tabs -->
 			<div class="fallout-card">
 				<div class="tab-container">
 					<div class="tab-buttons">
@@ -51,7 +67,6 @@
 						<button class="tab-button" data-tab="mods">Included Mods</button>
 						<button class="tab-button" data-tab="community">Community</button>
 					</div>
-					<!-- Overview Tab -->
 					<div id="overview" class="tab-content active">
 						<div class="feature-grid">
 							<div class="feature-card">
@@ -89,7 +104,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- Features Tab -->
 					<div id="features" class="tab-content">
 						<div class="feature-grid">
 							<div class="feature-card">
@@ -127,7 +141,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- Mechanics Tab -->
 					<div id="mechanics" class="tab-content">
 						<div class="feature-grid">
 							<div class="feature-card">
@@ -165,7 +178,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- Mods Tab -->
 					<div id="mods" class="tab-content">
 						<div class="mods-grid">
 							<div class="mods-column">
@@ -238,7 +250,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- Community Tab -->
 					<div id="community" class="tab-content">
 						<div class="feature-grid">
 							<div class="feature-card">
@@ -278,7 +289,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- Team Section -->
 			<div class="fallout-card">
 				<div class="fallout-card-header">
 					<i class="fas fa-users icon"></i>
@@ -288,7 +298,6 @@
 					<p>Our team consists of passionate Fallout fans and experienced roleplayers dedicated to creating the best possible experience for our community. We work tirelessly to maintain a balanced, engaging, and immersive environment for all players.</p>
 				</div>
 			</div>
-			<!-- Call to Action -->
 			<div class="fallout-card cta-card">
 				<div class="fallout-card-header">
 					<i class="fas fa-rocket icon"></i>

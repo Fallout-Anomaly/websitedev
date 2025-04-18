@@ -1,5 +1,26 @@
-// Function to load navlinks
-function loadNavLinks() {
+function getBasePath() {
+    const hostname = window.location.hostname;
+    const pathname = window.location.pathname; 
+
+    if (hostname.endsWith('github.io')) {
+
+        const pathSegments = pathname.split('/').filter(Boolean); 
+
+        if (pathSegments.length > 0) {
+            const potentialRepoName = pathSegments[0];
+
+            return `/${potentialRepoName}/`; 
+        } else {
+
+             return '/';
+        }
+    } else {
+
+        return '/';
+    }
+}
+
+function loadNavLinks(basePath) { 
     const navLinksContainer = document.getElementById('nav-links-container');
     if (!navLinksContainer) return;
 
@@ -8,28 +29,35 @@ function loadNavLinks() {
     navLinks.setAttribute('role', 'navigation');
     navLinks.setAttribute('aria-label', 'Main navigation');
 
-const links = [
-    { href: '/index.html', text: 'HOME' },
-    { href: '/pages/about.html', text: 'ABOUT' },
-    { href: '/pages/guide.html', text: 'GUIDE' },
-    { href: '/pages/staff.html', text: 'STAFF' },
-    { href: '/pages/apply.html', text: 'APPLY' },
-    { href: '/pages/donate.html', text: 'DONATE' }
-];
+    const links = [
+        { href: 'index.html', text: 'HOME' },
+        { href: 'pages/about.html', text: 'ABOUT' },
+        { href: 'pages/guide.html', text: 'GUIDE' },
+        { href: 'pages/staff.html', text: 'STAFF' },
+        { href: 'pages/apply.html', text: 'APPLY' },
+        { href: 'pages/donate.html', text: 'DONATE' }
+    ];
 
     links.forEach(link => {
         const li = document.createElement('li');
         const a = document.createElement('a');
-        a.href = link.href;
+
+        a.href = basePath + link.href;
         a.textContent = link.text;
         a.className = 'nav-link';
         a.setAttribute('role', 'menuitem');
-        
-        if (window.location.pathname.endsWith(link.href)) {
-            a.classList.add('active');
-            a.setAttribute('aria-current', 'page');
+
+        const fullLinkPath = new URL(a.href, window.location.origin).pathname;
+        const currentPath = window.location.pathname;
+
+        const isCurrentIndex = currentPath === basePath || currentPath === basePath + 'index.html';
+        const isLinkIndex = fullLinkPath === basePath || fullLinkPath === basePath + 'index.html';
+
+        if ((isCurrentIndex && isLinkIndex) || (!isCurrentIndex && !isLinkIndex && currentPath === fullLinkPath)) {
+             a.classList.add('active');
+             a.setAttribute('aria-current', 'page');
         }
-        
+
         li.appendChild(a);
         navLinks.appendChild(li);
     });
@@ -37,24 +65,15 @@ const links = [
     navLinksContainer.appendChild(navLinks);
 }
 
-// Function to update active link based on current page
-function updateActiveLink() {
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (currentPath.endsWith(linkPath)) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
+function fixLogoLink(basePath) {
+    const logoLink = document.querySelector('.nav-logo');
+    if (logoLink) {
+
+        logoLink.href = basePath + 'index.html';
+    }
 }
 
-// Add FX Toggle functionality
 function initializeFxToggle() {
-    // Create and add the FX toggle button to the body
     const fxToggle = document.createElement('div');
     fxToggle.className = 'nav-fx-toggle';
     const toggleButton = document.createElement('button');
@@ -62,9 +81,10 @@ function initializeFxToggle() {
     toggleButton.innerHTML = '<i class="fas fa-eye"></i> Disable Effects';
     toggleButton.title = 'Toggle Visual Effects';
     fxToggle.appendChild(toggleButton);
-    document.body.appendChild(fxToggle);
+    if (!document.querySelector('.nav-fx-toggle')) {
+      document.body.appendChild(fxToggle);
+    }
 
-    // Check localStorage for saved preference
     const fxDisabled = localStorage.getItem('fxDisabled') === 'true';
     if (fxDisabled) {
         document.body.classList.add('no-fx');
@@ -76,31 +96,24 @@ function initializeFxToggle() {
     toggleButton.addEventListener('click', () => {
         const isDisabled = document.body.classList.toggle('no-fx');
         localStorage.setItem('fxDisabled', isDisabled);
-        toggleButton.innerHTML = isDisabled 
+        toggleButton.innerHTML = isDisabled
             ? '<i class="fas fa-eye"></i> Enable Effects'
             : '<i class="fas fa-eye-slash"></i> Disable Effects';
-        
-        // Force stop all animations and transitions
-        if (isDisabled) {
-            document.body.style.animation = 'none';
-            document.body.style.transition = 'none';
-            document.querySelectorAll('*').forEach(el => {
-                el.style.animation = 'none';
-                el.style.transition = 'none';
-            });
-        } else {
-            document.body.style.animation = '';
-            document.body.style.transition = '';
-            document.querySelectorAll('*').forEach(el => {
-                el.style.animation = '';
-                el.style.transition = '';
-            });
+
+        if (!isDisabled) {
+             document.body.style.animation = 'none';
+             void document.body.offsetWidth; 
+             document.body.style.animation = '';
         }
     });
 }
 
-// Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    loadNavLinks();
-    initializeFxToggle();
-}); 
+    const basePath = getBasePath();
+    fixLogoLink(basePath);
+    loadNavLinks(basePath);
+
+    if (!document.querySelector('.fx-toggle-button')) { 
+        initializeFxToggle();
+    }
+});

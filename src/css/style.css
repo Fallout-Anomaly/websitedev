@@ -1,3 +1,5 @@
+/* src/css/style.css */
+
 /* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Courier+Prime:wght@400;700&display=swap');
@@ -9,35 +11,35 @@
  */
 
 :root {
-  /* Terminal Theme Colors (Refined for CRT Look) */
-  --terminal-bg: #101410; /* Dark green-grey instead of pure black */
-  --terminal-text: #40FF40; /* Slightly softer green */
-  --terminal-text-muted: #30cc30; /* Adjusted muted green */
-  --terminal-highlight: #60FF60; /* Brighter highlight */
-  --terminal-hover: #70FF70; /* Brighter hover */
-  --terminal-border: #30bb30; /* Adjusted border */
-  --terminal-shadow-color: rgba(64, 255, 64, 0.2); /* Adjusted shadow color */
-  --terminal-glow: /* Subtle bloom effect */
+  /* --- MODIFIED: Change base background to a neutral dark charcoal --- */
+  --terminal-bg: #1a1a1a; /* Was: #101410 - Now a neutral dark grey/charcoal */
+  --terminal-text: #40FF40; /* Keeping the classic green text */
+  --terminal-text-muted: #30cc30; /* Keeping muted green */
+  --terminal-highlight: #60FF60; /* Keeping bright highlight */
+  --terminal-hover: #70FF70; /* Keeping bright hover */
+  --terminal-border: #30bb30; /* Keeping green border */
+  --terminal-shadow-color: rgba(64, 255, 64, 0.2); /* Keeping green shadow */
+  --terminal-glow: /* Keeping green glow */
     0 0 3px rgba(64, 255, 64, 0.6),
     0 0 8px rgba(64, 255, 64, 0.4),
     0 0 15px rgba(64, 255, 64, 0.2);
 
-  /* RGB Color Components (for rgba()) */
+  /* --- MODIFIED: Update RGB values for the new background --- */
   --terminal-text-rgb: 64, 255, 64;
-  --terminal-bg-rgb: 16, 20, 16;
-  --card-bg-rgb: 24, 28, 24;
-  --card-border-rgb: 48, 187, 48;
+  --terminal-bg-rgb: 26, 26, 26; /* Was: 16, 20, 16 - Corresponds to #1a1a1a */
+  --card-bg-rgb: 34, 34, 34; /* Adjusted slightly lighter neutral for cards */
+  --card-border-rgb: 48, 187, 48; /* Keeping green border */
 
-  /* Background Gradient Colors (Subtler Glow) */
-  --background-glow-center-rgb: 40, 150, 40;
-  --background-glow-mid-rgb: 30, 120, 30;
-  --background-edge-rgb: 16, 20, 16;
+  /* --- MODIFIED: Adjust background gradient for neutral edges --- */
+  --background-glow-center-rgb: 40, 150, 40; /* Keep center green glow */
+  --background-glow-mid-rgb: 30, 120, 30;   /* Keep mid green glow (maybe reduce opacity later if needed) */
+  --background-edge-rgb: 20, 20, 20; /* Was: 16, 20, 16 - Ensure edges fade to neutral dark */
 
-  /* Card Styles */
-  --card-bg: rgba(var(--card-bg-rgb), 0.9);
-  --card-border: 1px solid var(--terminal-border);
-  --card-shadow: 0 0 10px var(--terminal-shadow-color);
-  --card-header-bg: rgba(var(--terminal-bg-rgb), 0.7);
+  /* --- MODIFIED: Update Card Styles to use new neutral background --- */
+  --card-bg: rgba(var(--card-bg-rgb), 0.9); /* Use the slightly lighter neutral */
+  --card-border: 1px solid var(--terminal-border); /* Keep green border */
+  --card-shadow: 0 0 10px var(--terminal-shadow-color); /* Keep green shadow */
+  --card-header-bg: rgba(var(--terminal-bg-rgb), 0.8); /* Use main neutral bg, slightly more opaque */
 
   /* Fonts */
   --font-terminal: 'VT323', monospace;
@@ -72,8 +74,8 @@
 
   /* Layout */
   --max-width: 1600px;
-  --border-radius: 0;
-  --border-radius-slight: 4px; /* For tags */
+  --border-radius: 0px; /* Changed to 0px for consistency with other overrides */
+  --border-radius-slight: 0px; /* For tags */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
@@ -109,18 +111,18 @@
 html {
   scroll-behavior: smooth;
   font-size: 100%;
-  scrollbar-color: var(--terminal-text) var(--terminal-bg);
+  scrollbar-color: var(--terminal-text) var(--terminal-bg); /* Scrollbar uses new bg */
   scrollbar-width: thin;
 }
 
 body {
-  background-color: var(--terminal-bg);
-  color: var(--terminal-text);
+  background-color: var(--terminal-bg); /* Uses new neutral bg */
+  color: var(--terminal-text); /* Text remains green */
   font-family: var(--font-body);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-normal);
   line-height: 1.6;
-  text-shadow: var(--terminal-glow);
+  text-shadow: var(--terminal-glow); /* Glow remains green */
   min-height: 100vh;
   padding: var(--spacing-md);
   padding-top: 5rem;
@@ -131,7 +133,7 @@ body {
   overflow-x: hidden;
 }
 
-/* --- Background Gradient --- */
+/* --- MODIFIED: Background Gradient --- */
 body::before {
   content: "";
   position: fixed;
@@ -140,15 +142,15 @@ body::before {
   width: 100vw;
   height: 100vh;
   background: radial-gradient(circle at 50% 50%,
-     rgba(var(--background-glow-center-rgb), 0.6),
-     rgba(var(--background-glow-mid-rgb), 0.4),
-     rgba(var(--background-edge-rgb), 1) 85%
+     rgba(var(--background-glow-center-rgb), 0.5), /* Slightly reduced center green glow intensity */
+     rgba(var(--background-glow-mid-rgb), 0.35), /* Slightly reduced mid green glow intensity */
+     rgba(var(--background-edge-rgb), 1) 85% /* Fade to the neutral dark edge */
    );
   z-index: var(--z-background-glow);
   pointer-events: none;
 }
 
-/* --- CRT Effects Overlay (Scanlines, Flicker, Jitter, Vignette) --- */
+/* --- MODIFIED: CRT Effects Overlay (Scanlines, Flicker, Jitter, Vignette) --- */
 body::after {
   content: "";
   position: fixed;
@@ -161,19 +163,18 @@ body::after {
   background:
     repeating-linear-gradient(
       0deg,
-      rgba(var(--terminal-bg-rgb), 0) 0px,
+      rgba(var(--terminal-bg-rgb), 0) 0px, /* Use neutral bg for transparency base */
       rgba(var(--terminal-bg-rgb), 0) 2px,
       rgba(var(--terminal-bg-rgb), 0.3) 3px,
       rgba(var(--terminal-bg-rgb), 0.3) 4px
     ),
     radial-gradient(
       ellipse at center,
-      rgba(var(--terminal-bg-rgb), 0) 50%,
-      rgba(var(--terminal-bg-rgb), 0.4) 100%
+      rgba(var(--terminal-bg-rgb), 0) 50%, /* Use neutral bg for transparency base */
+      rgba(var(--terminal-bg-rgb), 0.4) 100% /* Use neutral bg for vignette */
     );
   opacity: 0.9;
   animation: crtInstability 0.22s infinite steps(1);
-  
 }
 
 /* CRT Instability Animation (Flicker + Vertical Jitter) */
@@ -192,7 +193,7 @@ body::after {
   }
   75% {
     opacity: 0.93;
-    transform: translateY(-0.5px); 
+    transform: translateY(-0.5px);
   }
   100% {
     opacity: 0.9;
@@ -202,19 +203,19 @@ body::after {
 
 /* --- Selection Style --- */
 ::selection {
-  background: var(--terminal-highlight);
-  color: var(--terminal-bg);
+  background: var(--terminal-highlight); /* Highlight remains green */
+  color: var(--terminal-bg); /* Background of selection is now neutral */
   text-shadow: none;
 }
 
 /* --- Links --- */
 a {
-  color: var(--terminal-highlight);
+  color: var(--terminal-highlight); /* Link color remains green */
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 a:hover {
-  color: var(--terminal-hover);
+  color: var(--terminal-hover); /* Hover color remains brighter green */
   text-decoration: underline;
 }
 
@@ -222,7 +223,7 @@ a:hover {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-title);
   font-weight: var(--font-weight-bold);
-  color: var(--terminal-highlight);
+  color: var(--terminal-highlight); /* Headings remain green */
   margin-bottom: var(--spacing-md);
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -233,7 +234,7 @@ h2 { font-size: var(--font-size-xl); }
 h3 { font-size: var(--font-size-lg); }
 h4 { font-size: var(--font-size-md); }
 h5 { font-size: var(--font-size-sm); }
-h6 { font-size: var(--font-size-sm); color: var(--terminal-text-muted); }
+h6 { font-size: var(--font-size-sm); color: var(--terminal-text-muted); } /* Muted text remains green */
 
 /* --- Paragraphs & Text Elements --- */
 p {
@@ -244,15 +245,15 @@ p:last-child {
 }
 strong {
   font-weight: var(--font-weight-bold);
-  color: var(--terminal-highlight);
+  color: var(--terminal-highlight); /* Strong text remains green */
 }
 pre, code {
   font-family: var(--font-terminal);
-  background-color: rgba(var(--terminal-text-rgb), 0.05);
+  background-color: rgba(var(--terminal-bg-rgb), 0.4); /* Changed bg to use neutral dark base */
   padding: var(--spacing-xs) var(--spacing-sm);
-  border: 1px solid rgba(var(--terminal-text-rgb), 0.2);
+  border: 1px solid rgba(var(--terminal-border-rgb), 0.3); /* Use border RGB with alpha */
   border-radius: var(--border-radius);
-  color: var(--terminal-text-muted);
+  color: var(--terminal-text-muted); /* Text remains muted green */
   word-wrap: break-word;
   white-space: pre-wrap;
 }
@@ -266,15 +267,15 @@ pre {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: inherit;
+  color: inherit; /* Inherits green text/highlight color */
   vertical-align: middle;
   font-size: 1.2em;
   line-height: 1;
 }
-.fallout-card-header .icon { font-size: 1.5em; margin: 0; /* Remove margin */ }
-.nav-logo .icon { font-size: 1.5em; margin-right: var(--spacing-sm); /* Keep margin here */ }
+.fallout-card-header .icon { font-size: 1.5em; margin: 0; }
+.nav-logo .icon { font-size: 1.5em; margin-right: var(--spacing-sm); }
 .application-card .card-header .icon { font-size: 2rem; color: var(--terminal-highlight); margin: 0; }
-.terminal-list-item > .icon { width: 1.2em; text-align: center; margin-right: var(--spacing-sm); /* Keep margin for list items */ }
+.terminal-list-item > .icon { width: 1.2em; text-align: center; margin-right: var(--spacing-sm); }
 
 /* --- Loading Screen --- */
 .loading-screen {
@@ -283,7 +284,7 @@ pre {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000000;
+  background-color: #000000; /* Keep loading screen black */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -299,12 +300,12 @@ pre {
 }
 .pip-os-boot {
   font-family: var(--font-terminal);
-  color: var(--terminal-text); 
+  color: var(--terminal-text); /* Boot text remains green */
   text-align: left;
   line-height: 1.5;
   width: 90%;
   max-width: 600px;
-  text-shadow: var(--terminal-glow);
+  text-shadow: var(--terminal-glow); /* Glow remains green */
   font-size: var(--font-size-terminal-large);
   padding: var(--spacing-md);
 }
@@ -345,14 +346,14 @@ pre {
   visibility: visible;
   transform: translateY(0);
 }
-
 /* --- General Card Styles --- */
 .fallout-card, .feature-card, .application-card, .staff-card, .donation-card {
-  background-color: var(--card-bg);
-  border: var(--card-border);
+  min-width: 30ch;
+  background-color: var(--card-bg); /* Uses new neutral card bg */
+  border: var(--card-border); /* Border remains green */
   border-radius: var(--border-radius);
-  box-shadow: var(--card-shadow);
-  padding: var(--spacing-lg); 
+  box-shadow: var(--card-shadow); /* Shadow remains green */
+  padding: var(--spacing-lg);
   margin-bottom: var(--spacing-lg);
   display: flex;
   flex-direction: column;
@@ -366,7 +367,7 @@ pre {
 
 /* Staff card padding override */
 .staff-card {
-    padding: 0; 
+    padding: 0;
 }
 
 .fallout-card.visible, .feature-card.visible, .application-card.visible, .staff-card.visible, .donation-card.visible {
@@ -374,8 +375,8 @@ pre {
   transform: translateY(0);
 }
 .fallout-card:not(.staff-card):not(.application-card):hover {
-   box-shadow: 0 0 15px var(--terminal-shadow-color);
-   border-color: var(--terminal-highlight);
+   box-shadow: 0 0 15px var(--terminal-shadow-color); /* Hover shadow remains green */
+   border-color: var(--terminal-highlight); /* Hover border remains green */
 }
 
 /* Card Header (Uses Grid) */
@@ -387,10 +388,10 @@ pre {
   font-family: var(--font-title);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
-  color: var(--terminal-highlight);
-  background-color: var(--card-header-bg);
+  color: var(--terminal-highlight); /* Header text remains green */
+  background-color: var(--card-header-bg); /* Uses new neutral header bg */
   padding: var(--spacing-md) var(--spacing-lg);
-  border-bottom: 1px solid var(--terminal-border);
+  border-bottom: 1px solid var(--terminal-border); /* Bottom border remains green */
   flex-shrink: 0;
   border-radius: 0;
 }
@@ -405,6 +406,7 @@ pre {
   font-family: var(--font-terminal);
   font-size: var(--font-size-terminal-base);
   line-height: 1.5;
+  color: var(--terminal-text); /* Ensure text inside is green */
 }
 /* Adjust padding inside terminal-text if card padding is removed */
 .fallout-card:not(.staff-card) .terminal-text {
@@ -426,41 +428,47 @@ pre {
 }
 .terminal-list-item {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
+  flex-direction: column; /* Changed from grid */
+  gap: var(--spacing-sm); /* Added gap */
   padding: var(--spacing-md);
-  background: rgba(var(--card-bg-rgb), 0.8);
-  border: var(--card-border);
+  background: rgba(var(--card-bg-rgb), 0.8); /* Use neutral card bg */
+  border: var(--card-border); /* Border remains green */
   border-radius: var(--border-radius);
-  transition: transform var(--transition-fast), border-color var(--transition-fast); /* Added border-color */
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
   position: relative;
+  color: var(--terminal-text); /* Ensure list item text is green */
 }
+
 .terminal-list-item:hover {
     transform: translateY(-2px);
-    border-color: var(--terminal-hover);
+    border-color: var(--terminal-hover); /* Hover border remains green */
 }
+/* Removed grid-template-columns and specific column alignments for simpler layout */
 .terminal-list-item > .icon {
   font-size: 1.5em;
   margin-bottom: var(--spacing-sm);
-  color: var(--terminal-highlight);
+  color: var(--terminal-highlight); /* Icon color remains green */
+  /* Removed redundant width and text-align */
 }
 .terminal-list-item strong {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
+  display: flex; /* Use flex for alignment */
+  align-items: center; /* Align icon and text vertically */
+  gap: var(--spacing-sm); /* Add gap between icon and text */
   font-size: 1.1em;
-  color: var(--terminal-highlight);
-  margin-bottom: var(--spacing-sm);
+  color: var(--terminal-highlight); /* Strong text remains green */
+  margin-bottom: var(--spacing-sm); /* Keep margin below strong */
 }
 .terminal-list-item strong .icon {
-  margin-bottom: 0;
-  font-size: 1.2em;
+    margin-bottom: 0; /* Reset margin for icon inside strong */
+    font-size: 1.2em; /* Adjust icon size if needed */
 }
+
 .terminal-sublist {
   list-style: none;
   margin: var(--spacing-sm) 0 var(--spacing-sm) var(--spacing-lg);
   padding-left: var(--spacing-md);
   font-size: var(--font-size-terminal-small);
+  color: var(--terminal-text); /* Sublist text remains green */
 }
 .terminal-sublist li {
   margin-bottom: var(--spacing-xs);
@@ -471,20 +479,21 @@ pre {
   position: absolute;
   left: calc(-1 * var(--spacing-md));
   top: 0;
-  color: var(--terminal-highlight);
+  color: var(--terminal-highlight); /* Sublist marker remains green */
   font-weight: bold;
 }
 .mod-list {
 }
 .mod-list li {
     padding: var(--spacing-sm) 0;
-    border-bottom: 1px dashed rgba(var(--terminal-text-rgb), 0.3);
+    border-bottom: 1px dashed rgba(var(--terminal-text-rgb), 0.3); /* Border remains green (via text rgb) */
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+    color: var(--terminal-text); /* Mod list item text remains green */
 }
 .mod-list li:last-child { border-bottom: none; }
-.mod-list li .icon { color: var(--terminal-highlight); font-size: 0.9em; flex-shrink: 0; }
+.mod-list li .icon { color: var(--terminal-highlight); font-size: 0.9em; flex-shrink: 0; } /* Icon remains green */
 
 /* --- Buttons --- */
 .terminal-button, .fallout-btn, .fallout-btn-discord, .fx-toggle-button {
@@ -497,9 +506,9 @@ pre {
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--terminal-text);
-  background-color: transparent;
-  border: 1px solid var(--terminal-border);
+  color: var(--terminal-text); /* Button text remains green */
+  background-color: transparent; /* Default background transparent */
+  border: 1px solid var(--terminal-border); /* Border remains green */
   border-radius: var(--border-radius);
   text-decoration: none;
   text-align: center;
@@ -511,11 +520,11 @@ pre {
 }
 .terminal-button:hover, .fallout-btn:hover, .fallout-btn-discord:hover, .fx-toggle-button:hover,
 .terminal-button:focus, .fallout-btn:focus, .fallout-btn-discord:focus, .fx-toggle-button:focus {
-  color: var(--terminal-hover);
-  border-color: var(--terminal-highlight);
-  box-shadow: 0 0 10px var(--terminal-shadow-color);
+  color: var(--terminal-hover); /* Hover text remains brighter green */
+  border-color: var(--terminal-highlight); /* Hover border remains brighter green */
+  box-shadow: 0 0 10px var(--terminal-shadow-color); /* Hover shadow remains green */
   outline: none;
-  background-color: rgba(var(--terminal-text-rgb), 0.05);
+  background-color: rgba(var(--terminal-text-rgb), 0.05); /* Subtle green tint on hover */
 }
 
 .terminal-button::before, .fallout-btn::before, .fallout-btn-discord::before {
@@ -525,7 +534,7 @@ pre {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(var(--terminal-text-rgb), 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(var(--terminal-text-rgb), 0.1), transparent); /* Hover effect remains green */
     transform: translateX(-100%);
     transition: transform var(--transition-normal);
     z-index: 0;
@@ -563,8 +572,8 @@ pre {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(var(--terminal-bg-rgb), 0.9);
-  border-bottom: 1px solid var(--terminal-border);
+  background-color: rgba(var(--terminal-bg-rgb), 0.9); /* Use neutral bg for nav */
+  border-bottom: 1px solid var(--terminal-border); /* Border remains green */
   z-index: var(--z-nav);
   padding: var(--spacing-sm) var(--spacing-md);
   backdrop-filter: blur(9px);
@@ -582,7 +591,7 @@ pre {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  color: var(--terminal-text);
+  color: var(--terminal-text); /* Logo text remains green */
   font-family: var(--font-title);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
@@ -591,7 +600,7 @@ pre {
   flex-shrink: 0;
 }
 .nav-logo:hover {
-  color: var(--terminal-highlight);
+  color: var(--terminal-highlight); /* Hover remains green */
 }
 #nav-links-container {
     display: flex;
@@ -610,7 +619,7 @@ pre {
 .nav-link {
   display: block;
   padding: var(--spacing-xs) var(--spacing-sm);
-  color: var(--terminal-text);
+  color: var(--terminal-text); /* Link text remains green */
   font-family: var(--font-terminal);
   font-size: var(--font-size-terminal-base);
   text-transform: uppercase;
@@ -621,12 +630,12 @@ pre {
 }
 .nav-link:hover,
 .nav-link.active {
-  color: var(--terminal-highlight);
-  border-color: var(--terminal-border);
-  background-color: rgba(var(--terminal-text-rgb), 0.05);
+  color: var(--terminal-highlight); /* Hover/active text remains green */
+  border-color: var(--terminal-border); /* Hover/active border remains green */
+  background-color: rgba(var(--terminal-text-rgb), 0.05); /* Subtle green background on hover/active */
 }
 .nav-link.active {
-   text-shadow: 0 0 5px var(--terminal-shadow-color);
+   text-shadow: 0 0 5px var(--terminal-shadow-color); /* Active shadow remains green */
 }
 
 /* --- Media --- */
@@ -635,9 +644,9 @@ pre {
   padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
-  border: 1px solid var(--terminal-border);
+  border: 1px solid var(--terminal-border); /* Border remains green */
   margin-bottom: var(--spacing-md);
-  background-color: #000; 
+  background-color: #000; /* Video placeholder black */
 }
 .video-container iframe {
   position: absolute;
@@ -662,23 +671,23 @@ pre {
 .form-group label {
     font-weight: var(--font-weight-bold);
     font-family: var(--font-terminal);
-    color: var(--terminal-text-muted);
+    color: var(--terminal-text-muted); /* Label text remains muted green */
 }
 .form-control {
-    background-color: rgba(var(--terminal-bg-rgb), 0.5);
-    border: 1px solid var(--terminal-border);
-    color: var(--terminal-text);
+    background-color: rgba(var(--terminal-bg-rgb), 0.5); /* Use neutral bg for inputs */
+    border: 1px solid var(--terminal-border); /* Border remains green */
+    color: var(--terminal-text); /* Input text remains green */
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--border-radius);
     font-family: var(--font-terminal);
     font-size: var(--font-size-terminal-base);
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast); /* Added bg transition */
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 .form-control:focus {
     outline: none;
-    border-color: var(--terminal-highlight);
-    box-shadow: 0 0 8px var(--terminal-shadow-color);
-    background-color: rgba(var(--terminal-bg-rgb), 0.7);
+    border-color: var(--terminal-highlight); /* Focus border remains green */
+    box-shadow: 0 0 8px var(--terminal-shadow-color); /* Focus shadow remains green */
+    background-color: rgba(var(--terminal-bg-rgb), 0.7); /* Slightly lighten neutral bg on focus */
 }
 textarea.form-control {
     min-height: 100px;
@@ -688,8 +697,8 @@ textarea.form-control {
 /* --- Tab System --- */
 .tab-container {
   margin: var(--spacing-lg) 0;
-  border: 1px solid var(--terminal-border);
-  background-color: rgba(var(--card-bg-rgb), 0.5);
+  border: 1px solid var(--terminal-border); /* Border remains green */
+  background-color: rgba(var(--card-bg-rgb), 0.5); /* Use neutral card bg */
   border-radius: var(--border-radius);
   overflow: hidden;
 }
@@ -698,16 +707,16 @@ textarea.form-control {
   flex-wrap: wrap;
   gap: var(--spacing-sm);
   padding: var(--spacing-sm);
-  border-bottom: 1px solid var(--terminal-border);
-  background-color: rgba(var(--terminal-bg-rgb), 0.8);
+  border-bottom: 1px solid var(--terminal-border); /* Border remains green */
+  background-color: rgba(var(--terminal-bg-rgb), 0.8); /* Use neutral base bg */
 }
 .tab-button {
   flex: 1 1 auto;
   min-width: 150px;
   padding: var(--spacing-sm) var(--spacing-md);
   background-color: transparent;
-  border: 1px solid var(--terminal-border);
-  color: var(--terminal-text);
+  border: 1px solid var(--terminal-border); /* Border remains green */
+  color: var(--terminal-text); /* Text remains green */
   font-family: var(--font-terminal);
   font-size: var(--font-size-terminal-base);
   font-weight: var(--font-weight-bold);
@@ -717,20 +726,22 @@ textarea.form-control {
   transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 .tab-button:hover {
-  background-color: rgba(var(--terminal-text-rgb), 0.1);
-  border-color: var(--terminal-highlight);
+  background-color: rgba(var(--terminal-text-rgb), 0.1); /* Subtle green bg on hover */
+  border-color: var(--terminal-highlight); /* Hover border remains green */
+  color: var(--terminal-highlight); /* Hover text remains green */
 }
 .tab-button.active {
-  background-color: rgba(var(--terminal-text-rgb), 0.2);
-  color: var(--terminal-highlight);
-  border-color: var(--terminal-highlight);
-  box-shadow: inset 0 0 8px var(--terminal-shadow-color);
+  background-color: rgba(var(--terminal-text-rgb), 0.2); /* Stronger green bg when active */
+  color: var(--terminal-highlight); /* Active text remains green */
+  border-color: var(--terminal-highlight); /* Active border remains green */
+  box-shadow: inset 0 0 8px var(--terminal-shadow-color); /* Active shadow remains green */
 }
 .tab-content {
   display: none;
   padding: var(--spacing-lg);
   opacity: 0;
   transition: opacity var(--transition-normal);
+  color: var(--terminal-text); /* Ensure tab content text is green */
 }
 .tab-content.active {
   display: block;
@@ -744,7 +755,7 @@ textarea.form-control {
 .application-grid,
 .donation-grid,
 .support-grid,
-.features-grid { 
+.features-grid {
     display: grid;
     gap: var(--spacing-lg);
     margin: var(--spacing-lg) 0;
@@ -765,18 +776,18 @@ textarea.form-control {
 .application-card .card-header {
     margin-bottom: var(--spacing-md);
     padding-bottom: var(--spacing-sm);
-    border-bottom: 1px dashed var(--terminal-border);
-    background: none;
+    border-bottom: 1px dashed var(--terminal-border); /* Border remains green */
+    background: none; /* Header bg transparent */
     margin: 0 0 var(--spacing-md) 0;
     padding: 0 0 var(--spacing-sm) 0;
     font-size: var(--font-size-lg);
 }
 .application-card .card-header .icon {
-    font-size: 1.5rem; /* Was 2rem, adjusted for consistency */
-    color: var(--terminal-highlight);
+    font-size: 1.5rem;
+    color: var(--terminal-highlight); /* Icon remains green */
 }
 .application-card h3 {
-    color: var(--terminal-highlight);
+    color: var(--terminal-highlight); /* Header text remains green */
     margin: 0;
     font-size: inherit;
     text-align: left;
@@ -791,7 +802,7 @@ textarea.form-control {
 }
 .application-card p {
     margin: 0;
-    color: var(--terminal-text);
+    color: var(--terminal-text); /* Text remains green */
     line-height: 1.5;
     font-family: var(--font-terminal);
     font-size: var(--font-size-terminal-base);
@@ -805,7 +816,7 @@ textarea.form-control {
     padding: var(--spacing-sm) 0;
 }
 .application-card .requirements h4 {
-    color: var(--terminal-text-muted);
+    color: var(--terminal-text-muted); /* Header text remains muted green */
     margin-bottom: var(--spacing-sm);
     font-size: var(--font-size-terminal-base);
     text-transform: uppercase;
@@ -817,12 +828,13 @@ textarea.form-control {
 .application-card .terminal-list li {
     margin: 0;
     padding: var(--spacing-xs) 0 var(--spacing-xs) 1.5em;
-    border-bottom: 1px dashed rgba(var(--terminal-text-rgb), 0.2);
+    border-bottom: 1px dashed rgba(var(--terminal-text-rgb), 0.2); /* Border remains green */
     word-wrap: break-word;
     overflow-wrap: break-word;
     line-height: 1.5;
     position: relative;
     font-size: var(--font-size-sm);
+    color: var(--terminal-text); /* List item text remains green */
 }
 .application-card .terminal-list li:last-child {
     border-bottom: none;
@@ -832,7 +844,7 @@ textarea.form-control {
     left: 0;
     top: var(--spacing-xs);
     font-size: 1em;
-    color: var(--terminal-highlight);
+    color: var(--terminal-highlight); /* Icon remains green */
     margin-right: 0;
 }
 .application-card .terminal-button {
@@ -847,13 +859,14 @@ textarea.form-control {
 .donation-card .card-content { display: flex; flex-direction: column; gap: var(--spacing-md); }
 .donation-card .terminal-prompt, .donation-card .terminal-output, .donation-card .terminal-footer { margin-bottom: 0; }
 .donation-card .terminal-prompt {
-    background-color: rgba(var(--terminal-bg-rgb), 0.5);
-    border: 1px solid var(--terminal-border);
+    background-color: rgba(var(--terminal-bg-rgb), 0.5); /* Use neutral bg */
+    border: 1px solid var(--terminal-border); /* Border remains green */
     padding: var(--spacing-sm);
     border-radius: var(--border-radius);
 }
-.donation-card .prompt-text { color: var(--terminal-highlight); font-family: var(--font-terminal); font-size: 1.1em; }
-.donation-card .terminal-footer { margin-top: var(--spacing-md); padding-top: var(--spacing-sm); border-top: 1px dashed var(--terminal-border); }
+.donation-card .prompt-text { color: var(--terminal-highlight); font-family: var(--font-terminal); font-size: 1.1em; } /* Text remains green */
+.donation-card .terminal-output p { color: var(--terminal-text); } /* Text remains green */
+.donation-card .terminal-footer { margin-top: var(--spacing-md); padding-top: var(--spacing-sm); border-top: 1px dashed var(--terminal-border); } /* Border remains green */
 
 /* Feature Card */
 .feature-card {
@@ -864,10 +877,9 @@ textarea.form-control {
     height: 100%;
 }
 .feature-card .card-header {
-    /* Inherits base grid layout */
     margin-bottom: var(--spacing-sm);
     padding-bottom: var(--spacing-xs);
-    border-bottom: 1px dashed var(--terminal-border);
+    border-bottom: 1px dashed var(--terminal-border); /* Border remains green */
     background: none;
     margin: 0;
     padding: 0 0 var(--spacing-xs) 0;
@@ -875,10 +887,10 @@ textarea.form-control {
 }
 .feature-card .card-header .icon {
     font-size: 1.5rem;
-    color: var(--terminal-highlight);
+    color: var(--terminal-highlight); /* Icon remains green */
 }
 .feature-card h3 {
-    color: var(--terminal-highlight);
+    color: var(--terminal-highlight); /* Header text remains green */
     margin: 0;
     font-size: inherit;
     text-align: left;
@@ -889,7 +901,7 @@ textarea.form-control {
     gap: var(--spacing-sm);
 }
 .feature-card p, .feature-card .mod-list {
-    color: var(--terminal-text);
+    color: var(--terminal-text); /* Text remains green */
     line-height: 1.4;
     margin: 0;
     font-family: var(--font-terminal);
@@ -897,8 +909,8 @@ textarea.form-control {
     text-align: left;
 }
 .feature-card .mod-list { padding-left: 0; }
-.feature-card .mod-list li { font-size: var(--font-size-terminal-small); padding-left: 0; }
-.feature-card .mod-list li .icon { font-size: 0.8em; }
+.feature-card .mod-list li { font-size: var(--font-size-terminal-small); padding-left: 0; color: var(--terminal-text); } /* List text remains green */
+.feature-card .mod-list li .icon { font-size: 0.8em; color: var(--terminal-highlight); } /* Icon remains green */
 
 /* Staff Related Stuff */
 #staff-sections-container {
@@ -921,37 +933,36 @@ textarea.form-control {
     display: grid;
     grid-template-columns: min-content 1fr;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Centering header content */
     gap: var(--spacing-md);
     margin: 0;
     padding: var(--spacing-md) var(--spacing-lg);
-    background-color: var(--card-header-bg);
-    border: 1px solid var(--terminal-highlight);
+    background-color: var(--card-header-bg); /* Uses neutral header bg */
+    border: 1px solid var(--terminal-highlight); /* Highlight border remains green */
     border-bottom-width: 2px;
-    box-shadow: var(--card-shadow);
+    box-shadow: var(--card-shadow); /* Shadow remains green */
     border-radius: var(--border-radius);
 }
 .rank-header .fallout-card-header h2 {
     font-size: var(--font-size-xl);
-    color: var(--terminal-highlight);
+    color: var(--terminal-highlight); /* Header text remains green */
     margin-bottom: 0;
     text-transform: uppercase;
 }
 .rank-header .fallout-card-header .icon {
     font-size: 1.8em;
-    color: var(--terminal-highlight);
+    color: var(--terminal-highlight); /* Icon remains green */
     margin: 0;
 }
 
 /* Staff Grid */
 .rank-members {
-    display: grid; 
-    
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, max-content));
     gap: var(--spacing-lg);
     margin: var(--spacing-lg) 0;
     padding: 0;
-    justify-items: center; 
+    justify-items: center;
     }
 /* Ensure .staff-grid also gets these styles if used */
 .staff-grid {
@@ -972,21 +983,23 @@ textarea.form-control {
     align-items: center;
     text-align: center;
     height: auto;
-    width: 100%; 
+    width: 100%;
     max-width: 180px;
     min-height: 300px;
-    margin-bottom: 0; 
+    margin-bottom: 0;
     border-radius: var(--border-radius-slight);
     overflow: hidden;
     position: relative;
+    background-color: var(--card-bg); /* Use neutral card bg */
+    border: var(--card-border); /* Border remains green */
     transition: opacity var(--transition-observer), transform var(--transition-observer),
                 border-color var(--transition-fast), box-shadow var(--transition-fast),
                 transform var(--transition-fast);
 }
 .staff-card:hover {
     transform: translateY(-3px) rotate(-1deg);
-    box-shadow: 0 3px 12px var(--terminal-shadow-color);
-    border-color: var(--terminal-highlight);
+    box-shadow: 0 3px 12px var(--terminal-shadow-color); /* Hover shadow remains green */
+    border-color: var(--terminal-highlight); /* Hover border remains green */
     z-index: 5;
 }
 
@@ -997,15 +1010,15 @@ textarea.form-control {
     object-fit: cover;
     display: block;
     margin: var(--spacing-md) auto var(--spacing-sm);
-    border: 2px solid var(--terminal-border);
+    border: 2px solid var(--terminal-border); /* Border remains green */
     border-radius: var(--border-radius-slight);
-    background-color: rgba(var(--card-bg-rgb), 0.5);
+    background-color: rgba(var(--card-bg-rgb), 0.5); /* Use neutral card bg base */
     filter: none;
     transition: border-color var(--transition-fast);
     position: relative;
 }
 .staff-card:hover .staff-image {
-     border-color: var(--terminal-highlight);
+     border-color: var(--terminal-highlight); /* Hover border remains green */
 }
 
 /* Staff Info Section */
@@ -1016,7 +1029,7 @@ textarea.form-control {
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-    padding-bottom: calc(var(--spacing-sm) + 50px); 
+    padding-bottom: calc(var(--spacing-sm) + 50px);
 }
 
 
@@ -1024,7 +1037,7 @@ textarea.form-control {
 .staff-name {
     font-family: var(--font-title);
     font-size: var(--font-size-lg);
-    color: var(--terminal-highlight);
+    color: var(--terminal-highlight); /* Name remains green */
     margin-bottom: var(--spacing-xs);
     text-transform: uppercase;
     word-break: break-word;
@@ -1032,7 +1045,7 @@ textarea.form-control {
 .staff-rank {
     font-family: var(--font-terminal);
     font-size: var(--font-size-sm);
-    color: var(--terminal-text);
+    color: var(--terminal-text); /* Rank remains green */
     font-weight: var(--font-weight-normal);
     margin-bottom: var(--spacing-sm); /* Space before roles */
     text-transform: uppercase;
@@ -1051,10 +1064,10 @@ textarea.form-control {
 /* Role Tag */
 .staff-role-tag {
     display: block;
-    background-color: rgba(var(--terminal-text-rgb), 0.6);
-    color: var(--terminal-bg);
+    background-color: rgba(var(--terminal-text-rgb), 0.6); /* Green background for contrast */
+    color: var(--terminal-bg); /* Use neutral dark text color */
     padding: 2px 6px;
-    font-size: 14px;
+    font-size: large;
     font-family: var(--font-terminal);
     border: none;
     border-radius: 0;
@@ -1069,8 +1082,8 @@ textarea.form-control {
     margin-bottom: 0;
 }
 .staff-role-tag.inactive {
-    background-color: rgba(var(--terminal-text-muted), 0.4);
-    color: rgba(var(--terminal-bg-rgb), 0.7);
+    background-color: rgba(var(--terminal-text-muted), 0.4); /* Use muted green bg */
+    color: rgba(var(--terminal-bg-rgb), 0.7); /* Use muted neutral text */
     font-style: italic;
     text-align: center;
 }
@@ -1083,7 +1096,7 @@ textarea.form-control {
 /* Staff Intro Card */
 .staff-intro {
     margin-bottom: var(--spacing-xl);
-    background: rgba(var(--card-bg-rgb), 0.95);
+    background: rgba(var(--card-bg-rgb), 0.95); /* Use neutral card bg */
     max-width: var(--max-width);
     margin-left: auto;
     margin-right: auto;
@@ -1093,9 +1106,12 @@ textarea.form-control {
     line-height: 1.6;
     padding: var(--spacing-md);
     text-align: center;
+    color: var(--terminal-text); /* Ensure text is green */
 }
 .staff-intro .fallout-card-header {
     justify-content: center;
+    background-color: var(--card-header-bg); /* Use neutral header bg */
+    color: var(--terminal-highlight); /* Ensure header text/icon is green */
 }
 
 
@@ -1103,7 +1119,7 @@ textarea.form-control {
 .warning-section {
     margin-top: var(--spacing-lg);
     padding: var(--spacing-md);
-    background-color: rgba(255, 100, 0, 0.1);
+    background-color: rgba(255, 100, 0, 0.1); /* Keep warning colors */
     border: 1px solid rgba(255, 100, 0, 0.5);
     border-radius: var(--border-radius-slight);
     color: #ffcc00;
@@ -1118,37 +1134,41 @@ textarea.form-control {
 .warning-section .terminal-list-item {
     background: rgba(255, 150, 50, 0.1);
     border-color: rgba(255, 100, 0, 0.5);
+    color: #ffdd55; /* Ensure text color is set */
 }
 .warning-section .terminal-list-item .icon { color: #ffaa00; }
 .warning-section .terminal-list-item strong { color: #ffcc00; }
-.warning-section .terminal-list li { color: #ffdd55; }
+
 
 .overview-text {
     margin-top: var(--spacing-lg);
     padding: var(--spacing-lg);
-    background-color: rgba(var(--card-bg-rgb), 0.5);
-    border: 1px solid var(--terminal-border);
+    background-color: rgba(var(--card-bg-rgb), 0.5); /* Use neutral card bg */
+    border: 1px solid var(--terminal-border); /* Border remains green */
     line-height: 1.8;
     font-size: 1.1em;
     font-family: var(--font-body);
+    color: var(--terminal-text); /* Text remains green */
 }
 
 .disclaimer-text {
-    color: var(--terminal-text-muted);
+    color: var(--terminal-text-muted); /* Text remains muted green */
     font-size: var(--font-size-sm);
     margin-top: var(--spacing-md);
     font-style: italic;
     opacity: 0.8;
     text-align: center;
     padding: var(--spacing-sm);
-    background-color: rgba(var(--card-bg-rgb), 0.3);
-    border-top: 1px dashed var(--terminal-border);
+    background-color: rgba(var(--card-bg-rgb), 0.3); /* Use neutral card bg */
+    border-top: 1px dashed var(--terminal-border); /* Border remains green */
 }
 
 /* Guide Page Specific Styles */
 .guide-content { }
 .guide-content .tab-container {
     margin-top: 0;
+    background-color: rgba(var(--card-bg-rgb), 0.7); /* Use neutral card bg */
+    border-color: var(--terminal-border); /* Border remains green */
 }
 .guide-content .terminal-list {
   display: grid;
@@ -1158,6 +1178,9 @@ textarea.form-control {
 }
 .guide-content .terminal-list-item {
   height: 100%;
+  background-color: rgba(var(--card-bg-rgb), 0.9); /* Use neutral card bg */
+  border-color: var(--terminal-border); /* Border remains green */
+  color: var(--terminal-text); /* Text remains green */
 }
 
 /* --- Utility Classes --- */
@@ -1167,26 +1190,26 @@ textarea.form-control {
 
 /* --- Footer --- */
 .fallout-footer {
-    background-color: rgba(var(--terminal-bg-rgb), 0.8);
-    border-top: 1px solid var(--terminal-border);
+    background-color: rgba(var(--terminal-bg-rgb), 0.8); /* Use neutral bg */
+    border-top: 1px solid var(--terminal-border); /* Border remains green */
     padding: var(--spacing-lg) var(--spacing-md);
     margin-top: auto;
     text-align: center;
     font-family: var(--font-terminal);
     font-size: var(--font-size-terminal-base);
     flex-shrink: 0;
-    color: var(--terminal-text-muted);
+    color: var(--terminal-text-muted); /* Text remains muted green */
     position: relative;
-    z-index: var(--z-content); /* Ensure footer text is above effects */
+    z-index: var(--z-content);
 }
 .fallout-footer p {
     margin-bottom: var(--spacing-sm);
 }
 .fallout-footer a {
-    color: var(--terminal-highlight);
+    color: var(--terminal-highlight); /* Link remains green */
 }
 .fallout-footer a:hover {
-    color: var(--terminal-hover);
+    color: var(--terminal-hover); /* Hover remains green */
 }
 .fallout-footer .copyright {
     font-size: var(--font-size-sm);
@@ -1201,9 +1224,9 @@ textarea.form-control {
 
 /* --- Scrollbar --- */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--terminal-bg); border-left: 1px solid rgba(var(--terminal-text-rgb), 0.2); }
-::-webkit-scrollbar-thumb { background: var(--terminal-text); border: 2px solid var(--terminal-bg); border-radius: 0; }
-::-webkit-scrollbar-thumb:hover { background: var(--terminal-hover); }
+::-webkit-scrollbar-track { background: var(--terminal-bg); border-left: 1px solid rgba(var(--terminal-text-rgb), 0.1); } /* Track is now neutral dark */
+::-webkit-scrollbar-thumb { background: var(--terminal-text); border: 2px solid var(--terminal-bg); border-radius: 0; } /* Thumb remains green */
+::-webkit-scrollbar-thumb:hover { background: var(--terminal-hover); } /* Hover thumb remains green */
 
 /* --- Animations --- */
 @keyframes fadeIn {
@@ -1230,6 +1253,7 @@ textarea.form-control {
 .fx-toggle-button {
     padding: 0.5rem 1rem;
     font-size: var(--font-size-terminal-small);
+    /* Colors and borders inherit correctly */
 }
 .fx-toggle-button i {
     font-size: 1.1em;
@@ -1323,13 +1347,13 @@ body.no-fx .fallout-card, body.no-fx .feature-card, body.no-fx .application-card
         min-height: unset;
     }
 
-    
+
     .fallout-card-header {
         padding: var(--spacing-sm) var(--spacing-md);
         font-size: var(--font-size-lg);
         gap: var(--spacing-sm);
     }
-    
+
     .rank-header .fallout-card-header {
          padding: var(--spacing-sm) var(--spacing-md);
          font-size: var(--font-size-lg);
@@ -1347,7 +1371,7 @@ body.no-fx .fallout-card, body.no-fx .feature-card, body.no-fx .application-card
     .features-grid {
         grid-template-columns: 1fr;
     }
-   
+
     .rank-members {
         grid-template-columns: repeat(auto-fit, minmax(150px, max-content)); /* Smaller min */
         gap: var(--spacing-md);
@@ -1370,7 +1394,7 @@ body.no-fx .fallout-card, body.no-fx .feature-card, body.no-fx .application-card
 }
 @media (max-width: 480px) {
     html { font-size: 87.5%; }
-    body { padding-top: 7rem; } 
+    body { padding-top: 7rem; }
     .fallout-card-header { font-size: var(--font-size-md); }
     .rank-header .fallout-card-header h2 { font-size: var(--font-size-md); }
     :root {
@@ -1389,9 +1413,9 @@ body.no-fx .fallout-card, body.no-fx .feature-card, body.no-fx .application-card
         gap: var(--spacing-sm);
      }
     .staff-card {
-        max-width: 160px; 
+        max-width: 160px;
      }
-    .staff-image { width: 70px; height: 70px; } 
+    .staff-image { width: 70px; height: 70px; }
     .staff-name { font-size: var(--font-size-md); }
     .staff-rank { font-size: var(--font-size-sm); margin-bottom: var(--spacing-sm); }
     .staff-role-tag { font-size: 13px; padding: 1px 4px; }
@@ -1420,4 +1444,39 @@ body.no-fx .fallout-card, body.no-fx .feature-card, body.no-fx .application-card
      color: #ff6b6b;
      margin-right: var(--spacing-sm);
      font-size: 1.2em;
+}
+/* --- Continue Prompt Styling --- */
+.continue-prompt {
+  font-family: var(--font-terminal);
+  color: var(--terminal-highlight); /* Or var(--terminal-text) */
+  text-align: center;
+  font-size: var(--font-size-terminal-large);
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-md);
+  text-shadow: var(--terminal-glow);
+  cursor: pointer;
+  opacity: 0; /* Start hidden */
+  animation: flicker 1.5s linear infinite alternate, fadeIn 1s ease forwards; /* Add flicker and fade-in */
+  animation-delay: 0.5s; /* Delay fade-in slightly */
+  position: absolute; /* Position relative to loading screen */
+  bottom: 10%; /* Adjust vertical position */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%; /* Limit width */
+}
+
+.continue-prompt.hidden {
+  display: none; /* Use display none when explicitly hidden */
+}
+
+/* Override flicker animation if FX are disabled */
+body.no-fx .continue-prompt {
+    animation: fadeIn 1s ease forwards !important; /* Only fade-in */
+    animation-delay: 0.5s !important;
+    text-shadow: none !important;
+}
+
+/* Adjust z-index if needed to ensure it's above pip-os-boot */
+.continue-prompt {
+    z-index: calc(var(--z-loading) + 1); /* Ensure it's on top within loading screen */
 }
