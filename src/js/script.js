@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 	// Initialize non-visual elements early
 	initializeFXToggleIfNeeded();
-	initializeTerminalColorSwitcher();
+	// Removed call to initializeTerminalColorSwitcher()
 
 	// --- Stage 1: Wait for Boot Messages to Display ---
 	try {
@@ -365,6 +365,67 @@ async function loadStaffData() {
 	if (!staffSectionsContainer) return;
 
 	staffSectionsContainer.innerHTML = '<div class="fallout-card error-card"><p class="terminal-text error-message"><i class="fas fa-spinner fa-spin icon"></i> Loading staff roster...</p></div>';
+
+	// Helper function to determine social icon class
+	const getSocialIconClass = (link) => {
+		const lowerLink = link.toLowerCase();
+
+		// Major Platforms & Brands
+		if (lowerLink.includes('github.com')) return 'fab fa-github';
+		if (lowerLink.includes('twitter.com') || lowerLink.includes('x.com')) return 'fab fa-x-twitter'; // Assumes FA v6+ for X icon
+		if (lowerLink.includes('linkedin.com')) return 'fab fa-linkedin';
+		if (lowerLink.includes('facebook.com')) return 'fab fa-facebook';
+		if (lowerLink.includes('instagram.com')) return 'fab fa-instagram'; // Added/Confirmed
+		if (lowerLink.includes('discord.com') || lowerLink.includes('discord.gg')) return 'fab fa-discord';
+		if (lowerLink.includes('twitch.tv')) return 'fab fa-twitch';
+		if (lowerLink.includes('youtube.com') || lowerLink.includes('youtu.be')) return 'fab fa-youtube';
+		if (lowerLink.includes('tiktok.com')) return 'fab fa-tiktok';
+		if (lowerLink.includes('reddit.com')) return 'fab fa-reddit-alien';
+		if (lowerLink.includes('pinterest.com')) return 'fab fa-pinterest';
+		if (lowerLink.includes('tumblr.com')) return 'fab fa-tumblr';
+		if (lowerLink.includes('snapchat.com')) return 'fab fa-snapchat';
+		if (lowerLink.includes('whatsapp.com') || lowerLink.includes('wa.me')) return 'fab fa-whatsapp';
+		if (lowerLink.includes('telegram.me') || lowerLink.includes('t.me')) return 'fab fa-telegram';
+		if (lowerLink.includes('skype.com') || lowerLink.startsWith('skype:')) return 'fab fa-skype';
+		if (lowerLink.includes('spotify.com')) return 'fab fa-spotify';
+		if (lowerLink.includes('soundcloud.com')) return 'fab fa-soundcloud';
+		if (lowerLink.includes('steamcommunity.com')) return 'fab fa-steam';
+		if (lowerLink.includes('bsky.app')) return 'fa-brands fa-bluesky';
+		
+		// Gaming & Modding Specific
+		if (lowerLink.includes('nexusmods.com')) return 'fas fa-tools';
+
+		// Portfolio & Creative
+		if (lowerLink.includes('behance.net')) return 'fab fa-behance';
+		if (lowerLink.includes('dribbble.com')) return 'fab fa-dribbble';
+		if (lowerLink.includes('artstation.com')) return 'fab fa-artstation';
+		if (lowerLink.includes('deviantart.com')) return 'fab fa-deviantart';
+		if (lowerLink.includes('codepen.io')) return 'fab fa-codepen';
+		if (lowerLink.includes('medium.com')) return 'fab fa-medium';
+		if (lowerLink.includes('vimeo.com')) return 'fab fa-vimeo-v';
+		if (lowerLink.includes('flickr.com')) return 'fab fa-flickr';
+
+		// Support & Funding
+		if (lowerLink.includes('patreon.com')) return 'fab fa-patreon';
+		if (lowerLink.includes('ko-fi.com')) return 'fas fa-mug-saucer';
+		if (lowerLink.includes('paypal.me') || lowerLink.includes('paypal.com')) return 'fab fa-paypal';
+		if (lowerLink.includes('buymeacoffee.com')) return 'fas fa-coffee';
+
+		// Communication & General
+		if (lowerLink.startsWith('mailto:')) return 'fas fa-envelope';
+        if (lowerLink.startsWith('tel:')) return 'fas fa-phone';
+
+		// Add more specific domains as needed above this line
+
+		// Fallback for general websites/links
+        // You might want to check for common TLDs if it's not a known brand
+        if (lowerLink.match(/\.(com|net|org|io|dev|me|uk|co|app|xyz|tech|site|online|store|blog)\b/)) {
+             return 'fas fa-globe'; // Generic website icon
+        }
+
+		return 'fas fa-link'; // Ultimate fallback
+	};
+
 	try {
 		const response = await fetch('../src/data/staff.json');
 		if (!response.ok) {
@@ -416,6 +477,46 @@ async function loadStaffData() {
 			rankP.textContent = staff.rank || 'No Rank';
 			infoDiv.appendChild(rankP);
 
+			// Add Tagline
+			if (staff.tagline) {
+				const taglineP = document.createElement('p');
+				taglineP.className = 'staff-tagline';
+				taglineP.textContent = staff.tagline;
+				infoDiv.appendChild(taglineP);
+			}
+
+			// Add Social Links
+			if (staff.social && typeof staff.social === 'string') {
+				const socialLinks = staff.social.split(',')
+					.map(s => s.trim())
+					.filter(Boolean);
+
+				if (socialLinks.length > 0) {
+					const socialContainer = document.createElement('div');
+					socialContainer.className = 'staff-social-links';
+
+					socialLinks.forEach(link => {
+						const linkA = document.createElement('a');
+						// Ensure the link starts with http:// or https:// for external links
+						const url = (link.startsWith('http://') || link.startsWith('https://') || link.startsWith('mailto:'))
+							? link
+							: `https://${link}`;
+						linkA.href = url;
+						linkA.target = '_blank';
+						linkA.rel = 'noopener noreferrer';
+						linkA.title = `Visit ${link}`; // Tooltip
+
+						const icon = document.createElement('i');
+						// Use the helper function defined outside createStaffCard
+						icon.className = `icon ${getSocialIconClass(link)}`;
+						linkA.appendChild(icon);
+						socialContainer.appendChild(linkA);
+					});
+					infoDiv.appendChild(socialContainer);
+				}
+			}
+
+			// Roles Container (Appended last, but styles will position it at bottom)
 			const rolesContainer = document.createElement('div');
 			rolesContainer.className = 'staff-roles-container';
 			let roles = [];
@@ -433,12 +534,17 @@ async function loadStaffData() {
 					rolesContainer.appendChild(roleTag);
 				});
 			} else {
-				const noRoleTag = document.createElement('span');
-				noRoleTag.className = 'staff-role-tag inactive';
-				noRoleTag.textContent = 'No Roles Listed';
-				rolesContainer.appendChild(noRoleTag);
+				// Optionally hide the container if no roles, or show an inactive tag
+				// const noRoleTag = document.createElement('span');
+				// noRoleTag.className = 'staff-role-tag inactive';
+				// noRoleTag.textContent = 'No Roles Listed';
+				// rolesContainer.appendChild(noRoleTag);
 			}
-			infoDiv.appendChild(rolesContainer);
+			// Append rolesContainer *after* other info, CSS handles positioning
+			if (roles.length > 0) { // Only append if there are roles
+				infoDiv.appendChild(rolesContainer);
+			}
+
 			card.appendChild(infoDiv);
 			return card;
 		};
@@ -512,6 +618,9 @@ function initializeTabs() {
 
 		if (tabButtons.length > 0 && tabContents.length > 0) {
 			const switchTab = (tabId) => {
+                // Check if tabId actually exists before proceeding
+                if (!tabId) return; // Exit if tabId is null or empty
+
 				const targetContent = container.querySelector(`#${tabId}`);
 				const targetButton = container.querySelector(`.tab-button[data-tab="${tabId}"]`);
 
@@ -534,10 +643,13 @@ function initializeTabs() {
 				button.addEventListener('click', (event) => {
 					const tabId = event.currentTarget.getAttribute('data-tab');
 					if (tabId) {
-                        if (history.pushState) {
-                           history.pushState(null, null, `#${tabId}`);
-                        } else {
-                           location.hash = `#${tabId}`;
+                        const currentHash = window.location.hash.substring(1);
+                        if (tabId !== currentHash) { // Only push state if hash changes
+                            if (history.pushState) {
+                               history.pushState({tab: tabId}, null, `#${tabId}`);
+                            } else {
+                               location.hash = `#${tabId}`;
+                            }
                         }
 						switchTab(tabId);
 					} else {
@@ -552,16 +664,30 @@ function initializeTabs() {
 				if (hash && buttonForHash) {
 					switchTab(hash);
 				} else {
+                    // If no hash or hash invalid, activate the first tab as default
                     const currentlyActiveButton = container.querySelector('.tab-button.active');
+                    // Only switch to first tab if NO tab is currently active
                     if (!currentlyActiveButton && tabButtons.length > 0) {
                         const firstTabId = tabButtons[0].getAttribute('data-tab');
-                        if (firstTabId) switchTab(firstTabId);
+                        switchTab(firstTabId); // Don't change history here, just set default view
                     }
 				}
 			};
 
+            // Initial load handling
 			handleHashChange();
+
+            // Listen for hash changes
 			window.addEventListener('hashchange', handleHashChange, false);
+            // Also handle browser back/forward navigation affecting state
+            window.addEventListener('popstate', (event) => {
+                if (event.state && event.state.tab) {
+                    switchTab(event.state.tab);
+                } else {
+                    // Fallback if state is missing or doesn't have tab
+                    handleHashChange();
+                }
+            });
 		}
 	});
 }
@@ -598,24 +724,7 @@ function initializeCardObserver() {
 	}
 }
 
-function initializeTerminalColorSwitcher() {
-	const T = {
-		s: { i: '', t: false },
-		c: { bg: '--terminal-bg', tx: '--terminal-text', hl: '--terminal-highlight', bd: '--terminal-border' },
-		p: { bg: '#101410', tx: '#40FF40', hl: '#60FF60', bd: '#30bb30' },
-		e: { bg: '#0a0a1a', tx: '#82aaff', hl: '#b794f4', bd: '#82aaff' },
-		init() { document.addEventListener('keydown', (e) => this.k(e)); },
-		k(e) {
-			if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
-			if (e.key.length > 1 && e.key !== 'Backspace') return;
-            if (e.ctrlKey || e.altKey || e.metaKey) return;
-			if (e.key === 'Backspace') { this.s.i = this.s.i.slice(0, -1); }
-			else if (!e.repeat) { this.s.i += e.key.toLowerCase(); this.s.i = this.s.i.slice(-10); this.c(); }
-		},
-		c() { const trigger = "fliptheme"; if (this.s.i.endsWith(trigger)) { this.s.t = !this.s.t; this.u(); this.s.i = ''; console.log(`Theme toggled to: ${this.s.t ? 'Enclave' : 'Pip-Boy'}`); } },
-		u() { const themeToApply = this.s.t ? this.s.e : this.s.p; Object.keys(themeToApply).forEach(key => { document.documentElement.style.setProperty(this.c[key], themeToApply[key]); }); }
-	}; T.init();
-}
+// Removed the initializeTerminalColorSwitcher function entirely
 
 function initializeFXToggle() {
 	if (document.querySelector('.fx-toggle-button')) return;
