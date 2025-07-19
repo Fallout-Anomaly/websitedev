@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting.">
+    <title>FALLOUT ANOMALY - COMPLETE GUIDE</title>
+
+    <!-- ================================================== -->
+    <!-- ========= Open Graph / Social Media Meta ========= -->
+    <!-- ================================================== -->
+    <meta property="og:title" content="Fallout Anomaly Installation Guide" />
+    <meta property="og:description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting." />
+    <meta property="og:url" content="https://fallout-anomaly.github.io/websitedev/pages/guide.html" />
+    <meta property="og:site_name" content="Fallout Anomaly" />
+    <meta property="og:type" content="article" /> 
+    <meta property="article:section" content="Guides" />
+    <meta property="article:tag" content="Fallout 4, Modding, Wabbajack, Installation, Guide, Fallout Anomaly" />
+    <meta property="og:image" content="https://s3.amazonaws.com/guildtag/file/14763/84412-8ff9de.png" />
+    <meta property="og:image:width" content="500" />
+    <meta property="og:image:height" content="500" />
+
+    <!-- ================================================== -->
+    <!-- ============ Twitter Card Meta Tags ============ -->
+    <!-- ================================================== -->
+    <meta name="twitter:card" content="summary" /> 
+    <meta name="twitter:title" content="Fallout Anomaly Installation Guide" />
+    <meta name="twitter:description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting." />
+    <meta name="twitter:image" content="https://s3.amazonaws.com/guildtag/file/14763/84412-8ff9de.png" />
+    <!-- <meta name="twitter:site" content="@[YourSiteTwitterHandle]" /> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../src/css/style.css">
+    
+    <link rel="icon" href="data:image/svg+xml,
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+            <text y='.9em' font-size='90'>☢️</text>
+        </svg>">
+</head>
+<body class="body-textured crt">
+    <nav class="nav-menu">
+        <div class="nav-menu-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-radiation icon"></i> FALLOUT ANOMALY </a>
+            <div id="nav-links-container"></div>
+        </div>
+    </nav>
+    
+    <div class="loading-screen">
+        <div class="pip-os-boot"></div>
+        <div class="continue-prompt hidden">Press any key or click to continue...</div>
+    </div>
+    
+    <div class="main-content">
+        <div class="fallout-card">
+            <div class="fallout-card-header">
+                <i class="fas fa-book icon"></i>
+                <h1>COMPLETE INSTALLATION GUIDE</h1>
+            </div>
+            <div class="terminal-text guide-content">
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="step1">STEP 1: GETTING STARTED</button>
+                        <button class="tab-button" data-tab="step2">STEP 2: INSTALLATION</button>
+                        <button class="tab-button" data-tab="step3">STEP 3: LAUNCHING</button>
+                        <button class="tab-button" data-tab="step4">STEP 4: KNOWN ISSUES</button>
+                        <button class="tab-button" data-tab="step5">STEP 5: GAMEPLAY</button>
+                    </div>
+                    
+                    <!-- STEP 1: GETTING STARTED -->
+                    <div class="tab-content active" id="step1">
+                        <div class="terminal-list grid-layout">
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-microchip"></i>WHAT IS FALLOUT ANOMALY?</strong>
+                                <p>Fallout Anomaly is a true hardcore experience, bringing you as close to realism as possible with mods like Damn Apocalypse, MAIM, and more. Packed with new weapons and armor to face harsher challenges, Anomaly also features new enemy types, quests, settlement items, and a complete assortment of textures to elevate your game to modern standards.</p>
+                                
+                                <strong><i class="fas fa-exclamation-triangle"></i>DISCLAIMER</strong>
+                                <ul class="terminal-sublist">
+                                    <li><strong>Beta Stages:</strong> Fallout Anomaly is currently in <strong>beta</strong>, meaning changes and evolution are inevitable.</li>
+                                    <li><strong>Steam Version Only:</strong> At this time, <strong>only the Steam version</strong> of Fallout 4 is supported.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-microchip"></i>HARDWARE REQUIREMENTS</strong>
+                                <ul class="terminal-sublist">
+                                    <li>CPU: Modern CPU with at least 6 cores and 3GHz speed</li>
+                                    <li>RAM: 16GB minimum, 32GB ideal</li>
+                                    <li>GPU: At least 6GB VRAM, 8GB recommended</li>
+                                    <li>Storage: 350GB minimum on SSD (HDD not supported)</li>
+                                    <li>OS: Windows 10/11 (64-bit) with up-to-date drivers</li>
+                                </ul>
+                                
+                                <div class="warning-box">
+                                    <p>🚨 Do not install <strong>Anomaly</strong> directly on a root drive (e.g., <code>C:\Fallout Anomaly</code>). Instead, install it within a dedicated folder structure, such as: <code>C:\Fallout Modlist\Fallout Anomaly</code>. 🚨</p>
+                                </div>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-exclamation-triangle"></i>IMPORTANT NOTICE</strong>
+                                <ul class="terminal-sublist">
+                                    <li>🚨 <strong>UPDATE FALLOUT 4 TO THE NEXT-GEN VERSION</strong></li>
+                                    <li>🚨 <strong>DISABLE ALL OVERLAYS (STEAM, MEDAL, ETC.)</strong></li>
+                                    <li>🚨 <strong>SET UP PAGE FILE FOR PERFORMANCE</strong></li>
+                                    <li>🚨 <strong>CONFIGURE ANTI-VIRUS EXCLUSIONS</strong></li>
+                                </ul>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-download"></i>IMPORTANT INSTALLATION STEPS</strong>
+                                <ol class="terminal-sublist">
+                                    <li><strong>Microsoft Visual C++ x64 and x86</strong><br>
+                                        Must be installed! Open the launcher and follow the on-screen steps.</li>
+                                    <li><strong>NET Framework 4.6.2 & 5.0</strong><br>
+                                        Required for the mod list to function properly.</li>
+                                    <li><strong>DirectX Redist (June 2010)</strong><br>
+                                        Download and install to ensure proper DirectX support.</li>
+                                    <li><strong>Launch the Game Once</strong><br>
+                                        Launch the game at least once to ensure it's ready for modding.</li>
+                                    <li><strong>PageFile Setup</strong><br>
+                                        Critical for performance.</li>
+                                    <li><strong>Disable Overlays</strong><br>
+                                        Disable all overlays to prevent crashes and performance issues.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- STEP 2: INSTALLATION -->
+                    <div class="tab-content" id="step2">
+                        <div class="terminal-list">
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-check-circle"></i>PRE-INSTALLATION CHECKLIST</strong>
+                                <ul class="terminal-sublist">
+                                    <li>Log into Nexus in Wabbajack</li>
+                                    <li>Open Wabbajack, click the ⚙️ cogwheel, and log in under the Nexus panel</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-download"></i>INSTALLATION INSTRUCTIONS</strong>
+                                <ul class="terminal-sublist">
+                                    <li>Locate <em>Fallout Anomaly</em> in the Wabbajack Browser and download the file</li>
+                                    <li>Set both <strong>Install Location</strong> and <strong>Download Location</strong> on the same drive</li>
+                                    <li>Click the play button to begin installation</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-exclamation-triangle"></i>COMMON ISSUES & FIXES</strong>
+                                <ul class="terminal-sublist">
+                                    <li><strong>"Could Not Download MOD"</strong>
+                                        <ul>
+                                            <li>Manually download the mod and place it in Wabbajack's download folder</li>
+                                            <li>Check if Nexus Mods is down</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>"Mod Is Not a Whitelisted Download"</strong>
+                                        <ul>
+                                            <li>The modlist may have been updated</li>
+                                            <li>Wait for a new release or notify us on Discord</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>"Missing Game Files"</strong>
+                                        <ul>
+                                            <li>Ensure your game is updated to the next-gen version</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-shield-alt"></i>ANTIVIRUS FOLDER EXCLUSION</strong>
+                                <p>To prevent interference, <strong>add a folder exclusion</strong> for your entire install directory:</p>
+                                <ol class="terminal-sublist">
+                                    <li>Open <strong>Windows Security</strong> → <em>Virus & threat protection</em></li>
+                                    <li>Scroll to <em>Exclusions</em> and select <em>Add or remove exclusions</em></li>
+                                    <li>Click <em>Add an exclusion</em> → choose <em>Folder</em> and browse to your install folder</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-sync"></i>UPDATING FALLOUT ANOMALY</strong>
+                                <ul class="terminal-sublist">
+                                    <li>Announcements on <strong>Discord</strong> and <strong>Nexus Mods</strong></li>
+                                    <li>Re-run the installer on the same path and check "Overwrite existing"</li>
+                                    <li>Your save files remain intact unless we explicitly state otherwise</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- STEP 3: LAUNCHING -->
+                    <div class="tab-content" id="step3">
+                        <div class="terminal-list">
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-play"></i>LAUNCHING FALLOUT ANOMALY</strong>
+                                <p>When you open <strong>Mod Organizer 2 (MO2)</strong>, the interface might seem complex at first, but don't worry—we've streamlined the process!</p>
+                                <ul class="terminal-sublist">
+                                    <li>In the <strong>top-right corner</strong> of the MO2 interface, click <strong>"Launch Fallout Anomaly"</strong> to start the game.</li>
+                                </ul>
+                                <div class="warning-box">
+                                    <p>⚠️ <strong>DO NOT</strong> use the vanilla game launcher!</p>
+                                </div>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-wrench"></i>F4SE (FALLOUT 4 SCRIPT EXTENDER)</strong>
+                                <p><strong>F4SE</strong> is essential for most Fallout mods and is required to run Fallout Anomaly.<br>
+                                When using MO2, <strong>F4SE</strong> is automatically included in <strong>"Launch Fallout Anomaly"</strong>—no extra setup needed!</p>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-bomb"></i>CRASH HANDLING</strong>
+                                <p>If your game crashes, follow these steps to report the issue:</p>
+                                <ol class="terminal-sublist">
+                                    <li><strong>Save the log</strong> to an easily accessible location.</li>
+                                    <li><strong>Upload the log</strong> via our bug report form OR post it in our <strong>Discord support section</strong>.</li>
+                                    <li><strong>Attach your most recent save file</strong> to help with debugging.</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-desktop"></i>CHANGING RESOLUTION (BETHINI)</strong>
+                                <p>If your game's resolution isn't correct, use <strong>BethINI</strong> to adjust it. <strong>Do NOT modify other settings!</strong></p>
+                                <ol class="terminal-sublist">
+                                    <li><strong>Close</strong> <strong>Mod Organizer 2</strong>.</li>
+                                    <li>Navigate to your <strong>Anomaly installation folder</strong>:
+                                        <ul>
+                                            <li>Open the <strong><code>Tools</code></strong> directory.</li>
+                                            <li>Inside, find and open the <strong>BethINI</strong> folder.</li>
+                                            <li>Right-click <code>BethINI.exe</code> and select <strong>"Run as Administrator"</strong>.</li>
+                                        </ul>
+                                    </li>
+                                    <li>In <strong>BethINI</strong>, select <strong>Fallout 4</strong> (<strong>DO NOT</strong> change INI paths!).</li>
+                                    <li>Go to the <strong>Basic</strong> tab and adjust your resolution.</li>
+                                    <li>Click <strong>Save & Exit</strong> to apply the changes.</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-cog"></i>APPLY THE MCM PRESET!</strong>
+                                <p>Don't forget to apply the preset for proper settings!</p>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-film"></i>DISABLING BLACK BARS (LETTERBOX) IN ENB</strong>
+                                <ol class="terminal-sublist">
+                                    <li>Press the <strong><code>~</code></strong> key (next to the <code>1</code> key) to open the console.</li>
+                                    <li>Press <strong><code>END</code></strong> to open the ENB menu.</li>
+                                    <li>Navigate to the <strong>Post Processing</strong> section.</li>
+                                    <li><strong>Uncheck</strong> the <strong>Letterbox</strong> option.</li>
+                                    <li>Click <strong>Save Configuration</strong> (top-left).</li>
+                                    <li>Press <strong><code>END</code></strong> and <strong><code>~</code></strong> again to exit the menus.</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-gamepad"></i>CONTROLLER SUPPORT</strong>
+                                <p>We currently support <strong>PS5 controllers</strong>, with <strong>Xbox support planned for the future.</strong></p>
+                                <ol class="terminal-sublist">
+                                    <li>Ensure your <strong>Steam controller settings</strong> are correctly set up.</li>
+                                    <li><strong>Steam Overlay</strong> must be enabled for the controller to function properly.</li>
+                                    <li><strong>Steam Input</strong>: Install the custom controller profile for Fallout Anomaly.</li>
+                                    <li>In <strong>MO2</strong>, activate the optional mod: <strong>"A - OPT - Controller Support - PS5 Support"</strong></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- STEP 4: KNOWN ISSUES -->
+                    <div class="tab-content" id="step4">
+                        <div class="terminal-list">
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-exclamation-circle"></i>MAIN MENU DELAY</strong>
+                                <p>When launching the game you may experience a delay as scripts load. This delay varies based on your system's power; more powerful systems may not encounter this issue.</p>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-exclamation-circle"></i>STUCK IN MENU</strong>
+                                <p>If you find yourself unable to progress from the first loading or main menu:</p>
+                                <p><strong>Watch <a href="https://www.youtube.com/watch?v=JTnhJsM3_hg&t" target="_blank">this video</a> for help with the issue. If the video doesn't resolve it, we've provided new save files for you to load and customize your character as needed.</strong></p>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-exclamation-circle"></i>POST-CHARACTER CREATION FREEZE</strong>
+                                <ul class="terminal-sublist">
+                                    <li>Your game will save and may appear to freeze temporarily.</li>
+                                    <li>This is due to multiple scripts loading simultaneously.</li>
+                                    <li>Be patient and wait for a few minutes; the game will resume normally.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-exclamation-circle"></i>FALLING THROUGH VAULT ISSUE</strong>
+                                <p>If you're falling through the vault floor:</p>
+                                <ul class="terminal-sublist">
+                                    <li>This is likely due to the "Uneducated Shooter" mod.</li>
+                                    <li><strong>Solution</strong>: Only enable the "Uneducated Shooter" mod after leaving the vault.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-exclamation-circle"></i>KNOWN CRASH RELATED ISSUES</strong>
+                                <ul class="terminal-sublist">
+                                    <li>Programs like medal (recording software) or anything that adds an overlay can conflict with the ENBS, or other DLL hooked mods.</li>
+                                    <li>If you are crashing right at the launch of game or at the main menu this can be one of the main causes.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- STEP 5: GAMEPLAY -->
+                    <div class="tab-content" id="step5">
+                        <div class="terminal-list">
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-heartbeat"></i>SURVIVAL MECHANICS</strong>
+                                <ul class="terminal-sublist">
+                                    <li><strong>Needs System:</strong> You must regularly eat, drink, and sleep to avoid penalties.</li>
+                                    <li><strong>Fast Travel:</strong> Traditional fast travel is disabled. Use the <strong>APC Travel System</strong> or expanded subway system.</li>
+                                    <li><strong>Saving the Game:</strong> Manual saving and quicksaving are disabled. Save by sitting in a <strong>chair</strong> or using a <strong>Survival Pack</strong>.</li>
+                                    <li><strong>Combat Difficulty:</strong> Both you and enemies deal more damage. Healing is slowed.</li>
+                                    <li><strong>Ammo Has Weight:</strong> Every bullet adds weight to your inventory.</li>
+                                    <li><strong>Illness & Injury:</strong> You can get sick, suffer broken limbs, or require items for proper healing.</li>
+                                    <li><strong>Carry Weight Reduced:</strong> Your base carry weight is significantly lower.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-brain"></i>SKILLS AND LEVELS</strong>
+                                <p>Utilizes the <strong>YAE mod</strong>, which introduces new skills and modifies the perk system.</p>
+                                <ul class="terminal-sublist">
+                                    <li>26 total Skills</li>
+                                    <li>250+ new and reworked Perks</li>
+                                    <li>More control over character growth</li>
+                                    <li>Choose a Background at the start for backstory, starter gear, and Skill bonuses</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-medkit"></i>HEALING GUIDE</strong>
+                                <p><strong>MAIM</strong> is a realistic combat and medical overhaul that introduces lethal headshots, injuries, bleeding, pain, and more.</p>
+                                <ul class="terminal-sublist">
+                                    <li><strong>SP-1 Stimpak</strong>: Gradual HP + AP regen, cures NPC injuries</li>
+                                    <li><strong>SP-2 Stimpak</strong>: 3%/s HP & limb healing (40s)</li>
+                                    <li><strong>Med-X</strong>: Treats pain, shock, and contusion</li>
+                                    <li><strong>Bandage</strong>: Stops light bleeds, heals injured limbs</li>
+                                    <li><strong>QuikClot Injector</strong>: Stops heavy bleeds</li>
+                                    <li><strong>IFAK</strong>: Stops heavy bleed, removes crippled status</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-radiation"></i>RADIATION SYSTEM</strong>
+                                <ul class="terminal-sublist">
+                                    <li><strong>Dual-layered radiation system:</strong>
+                                        <ul>
+                                            <li><strong>IRA (Ingested Radioactive Particles)</strong>: From food, water, and ambient hazards</li>
+                                            <li><strong>RAD (Tissue Damage)</strong>: Traditional external radiation exposure</li>
+                                        </ul>
+                                    </li>
+                                    <li>High IRA levels simulate <strong>Acute Radiation Syndrome</strong></li>
+                                    <li><strong>Weather hazards</strong> require protective gear</li>
+                                    <li>Protective gear is now <strong>breakable</strong> and must be maintained</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-fist-raised"></i>COMBAT OVERHAUL</strong>
+                                <p>True Damage reworks Fallout's combat mechanics for realism and balance:</p>
+                                <ul class="terminal-sublist">
+                                    <li>Realistic damage applied via ammo, scaled by caliber</li>
+                                    <li>Same-caliber weapons have logical damage ranges</li>
+                                    <li>Independent sliders for different weapon types</li>
+                                    <li>SCOURGE brings realism to NPC combat with randomized stat generation</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="terminal-list-item">
+                                <strong><i class="fas fa-keyboard"></i>KEYBIND PRESET</strong>
+                                <p>Fallout Anomaly includes custom keybinds for various functions:</p>
+                                <ul class="terminal-sublist">
+                                    <li><strong>Movement:</strong> WASD, Shift (Sprint), C (Run), Space (Jump), Ctrl (Sneak)</li>
+                                    <li><strong>Combat:</strong> Mouse1 (Attack), Mouse2 (Aim), Alt (Bash/Power Attack), R (Reload), Q (VATS)</li>
+                                    <li><strong>Menu:</strong> Tab (Pip-Boy), Esc (Pause), I (Quick Inventory), M (Quick Map)</li>
+                                    <li>Many mod-specific keybinds for enhanced features</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="fallout-card">
+            <div class="fallout-card-header">
+                <i class="fas fa-headset icon"></i>
+                <h2>COMMUNITY AND SUPPORT</h2>
+            </div>
+            <div class="terminal-text">
+                <div class="support-links-grid">
+                    <a href="https://discord.gg/ECuAthsdwJ" class="support-card">
+                        <span><i class="fab fa-discord"></i></span>
+                        <h4>Discord</h4>
+                        <p>Join our Discord community</p>
+                    </a>
+                    
+                    <a href="https://loadorderlibrary.com/lists/fallout-anomaly-0-5" class="support-card">
+                        <span><i class="fas fa-list"></i></span>
+                        <h4>Mod List</h4>
+                        <p>View the mod list</p>
+                    </a>
+                    
+                    <a href="https://falloutanomaly.fillout.com/bugreports" class="support-card">
+                        <span><i class="fas fa-bug"></i></span>
+                        <h4>Bug Report</h4>
+                        <p>Submit a bug report</p>
+                    </a>
+                    
+                    <a href="https://falloutanomaly.fillout.com/suggestions" class="support-card">
+                        <span><i class="fas fa-lightbulb"></i></span>
+                        <h4>Suggestions</h4>
+                        <p>Share your suggestions</p>
+                    </a>
+                    
+                    <a href="https://www.nexusmods.com/fallout4/mods/74075?tab=description" class="support-card">
+                        <span><i class="fas fa-gamepad"></i></span>
+                        <h4>Nexus</h4>
+                        <p>Visit our Nexus page</p>
+                    </a>
+                    
+                    <a href="https://www.youtube.com/@FalloutAnomaly/videos" class="support-card">
+                        <span><i class="fab fa-youtube"></i></span>
+                        <h4>YouTube</h4>
+                        <p>Check out our YouTube channel</p>
+                    </a>
+                </div>
+                
+                <div class="thank-you">
+                    <h3>Thank You</h3>
+                    <p><strong>Thank you for your dedication to our community and team. We are excited about the future and confident that, together, we will continue to shape Anomaly into an extraordinary mod list for Fallout 4.</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../src/js/script.js"></script>
+    <script src="../src/js/navlinks.js"></script>
+</body>
+</html>
