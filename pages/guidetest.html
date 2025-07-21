@@ -1,1389 +1,1238 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting.">
-    <title>FALLOUT ANOMALY - COMPLETE GUIDE</title>
-
-    <!-- Open Graph / Social Media Meta -->
-    <meta property="og:title" content="Fallout Anomaly Installation Guide" />
-    <meta property="og:description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting." />
-    <meta property="og:url" content="https://fallout-anomaly.github.io/websitedev/pages/guide.html" />
-    <meta property="og:site_name" content="Fallout Anomaly" />
-    <meta property="og:type" content="article" /> 
-    <meta property="article:section" content="Guides" />
-    <meta property="article:tag" content="Fallout 4, Modding, Wabbajack, Installation, Guide, Fallout Anomaly" />
-    <meta property="og:image" content="https://s3.amazonaws.com/guildtag/file/14763/84412-8ff9de.png" />
-    <meta property="og:image:width" content="500" />
-    <meta property="og:image:height" content="500" />
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary" /> 
-    <meta name="twitter:title" content="Fallout Anomaly Installation Guide" />
-    <meta name="twitter:description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting." />
-    <meta name="twitter:image" content="https://s3.amazonaws.com/guildtag/file/14763/84412-8ff9de.png" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- Updated font selection for better readability -->
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    
-    <link rel="icon" href="data:image/svg+xml,
-        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-            <text y='.9em' font-size='90'>☢️</text>
-        </svg>">
-        
-    <style>
-        :root {
-            --primary-color: #4CAF50;
-            --primary-hover: #3e8e41;
-            --dark-bg: #0a1a1f;
-            --darker-bg: #061215;
-            --text-color: #e0e0e0;
-            --header-color: #4CAF50;
-            --warning-color: #ff9800;
-            --link-color: #8bc34a;
-            --border-color: rgba(76, 175, 80, 0.3);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--dark-bg);
-            color: var(--text-color);
-            /* Updated font stack for better readability */
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            font-size: 16px;
-        }
-
-        /* Navigation Menu */
-        .nav-menu {
-            background-color: var(--darker-bg);
-            padding: 10px 0;
-            border-bottom: 1px solid var(--primary-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-menu-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .nav-logo {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            /* Using Share Tech Mono only for the logo */
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        .nav-logo .icon {
-            margin-right: 10px;
-            color: var(--primary-color);
-        }
-
-        #nav-links-container {
-            display: flex;
-        }
-
-        .nav-link {
-            color: var(--text-color);
-            text-decoration: none;
-            margin-left: 20px;
-            transition: color 0.3s;
-            font-size: 1rem;
-            padding: 5px 10px;
-            /* Using Share Tech Mono for navigation links */
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-link.active {
-            background-color: var(--primary-color);
-            color: var(--darker-bg);
-        }
-
-        /* Loading Screen */
-        .loading-screen {
-            display: none; /* Hidden by default, shown via JS if needed */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--darker-bg);
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .pip-os-boot {
-            width: 300px;
-            height: 200px;
-            background-image: url('path-to-boot-animation.gif');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        .continue-prompt {
-            color: var(--primary-color);
-            margin-top: 20px;
-            animation: blink 1s infinite;
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* Main Content */
-        .main-content {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        .fallout-card {
-            background-color: var(--darker-bg);
-            border-radius: 5px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .fallout-card-header {
-            background-color: var(--primary-color);
-            color: var(--darker-bg);
-            padding: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .fallout-card-header .icon {
-            margin-right: 10px;
-            font-size: 1.5rem;
-        }
-
-        .fallout-card-header h1 {
-            font-size: 1.5rem;
-            margin: 0;
-            font-weight: bold;
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        .guide-content {
-            padding: 20px;
-        }
-
-        /* Terminal Text */
-        .terminal-text {
-            /* Using Share Tech Mono for terminal-style text */
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--text-color);
-        }
-
-        /* Tab System */
-        .tab-container {
-            margin-bottom: 20px;
-        }
-
-        .tab-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            border-bottom: 1px solid var(--primary-color);
-        }
-
-        .tab-button {
-            background-color: transparent;
-            color: var(--text-color);
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .tab-button:hover {
-            color: var(--primary-color);
-        }
-
-        .tab-button.active {
-            background-color: var(--primary-color);
-            color: var(--darker-bg);
-        }
-
-        .tab-content {
-            display: none;
-            padding: 20px 0;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Terminal List */
-        .terminal-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .grid-layout {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .terminal-list-item {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 15px;
-            border-radius: 5px;
-            border-left: 3px solid var(--primary-color);
-        }
-
-        .terminal-list-item strong {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        .terminal-list-item strong i {
-            margin-right: 10px;
-        }
-
-        .terminal-sublist {
-            list-style-type: none;
-        }
-
-        .terminal-sublist li {
-            margin-bottom: 8px;
-            position: relative;
-            padding-left: 15px;
-        }
-
-        .terminal-sublist li:before {
-            content: ">";
-            color: var(--primary-color);
-            position: absolute;
-            left: 0;
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        /* Content Box Styles */
-        .content-box {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            border-left: 3px solid var(--primary-color);
-        }
-
-        .warning-box {
-            background-color: rgba(255, 152, 0, 0.1);
-            padding: 15px;
-            border-radius: 5px;
-            margin: 15px 0;
-            border-left: 3px solid var(--warning-color);
-        }
-
-        /* Introduction Section */
-        .introduction {
-            margin-bottom: 30px;
-        }
-
-        .introduction h1 {
-            color: var(--primary-color);
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        .introduction p {
-            margin-bottom: 15px;
-            font-size: 1rem;
-        }
-
-        .disclaimer {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
-            border-left: 3px solid var(--primary-color);
-        }
-
-        .disclaimer h2 {
-            color: var(--primary-color);
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        .important-warning {
-            background-color: rgba(255, 152, 0, 0.1);
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
-            border-left: 3px solid var(--warning-color);
-        }
-
-        .important-warning h3 {
-            color: var(--warning-color);
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        /* Video Section */
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            margin: 30px 0;
-            border-radius: 5px;
-            border: 1px solid var(--primary-color);
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Installation Guide */
-        .installation-guide {
-            margin: 30px 0;
-        }
-
-        .installation-guide h2 {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        /* Tab Panes */
-        .tab-pane {
-            display: none;
-        }
-
-        .tab-pane.active {
-            display: block;
-        }
-
-        /* Headings */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        /* Checklist */
-        .checklist-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .check-icon {
-            margin-right: 10px;
-            color: var(--primary-color);
-        }
-
-        /* Guide Images */
-        .guide-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin: 15px 0;
-            border: 1px solid var(--primary-color);
-        }
-
-        /* Common Issues */
-        .common-issues {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .issue {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 15px;
-            border-radius: 5px;
-            border-left: 3px solid var(--warning-color);
-        }
-
-        .issue h4 {
-            color: var(--warning-color);
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-
-        /* Troubleshooting */
-        .troubleshooting-section {
-            margin-bottom: 20px;
-        }
-
-        .download-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .download-link {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: rgba(0, 0, 0, 0.2);
-            color: var(--link-color);
-            text-decoration: none;
-            border-radius: 4px;
-            border: 1px solid var(--primary-color);
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .download-link:hover {
-            background-color: var(--primary-color);
-            color: var(--darker-bg);
-        }
-
-        /* Screenshots */
-        .screenshot {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin: 10px 0;
-            border: 1px solid var(--primary-color);
-        }
-
-        /* Support Links */
-        .support-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .support-link {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            background-color: rgba(0, 0, 0, 0.2);
-            color: var(--text-color);
-            text-decoration: none;
-            border-radius: 4px;
-            border: 1px solid var(--primary-color);
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .support-link i {
-            margin-right: 10px;
-        }
-
-        .support-link:hover {
-            background-color: var(--primary-color);
-            color: var(--darker-bg);
-        }
-
-        /* Accordion */
-        .accordion-item {
-            margin-bottom: 15px;
-            border: 1px solid var(--primary-color);
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .accordion-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            background-color: rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .accordion-header:hover {
-            background-color: rgba(76, 175, 80, 0.1);
-        }
-
-        .accordion-header h3 {
-            margin: 0;
-            font-size: 1.1rem;
-            color: var(--primary-color);
-        }
-
-        .toggle-icon {
-            color: var(--primary-color);
-        }
-
-        .accordion-content {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-
-        .accordion-item.active .accordion-content {
-            padding: 15px;
-            max-height: 2000px;
-        }
-
-        /* Support Cards */
-        .support-links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .support-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 15px;
-            background-color: rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--primary-color);
-            border-radius: 5px;
-            text-align: center;
-            transition: all 0.3s ease;
-            color: var(--text-color);
-            text-decoration: none;
-        }
-
-        .support-card:hover {
-            background-color: var(--primary-color);
-            color: var(--darker-bg);
-        }
-
-        .support-card span {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .support-card h4 {
-            margin-bottom: 5px;
-            font-size: 1rem;
-        }
-
-        .support-card p {
-            font-size: 0.8rem;
-            margin: 0;
-        }
-
-        /* CRT Effect */
-        .body-textured {
-            position: relative;
-        }
-
-        .body-textured::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-            background-size: 100% 4px;
-            z-index: 1000;
-            pointer-events: none;
-            opacity: 0.15;
-        }
-
-        .crt::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(18, 16, 16, 0.1);
-            opacity: 0;
-            z-index: 1000;
-            pointer-events: none;
-            animation: flicker 0.15s infinite;
-        }
-
-        @keyframes flicker {
-            0% { opacity: 0.27861; }
-            5% { opacity: 0.34769; }
-            10% { opacity: 0.23604; }
-            15% { opacity: 0.90626; }
-            20% { opacity: 0.18128; }
-            25% { opacity: 0.83891; }
-            30% { opacity: 0.65583; }
-            35% { opacity: 0.67807; }
-            40% { opacity: 0.26559; }
-            45% { opacity: 0.84693; }
-            50% { opacity: 0.96019; }
-            55% { opacity: 0.08594; }
-            60% { opacity: 0.20313; }
-            65% { opacity: 0.71988; }
-            70% { opacity: 0.53455; }
-            75% { opacity: 0.37288; }
-            80% { opacity: 0.71428; }
-            85% { opacity: 0.70419; }
-            90% { opacity: 0.7003; }
-            95% { opacity: 0.36108; }
-            100% { opacity: 0.24387; }
-        }
-
-        /* CTA Button */
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--darker-bg);
-            padding: 10px 20px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            margin: 10px 0;
-            font-size: 0.9rem;
-        }
-
-        .cta-button:hover {
-            background-color: var(--primary-hover);
-        }
-
-        /* Links */
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .grid-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .tab-buttons {
-                flex-direction: column;
-            }
-
-            .tab-button {
-                border-bottom: 1px solid var(--primary-color);
-            }
-
-            .common-issues {
-                grid-template-columns: 1fr;
-            }
-
-            .support-links-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-menu-container {
-                flex-direction: column;
-            }
-            
-            #nav-links-container {
-                margin-top: 10px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .nav-link {
-                margin: 5px;
-            }
-        }
-    </style>
-</head>
-
-<body class="body-textured crt">
-    <nav class="nav-menu">
-        <div class="nav-menu-container">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting.">
+      <title>FALLOUT ANOMALY - COMPLETE GUIDE</title>
+      <!-- Open Graph / Social Media Meta -->
+      <meta property="og:title" content="Fallout Anomaly Installation Guide" />
+      <meta property="og:description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting." />
+      <meta property="og:url" content="https://fallout-anomaly.github.io/websitedev/pages/guide.html" />
+      <meta property="og:site_name" content="Fallout Anomaly" />
+      <meta property="og:type" content="article" />
+      <meta property="article:section" content="Guides" />
+      <meta property="article:tag" content="Fallout 4, Modding, Wabbajack, Installation, Guide, Fallout Anomaly" />
+      <meta property="og:image" content="https://s3.amazonaws.com/guildtag/file/14763/84412-8ff9de.png" />
+      <meta property="og:image:width" content="500" />
+      <meta property="og:image:height" content="500" />
+      <!-- Twitter Card Meta Tags -->
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content="Fallout Anomaly Installation Guide" />
+      <meta name="twitter:description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting." />
+      <meta name="twitter:image" content="https://s3.amazonaws.com/guildtag/file/14763/84412-8ff9de.png" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+      <!-- Updated font selection for better readability -->
+      <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+      <link rel="icon" href="data:image/svg+xml,
+         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+         <text y='.9em' font-size='90'>☢️</text>
+         </svg>">
+      <style>
+         :root {
+         --primary-color: #4CAF50;
+         --primary-hover: #3e8e41;
+         --dark-bg: #0a1a1f;
+         --darker-bg: #061215;
+         --text-color: #e0e0e0;
+         --header-color: #4CAF50;
+         --warning-color: #ff9800;
+         --link-color: #8bc34a;
+         --border-color: rgba(76, 175, 80, 0.3);
+         }
+         * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         }
+         body {
+         background-color: var(--dark-bg);
+         color: var(--text-color);
+         /* Updated font stack for better readability */
+         font-family: 'Roboto', sans-serif;
+         line-height: 1.6;
+         font-size: 16px;
+         }
+         /* Navigation Menu */
+         .nav-menu {
+         background-color: var(--darker-bg);
+         padding: 10px 0;
+         border-bottom: 1px solid var(--primary-color);
+         position: sticky;
+         top: 0;
+         z-index: 1000;
+         }
+         .nav-menu-container {
+         max-width: 1200px;
+         margin: 0 auto;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 0 20px;
+         }
+         .nav-logo {
+         color: var(--primary-color);
+         text-decoration: none;
+         font-size: 1.5rem;
+         font-weight: bold;
+         display: flex;
+         align-items: center;
+         /* Using Share Tech Mono only for the logo */
+         font-family: 'Share Tech Mono', monospace;
+         }
+         .nav-logo .icon {
+         margin-right: 10px;
+         color: var(--primary-color);
+         }
+         #nav-links-container {
+         display: flex;
+         }
+         .nav-link {
+         color: var(--text-color);
+         text-decoration: none;
+         margin-left: 20px;
+         transition: color 0.3s;
+         font-size: 1rem;
+         padding: 5px 10px;
+         /* Using Share Tech Mono for navigation links */
+         font-family: 'Share Tech Mono', monospace;
+         }
+         .nav-link:hover {
+         color: var(--primary-color);
+         }
+         .nav-link.active {
+         background-color: var(--primary-color);
+         color: var(--darker-bg);
+         }
+         /* Loading Screen */
+         .loading-screen {
+         display: none; /* Hidden by default, shown via JS if needed */
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background-color: var(--darker-bg);
+         z-index: 9999;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         }
+         .pip-os-boot {
+         width: 300px;
+         height: 200px;
+         background-image: url('path-to-boot-animation.gif');
+         background-size: contain;
+         background-repeat: no-repeat;
+         background-position: center;
+         }
+         .continue-prompt {
+         color: var(--primary-color);
+         margin-top: 20px;
+         animation: blink 1s infinite;
+         font-family: 'Share Tech Mono', monospace;
+         }
+         @keyframes blink {
+         0%, 100% { opacity: 1; }
+         50% { opacity: 0; }
+         }
+         .hidden {
+         display: none;
+         }
+         /* Main Content */
+         .main-content {
+         max-width: 1200px;
+         margin: 20px auto;
+         padding: 0 20px;
+         }
+         .fallout-card {
+         background-color: var(--darker-bg);
+         border-radius: 5px;
+         overflow: hidden;
+         margin-bottom: 20px;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+         }
+         .fallout-card-header {
+         background-color: var(--primary-color);
+         color: var(--darker-bg);
+         padding: 15px;
+         display: flex;
+         align-items: center;
+         }
+         .fallout-card-header .icon {
+         margin-right: 10px;
+         font-size: 1.5rem;
+         }
+         .fallout-card-header h1 {
+         font-size: 1.5rem;
+         margin: 0;
+         font-weight: bold;
+         font-family: 'Share Tech Mono', monospace;
+         }
+         .guide-content {
+         padding: 20px;
+         }
+         /* Terminal Text */
+         .terminal-text {
+         /* Using Share Tech Mono for terminal-style text */
+         font-family: 'Share Tech Mono', monospace;
+         color: var(--text-color);
+         }
+         /* Tab System */
+         .tab-container {
+         margin-bottom: 20px;
+         }
+         .tab-buttons {
+         display: flex;
+         flex-wrap: wrap;
+         border-bottom: 1px solid var(--primary-color);
+         }
+         .tab-button {
+         background-color: transparent;
+         color: var(--text-color);
+         border: none;
+         padding: 10px 15px;
+         cursor: pointer;
+         font-family: 'Share Tech Mono', monospace;
+         font-size: 0.9rem;
+         transition: all 0.3s;
+         }
+         .tab-button:hover {
+         color: var(--primary-color);
+         }
+         .tab-button.active {
+         background-color: var(--primary-color);
+         color: var(--darker-bg);
+         }
+         .tab-content {
+         display: none;
+         padding: 20px 0;
+         }
+         .tab-content.active {
+         display: block;
+         }
+         /* Terminal List */
+         .terminal-list {
+         display: flex;
+         flex-direction: column;
+         gap: 20px;
+         }
+         .grid-layout {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+         gap: 20px;
+         }
+         .terminal-list-item {
+         background-color: rgba(0, 0, 0, 0.2);
+         padding: 15px;
+         border-radius: 5px;
+         border-left: 3px solid var(--primary-color);
+         }
+         .terminal-list-item strong {
+         display: block;
+         margin-bottom: 10px;
+         color: var(--primary-color);
+         font-size: 1.1rem;
+         font-family: 'Share Tech Mono', monospace;
+         }
+         .terminal-list-item strong i {
+         margin-right: 10px;
+         }
+         .terminal-sublist {
+         list-style-type: none;
+         }
+         .terminal-sublist li {
+         margin-bottom: 8px;
+         position: relative;
+         padding-left: 15px;
+         }
+         .terminal-sublist li:before {
+         content: ">";
+         color: var(--primary-color);
+         position: absolute;
+         left: 0;
+         font-family: 'Share Tech Mono', monospace;
+         }
+         /* Content Box Styles */
+         .content-box {
+         background-color: rgba(0, 0, 0, 0.2);
+         padding: 15px;
+         border-radius: 5px;
+         margin-bottom: 20px;
+         border-left: 3px solid var(--primary-color);
+         }
+         .warning-box {
+         background-color: rgba(255, 152, 0, 0.1);
+         padding: 15px;
+         border-radius: 5px;
+         margin: 15px 0;
+         border-left: 3px solid var(--warning-color);
+         }
+         /* Introduction Section */
+         .introduction {
+         margin-bottom: 30px;
+         }
+         .introduction h1 {
+         color: var(--primary-color);
+         font-size: 1.8rem;
+         margin-bottom: 15px;
+         font-family: 'Share Tech Mono', monospace;
+         }
+         .introduction p {
+         margin-bottom: 15px;
+         font-size: 1rem;
+         }
+         .disclaimer {
+         background-color: rgba(0, 0, 0, 0.2);
+         padding: 15px;
+         border-radius: 5px;
+         margin: 20px 0;
+         border-left: 3px solid var(--primary-color);
+         }
+         .disclaimer h2 {
+         color: var(--primary-color);
+         font-size: 1.3rem;
+         margin-bottom: 10px;
+         font-family: 'Share Tech Mono', monospace;
+         }
+         .important-warning {
+         background-color: rgba(255, 152, 0, 0.1);
+         padding: 15px;
+         border-radius: 5px;
+         margin: 20px 0;
+         border-left: 3px solid var(--warning-color);
+         }
+         .important-warning h3 {
+         color: var(--warning-color);
+         font-size: 1.2rem;
+         margin-bottom: 10px;
+         font-family: 'Share Tech Mono', monospace;
+         }
+         /* Video Section */
+         .video-wrapper {
+         position: relative;
+         padding-bottom: 56.25%; /* 16:9 aspect ratio */
+         height: 0;
+         overflow: hidden;
+         margin: 30px 0;
+         border-radius: 5px;
+         border: 1px solid var(--primary-color);
+         }
+         .video-wrapper iframe {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         }
+         /* Installation Guide */
+         .installation-guide {
+         margin: 30px 0;
+         }
+         .installation-guide h2 {
+         color: var(--primary-color);
+         font-size: 1.5rem;
+         margin-bottom: 20px;
+         font-family: 'Share Tech Mono', monospace;
+         }
+         /* Tab Panes */
+         .tab-pane {
+         display: none;
+         }
+         .tab-pane.active {
+         display: block;
+         }
+         /* Headings */
+         h1, h2, h3, h4, h5, h6 {
+         font-family: 'Share Tech Mono', monospace;
+         }
+         /* Checklist */
+         .checklist-item {
+         display: flex;
+         align-items: flex-start;
+         margin-bottom: 15px;
+         }
+         .check-icon {
+         margin-right: 10px;
+         color: var(--primary-color);
+         }
+         /* Guide Images */
+         .guide-image {
+         max-width: 100%;
+         height: auto;
+         border-radius: 5px;
+         margin: 15px 0;
+         border: 1px solid var(--primary-color);
+         }
+         /* Common Issues */
+         .common-issues {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+         gap: 20px;
+         }
+         .issue {
+         background-color: rgba(0, 0, 0, 0.2);
+         padding: 15px;
+         border-radius: 5px;
+         border-left: 3px solid var(--warning-color);
+         }
+         .issue h4 {
+         color: var(--warning-color);
+         margin-bottom: 10px;
+         font-size: 1rem;
+         }
+         /* Troubleshooting */
+         .troubleshooting-section {
+         margin-bottom: 20px;
+         }
+         .download-links {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 10px;
+         margin-top: 10px;
+         }
+         .download-link {
+         display: inline-block;
+         padding: 8px 15px;
+         background-color: rgba(0, 0, 0, 0.2);
+         color: var(--link-color);
+         text-decoration: none;
+         border-radius: 4px;
+         border: 1px solid var(--primary-color);
+         transition: all 0.3s ease;
+         font-size: 0.9rem;
+         }
+         .download-link:hover {
+         background-color: var(--primary-color);
+         color: var(--darker-bg);
+         }
+         /* Screenshots */
+         .screenshot {
+         max-width: 100%;
+         height: auto;
+         border-radius: 5px;
+         margin: 10px 0;
+         border: 1px solid var(--primary-color);
+         }
+         /* Support Links */
+         .support-links {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 15px;
+         margin-top: 15px;
+         }
+         .support-link {
+         display: flex;
+         align-items: center;
+         padding: 10px 15px;
+         background-color: rgba(0, 0, 0, 0.2);
+         color: var(--text-color);
+         text-decoration: none;
+         border-radius: 4px;
+         border: 1px solid var(--primary-color);
+         transition: all 0.3s ease;
+         font-size: 0.9rem;
+         }
+         .support-link i {
+         margin-right: 10px;
+         }
+         .support-link:hover {
+         background-color: var(--primary-color);
+         color: var(--darker-bg);
+         }
+         /* Accordion */
+         .accordion-item {
+         margin-bottom: 15px;
+         border: 1px solid var(--primary-color);
+         border-radius: 5px;
+         overflow: hidden;
+         }
+         .accordion-header {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 15px;
+         background-color: rgba(0, 0, 0, 0.2);
+         cursor: pointer;
+         transition: background-color 0.3s ease;
+         }
+         .accordion-header:hover {
+         background-color: rgba(76, 175, 80, 0.1);
+         }
+         .accordion-header h3 {
+         margin: 0;
+         font-size: 1.1rem;
+         color: var(--primary-color);
+         }
+         .toggle-icon {
+         color: var(--primary-color);
+         }
+         .accordion-content {
+         padding: 0;
+         max-height: 0;
+         overflow: hidden;
+         transition: max-height 0.3s ease, padding 0.3s ease;
+         background-color: rgba(0, 0, 0, 0.1);
+         }
+         .accordion-item.active .accordion-content {
+         padding: 15px;
+         max-height: 2000px;
+         }
+         /* Support Cards */
+         .support-links-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+         gap: 15px;
+         margin-top: 20px;
+         }
+         .support-card {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         padding: 15px;
+         background-color: rgba(0, 0, 0, 0.2);
+         border: 1px solid var(--primary-color);
+         border-radius: 5px;
+         text-align: center;
+         transition: all 0.3s ease;
+         color: var(--text-color);
+         text-decoration: none;
+         }
+         .support-card:hover {
+         background-color: var(--primary-color);
+         color: var(--darker-bg);
+         }
+         .support-card span {
+         font-size: 1.5rem;
+         margin-bottom: 10px;
+         }
+         .support-card h4 {
+         margin-bottom: 5px;
+         font-size: 1rem;
+         }
+         .support-card p {
+         font-size: 0.8rem;
+         margin: 0;
+         }
+         /* CRT Effect */
+         .body-textured {
+         position: relative;
+         }
+         .body-textured::before {
+         content: "";
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+         background-size: 100% 4px;
+         z-index: 1000;
+         pointer-events: none;
+         opacity: 0.15;
+         }
+         .crt::after {
+         content: "";
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: rgba(18, 16, 16, 0.1);
+         opacity: 0;
+         z-index: 1000;
+         pointer-events: none;
+         animation: flicker 0.15s infinite;
+         }
+         @keyframes flicker {
+         0% { opacity: 0.27861; }
+         5% { opacity: 0.34769; }
+         10% { opacity: 0.23604; }
+         15% { opacity: 0.90626; }
+         20% { opacity: 0.18128; }
+         25% { opacity: 0.83891; }
+         30% { opacity: 0.65583; }
+         35% { opacity: 0.67807; }
+         40% { opacity: 0.26559; }
+         45% { opacity: 0.84693; }
+         50% { opacity: 0.96019; }
+         55% { opacity: 0.08594; }
+         60% { opacity: 0.20313; }
+         65% { opacity: 0.71988; }
+         70% { opacity: 0.53455; }
+         75% { opacity: 0.37288; }
+         80% { opacity: 0.71428; }
+         85% { opacity: 0.70419; }
+         90% { opacity: 0.7003; }
+         95% { opacity: 0.36108; }
+         100% { opacity: 0.24387; }
+         }
+         /* CTA Button */
+         .cta-button {
+         display: inline-block;
+         background-color: var(--primary-color);
+         color: var(--darker-bg);
+         padding: 10px 20px;
+         border-radius: 4px;
+         text-decoration: none;
+         font-weight: bold;
+         transition: background-color 0.3s ease;
+         margin: 10px 0;
+         font-size: 0.9rem;
+         }
+         .cta-button:hover {
+         background-color: var(--primary-hover);
+         }
+         /* Links */
+         a {
+         color: var(--link-color);
+         text-decoration: none;
+         transition: color 0.3s;
+         }
+         a:hover {
+         color: var(--primary-color);
+         text-decoration: underline;
+         }
+         /* Responsive Design */
+         @media (max-width: 768px) {
+         .grid-layout {
+         grid-template-columns: 1fr;
+         }
+         .tab-buttons {
+         flex-direction: column;
+         }
+         .tab-button {
+         border-bottom: 1px solid var(--primary-color);
+         }
+         .common-issues {
+         grid-template-columns: 1fr;
+         }
+         .support-links-grid {
+         grid-template-columns: 1fr;
+         }
+         .nav-menu-container {
+         flex-direction: column;
+         }
+         #nav-links-container {
+         margin-top: 10px;
+         flex-wrap: wrap;
+         justify-content: center;
+         }
+         .nav-link {
+         margin: 5px;
+         }
+         }
+      </style>
+   </head>
+   <body class="body-textured crt">
+      <nav class="nav-menu">
+         <div class="nav-menu-container">
             <a href="index.html" class="nav-logo">
-                <i class="fas fa-radiation icon"></i> FALLOUT ANOMALY
+            <i class="fas fa-radiation icon"></i> FALLOUT ANOMALY
             </a>
             <div id="nav-links-container">
-                <a href="index.html" class="nav-link">HOME</a>
-                <a href="about.html" class="nav-link">ABOUT</a>
-                <a href="guide.html" class="nav-link active">GUIDE</a>
-                <a href="staff.html" class="nav-link">STAFF</a>
-                <a href="apply.html" class="nav-link">APPLY</a>
-                <a href="https://falloutanomaly.guildtag.com/donate/" class="nav-link">DONATE</a>
+               <a href="index.html" class="nav-link">HOME</a>
+               <a href="about.html" class="nav-link">ABOUT</a>
+               <a href="guide.html" class="nav-link active">GUIDE</a>
+               <a href="staff.html" class="nav-link">STAFF</a>
+               <a href="apply.html" class="nav-link">APPLY</a>
+               <a href="https://falloutanomaly.guildtag.com/donate/" class="nav-link">DONATE</a>
             </div>
-        </div>
-    </nav>
-    
-    <div class="loading-screen">
-        <div class="pip-os-boot"></div>
-        <div class="continue-prompt hidden">Press any key or click to continue...</div>
-    </div>
-    
-    <div class="main-content">
-        <div class="fallout-card">
+         </div>
+      </nav>
+      <div class="loading-screen">
+         <div class="pip-os-boot"></div>
+         <div class="continue-prompt hidden">Press any key or click to continue...</div>
+      </div>
+      <div class="main-content">
+         <div class="fallout-card">
             <div class="fallout-card-header">
-                <i class="fas fa-book icon"></i>
-                <h1>COMPLETE INSTALLATION GUIDE</h1>
+               <i class="fas fa-book icon"></i>
+               <h1>COMPLETE INSTALLATION GUIDE</h1>
             </div>
             <div class="terminal-text guide-content">
-                <section class="introduction">
-                    <h1>What is Fallout Anomaly?</h1>
-                    <p>Fallout Anomaly is a true hardcore experience, bringing you as close to realism as possible with mods like Damn Apocalypse, MAIM, and more. Packed with new weapons and armor to face harsher challenges, Anomaly also features new enemy types, quests, settlement items, and a complete assortment of textures to elevate your game to modern standards. If you're searching for that gritty, harsh survival experience, Anomaly has you covered.</p>
-
-                    <div class="disclaimer">
-                        <h2>Disclaimer:</h2>
-                        <ul>
-                            <li><strong>Beta Stages:</strong> Fallout Anomaly is currently in <strong>beta</strong>, meaning changes and evolution are inevitable. Updates may require starting a new save. If you're not ready for this, we recommend waiting until Anomaly is out of beta. However, we're proud to have a community of nearly <strong>2,000 members</strong> who understand and embrace this process.</li>
-                            <li><strong>Steam Version Only:</strong> At this time, <strong>only the Steam version</strong> of Fallout 4 is supported. Ensure your game is updated to version <strong>1.10.980.0</strong> for compatibility with the Wabbajack downgrade process.</li>
+               <section class="introduction">
+                  <h1>What is Fallout Anomaly?</h1>
+                  <p>Fallout Anomaly is a true hardcore experience, bringing you as close to realism as possible with mods like Damn Apocalypse, MAIM, and more. Packed with new weapons and armor to face harsher challenges, Anomaly also features new enemy types, quests, settlement items, and a complete assortment of textures to elevate your game to modern standards. If you're searching for that gritty, harsh survival experience, Anomaly has you covered.</p>
+                  <div class="disclaimer">
+                     <h2>Disclaimer:</h2>
+                     <ul>
+                        <li><strong>Beta Stages:</strong> Fallout Anomaly is currently in <strong>beta</strong>, meaning changes and evolution are inevitable. Updates may require starting a new save. If you're not ready for this, we recommend waiting until Anomaly is out of beta. However, we're proud to have a community of nearly <strong>2,000 members</strong> who understand and embrace this process.</li>
+                        <li><strong>Steam Version Only:</strong> At this time, <strong>only the Steam version</strong> of Fallout 4 is supported. Ensure your game is updated to version <strong>1.10.980.0</strong> for compatibility with the Wabbajack downgrade process.</li>
+                     </ul>
+                  </div>
+                  <div class="important-warning">
+                     <h3>⚠️ IMPORTANT - DO NOT SKIP ⚠️</h3>
+                     <ul>
+                        <li>🚨 <strong>YOU ABSOLUTELY NEED TO UPDATE FALLOUT 4 TO THE NEXT-GEN VERSION. THIS IS MANDATORY FOR WABBAJACK TO RUN ITS DOWNGRADE INSTALL.</strong></li>
+                        <li>🚨 <strong>YOU ABSOLUTELY NEED TO DISABLE OVERLAYS SUCH AS STEAM, MEDAL, ETC. THESE ARE KNOWN TO CAUSE CRASHES.</strong></li>
+                        <li>🚨 <strong>YOU ABSOLUTELY NEED TO SET UP PAGE FILE. THIS WILL HELP PREVENT CRASHES OR PERFORMANCE ISSUES.</strong></li>
+                        <li>🚨 <strong>YOU ABSOLUTELY NEED TO SET ANTI-VIRUS EXCLUSIONS. AV IS KNOWN TO WRECK HAVOC WITH MODS SUCH AS ENB, ETC.</strong></li>
+                     </ul>
+                  </div>
+               </section>
+               <div class="video-wrapper">
+                  <iframe src="https://www.youtube.com/embed/uYRev9mF4Q0?si=a6ar_TsmgJdy9QGG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                  </iframe>
+               </div>
+               <div class="tab-container">
+                  <div class="tab-buttons">
+                     <button class="tab-button active" data-tab="step1">STEP 1: GETTING STARTED</button>
+                     <button class="tab-button" data-tab="step2">STEP 2: INSTALLATION</button>
+                     <button class="tab-button" data-tab="step3">STEP 3: LAUNCHING</button>
+                     <button class="tab-button" data-tab="step4">STEP 4: KNOWN ISSUES</button>
+                     <button class="tab-button" data-tab="step5">STEP 5: GAMEPLAY</button>
+                  </div>
+                  <div class="tab-content active" id="step1">
+                     <div class="terminal-list grid-layout">
+                        <div class="terminal-list-item">
+                           <strong>
+                           <i class="fas fa-microchip"></i>HARDWARE REQUIREMENTS
+                           </strong>
+                           <ul class="terminal-sublist">
+                              <li>CPU: Go for a modern CPU with at least 6 cores and a speed of 3GHz.</li>
+                              <li>RAM: 16GB minimum, but 32GB is ideal.</li>
+                              <li>Video Card: At least 6GB of memory, 8GB is recommended.</li>
+                              <li>Operating System: Windows 10/11 (64-bit) with up-to-date drivers.</li>
+                              <li>Free Disk Space: A minimum of 350GB of storage is required, with an SSD being mandatory. Do not use a hard disk drive (HDD) as it will significantly affect load times.</li>
+                              <li>Skills: Basic computer usage knowledge, including maintenance and regular updates.</li>
+                           </ul>
+                           <div class="warning-box">
+                              <p>🚨 Do not install <strong>Anomaly</strong> directly on a root drive (e.g., <code>C:\Fallout Anomaly</code>). Instead, install it within a dedicated folder structure, such as: <code>C:\Fallout Modlist\Fallout Anomaly</code>. 🚨</p>
+                           </div>
+                        </div>
+                        <div class="terminal-list-item">
+                           <strong>
+                           <i class="fas fa-exclamation-triangle"></i>IMPORTANT NOTICE
+                           </strong>
+                           <ul class="terminal-sublist">
+                              <li>Update Fallout 4 to the next-gen version</li>
+                              <li>Disable all overlays (Steam, Medal, etc.)</li>
+                              <li>Set up page file for performance</li>
+                              <li>Configure anti-virus exclusions</li>
+                              <li>Install in dedicated folder (not root drive)</li>
+                              <li>Nexus Premium recommended for faster downloads</li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-download"></i>Important Installation Steps
+                        </strong>
+                        <ol class="terminal-sublist">
+                           <li>
+                              <strong><a href="https://github.com/abbodi1406/vcredist/releases/download/v0.82.0/VisualCppRedist_AIO_x86_x64.exe" target="_blank">Microsoft Visual C++ x64 and x86</a></strong><br>
+                              Must be installed! Open the launcher and follow the on-screen steps to complete the installation.
+                           </li>
+                           <li>
+                              <strong><a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net462-web-installer" target="_blank">NET Framework 4.6.2 & 5.0</a></strong><br>
+                              Required for the mod list to function properly. Download and install the necessary framework.
+                           </li>
+                           <li>
+                              <strong><a href="https://www.microsoft.com/en-us/download/details.aspx?id=8109" target="_blank">DirectX Redist (June 2010)</a></strong><br>
+                              Download and install to ensure proper DirectX support.
+                           </li>
+                           <li>
+                              <strong><a href="https://www.youtube.com/watch?v=8ARhusN5SFI&t=0s" target="_blank">Vanilla Game Folder - Launch the Game Once</a></strong><br>
+                              Launch the game at least once to ensure it's cleaned and ready for modding.
+                           </li>
+                           <li>
+                              <strong><a href="https://github.com/NomadsReach/Fallout-Anomaly/blob/master/PageFile.md" target="_blank">PageFile Setup</a></strong><br>
+                              Critical for performance. We have provided an automated method for you to configure this easily.
+                           </li>
+                           <li>
+                              <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=552541227" target="_blank">English Voice Files</a></strong><br>
+                              Install these files if your game isn't in English. They are required for certain English-based mods/files.
+                           </li>
+                           <li>
+                              <strong><a href="https://www.youtube.com/watch?v=7e_kY6LmQ0Y" target="_blank">Disable Overlays</a></strong><br>
+                              Disable all overlays (Steam, Nvidia, Medal, etc.) to prevent crashes and performance issues.
+                           </li>
+                           <li>
+                              <strong><a href="https://sharing.clickup.com/clip/p/t9014300118/775310b9-3dc0-402d-8726-2a184ee55560/How%20to%20remove%20HD%20Texture%20Pack..webm" target="_blank">HD Texture Pack Removal</a></strong><br>
+                              Follow this guide to remove HD texture packs if needed.
+                           </li>
+                        </ol>
+                     </div>
+                  </div>
+                  <!-- Step 2: Installation & Updating -->
+                  <div class="tab-content" id="step2">
+                     <!-- Pre-Installation Checklist -->
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-check-circle"></i>Pre-Installation Checklist
+                        </strong>
+                        <div class="checklist-item">
+                           <span class="check-icon">✅</span>
+                           <div>
+                              <strong>Log into Nexus in Wabbajack</strong>
+                              <p>Open Wabbajack, click the ⚙️ cogwheel, and log in under the Nexus panel.</p>
+                              <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/wabbajack.png" alt="Nexus Login in Wabbajack" class="guide-image">
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Installation Instructions -->
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-download"></i>Installation Instructions
+                        </strong>
+                        <ol class="terminal-sublist">
+                           <li>
+                              <strong>Downloading Fallout Anomaly</strong>
+                              <ul>
+                                 <li>Locate <em>Fallout Anomaly</em> in the Wabbajack Browser and download the file.</li>
+                                 <li>Set both <strong>Install Location</strong> and <strong>Download Location</strong> on the same drive for best performance.</li>
+                              </ul>
+                              <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/wabbajack%20install.png" alt="Verify Installation" class="guide-image">
+                           </li>
+                        </ol>
+                     </div>
+                     <!-- Common Issues & Fixes -->
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-exclamation-triangle"></i>Common Issues & Fixes
+                        </strong>
+                        <div class="common-issues">
+                           <div class="issue">
+                              <h4>"Could Not Download MOD"</h4>
+                              <ul>
+                                 <li>Manually download the mod and place it in Wabbajack's download folder.</li>
+                                 <li>Check if Nexus Mods is down: <a href="https://nexusmods.statuspage.io/" target="_blank">Nexus Mods Status</a></li>
+                              </ul>
+                           </div>
+                           <div class="issue">
+                              <h4>"Mod Is Not a Whitelisted Download"</h4>
+                              <ul>
+                                 <li>The modlist may have been updated, making an old mod link invalid.</li>
+                                 <li>Wait for a new release or notify us on <strong>Discord</strong>.</li>
+                              </ul>
+                           </div>
+                           <div class="issue">
+                              <h4>"Missing Game Files"</h4>
+                              <ul>
+                                 <li>Ensure your game is updated to the <strong>next-gen version</strong>.</li>
+                              </ul>
+                           </div>
+                           <div class="issue">
+                              <h4>"Wabbajack Could Not Find My Game Folder"</h4>
+                              <ul>
+                                 <li><strong>Pirated versions are not supported</strong>. Ensure you own Fallout 4 on <strong>Steam</strong>.</li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Troubleshooting Download Issues -->
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-tools"></i>Troubleshooting Download Issues
+                        </strong>
+                        <div class="troubleshooting-section">
+                           <h4>Google Drive Download Issues</h4>
+                           <ul>
+                              <li>If downloads fail, <strong>download manually</strong> and place the file in your Wabbajack download folder.</li>
+                              <li>Restart the install.</li>
+                           </ul>
+                           <div class="download-links">
+                              <a href="https://drive.google.com/file/d/1sWpTDjSYC4xwhEveSuVhykjzHpZ2Qk1Y/view" class="download-link" target="_blank">Download Link 1</a>
+                              <a href="https://drive.google.com/file/d/1APDBlK9UuPkXgptW0U1IHtKgEv4s9ruP/view" class="download-link" target="_blank">Download Link 2</a>
+                           </div>
+                        </div>
+                        <div class="troubleshooting-section">
+                           <h4>ENB Download Issues</h4>
+                           <ul>
+                              <li>If your ENB download fails, download it manually and move it to the <strong>Anomaly Downloads</strong> folder created by Wabbajack.</li>
+                              <li>❗ <strong>DO NOT extract the file</strong>—just place it in the folder.</li>
+                              <li>Restart Wabbajack and run the installer again.</li>
+                           </ul>
+                           <a href="http://enbdev.com/mod_fallout4_v0496.htm" class="download-link" target="_blank">Download ENB for Fallout 4</a>
+                        </div>
+                     </div>
+                     <!-- Antivirus Folder Exclusion -->
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-shield-alt"></i>Antivirus Folder Exclusion
+                        </strong>
+                        <p>To prevent interference, <strong>add a folder exclusion</strong> for your entire install directory:</p>
+                        <ol>
+                           <li>
+                              Open <strong>Windows Security</strong> → <em>Virus & threat protection</em><br>
+                              <img src="https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-defender-security-center/images/security-center-home.png" alt="Virus & threat protection home" class="screenshot">
+                           </li>
+                           <li>
+                              Scroll to <em>Exclusions</em> and select <em>Add or remove exclusions</em><br>
+                              <img src="https://www.avoiderrors.com/wp-content/uploads/2020/07/AEW10A-3.png" alt="Exclusions page" class="screenshot">
+                           </li>
+                           <li>
+                              Click <em>Add an exclusion</em> → choose <em>Folder</em> and browse to your install folder<br>
+                              <img src="https://www.tenforums.com/attachments/tutorials/256525d1574614840-add-remove-microsoft-defender-antivirus-exclusions-windows-10-a-windows_defender_exclusions-4.png" alt="Add folder exclusion dialog" class="screenshot">
+                           </li>
+                        </ol>
+                     </div>
+                     <!-- Updating Fallout Anomaly -->
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-sync-alt"></i>Updating Fallout Anomaly
+                        </strong>
+                        <div class="update-info">
+                           <h4>✅ Update Notifications</h4>
+                           <ul>
+                              <li>Announcements on <strong>Discord</strong> and <strong>Nexus Mods</strong>.</li>
+                              <li>If a <strong>new save is required</strong>, we'll let you know.</li>
+                           </ul>
+                        </div>
+                        <div class="update-process">
+                           <h4>🔄 Update Process in Wabbajack</h4>
+                           <ul>
+                              <li>Wabbajack deletes any manually installed mods not part of the official modlist.</li>
+                              <li>Re-run the installer on the same path and check "Overwrite existing."</li>
+                           </ul>
+                        </div>
+                        <div class="save-preservation">
+                           <h4>💾 Save Preservation</h4>
+                           <ul>
+                              <li>Your save files remain intact unless we explicitly state otherwise.</li>
+                              <li>Find them in <code>(Install Folder)/Profiles/Fallout Anomaly/Saves</code>.</li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-question-circle"></i>Need Help?
+                        </strong>
+                        <div class="support-links">
+                           <a href="https://discord.gg/anomaly-1113971680419782666" class="support-link" target="_blank">
+                           <i class="fab fa-discord"></i> Discord Support
+                           </a>
+                           <a href="https://wiki.wabbajack.org/" class="support-link" target="_blank">
+                           <i class="fas fa-book"></i> Wabbajack Wiki
+                           </a>
+                           <a href="https://discord.gg/wabbajack" class="support-link" target="_blank">
+                           <i class="fab fa-discord"></i> Wabbajack Discord
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Step 3: Launching -->
+                  <div class="tab-content" id="step3">
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-play"></i>Launching Fallout Anomaly
+                        </strong>
+                        <p>When you open <strong>Mod Organizer 2 (MO2)</strong>, the interface might seem complex at first, but don't worry—we've streamlined the process!</p>
+                        <div class="launch-instructions">
+                           <h4>🎮 How to Launch the Game</h4>
+                           <p>In the <strong>top-right corner</strong> of the MO2 interface, click <strong>"Launch Fallout Anomaly"</strong> to start the game.</p>
+                           <div class="warning-box">
+                              <p>⚠️ <strong>DO NOT</strong> use the vanilla game launcher!</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-code"></i>F4SE (Fallout 4 Script Extender)
+                        </strong>
+                        <p><strong>F4SE</strong> is essential for most Fallout mods and is required to run Fallout Anomaly.<br>
+                           When using MO2, <strong>F4SE</strong> is automatically included in <strong>"Launch Fallout Anomaly"</strong>—no extra setup needed!
+                        </p>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-bug"></i>Crash Handling
+                        </strong>
+                        <p>If your game crashes, follow these steps to report the issue:</p>
+                        <ol>
+                           <li><strong>Save the log</strong> to an easily accessible location.</li>
+                           <li><strong>Upload the log</strong> via our <a href="https://falloutanomaly.fillout.com/bugreports" target="_blank">bug report form</a> OR post it in our <strong>Discord support section</strong>.</li>
+                           <li><strong>Attach your most recent save file</strong> to help with debugging.</li>
+                        </ol>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-desktop"></i>Changing Resolution (BethINI)
+                        </strong>
+                        <p>If your game's resolution isn't correct, use <strong>BethINI</strong> to adjust it. <strong>Do NOT modify other settings!</strong></p>
+                        <div class="resolution-steps">
+                           <h4>📌 How to Change Resolution:</h4>
+                           <ol>
+                              <li><strong>Close</strong> <strong>Mod Organizer 2</strong>.</li>
+                              <li>
+                                 Navigate to your <strong>Anomaly installation folder</strong>:
+                                 <ul>
+                                    <li>Open the <strong><code>Tools</code></strong> directory.</li>
+                                    <li>Inside, find and open the <strong>BethINI</strong> folder.</li>
+                                    <li>Right-click <code>BethINI.exe</code> and select <strong>"Run as Administrator"</strong>.</li>
+                                 </ul>
+                              </li>
+                              <li>In <strong>BethINI</strong>, select <strong>Fallout 4</strong> (<strong>DO NOT</strong> change INI paths!).</li>
+                              <li>Go to the <strong>Basic</strong> tab and adjust your resolution.</li>
+                              <li>Click <strong>Save & Exit</strong> to apply the changes.</li>
+                           </ol>
+                           <img src="https://github.com/user-attachments/assets/e83c48cc-d321-4fd9-b17f-02d7f399c80c" alt="BethINI Screenshot" class="guide-image">
+                        </div>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-sliders-h"></i>Apply the MCM Preset!
+                        </strong>
+                        <p>Don't forget to apply the preset for proper settings:</p>
+                        <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/mcmpreset.png" alt="Preset Screenshot" class="guide-image">
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-film"></i>Disabling Black Bars (Letterbox) in ENB
+                        </strong>
+                        <p>If you don't like the black bars at the top and bottom of the screen, follow these steps to disable them:</p>
+                        <ol>
+                           <li>Press the <strong><code>~</code></strong> key (next to the <code>1</code> key) to open the console.</li>
+                           <li>Press <strong><code>END</code></strong> to open the ENB menu.</li>
+                           <li>Navigate to the <strong>Post Processing</strong> section.</li>
+                           <li><strong>Uncheck</strong> the <strong>Letterbox</strong> option.</li>
+                           <li>Click <strong>Save Configuration</strong> (top-left).</li>
+                           <li>Press <strong><code>END</code></strong> and <strong><code>~</code></strong> again to exit the menus.</li>
+                        </ol>
+                        <img src="https://github.com/user-attachments/assets/c416445f-e1b8-4bc3-9efa-7906d7eb586e" alt="ENB Menu Screenshot" class="guide-image">
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-puzzle-piece"></i>Optional Mods
+                        </strong>
+                        <p>Anomaly includes a collection of <strong>optional</strong> mods to enhance your gameplay experience. Browse through them and customize your experience!</p>
+                        <img src="https://github.com/user-attachments/assets/708ad0e6-37fe-4ecd-a215-82e110ae1c4f" alt="Optional Mods" class="guide-image">
+                     </div>
+                  </div>
+                  <!-- Step 4: Known Issues -->
+                  <div class="tab-content" id="step4">
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-exclamation-triangle"></i>Known Issues
+                        </strong>
+                        <div class="issue-item">
+                           <h4>Main Menu Delay</h4>
+                           <p>When launching the game you may experience a delay as scripts load. This delay varies based on your system's power; more powerful systems may not encounter this issue.</p>
+                        </div>
+                        <div class="issue-item">
+                           <h4>Stuck in Menu</h4>
+                           <p>If you find yourself unable to progress from the first loading or main menu:</p>
+                           <p><strong>Watch <a href="https://www.youtube.com/watch?v=JTnhJsM3_hg&t" target="_blank">this video</a> for help with the issue. If the video doesn't resolve it, we've provided new save files for you to load and customize your character as needed.</strong></p>
+                        </div>
+                        <div class="issue-item">
+                           <h4>Post-Character Creation Freeze</h4>
+                           <p>After creating your character:</p>
+                           <ul>
+                              <li>Your game will save and may appear to freeze temporarily.</li>
+                              <li>This is due to multiple scripts loading simultaneously.</li>
+                              <li>Be patient and wait for a few minutes; the game will resume normally.</li>
+                           </ul>
+                        </div>
+                        <div class="issue-item">
+                           <h4>Falling Through Vault Issue</h4>
+                           <p>If you're falling through the vault floor:</p>
+                           <ul>
+                              <li>This is likely due to the "Uneducated Shooter" mod.</li>
+                              <li><strong>Solution</strong>: Only enable the "Uneducated Shooter" mod after leaving the vault.</li>
+                           </ul>
+                        </div>
+                        <div class="issue-item">
+                           <h4>Known Crash Related Issues:</h4>
+                           <ul>
+                              <li>Programs like medal (recording software) or anything that adds an overlay can conflict with the ENBS, or other DLL hooked mods. If you are crashing right at the launch of game or at the main menu this can be one of the main causes.</li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-gamepad"></i>Controller Support
+                        </strong>
+                        <p>We currently support <strong>PS5 controllers</strong>, with <strong>Xbox support planned for the future.</strong></p>
+                        <div class="controller-setup">
+                           <div class="setup-step">
+                              <h4>Step 1: Configure Steam Settings</h4>
+                              <ul>
+                                 <li>Ensure your <strong>Steam controller settings</strong> are correctly set up as shown in the window below.</li>
+                                 <li><strong>Steam Overlay</strong> must be enabled for the controller to function properly.</li>
+                                 <li><strong>Steam Input</strong>: Paste the following link into your browser and open Steam when prompted:<br>
+                                    <code>steam://controllerconfig/377160/3420527035</code><br>
+                                    This will install the <strong>custom controller profile</strong> for Fallout Anomaly.
+                                 </li>
+                              </ul>
+                           </div>
+                           <div class="setup-step">
+                              <h4>Step 2: Enable the Controller Support Mod</h4>
+                              <ul>
+                                 <li>In <strong>MO2</strong>, activate the optional mod:<br>
+                                    <strong>"A - OPT - Controller Support - PS5 Support"</strong>
+                                 </li>
+                              </ul>
+                              <p>This ensures full functionality for your PS5 controller in-game. 🚀</p>
+                              <img src="https://github.com/user-attachments/assets/06e65ae6-05b8-4a1e-9d33-ca8ec5b9bc7f" alt="Steam Settings" class="guide-image">
+                              <img src="https://github.com/user-attachments/assets/8b3ae832-e62e-4817-b858-d70256727bf8" alt="Controller Configuration" class="guide-image">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Step 5: Major Mods -->
+                  <div class="tab-content" id="step5">
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-heartbeat"></i>Survival Mechanics
+                        </strong>
+                        <ul class="terminal-sublist">
+                           <li>Advanced food mechanics with spoilage</li>
+                           <li>Camping system</li>
+                           <li>Challenges and achievements</li>
+                           <li>Cooking overhaul</li>
+                           <li>Dynamic weather effects</li>
+                           <li>Temperature system</li>
+                           <li>Carry weight system with STR-based calculations</li>
+                           <li>Backpack system with 100 CW capacity</li>
+                           <li>Keybinding system for backpack access</li>
+                           <li>Backpack bug fixes and troubleshooting</li>
                         </ul>
-                    </div>
-
-                    <div class="important-warning">
-                        <h3>⚠️ IMPORTANT - DO NOT SKIP ⚠️</h3>
-                        <ul>
-                            <li>🚨 <strong>YOU ABSOLUTELY NEED TO UPDATE FALLOUT 4 TO THE NEXT-GEN VERSION. THIS IS MANDATORY FOR WABBAJACK TO RUN ITS DOWNGRADE INSTALL.</strong></li>
-                            <li>🚨 <strong>YOU ABSOLUTELY NEED TO DISABLE OVERLAYS SUCH AS STEAM, MEDAL, ETC. THESE ARE KNOWN TO CAUSE CRASHES.</strong></li>
-                            <li>🚨 <strong>YOU ABSOLUTELY NEED TO SET UP PAGE FILE. THIS WILL HELP PREVENT CRASHES OR PERFORMANCE ISSUES.</strong></li>
-                            <li>🚨 <strong>YOU ABSOLUTELY NEED TO SET ANTI-VIRUS EXCLUSIONS. AV IS KNOWN TO WRECK HAVOC WITH MODS SUCH AS ENB, ETC.</strong></li>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-fist-raised"></i>Combat System
+                        </strong>
+                        <ul class="terminal-sublist">
+                           <li>Better Locational Damage</li>
+                           <li>Stagger and bleeding effects</li>
+                           <li>Stealth killmoves</li>
+                           <li>Weapon and armor balance</li>
+                           <li>Realistic recoil and spread</li>
+                           <li>Advanced AI behavior</li>
+                           <li>SCOURGE system for NPC stat randomization</li>
+                           <li>Deadeye headshot mechanics</li>
+                           <li>Munitions ammo expansion system</li>
+                           <li>Enemy categories and resistance levels</li>
+                           <li>Headshot mechanics by race type</li>
+                           <li>Pain system with three levels</li>
                         </ul>
-                    </div>
-                </section>
-
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/uYRev9mF4Q0?si=a6ar_TsmgJdy9QGG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                    </iframe>
-                </div>
-
-                <div class="tab-container">
-                    <div class="tab-buttons">
-                        <button class="tab-button active" data-tab="step1">STEP 1: GETTING STARTED</button>
-                        <button class="tab-button" data-tab="step2">STEP 2: INSTALLATION</button>
-                        <button class="tab-button" data-tab="step3">STEP 3: LAUNCHING</button>
-                        <button class="tab-button" data-tab="step4">STEP 4: KNOWN ISSUES</button>
-                        <button class="tab-button" data-tab="step5">STEP 5: GAMEPLAY</button>
-                    </div>
-                    
-                    <div class="tab-content active" id="step1">
-                        <div class="terminal-list grid-layout">
-                            <div class="terminal-list-item">
-                                <strong>
-                                    <i class="fas fa-microchip"></i>HARDWARE REQUIREMENTS
-                                </strong>
-                                <ul class="terminal-sublist">
-                                    <li>CPU: Go for a modern CPU with at least 6 cores and a speed of 3GHz.</li>
-                                    <li>RAM: 16GB minimum, but 32GB is ideal.</li>
-                                    <li>Video Card: At least 6GB of memory, 8GB is recommended.</li>
-                                    <li>Operating System: Windows 10/11 (64-bit) with up-to-date drivers.</li>
-                                    <li>Free Disk Space: A minimum of 350GB of storage is required, with an SSD being mandatory. Do not use a hard disk drive (HDD) as it will significantly affect load times.</li>
-                                    <li>Skills: Basic computer usage knowledge, including maintenance and regular updates.</li>
-                                </ul>
-
-                                <div class="warning-box">
-                                    <p>🚨 Do not install <strong>Anomaly</strong> directly on a root drive (e.g., <code>C:\Fallout Anomaly</code>). Instead, install it within a dedicated folder structure, such as: <code>C:\Fallout Modlist\Fallout Anomaly</code>. 🚨</p>
-                                </div>
-                            </div>
-
-                            <div class="terminal-list-item">
-                                <strong>
-                                    <i class="fas fa-exclamation-triangle"></i>IMPORTANT NOTICE
-                                </strong>
-                                <ul class="terminal-sublist">
-                                    <li>Update Fallout 4 to the next-gen version</li>
-                                    <li>Disable all overlays (Steam, Medal, etc.)</li>
-                                    <li>Set up page file for performance</li>
-                                    <li>Configure anti-virus exclusions</li>
-                                    <li>Install in dedicated folder (not root drive)</li>
-                                    <li>Nexus Premium recommended for faster downloads</li>
-                                </ul>
-                            </div>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-radiation"></i>Radiation System
+                        </strong>
+                        <p>Dual-layered radiation system:</p>
+                        <ul class="terminal-sublist">
+                           <li><strong>IRA (Ingested Radioactive Particles)</strong>: Acquired from food, water, and ambient hazards like weather.</li>
+                           <li><strong>RAD (Tissue Damage)</strong>: Traditional external radiation exposure (vanilla RADs).</li>
+                           <li>Negative IRA values deal internal damage over time and add to total IRA buildup.</li>
+                           <li>High IRA levels simulate Acute Radiation Syndrome, causing periodic RAD damage and debilitating effects.</li>
+                           <li>Weather hazards (like radiation storms) require functional protective gear (gas masks, hazmat suits, or power helmets).</li>
+                           <li>Radiation left unchecked will eventually kill the player—even retreating won't stop progression unless treated.</li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-pills"></i>Medical System
+                        </strong>
+                        <p>MAIM – Locational Damage & Medical Overhaul:</p>
+                        <ul class="terminal-sublist">
+                           <li><strong>SP-1 Stimpak</strong>: Gradual HP + AP regen, cures NPC injuries, strong poison resistance (180s).</li>
+                           <li><strong>SP-2 Stimpak</strong>: 3%/s HP & limb healing (40s). Most powerful heal, but requires weapon holstered.</li>
+                           <li><strong>Med-X</strong>: Treats pain, shock, and contusion. Heals head 1%/s (180s). Addictive.</li>
+                           <li><strong>Ibuprofen</strong>: Heals head & non-crippled limbs 0.5%/s (180s). Mildly addictive.</li>
+                           <li><strong>Bandage</strong>: Stops light bleeds, heals injured limbs (1%/s for 60s).</li>
+                           <li><strong>QuikClot Injector</strong>: Stops heavy bleeds and prevents further bleeding until limb is healed.</li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-keyboard"></i>Keybind Preset
+                        </strong>
+                        <p>Important keybinds to know:</p>
+                        <ul class="terminal-sublist">
+                           <li><strong>R</strong> – Reload / Check Ammo</li>
+                           <li><strong>J</strong> – Holster Weapon</li>
+                           <li><strong>N</strong> – Dodge</li>
+                           <li><strong>Z</strong> – Use Critical</li>
+                           <li><strong>G</strong> – Toggle Focus</li>
+                           <li><strong>H</strong> – Open Wheel Menu</li>
+                           <li><strong>Y</strong> – Use Armor Plate</li>
+                           <li><strong>F2</strong> – Toggle HUD</li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-question-circle"></i>Support & Community
+                        </strong>
+                        <div class="support-links-grid">
+                           <a href="https://discord.gg/ECuAthsdwJ" class="support-card">
+                              <span>💬</span>
+                              <h4>Discord</h4>
+                              <p>Join our Discord community</p>
+                           </a>
+                           <a href="https://loadorderlibrary.com/lists/fallout-anomaly-0-5" class="support-card">
+                              <span>📋</span>
+                              <h4>Mod List</h4>
+                              <p>View the mod list</p>
+                           </a>
+                           <a href="https://falloutanomaly.fillout.com/bugreports" class="support-card">
+                              <span>🐞</span>
+                              <h4>Bug Report</h4>
+                              <p>Submit a bug report</p>
+                           </a>
+                           <a href="https://falloutanomaly.fillout.com/suggestions" class="support-card">
+                              <span>💡</span>
+                              <h4>Suggestions</h4>
+                              <p>Share your suggestions</p>
+                           </a>
+                           <a href="https://www.nexusmods.com/fallout4/mods/74075?tab=description" class="support-card">
+                              <span>🎮</span>
+                              <h4>Nexus</h4>
+                              <p>Visit our Nexus page</p>
+                           </a>
+                           <a href="https://www.youtube.com/@FalloutAnomaly/videos" class="support-card">
+                              <span>📺</span>
+                              <h4>YouTube</h4>
+                              <p>Check out our YouTube channel</p>
+                           </a>
                         </div>
-
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-download"></i>Important Installation Steps
-                            </strong>
-                            <ol class="terminal-sublist">
-                                <li>
-                                    <strong><a href="https://github.com/abbodi1406/vcredist/releases/download/v0.82.0/VisualCppRedist_AIO_x86_x64.exe" target="_blank">Microsoft Visual C++ x64 and x86</a></strong><br>
-                                    Must be installed! Open the launcher and follow the on-screen steps to complete the installation.
-                                </li>
-                                <li>
-                                    <strong><a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net462-web-installer" target="_blank">NET Framework 4.6.2 & 5.0</a></strong><br>
-                                    Required for the mod list to function properly. Download and install the necessary framework.
-                                </li>
-                                <li>
-                                    <strong><a href="https://www.microsoft.com/en-us/download/details.aspx?id=8109" target="_blank">DirectX Redist (June 2010)</a></strong><br>
-                                    Download and install to ensure proper DirectX support.
-                                </li>
-                                                                <li>
-                                    <strong><a href="https://www.youtube.com/watch?v=8ARhusN5SFI&t=0s" target="_blank">Vanilla Game Folder - Launch the Game Once</a></strong><br>
-                                    Launch the game at least once to ensure it's cleaned and ready for modding.
-                                </li>
-                                <li>
-                                    <strong><a href="https://github.com/NomadsReach/Fallout-Anomaly/blob/master/PageFile.md" target="_blank">PageFile Setup</a></strong><br>
-                                    Critical for performance. We have provided an automated method for you to configure this easily.
-                                </li>
-                                <li>
-                                    <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=552541227" target="_blank">English Voice Files</a></strong><br>
-                                    Install these files if your game isn't in English. They are required for certain English-based mods/files.
-                                </li>
-                                <li>
-                                    <strong><a href="https://www.youtube.com/watch?v=7e_kY6LmQ0Y" target="_blank">Disable Overlays</a></strong><br>
-                                    Disable all overlays (Steam, Nvidia, Medal, etc.) to prevent crashes and performance issues.
-                                </li>
-                                <li>
-                                    <strong><a href="https://sharing.clickup.com/clip/p/t9014300118/775310b9-3dc0-402d-8726-2a184ee55560/How%20to%20remove%20HD%20Texture%20Pack..webm" target="_blank">HD Texture Pack Removal</a></strong><br>
-                                    Follow this guide to remove HD texture packs if needed.
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-
-                    <!-- Step 2: Installation & Updating -->
-                    <div class="tab-content" id="step2">
-                        <!-- Pre-Installation Checklist -->
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-check-circle"></i>Pre-Installation Checklist
-                            </strong>
-                            <div class="checklist-item">
-                                <span class="check-icon">✅</span>
-                                <div>
-                                    <strong>Log into Nexus in Wabbajack</strong>
-                                    <p>Open Wabbajack, click the ⚙️ cogwheel, and log in under the Nexus panel.</p>
-                                    <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/wabbajack.png" alt="Nexus Login in Wabbajack" class="guide-image">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Installation Instructions -->
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-download"></i>Installation Instructions
-                            </strong>
-                            <ol class="terminal-sublist">
-                                <li>
-                                    <strong>Downloading Fallout Anomaly</strong>
-                                    <ul>
-                                        <li>Locate <em>Fallout Anomaly</em> in the Wabbajack Browser and download the file.</li>
-                                        <li>Set both <strong>Install Location</strong> and <strong>Download Location</strong> on the same drive for best performance.</li>
-                                    </ul>
-                                    <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/wabbajack%20install.png" alt="Verify Installation" class="guide-image">
-                                </li>
-                            </ol>
-                        </div>
-
-                        <!-- Common Issues & Fixes -->
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-exclamation-triangle"></i>Common Issues & Fixes
-                            </strong>
-                            <div class="common-issues">
-                                <div class="issue">
-                                    <h4>"Could Not Download MOD"</h4>
-                                    <ul>
-                                        <li>Manually download the mod and place it in Wabbajack's download folder.</li>
-                                        <li>Check if Nexus Mods is down: <a href="https://nexusmods.statuspage.io/" target="_blank">Nexus Mods Status</a></li>
-                                    </ul>
-                                </div>
-                                <div class="issue">
-                                    <h4>"Mod Is Not a Whitelisted Download"</h4>
-                                    <ul>
-                                        <li>The modlist may have been updated, making an old mod link invalid.</li>
-                                        <li>Wait for a new release or notify us on <strong>Discord</strong>.</li>
-                                    </ul>
-                                </div>
-                                <div class="issue">
-                                    <h4>"Missing Game Files"</h4>
-                                    <ul>
-                                        <li>Ensure your game is updated to the <strong>next-gen version</strong>.</li>
-                                    </ul>
-                                </div>
-                                <div class="issue">
-                                    <h4>"Wabbajack Could Not Find My Game Folder"</h4>
-                                    <ul>
-                                        <li><strong>Pirated versions are not supported</strong>. Ensure you own Fallout 4 on <strong>Steam</strong>.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Troubleshooting Download Issues -->
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-tools"></i>Troubleshooting Download Issues
-                            </strong>
-
-                            <div class="troubleshooting-section">
-                                <h4>Google Drive Download Issues</h4>
-                                <ul>
-                                    <li>If downloads fail, <strong>download manually</strong> and place the file in your Wabbajack download folder.</li>
-                                    <li>Restart the install.</li>
-                                </ul>
-                                <div class="download-links">
-                                    <a href="https://drive.google.com/file/d/1sWpTDjSYC4xwhEveSuVhykjzHpZ2Qk1Y/view" class="download-link" target="_blank">Download Link 1</a>
-                                    <a href="https://drive.google.com/file/d/1APDBlK9UuPkXgptW0U1IHtKgEv4s9ruP/view" class="download-link" target="_blank">Download Link 2</a>
-                                </div>
-                            </div>
-
-                            <div class="troubleshooting-section">
-                                <h4>ENB Download Issues</h4>
-                                <ul>
-                                    <li>If your ENB download fails, download it manually and move it to the <strong>Anomaly Downloads</strong> folder created by Wabbajack.</li>
-                                    <li>❗ <strong>DO NOT extract the file</strong>—just place it in the folder.</li>
-                                    <li>Restart Wabbajack and run the installer again.</li>
-                                </ul>
-                                <a href="http://enbdev.com/mod_fallout4_v0496.htm" class="download-link" target="_blank">Download ENB for Fallout 4</a>
-                            </div>
-                        </div>
-
-                        <!-- Antivirus Folder Exclusion -->
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-shield-alt"></i>Antivirus Folder Exclusion
-                            </strong>
-                            <p>To prevent interference, <strong>add a folder exclusion</strong> for your entire install directory:</p>
-                            <ol>
-                                <li>
-                                    Open <strong>Windows Security</strong> → <em>Virus & threat protection</em><br>
-                                    <img src="https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-defender-security-center/images/security-center-home.png" alt="Virus & threat protection home" class="screenshot">
-                                </li>
-                                <li>
-                                    Scroll to <em>Exclusions</em> and select <em>Add or remove exclusions</em><br>
-                                    <img src="https://www.avoiderrors.com/wp-content/uploads/2020/07/AEW10A-3.png" alt="Exclusions page" class="screenshot">
-                                </li>
-                                <li>
-                                    Click <em>Add an exclusion</em> → choose <em>Folder</em> and browse to your install folder<br>
-                                    <img src="https://www.tenforums.com/attachments/tutorials/256525d1574614840-add-remove-microsoft-defender-antivirus-exclusions-windows-10-a-windows_defender_exclusions-4.png" alt="Add folder exclusion dialog" class="screenshot">
-                                </li>
-                            </ol>
-                        </div>
-
-                        <!-- Updating Fallout Anomaly -->
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-sync-alt"></i>Updating Fallout Anomaly
-                            </strong>
-                            <div class="update-info">
-                                <h4>✅ Update Notifications</h4>
-                                <ul>
-                                    <li>Announcements on <strong>Discord</strong> and <strong>Nexus Mods</strong>.</li>
-                                    <li>If a <strong>new save is required</strong>, we'll let you know.</li>
-                                </ul>
-                            </div>
-                            <div class="update-process">
-                                <h4>🔄 Update Process in Wabbajack</h4>
-                                <ul>
-                                    <li>Wabbajack deletes any manually installed mods not part of the official modlist.</li>
-                                    <li>Re-run the installer on the same path and check "Overwrite existing."</li>
-                                </ul>
-                            </div>
-                            <div class="save-preservation">
-                                <h4>💾 Save Preservation</h4>
-                                <ul>
-                                    <li>Your save files remain intact unless we explicitly state otherwise.</li>
-                                    <li>Find them in <code>(Install Folder)/Profiles/Fallout Anomaly/Saves</code>.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-question-circle"></i>Need Help?
-                            </strong>
-                            <div class="support-links">
-                                <a href="https://discord.gg/anomaly-1113971680419782666" class="support-link" target="_blank">
-                                    <i class="fab fa-discord"></i> Discord Support
-                                </a>
-                                <a href="https://wiki.wabbajack.org/" class="support-link" target="_blank">
-                                    <i class="fas fa-book"></i> Wabbajack Wiki
-                                </a>
-                                <a href="https://discord.gg/wabbajack" class="support-link" target="_blank">
-                                    <i class="fab fa-discord"></i> Wabbajack Discord
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 3: Launching -->
-                    <div class="tab-content" id="step3">
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-play"></i>Launching Fallout Anomaly
-                            </strong>
-                            <p>When you open <strong>Mod Organizer 2 (MO2)</strong>, the interface might seem complex at first, but don't worry—we've streamlined the process!</p>
-
-                            <div class="launch-instructions">
-                                <h4>🎮 How to Launch the Game</h4>
-                                <p>In the <strong>top-right corner</strong> of the MO2 interface, click <strong>"Launch Fallout Anomaly"</strong> to start the game.</p>
-                                <div class="warning-box">
-                                    <p>⚠️ <strong>DO NOT</strong> use the vanilla game launcher!</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-code"></i>F4SE (Fallout 4 Script Extender)
-                            </strong>
-                            <p><strong>F4SE</strong> is essential for most Fallout mods and is required to run Fallout Anomaly.<br>
-                                When using MO2, <strong>F4SE</strong> is automatically included in <strong>"Launch Fallout Anomaly"</strong>—no extra setup needed!</p>
-                        </div>
-
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-bug"></i>Crash Handling
-                            </strong>
-                            <p>If your game crashes, follow these steps to report the issue:</p>
-                            <ol>
-                                <li><strong>Save the log</strong> to an easily accessible location.</li>
-                                <li><strong>Upload the log</strong> via our <a href="https://falloutanomaly.fillout.com/bugreports" target="_blank">bug report form</a> OR post it in our <strong>Discord support section</strong>.</li>
-                                <li><strong>Attach your most recent save file</strong> to help with debugging.</li>
-                            </ol>
-                        </div>
-
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-desktop"></i>Changing Resolution (BethINI)
-                            </strong>
-                            <p>If your game's resolution isn't correct, use <strong>BethINI</strong> to adjust it. <strong>Do NOT modify other settings!</strong></p>
-
-                            <div class="resolution-steps">
-                                <h4>📌 How to Change Resolution:</h4>
-                                <ol>
-                                    <li><strong>Close</strong> <strong>Mod Organizer 2</strong>.</li>
-                                    <li>Navigate to your <strong>Anomaly installation folder</strong>:
-                                        <ul>
-                                            <li>Open the <strong><code>Tools</code></strong> directory.</li>
-                                            <li>Inside, find and open the <strong>BethINI</strong> folder.</li>
-                                            <li>Right-click <code>BethINI.exe</code> and select <strong>"Run as Administrator"</strong>.</li>
-                                        </ul>
-                                    </li>
-                                    <li>In <strong>BethINI</strong>, select <strong>Fallout 4</strong> (<strong>DO NOT</strong> change INI paths!).</li>
-                                    <li>Go to the <strong>Basic</strong> tab and adjust your resolution.</li>
-                                    <li>Click <strong>Save & Exit</strong> to apply the changes.</li>
-                                </ol>
-                                <img src="https://github.com/user-attachments/assets/e83c48cc-d321-4fd9-b17f-02d7f399c80c" alt="BethINI Screenshot" class="guide-image">
-                            </div>
-                        </div>
-
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-sliders-h"></i>Apply the MCM Preset!
-                            </strong>
-                            <p>Don't forget to apply the preset for proper settings:</p>
-                            <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/mcmpreset.png" alt="Preset Screenshot" class="guide-image">
-                        </div>
-
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-film"></i>Disabling Black Bars (Letterbox) in ENB
-                            </strong>
-                            <p>If you don't like the black bars at the top and bottom of the screen, follow these steps to disable them:</p>
-                            <ol>
-                                <li>Press the <strong><code>~</code></strong> key (next to the <code>1</code> key) to open the console.</li>
-                                <li>Press <strong><code>END</code></strong> to open the ENB menu.</li>
-                                <li>Navigate to the <strong>Post Processing</strong> section.</li>
-                                <li><strong>Uncheck</strong> the <strong>Letterbox</strong> option.</li>
-                                <li>Click <strong>Save Configuration</strong> (top-left).</li>
-                                <li>Press <strong><code>END</code></strong> and <strong><code>~</code></strong> again to exit the menus.</li>
-                            </ol>
-                            <img src="https://github.com/user-attachments/assets/c416445f-e1b8-4bc3-9efa-7906d7eb586e" alt="ENB Menu Screenshot" class="guide-image">
-                        </div>
-
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-puzzle-piece"></i>Optional Mods
-                            </strong>
-                            <p>Anomaly includes a collection of <strong>optional</strong> mods to enhance your gameplay experience. Browse through them and customize your experience!</p>
-                            <img src="https://github.com/user-attachments/assets/708ad0e6-37fe-4ecd-a215-82e110ae1c4f" alt="Optional Mods" class="guide-image">
-                        </div>
-                    </div>
-
-                    <!-- Step 4: Known Issues -->
-                    <div class="tab-content" id="step4">
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-exclamation-triangle"></i>Known Issues
-                            </strong>
-
-                            <div class="issue-item">
-                                <h4>Main Menu Delay</h4>
-                                <p>When launching the game you may experience a delay as scripts load. This delay varies based on your system's power; more powerful systems may not encounter this issue.</p>
-                            </div>
-
-                            <div class="issue-item">
-                                <h4>Stuck in Menu</h4>
-                                <p>If you find yourself unable to progress from the first loading or main menu:</p>
-                                <p><strong>Watch <a href="https://www.youtube.com/watch?v=JTnhJsM3_hg&t" target="_blank">this video</a> for help with the issue. If the video doesn't resolve it, we've provided new save files for you to load and customize your character as needed.</strong></p>
-                            </div>
-
-                            <div class="issue-item">
-                                <h4>Post-Character Creation Freeze</h4>
-                                <p>After creating your character:</p>
-                                <ul>
-                                    <li>Your game will save and may appear to freeze temporarily.</li>
-                                    <li>This is due to multiple scripts loading simultaneously.</li>
-                                    <li>Be patient and wait for a few minutes; the game will resume normally.</li>
-                                </ul>
-                            </div>
-
-                            <div class="issue-item">
-                                <h4>Falling Through Vault Issue</h4>
-                                <p>If you're falling through the vault floor:</p>
-                                <ul>
-                                    <li>This is likely due to the "Uneducated Shooter" mod.</li>
-                                    <li><strong>Solution</strong>: Only enable the "Uneducated Shooter" mod after leaving the vault.</li>
-                                </ul>
-                            </div>
-
-                            <div class="issue-item">
-                                <h4>Known Crash Related Issues:</h4>
-                                <ul>
-                                    <li>Programs like medal (recording software) or anything that adds an overlay can conflict with the ENBS, or other DLL hooked mods. If you are crashing right at the launch of game or at the main menu this can be one of the main causes.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-gamepad"></i>Controller Support
-                            </strong>
-                            <p>We currently support <strong>PS5 controllers</strong>, with <strong>Xbox support planned for the future.</strong></p>
-
-                            <div class="controller-setup">
-                                <div class="setup-step">
-                                    <h4>Step 1: Configure Steam Settings</h4>
-                                    <ul>
-                                        <li>Ensure your <strong>Steam controller settings</strong> are correctly set up as shown in the window below.</li>
-                                        <li><strong>Steam Overlay</strong> must be enabled for the controller to function properly.</li>
-                                        <li><strong>Steam Input</strong>: Paste the following link into your browser and open Steam when prompted:<br>
-                                            <code>steam://controllerconfig/377160/3420527035</code><br>
-                                            This will install the <strong>custom controller profile</strong> for Fallout Anomaly.</li>
-                                    </ul>
-                                </div>
-
-                                <div class="setup-step">
-                                    <h4>Step 2: Enable the Controller Support Mod</h4>
-                                    <ul>
-                                        <li>In <strong>MO2</strong>, activate the optional mod:<br>
-                                            <strong>"A - OPT - Controller Support - PS5 Support"</strong></li>
-                                    </ul>
-                                    <p>This ensures full functionality for your PS5 controller in-game. 🚀</p>
-                                    <img src="https://github.com/user-attachments/assets/06e65ae6-05b8-4a1e-9d33-ca8ec5b9bc7f" alt="Steam Settings" class="guide-image">
-                                    <img src="https://github.com/user-attachments/assets/8b3ae832-e62e-4817-b858-d70256727bf8" alt="Controller Configuration" class="guide-image">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 5: Major Mods -->
-                    <div class="tab-content" id="step5">
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-heartbeat"></i>Survival Mechanics
-                            </strong>
-                            <ul class="terminal-sublist">
-                                <li>Advanced food mechanics with spoilage</li>
-                                <li>Camping system</li>
-                                <li>Challenges and achievements</li>
-                                <li>Cooking overhaul</li>
-                                <li>Dynamic weather effects</li>
-                                <li>Temperature system</li>
-                                <li>Carry weight system with STR-based calculations</li>
-                                <li>Backpack system with 100 CW capacity</li>
-                                <li>Keybinding system for backpack access</li>
-                                <li>Backpack bug fixes and troubleshooting</li>
-                            </ul>
-                        </div>
-
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-fist-raised"></i>Combat System
-                            </strong>
-                            <ul class="terminal-sublist">
-                                <li>Better Locational Damage</li>
-                                <li>Stagger and bleeding effects</li>
-                                <li>Stealth killmoves</li>
-                                <li>Weapon and armor balance</li>
-                                <li>Realistic recoil and spread</li>
-                                <li>Advanced AI behavior</li>
-                                <li>SCOURGE system for NPC stat randomization</li>
-                                <li>Deadeye headshot mechanics</li>
-                                <li>Munitions ammo expansion system</li>
-                                <li>Enemy categories and resistance levels</li>
-                                <li>Headshot mechanics by race type</li>
-                                <li>Pain system with three levels</li>
-                            </ul>
-                        </div>
-
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-radiation"></i>Radiation System
-                            </strong>
-                            <p>Dual-layered radiation system:</p>
-                            <ul class="terminal-sublist">
-                                <li><strong>IRA (Ingested Radioactive Particles)</strong>: Acquired from food, water, and ambient hazards like weather.</li>
-                                <li><strong>RAD (Tissue Damage)</strong>: Traditional external radiation exposure (vanilla RADs).</li>
-                                <li>Negative IRA values deal internal damage over time and add to total IRA buildup.</li>
-                                <li>High IRA levels simulate Acute Radiation Syndrome, causing periodic RAD damage and debilitating effects.</li>
-                                <li>Weather hazards (like radiation storms) require functional protective gear (gas masks, hazmat suits, or power helmets).</li>
-                                <li>Radiation left unchecked will eventually kill the player—even retreating won't stop progression unless treated.</li>
-                            </ul>
-                        </div>
-
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-pills"></i>Medical System
-                            </strong>
-                            <p>MAIM – Locational Damage & Medical Overhaul:</p>
-                            <ul class="terminal-sublist">
-                                <li><strong>SP-1 Stimpak</strong>: Gradual HP + AP regen, cures NPC injuries, strong poison resistance (180s).</li>
-                                <li><strong>SP-2 Stimpak</strong>: 3%/s HP & limb healing (40s). Most powerful heal, but requires weapon holstered.</li>
-                                <li><strong>Med-X</strong>: Treats pain, shock, and contusion. Heals head 1%/s (180s). Addictive.</li>
-                                <li><strong>Ibuprofen</strong>: Heals head & non-crippled limbs 0.5%/s (180s). Mildly addictive.</li>
-                                <li><strong>Bandage</strong>: Stops light bleeds, heals injured limbs (1%/s for 60s).</li>
-                                <li><strong>QuikClot Injector</strong>: Stops heavy bleeds and prevents further bleeding until limb is healed.</li>
-                            </ul>
-                        </div>
-
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-keyboard"></i>Keybind Preset
-                            </strong>
-                            <p>Important keybinds to know:</p>
-                            <ul class="terminal-sublist">
-                                <li><strong>R</strong> – Reload / Check Ammo</li>
-                                <li><strong>J</strong> – Holster Weapon</li>
-                                <li><strong>N</strong> – Dodge</li>
-                                <li><strong>Z</strong> – Use Critical</li>
-                                <li><strong>G</strong> – Toggle Focus</li>
-                                <li><strong>H</strong> – Open Wheel Menu</li>
-                                <li><strong>Y</strong> – Use Armor Plate</li>
-                                <li><strong>F2</strong> – Toggle HUD</li>
-                            </ul>
-                        </div>
-
-                        <div class="terminal-list-item">
-                            <strong>
-                                <i class="fas fa-question-circle"></i>Support & Community
-                            </strong>
-                            <div class="support-links-grid">
-                                <a href="https://discord.gg/ECuAthsdwJ" class="support-card">
-                                    <span>💬</span>
-                                    <h4>Discord</h4>
-                                    <p>Join our Discord community</p>
-                                </a>
-
-                                <a href="https://loadorderlibrary.com/lists/fallout-anomaly-0-5" class="support-card">
-                                    <span>📋</span>
-                                    <h4>Mod List</h4>
-                                    <p>View the mod list</p>
-                                </a>
-
-                                <a href="https://falloutanomaly.fillout.com/bugreports" class="support-card">
-                                    <span>🐞</span>
-                                    <h4>Bug Report</h4>
-                                    <p>Submit a bug report</p>
-                                </a>
-
-                                <a href="https://falloutanomaly.fillout.com/suggestions" class="support-card">
-                                    <span>💡</span>
-                                    <h4>Suggestions</h4>
-                                    <p>Share your suggestions</p>
-                                </a>
-
-                                <a href="https://www.nexusmods.com/fallout4/mods/74075?tab=description" class="support-card">
-                                    <span>🎮</span>
-                                    <h4>Nexus</h4>
-                                    <p>Visit our Nexus page</p>
-                                </a>
-
-                                <a href="https://www.youtube.com/@FalloutAnomaly/videos" class="support-card">
-                                    <span>📺</span>
-                                    <h4>YouTube</h4>
-                                    <p>Check out our YouTube channel</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tab functionality
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
-            
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove active class from all buttons and contents
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    button.classList.add('active');
-                    
-                    // Show corresponding tab content
-                    const tabId = button.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
-                });
-            });
-            
-
-            const loadingScreen = document.querySelector('.loading-screen');
-            const continuePrompt = document.querySelector('.continue-prompt');
-            
-            setTimeout(() => {
-                continuePrompt.classList.remove('hidden');
-                document.addEventListener('click', hideLoadingScreen);
-                document.addEventListener('keydown', hideLoadingScreen);
-            }, 2000);
-            
-            function hideLoadingScreen() {
-                loadingScreen.style.display = 'none';
-                                document.removeEventListener('click', hideLoadingScreen);
-                document.removeEventListener('keydown', hideLoadingScreen);
-            }
-            */
-        });
-    </script>
-</body>
+         </div>
+      </div>
+      <script>
+         document.addEventListener('DOMContentLoaded', function() {
+             // Tab functionality
+             const tabButtons = document.querySelectorAll('.tab-button');
+             const tabContents = document.querySelectorAll('.tab-content');
+             
+             tabButtons.forEach(button => {
+                 button.addEventListener('click', () => {
+                     // Remove active class from all buttons and contents
+                     tabButtons.forEach(btn => btn.classList.remove('active'));
+                     tabContents.forEach(content => content.classList.remove('active'));
+                     
+                     // Add active class to clicked button
+                     button.classList.add('active');
+                     
+                     // Show corresponding tab content
+                     const tabId = button.getAttribute('data-tab');
+                     document.getElementById(tabId).classList.add('active');
+                 });
+             });
+             
+         
+             const loadingScreen = document.querySelector('.loading-screen');
+             const continuePrompt = document.querySelector('.continue-prompt');
+             
+             setTimeout(() => {
+                 continuePrompt.classList.remove('hidden');
+                 document.addEventListener('click', hideLoadingScreen);
+                 document.addEventListener('keydown', hideLoadingScreen);
+             }, 2000);
+             
+             function hideLoadingScreen() {
+                 loadingScreen.style.display = 'none';
+                                 document.removeEventListener('click', hideLoadingScreen);
+                 document.removeEventListener('keydown', hideLoadingScreen);
+             }
+             */
+         });
+      </script>
+   </body>
 </html>
-
-                
-
