@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fallout Anomaly</title>
+    <meta name="description" content="Complete guide to Fallout Anomaly - a post-apocalyptic mod with hundreds of new features.">
+    <title>FALLOUT ANOMALY - COMPLETE GUIDE</title>
+
+    <!-- Open Graph / Social Media Meta -->
+    <meta property="og:title" content="Fallout Anomaly Guide" />
+    <meta property="og:description" content="Complete guide to Fallout Anomaly - explore the wasteland with hundreds of new features." />
+    <meta property="og:url" content="https://fallout-anomaly.github.io/websitedev/pages/guide.html" />
+    <meta property="og:site_name" content="Fallout Anomaly" />
+    <meta property="og:type" content="article" /> 
+    <meta property="article:section" content="Guides" />
+    <meta property="article:tag" content="Fallout 4, Modding, Wabbajack, Installation, Guide, Fallout Anomaly" />
+    <meta property="og:image" content="https://s3.amazonaws.com/guildtag/file/14763/84412-8ff9de.png" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary-color: #4CAF50;
@@ -44,45 +57,11 @@
             z-index: -1;
         }
 
-        .noise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/png;base64,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');
-            opacity: 0.05;
-            z-index: -1;
-            pointer-events: none;
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
             position: relative;
-        }
-
-        .scan-line {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background-color: rgba(76, 175, 80, 0.2);
-            z-index: 9999;
-            pointer-events: none;
-            animation: scanline 8s linear infinite;
-        }
-
-        @keyframes scanline {
-            0% {
-                top: -5px;
-            }
-
-            100% {
-                top: 100%;
-            }
         }
 
         /* Header */
@@ -153,13 +132,12 @@
 
         /* Hero Section */
         .hero {
-            height: 80vh;
+            padding: 60px 0;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
-            overflow: hidden;
         }
 
         .hero-content {
@@ -184,12 +162,6 @@
             display: block;
         }
 
-        @media (max-width: 768px) {
-            .video-container iframe {
-                height: 300px;
-            }
-        }
-
         .hero h2 {
             font-size: 3rem;
             margin-bottom: 20px;
@@ -197,7 +169,6 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 700;
-            text-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
         }
 
         .hero p {
@@ -298,6 +269,103 @@
             color: var(--primary-color);
         }
 
+        /* Tab System */
+        .tab-container {
+            margin: 20px 0;
+        }
+
+        .tab-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .tab-button {
+            background-color: transparent;
+            color: var(--text-color);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button:hover {
+            color: var(--primary-color);
+        }
+
+        .tab-button.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: rgba(10, 26, 31, 0.5);
+            border-radius: 5px;
+            border: 1px solid rgba(76, 175, 80, 0.1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Guide Content */
+        .guide-content {
+            padding: 20px;
+        }
+
+        .terminal-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .terminal-list-item {
+            background-color: rgba(10, 26, 31, 0.5);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid rgba(76, 175, 80, 0.1);
+        }
+
+        .terminal-list-item strong {
+            display: block;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .terminal-list-item i {
+            margin-right: 10px;
+        }
+
+        .terminal-sublist {
+            list-style-type: none;
+            padding-left: 10px;
+        }
+
+        .terminal-sublist li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .terminal-sublist li:before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
         /* Footer */
         footer {
             background-color: var(--darker-bg);
@@ -311,14 +379,14 @@
             align-items: center;
         }
 
-        .footer-logo img {
-            height: 30px;
-            margin-right: 10px;
-        }
-
         .footer-logo {
             display: flex;
             align-items: center;
+        }
+
+        .footer-logo img {
+            height: 30px;
+            margin-right: 10px;
         }
 
         .footer-logo span {
@@ -347,32 +415,6 @@
             font-size: 0.9rem;
         }
 
-        /* Terminal Effect */
-        .terminal-text {
-            display: inline-block;
-            position: relative;
-            color: var(--primary-color);
-        }
-
-        .terminal-text::after {
-            content: '|';
-            position: absolute;
-            right: -10px;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
-        }
-
         /* Mobile Responsive */
         @media (max-width: 768px) {
             header {
@@ -391,6 +433,14 @@
                 font-size: 2rem;
             }
 
+            .video-container iframe {
+                height: 300px;
+            }
+
+            .tab-buttons {
+                flex-direction: column;
+            }
+
             .footer-content {
                 flex-direction: column;
                 text-align: center;
@@ -404,91 +454,224 @@
                 margin: 0 10px;
             }
         }
-
-        /* Glitch Effect */
-        .glitch {
-            position: relative;
-            display: inline-block;
-        }
-
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            clip: rect(0, 0, 0, 0);
-        }
-
-        .glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 rgba(255, 0, 0, 0.7);
-            animation: glitch-animation-1 2s infinite linear alternate-reverse;
-        }
-
-        .glitch::after {
-            left: -2px;
-            text-shadow: 2px 0 rgba(0, 255, 255, 0.7);
-            animation: glitch-animation-2 2s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-animation-1 {
-            0% {
-                clip: rect(36px, 9999px, 9px, 0);
-            }
-
-            5% {
-                clip: rect(85px, 9999px, 56px, 0);
-            }
-
-            10% {
-                clip: rect(6px, 9999px, 44px, 0);
-            }
-
-            /* More random values... */
-            100% {
-                clip: rect(53px, 9999px, 119px, 0);
-            }
-        }
-
-        @keyframes glitch-animation-2 {
-            0% {
-                clip: rect(65px, 9999px, 119px, 0);
-            }
-
-            5% {
-                clip: rect(27px, 9999px, 44px, 0);
-            }
-
-            10% {
-                clip: rect(84px, 9999px, 80px, 0);
-            }
-
-            /* More random values... */
-            100% {
-                clip: rect(14px, 9999px, 86px, 0);
-            }
-        }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    <link rel="icon" href="data:image/svg+xml,
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+            <text y='.9em' font-size='90'>☢️</text>
+        </svg>">
 </head>
-
 <body>
-    <div class="noise"></div>
-    <div class="scan-line"></div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="https://s3.amazonaws.com/guildtag/file/14763/84412-8ff9de.png" alt="Fallout Anomaly Logo">
+                <h1>Fallout Anomaly</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="guide.html">Guide</a></li>
+                    <li><a href="https://discord.gg/mg2hhGvVKB">Discord</a></li>
+                    <li><a href="https://www.nexusmods.com/fallout4/mods/74075">Nexus</a></li>
+                </ul>
+            </nav>
+        </header>
+
         <section class="hero">
             <div class="hero-content">
-                <h2 class="glitch" data-text="Welcome to the Wasteland">Welcome to the Wasteland</h2>
+                <h2>Welcome to the Wasteland</h2>
                 <p>Explore the unknown, survive the anomalies, and discover the hidden secrets of the post-apocalyptic world. Join our community of survivors.</p>
                 <div class="video-container">
                     <iframe width="800" height="450" src="https://www.youtube.com/embed/Lr-3zZrosmQ" title="Fallout Anomaly" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="buttons">
-                    <!-- Updated buttons -->
                     <a href="https://discord.gg/mg2hhGvVKB" class="btn">Join Now</a>
-                    <a href="https://falloutanomaly.guildtag.com/about/" class="btn btn-outline">Learn More</a>
+                    <a href="#installation-guide" class="btn btn-outline">Installation Guide</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="installation-guide">
+            <div class="section-header">
+                <h3>Installation Guide</h3>
+                <p>Follow these steps to properly install and enjoy Fallout Anomaly</p>
+            </div>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="step1">STEP 1: GETTING STARTED</button>
+                    <button class="tab-button" data-tab="step2">STEP 2: INSTALLATION</button>
+                    <button class="tab-button" data-tab="step3">STEP 3: LAUNCHING</button>
+                    <button class="tab-button" data-tab="step4">STEP 4: KNOWN ISSUES</button>
+                    <button class="tab-button" data-tab="step5">STEP 5: GAMEPLAY</button>
+                </div>
+                
+                <div class="tab-content active" id="step1">
+                    <div class="terminal-list grid-layout">
+                        <div class="terminal-list-item">
+                            <strong>
+                                <i class="fas fa-microchip"></i>HARDWARE REQUIREMENTS </strong>
+                            <ul class="terminal-sublist">
+                                <li>CPU: Modern CPU with at least 6 cores and 3GHz speed</li>
+                                <li>RAM: 16GB minimum, 32GB ideal</li>
+                                <li>GPU: At least 6GB VRAM, 8GB recommended</li>
+                                <li>Storage: 350GB minimum on SSD (HDD not supported)</li>
+                                <li>OS: Windows 10/11 (64-bit) with up-to-date drivers</li>
+                                <li>Page File: Minimum 16GB required</li>
+                                <li>Skills: Basic computer maintenance knowledge required</li>
+                            </ul>
+                        </div>
+                        <div class="terminal-list-item">
+                            <strong>
+                                <i class="fas fa-exclamation-triangle"></i>IMPORTANT NOTICE </strong>
+                            <ul class="terminal-sublist">
+                                <li>Update Fallout 4 to the next-gen version</li>
+                                <li>Disable all overlays (Steam, Medal, etc.)</li>
+                                <li>Set up page file for performance</li>
+                                <li>Configure anti-virus exclusions</li>
+                                <li>Install in dedicated folder (not root drive)</li>
+                                <li>Nexus Premium recommended for faster downloads</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="step2">
+                    <div class="terminal-list">
+                        <div class="terminal-list-item">
+                            <strong>
+                                <i class="fas fa-download"></i>Download Required Components </strong>
+                            <ul class="terminal-sublist">
+                                <li>Microsoft Visual C++ x64 and x86</li>
+                                <li>NET Framework 4.6.2 & 5.0</li>
+                                <li>DirectX Redist (June 2010)</li>
+                                <li>English Voice Files (if not using English)</li>
+                                <li>Verify all components are properly installed</li>
+                            </ul>
+                        </div>
+                        <div class="terminal-list-item">
+                            <strong>
+                                <i class="fas fa-gamepad"></i>Game Setup </strong>
+                            <ul class="terminal-sublist">
+                                <li>Launch vanilla game at least once</li>
+                                <li>Update to version 1.10.980.0</li>
+                                <li>Remove HD texture pack if installed</li>
+                                <li>Verify game files through Steam</li>
+                                <li>Install in dedicated folder (not root drive)</li>
+                                <li>Ensure clean game installation</li>
+                            </ul>
+                        </div>
+                        <div class="terminal-list-item">
+                            <strong>
+                                <i class="fas fa-cogs"></i>System Configuration </strong>
+                            <ul class="terminal-sublist">
+                                <li>Set up page file (minimum 16GB)</li>
+                                <li>Configure anti-virus exclusions for game folder</li>
+                                <li>Disable all overlays (Steam, Medal, etc.)</li>
+                                <li>Update graphics drivers</li>
+                                <li>Add exceptions for MO2.exe, Fallout4.exe, F4SE_Loader.exe</li>
+                                <li>Add 'Stock Folder' from Mod Organizer 2 to exceptions</li>
+                            </ul>
+                        </div>
+                        <div class="terminal-list-item">
+                            <strong>
+                                <i class="fas fa-database"></i>Wabbajack Setup </strong>
+                            <ul class="terminal-sublist">
+                                <li>Log into Nexus in Wabbajack</li>
+                                <li>Set Install Location and Download Location on same drive</li>
+                                <li>Verify installation after completion</li>
+                                <li>Check for errors in verification process</li>
+                                <li>Contact Discord support if issues persist</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Continue with other tabs... -->
+                <div class="tab-content" id="step3">
+                    <!-- Content from step3 tab -->
+                    <div class="terminal-list">
+                        <div class="terminal-list-item">
+                            <strong>
+                                <i class="fas fa-play"></i>Initial Launch </strong>
+                            <ul class="terminal-sublist">
+                                <li>Use Mod Organizer 2 to launch the game</li>
+                                <li>Do not use the vanilla launcher</li>
+                                <li>F4SE is automatically included</li>
+                                <li>Save crash logs if issues occur</li>
+                                <li>Upload logs via bug report form</li>
+                                <li>Attach recent save files for debugging</li>
+                            </ul>
+                        </div>
+                        <div class="terminal-list-item">
+                            <strong>
+                                <i class="fas fa-sliders-h"></i>Resolution Settings </strong>
+                            <ul class="terminal-sublist">
+                                <li>Use BethINI to adjust resolution</li>
+                                <li>Do not modify other settings</li>
+                                <li>Close Mod Organizer 2 first</li>
+                                <li>Run BethINI as Administrator</li>
+                                <li>Select Fallout 4 in BethINI</li>
+                                <li>Do not change INI paths</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="step4">
+                    <!-- Content from step4 tab -->
+                    <div class="terminal-list">
+                        <div class="terminal-list-item">
+                            <strong>
+                                <i class="fas fa-exclamation-circle"></i>Main Menu Delay </strong>
+                            <ul class="terminal-sublist">
+                                <li>Initial delay as scripts load</li>
+                                <li>Varies based on system power</li>
+                                <li>More powerful systems may not experience delay</li>
+                            </ul>
+                        </div>
+                        <div class="terminal-list-item">
+                            <strong>
+                                <i class="fas fa-exclamation-circle"></i>Crash Issues </strong>
+                            <ul class="terminal-sublist">
+                                <li>Programs with overlays can cause conflicts</li>
+                                <li>Disable Steam, Nvidia, Medal overlays</li>
+                                <li>Conflicts with ENB and DLL mods</li>
+                                <li>Check for overlay-related crashes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="step5">
+                    <!-- Content from step5 tab -->
+                    <div class="terminal-list">
+                        <div class="terminal-list-item">
+                            <strong>
+                                <i class="fas fa-heartbeat"></i>Survival Mechanics </strong>
+                            <ul class="terminal-sublist">
+                                <li>Advanced food mechanics with spoilage</li>
+                                <li>Camping system</li>
+                                <li>Challenges and achievements</li>
+                                <li>Cooking overhaul</li>
+                                <li>Dynamic weather effects</li>
+                                <li>Temperature system</li>
+                            </ul>
+                        </div>
+                        <div class="terminal-list-item">
+                            <strong>
+                                <i class="fas fa-fist-raised"></i>Combat System </strong>
+                            <ul class="terminal-sublist">
+                                <li>Better Locational Damage</li>
+                                <li>Stagger and bleeding effects</li>
+                                <li>Stealth killmoves</li>
+                                <li>Weapon and armor balance</li>
+                                <li>Realistic recoil and spread</li>
+                                <li>Advanced AI behavior</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -503,7 +686,7 @@
                     <div class="feature-icon">
                         <div class="icon">💯</div>
                     </div>
-                    <h4 class="feature-title">100s of new features.</h4>
+                    <h4 class="feature-title">100s of new features</h4>
                     <p>Encounter strange new creatures, items, and all new quests.</p>
                 </div>
                 <div class="feature-card">
@@ -532,60 +715,36 @@
                     <span>Fallout Anomaly</span>
                 </div>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="https://discord.gg/mg2hhGvVKB"><i class="fab fa-discord"></i></a>
                     <a href="https://www.youtube.com/@FalloutAnomaly"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.nexusmods.com/fallout4/mods/74075"><i class="fa-solid fa-atom-simple"></i></a>
+                    <a href="https://www.nexusmods.com/fallout4/mods/74075"><i class="fa-solid fa-atom"></i></a>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Fallout Anomaly. All rights reserved.</p>
+                <p>© 2025 Fallout Anomaly. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Terminal Text Effect
-        const terminalElements = document.querySelectorAll('.terminal-text');
-
-        terminalElements.forEach(element => {
-            const text = element.innerText;
-            element.innerText = '';
-
-            let i = 0;
-            const interval = setInterval(() => {
-                if (i < text.length) {
-                    element.innerText += text.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 100);
-        });
-
-        // Add 'active' class to current navigation item
-        const currentLocation = location.href;
-        const navItems = document.querySelectorAll('nav ul li a');
-
-        navItems.forEach(item => {
-            if (item.href === currentLocation) {
-                item.classList.add('active');
-            }
-        });
-
-        // Random flicker effect for logos and headings
-        const flickerElements = document.querySelectorAll('.logo h1, .footer-logo span');
-
-        setInterval(() => {
-            flickerElements.forEach(element => {
-                if (Math.random() > 0.95) {
-                    element.style.opacity = (Math.random() * 0.5) + 0.5;
-                    setTimeout(() => {
-                        element.style.opacity = 1;
-                    }, 100);
-                }
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    button.classList.add('active');
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
             });
-        }, 200);
+        });
     </script>
 </body>
-
 </html>
