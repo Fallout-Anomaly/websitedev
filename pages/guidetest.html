@@ -1,23 +1,24 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Complete guide to Fallout Anomaly - a post-apocalyptic mod with hundreds of new features.">
+    <meta name="description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting.">
     <title>FALLOUT ANOMALY - COMPLETE GUIDE</title>
 
     <!-- Open Graph / Social Media Meta -->
-    <meta property="og:title" content="Fallout Anomaly Guide" />
-    <meta property="og:description" content="Complete guide to Fallout Anomaly - explore the wasteland with hundreds of new features." />
+    <meta property="og:title" content="Fallout Anomaly Installation Guide" />
+    <meta property="og:description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting." />
     <meta property="og:url" content="https://fallout-anomaly.github.io/websitedev/pages/guide.html" />
     <meta property="og:site_name" content="Fallout Anomaly" />
-    <meta property="og:type" content="article" /> 
+    <meta property="og:type" content="article" />
     <meta property="article:section" content="Guides" />
     <meta property="article:tag" content="Fallout 4, Modding, Wabbajack, Installation, Guide, Fallout Anomaly" />
     <meta property="og:image" content="https://s3.amazonaws.com/guildtag/file/14763/84412-8ff9de.png" />
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary-color: #4CAF50;
@@ -25,13 +26,15 @@
             --dark-bg: #0a1a1f;
             --darker-bg: #061215;
             --text-color: #e0e0e0;
+            --header-color: #66bb6a;
+            --warning-color: #ff9800;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Courier New', monospace;
+            font-family: 'Roboto Mono', monospace;
         }
 
         body {
@@ -53,7 +56,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.85);
             z-index: -1;
         }
 
@@ -71,6 +74,7 @@
             align-items: center;
             padding: 20px 0;
             border-bottom: 1px solid rgba(76, 175, 80, 0.3);
+            margin-bottom: 30px;
         }
 
         .logo {
@@ -84,9 +88,9 @@
         }
 
         .logo h1 {
-            color: var(--primary-color);
+            color: var(--header-color);
             font-size: 1.8rem;
-            font-weight: 400;
+            font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
@@ -130,27 +134,82 @@
             width: 100%;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 60px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
+        /* Main Content */
+        .main-content {
+            padding: 20px 0;
         }
 
-        .hero-content {
-            max-width: 800px;
-            z-index: 1;
+        .page-title {
+            font-size: 2.5rem;
+            color: var(--header-color);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            border-bottom: 1px solid rgba(76, 175, 80, 0.3);
+            padding-bottom: 15px;
+        }
+
+        .intro {
+            background-color: rgba(10, 26, 31, 0.7);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .intro h2 {
+            color: var(--header-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .intro p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .disclaimer {
+            background-color: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .disclaimer h3 {
+            color: var(--warning-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .disclaimer ul {
+            list-style-type: none;
+            padding-left: 10px;
+        }
+
+        .disclaimer ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .disclaimer ul li:before {
+            content: "•";
+            color: var(--warning-color);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Video Section */
+        .video-section {
+            margin: 40px 0;
         }
 
         .video-container {
-            margin: 30px 0;
             position: relative;
             width: 100%;
             padding-bottom: 20px;
-            box-shadow: 0 0 30px rgba(76, 175, 80, 0.3);
+            box-shadow: 0 0 30px rgba(76, 175, 80, 0.2);
             border: 1px solid rgba(76, 175, 80, 0.3);
             border-radius: 5px;
             overflow: hidden;
@@ -158,155 +217,54 @@
 
         .video-container iframe {
             width: 100%;
-            height: 450px;
+            height: 550px;
             display: block;
-        }
-
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--darker-bg);
-            padding: 12px 30px;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 3px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 10px;
-            border: 2px solid var(--primary-color);
-            transition: all 0.3s;
-        }
-
-        .btn:hover {
-            background-color: transparent;
-            color: var(--primary-color);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--primary-color);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary-color);
-            color: var(--darker-bg);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-            background-color: rgba(6, 18, 21, 0.7);
-            border-top: 1px solid rgba(76, 175, 80, 0.3);
-            border-bottom: 1px solid rgba(76, 175, 80, 0.3);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h3 {
-            font-size: 2rem;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-        }
-
-        .section-header p {
-            max-width: 600px;
-            margin: 0 auto;
-            color: rgba(224, 224, 224, 0.7);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background-color: rgba(10, 26, 31, 0.5);
-            padding: 30px;
-            border-radius: 5px;
-            text-align: center;
-            border: 1px solid rgba(76, 175, 80, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            border-color: rgba(76, 175, 80, 0.3);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .feature-title {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
         }
 
         /* Tab System */
         .tab-container {
-            margin: 20px 0;
+            margin: 30px 0;
         }
 
         .tab-buttons {
             display: flex;
             flex-wrap: wrap;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(76, 175, 80, 0.3);
+            margin-bottom: 0;
+            border-bottom: none;
         }
 
         .tab-button {
-            background-color: transparent;
+            background-color: rgba(10, 26, 31, 0.7);
             color: var(--text-color);
-            border: none;
-            padding: 10px 20px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-bottom: none;
+            padding: 12px 20px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: all 0.3s;
-            border-bottom: 3px solid transparent;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         .tab-button:hover {
+            background-color: rgba(76, 175, 80, 0.1);
             color: var(--primary-color);
         }
 
         .tab-button.active {
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--primary-color);
+            background-color: rgba(76, 175, 80, 0.2);
+            color: var(--header-color);
+            border-bottom: 1px solid rgba(76, 175, 80, 0.5);
         }
 
         .tab-content {
             display: none;
-            padding: 20px;
-            background-color: rgba(10, 26, 31, 0.5);
-            border-radius: 5px;
-            border: 1px solid rgba(76, 175, 80, 0.1);
+            padding: 25px;
+            background-color: rgba(10, 26, 31, 0.7);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 0 5px 5px 5px;
         }
 
         .tab-content.active {
@@ -315,37 +273,40 @@
 
         /* Guide Content */
         .guide-content {
-            padding: 20px;
+            padding: 0;
         }
 
         .terminal-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
 
         .grid-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
         }
 
         .terminal-list-item {
-            background-color: rgba(10, 26, 31, 0.5);
+            background-color: rgba(10, 26, 31, 0.7);
             padding: 20px;
             border-radius: 5px;
-            border: 1px solid rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
         }
 
         .terminal-list-item strong {
             display: block;
             margin-bottom: 15px;
-            color: var(--primary-color);
+            color: var(--header-color);
             font-size: 1.2rem;
+            border-bottom: 1px solid rgba(76, 175, 80, 0.2);
+            padding-bottom: 8px;
         }
 
         .terminal-list-item i {
             margin-right: 10px;
+            color: var(--primary-color);
         }
 
         .terminal-sublist {
@@ -354,9 +315,10 @@
         }
 
         .terminal-sublist li {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             position: relative;
             padding-left: 20px;
+            line-height: 1.5;
         }
 
         .terminal-sublist li:before {
@@ -366,11 +328,20 @@
             left: 0;
         }
 
+        .warning-item strong i {
+            color: var(--warning-color);
+        }
+
+        .warning-item {
+            border-left: 4px solid var(--warning-color);
+        }
+
         /* Footer */
         footer {
             background-color: var(--darker-bg);
             padding: 40px 0;
             border-top: 1px solid rgba(76, 175, 80, 0.3);
+            margin-top: 50px;
         }
 
         .footer-content {
@@ -390,7 +361,7 @@
         }
 
         .footer-logo span {
-            color: var(--primary-color);
+            color: var(--header-color);
             font-size: 1.2rem;
             font-weight: 700;
             letter-spacing: 1px;
@@ -415,6 +386,36 @@
             font-size: 0.9rem;
         }
 
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--darker-bg);
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 10px 10px 10px 0;
+            border: 2px solid var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--darker-bg);
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             header {
@@ -423,14 +424,16 @@
 
             nav ul {
                 margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             nav ul li {
-                margin: 0 10px;
+                margin: 0 10px 10px 10px;
             }
 
-            .hero h2 {
-                font-size: 2rem;
+            .page-title {
+                font-size: 1.8rem;
             }
 
             .video-container iframe {
@@ -439,6 +442,16 @@
 
             .tab-buttons {
                 flex-direction: column;
+            }
+
+            .tab-button {
+                margin-bottom: 5px;
+                border-radius: 5px;
+                border-bottom: 1px solid rgba(76, 175, 80, 0.3);
+            }
+
+            .tab-content {
+                border-radius: 5px;
             }
 
             .footer-content {
@@ -455,12 +468,13 @@
             }
         }
     </style>
-    
+
     <link rel="icon" href="data:image/svg+xml,
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
             <text y='.9em' font-size='90'>☢️</text>
         </svg>">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -471,6 +485,7 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
                     <li><a href="guide.html">Guide</a></li>
                     <li><a href="https://discord.gg/mg2hhGvVKB">Discord</a></li>
                     <li><a href="https://www.nexusmods.com/fallout4/mods/74075">Nexus</a></li>
@@ -478,26 +493,28 @@
             </nav>
         </header>
 
-        <section class="hero">
-            <div class="hero-content">
-                <h2>Welcome to the Wasteland</h2>
-                <p>Explore the unknown, survive the anomalies, and discover the hidden secrets of the post-apocalyptic world. Join our community of survivors.</p>
+        <div class="main-content">
+            <h1 class="page-title">Installation Guide</h1>
+
+            <div class="intro">
+                <h2>What is Fallout Anomaly?</h2>
+                <p>Fallout Anomaly is a high-quality experience bringing you as close to S.T.A.L.K.E.R. as you'll ever be in the world of Fallout's lore, METRO and more. Packed with new weapons and armor to fully tweak, challenges, anomalies and features from enemy types, quests, mechanics, enhancements and improvements, we've pushed to elevate your game to modern standards.</p>
+
+                <div class="disclaimer">
+                    <h3>Disclaimer:</h3>
+                    <ul>
+                        <li>Beta Stage: Fallout Anomaly is currently in Beta, meaning changes and revisions are constantly made.</li>
+                        <li>Compatibility: Currently, only the Steam version of Fallout 4 is supported.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="video-section">
                 <div class="video-container">
                     <iframe width="800" height="450" src="https://www.youtube.com/embed/Lr-3zZrosmQ" title="Fallout Anomaly" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <div class="buttons">
-                    <a href="https://discord.gg/mg2hhGvVKB" class="btn">Join Now</a>
-                    <a href="#installation-guide" class="btn btn-outline">Installation Guide</a>
-                </div>
             </div>
-        </section>
 
-        <section class="features" id="installation-guide">
-            <div class="section-header">
-                <h3>Installation Guide</h3>
-                <p>Follow these steps to properly install and enjoy Fallout Anomaly</p>
-            </div>
-            
             <div class="tab-container">
                 <div class="tab-buttons">
                     <button class="tab-button active" data-tab="step1">STEP 1: GETTING STARTED</button>
@@ -506,7 +523,7 @@
                     <button class="tab-button" data-tab="step4">STEP 4: KNOWN ISSUES</button>
                     <button class="tab-button" data-tab="step5">STEP 5: GAMEPLAY</button>
                 </div>
-                
+
                 <div class="tab-content active" id="step1">
                     <div class="terminal-list grid-layout">
                         <div class="terminal-list-item">
@@ -522,7 +539,7 @@
                                 <li>Skills: Basic computer maintenance knowledge required</li>
                             </ul>
                         </div>
-                        <div class="terminal-list-item">
+                        <div class="terminal-list-item warning-item">
                             <strong>
                                 <i class="fas fa-exclamation-triangle"></i>IMPORTANT NOTICE </strong>
                             <ul class="terminal-sublist">
@@ -536,7 +553,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="tab-content" id="step2">
                     <div class="terminal-list">
                         <div class="terminal-list-item">
@@ -587,10 +604,8 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Continue with other tabs... -->
+
                 <div class="tab-content" id="step3">
-                    <!-- Content from step3 tab -->
                     <div class="terminal-list">
                         <div class="terminal-list-item">
                             <strong>
@@ -616,13 +631,33 @@
                                 <li>Do not change INI paths</li>
                             </ul>
                         </div>
+                        <div class="terminal-list-item">
+                            <strong>
+                                <i class="fas fa-cog"></i>MCM Preset </strong>
+                            <ul class="terminal-sublist">
+                                <li>Apply the MCM preset for proper settings</li>
+                                <li>Do not modify preset settings</li>
+                                <li>Verify all settings are applied correctly</li>
+                            </ul>
+                        </div>
+                        <div class="terminal-list-item">
+                            <strong>
+                                <i class="fas fa-gamepad"></i>Controller Support </strong>
+                            <ul class="terminal-sublist">
+                                <li>PS5 controllers currently supported (Xbox planned)</li>
+                                <li>Enable Steam controller settings</li>
+                                <li>Enable Steam Overlay</li>
+                                <li>Install custom controller profile</li>
+                                <li>Activate "A - OPT - Controller Support - PS5 Support" mod</li>
+                                <li>Configure Steam Input settings</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                
+
                 <div class="tab-content" id="step4">
-                    <!-- Content from step4 tab -->
                     <div class="terminal-list">
-                        <div class="terminal-list-item">
+                        <div class="terminal-list-item warning-item">
                             <strong>
                                 <i class="fas fa-exclamation-circle"></i>Main Menu Delay </strong>
                             <ul class="terminal-sublist">
@@ -631,7 +666,35 @@
                                 <li>More powerful systems may not experience delay</li>
                             </ul>
                         </div>
-                        <div class="terminal-list-item">
+                        <div class="terminal-list-item warning-item">
+                            <strong>
+                                <i class="fas fa-exclamation-circle"></i>Stuck in Menu </strong>
+                            <ul class="terminal-sublist">
+                                <li>If unable to progress, check provided video guide</li>
+                                <li>Use new save files if needed</li>
+                                <li>Customize character as needed</li>
+                            </ul>
+                        </div>
+                        <div class="terminal-list-item warning-item">
+                            <strong>
+                                <i class="fas fa-exclamation-circle"></i>Post-Character Creation Freeze </strong>
+                            <ul class="terminal-sublist">
+                                <li>Temporary freeze due to script loading</li>
+                                <li>Game will save during freeze</li>
+                                <li>Wait for a few minutes</li>
+                                <li>Game will resume normally</li>
+                            </ul>
+                        </div>
+                        <div class="terminal-list-item warning-item">
+                            <strong>
+                                <i class="fas fa-exclamation-circle"></i>Falling Through Vault </strong>
+                            <ul class="terminal-sublist">
+                                <li>Issue caused by "Uneducated Shooter" mod</li>
+                                <li>Enable mod after leaving vault</li>
+                                <li>Do not enable during vault sequence</li>
+                            </ul>
+                        </div>
+                        <div class="terminal-list-item warning-item">
                             <strong>
                                 <i class="fas fa-exclamation-circle"></i>Crash Issues </strong>
                             <ul class="terminal-sublist">
@@ -643,9 +706,8 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="tab-content" id="step5">
-                    <!-- Content from step5 tab -->
                     <div class="terminal-list">
                         <div class="terminal-list-item">
                             <strong>
@@ -657,6 +719,10 @@
                                 <li>Cooking overhaul</li>
                                 <li>Dynamic weather effects</li>
                                 <li>Temperature system</li>
+                                <li>Carry weight system with STR-based calculations</li>
+                                <li>Backpack system with 100 CW capacity</li>
+                                <li>Keybinding system for backpack access</li>
+                                <li>Backpack bug fixes and troubleshooting</li>
                             </ul>
                         </div>
                         <div class="terminal-list-item">
@@ -669,42 +735,23 @@
                                 <li>Weapon and armor balance</li>
                                 <li>Realistic recoil and spread</li>
                                 <li>Advanced AI behavior</li>
+                                <li>SCOURGE system for NPC stat randomization</li>
+                                <li>Deadeye headshot mechanics</li>
+                                <li>Munitions ammo expansion system</li>
+                                <li>Enemy categories and resistance levels</li>
+                                <li>Headshot mechanics by race type</li>
+                                <li>Pain system with three levels</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section class="features">
-            <div class="section-header">
-                <h3>Features</h3>
-                <p>Discover what makes Fallout Anomaly unique in the wasteland.</p>
+            <div class="buttons">
+                <a href="https://discord.gg/mg2hhGvVKB" class="btn">Join Discord</a>
+                <a href="https://www.nexusmods.com/fallout4/mods/74075" class="btn btn-outline">Nexus Page</a>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <div class="icon">💯</div>
-                    </div>
-                    <h4 class="feature-title">100s of new features</h4>
-                    <p>Encounter strange new creatures, items, and all new quests.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <div class="icon">👥</div>
-                    </div>
-                    <h4 class="feature-title">Active Community</h4>
-                    <p>Join thousands of wasteland explorers sharing stories, strategies, and discoveries.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <div class="icon">🌍</div>
-                    </div>
-                    <h4 class="feature-title">Vast Open World</h4>
-                    <p>Explore an expansive post-apocalyptic landscape filled with hidden treasures and dangers.</p>
-                </div>
-            </div>
-        </section>
+        </div>
     </div>
 
     <footer>
@@ -717,7 +764,7 @@
                 <div class="social-links">
                     <a href="https://discord.gg/mg2hhGvVKB"><i class="fab fa-discord"></i></a>
                     <a href="https://www.youtube.com/@FalloutAnomaly"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.nexusmods.com/fallout4/mods/74075"><i class="fa-solid fa-atom"></i></a>
+                    <a href="https://www.nexusmods.com/fallout4/mods/74075"><i class="fas fa-radiation"></i></a>
                 </div>
             </div>
             <div class="copyright">
@@ -731,13 +778,13 @@
         document.addEventListener('DOMContentLoaded', function() {
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
-            
+
             tabButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     // Remove active class from all buttons and contents
                     tabButtons.forEach(btn => btn.classList.remove('active'));
                     tabContents.forEach(content => content.classList.remove('active'));
-                    
+
                     // Add active class to clicked button and corresponding content
                     button.classList.add('active');
                     const tabId = button.getAttribute('data-tab');
@@ -747,4 +794,5 @@
         });
     </script>
 </body>
+
 </html>
