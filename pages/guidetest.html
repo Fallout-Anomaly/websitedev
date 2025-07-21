@@ -1217,19 +1217,19 @@
              });
              
          
-             const loadingScreen = document.querySelector('.loading-screen');
-             const continuePrompt = document.querySelector('.continue-prompt');
+           //  const loadingScreen = document.querySelector('.loading-screen');
+          //   const continuePrompt = document.querySelector('.continue-prompt');
              
-             setTimeout(() => {
-                 continuePrompt.classList.remove('hidden');
-                 document.addEventListener('click', hideLoadingScreen);
-                 document.addEventListener('keydown', hideLoadingScreen);
-             }, 2000);
+            // setTimeout(() => {
+             //    continuePrompt.classList.remove('hidden');
+             //    document.addEventListener('click', hideLoadingScreen);
+             //    document.addEventListener('keydown', hideLoadingScreen);
+            // }, 2000);
              
-             function hideLoadingScreen() {
-                 loadingScreen.style.display = 'none';
-                                 document.removeEventListener('click', hideLoadingScreen);
-                 document.removeEventListener('keydown', hideLoadingScreen);
+            // function hideLoadingScreen() {
+              //   loadingScreen.style.display = 'none';
+                 //                document.removeEventListener('click', hideLoadingScreen);
+              //   document.removeEventListener('keydown', hideLoadingScreen);
              }
              */
          });
