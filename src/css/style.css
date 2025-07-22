@@ -863,3 +863,27 @@ body.no-fx .main-content, body.no-fx .fallout-card, body.no-fx .feature-card, bo
 .error-card { border-color: #ff6b6b; background-color: rgba(100, 20, 20, 0.5); grid-column: 1 / -1; flex-basis: 100%; }
 .error-message { color: #ffcccc; font-weight: bold; font-family: var(--font-terminal); font-size: var(--font-size-terminal-base); text-align: center; padding: var(--spacing-md); }
 .error-message .icon { color: #ff6b6b; margin-right: var(--spacing-sm); font-size: 1.2em; }
+
+/* Guide Embed Styles */
+.guide-embed-container {
+    padding: 0 !important;
+    overflow: hidden;
+    margin-bottom: var(--spacing-xl);
+    height: 800px; /* Adjust based on content */
+    border: var(--card-border);
+    background-color: var(--card-bg);
+}
+
+.guide-embed-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    overflow: hidden;
+}
+
+/* Responsive adjustments for guide embed */
+@media (max-width: 768px) {
+    .guide-embed-container {
+        height: 600px; /* Smaller height on mobile */
+    }
+}
