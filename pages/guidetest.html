@@ -39,12 +39,23 @@
         
     <!-- Inline CSS for guide embed -->
     <style>
+        /* Override main content width constraints */
+        .main-content {
+            max-width: 100% !important;
+            width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        
+        /* Full-width container */
         .guide-embed-container {
             padding: 0 !important;
             overflow: hidden;
-            margin-bottom: 0;
+            margin: 0 !important;
             height: calc(100vh - 120px); /* Dynamic height based on viewport minus nav and footer */
-            border: var(--card-border);
+            width: 100% !important;
+            border: none !important;
+            border-radius: 0 !important;
             background-color: var(--card-bg);
         }
         
@@ -62,10 +73,18 @@
             }
         }
         
-        /* Adjust main content padding */
-        .main-content {
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
+        /* Remove body padding */
+        body {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+        
+        /* Full-width footer */
+        .fallout-footer {
+            width: 100% !important;
+            margin: 0 !important;
+            padding-left: var(--spacing-md) !important;
+            padding-right: var(--spacing-md) !important;
         }
     </style>
 </head>
@@ -152,7 +171,7 @@
                 const viewportHeight = window.innerHeight;
                 const navHeight = document.querySelector('.nav-menu').offsetHeight;
                 const footerHeight = document.querySelector('.fallout-footer').offsetHeight;
-                const padding = 20; // Extra padding
+                const padding = 0; // No extra padding
                 
                 const availableHeight = viewportHeight - navHeight - footerHeight - padding;
                 container.style.height = availableHeight + 'px';
