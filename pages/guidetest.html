@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting.">
-    <title>FALLOUT ANOMALY - COMPLETE GUIDE Test</title>
+    <title>FALLOUT ANOMALY - COMPLETE GUIDE</title>
 
     <!-- ================================================== -->
     <!-- ========= Open Graph / Social Media Meta ========= -->
@@ -42,9 +42,10 @@
         .guide-embed-container {
             padding: 0 !important;
             overflow: hidden;
-            margin-bottom: var(--spacing-xl);
-            height: calc(100vh - 200px); /* Dynamic height based on viewport */
-            min-height: 800px; /* Minimum height */
+            margin-bottom: 0;
+            height: calc(100vh - 120px); /* Dynamic height based on viewport minus nav and footer */
+            border: var(--card-border);
+            background-color: var(--card-bg);
         }
         
         .guide-embed-iframe {
@@ -57,9 +58,14 @@
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .guide-embed-container {
-                height: calc(100vh - 180px);
-                min-height: 600px;
+                height: calc(100vh - 150px); /* Adjust for mobile nav height */
             }
+        }
+        
+        /* Adjust main content padding */
+        .main-content {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
         }
     </style>
 </head>
@@ -93,7 +99,7 @@
 
     <main class="main-content visible">
         <!-- Embedded iframe with custom styling to match your theme -->
-        <div class="fallout-card guide-embed-container visible">
+        <div class="guide-embed-container visible">
             <iframe 
                 src="https://falloutanomaly.guildtag.com/readme/" 
                 title="Fallout Anomaly Installation Guide" 
@@ -137,26 +143,19 @@
             // Auto-hide after 5 seconds if user doesn't interact
             setTimeout(hideLoadingScreen, 5000);
             
-            // Make sure all cards are visible
-            const cards = document.querySelectorAll('.fallout-card, .feature-card, .application-card, .staff-card, .donation-card');
-            cards.forEach(function(card) {
-                card.classList.add('visible');
-            });
+            // Make sure all containers are visible
+            document.querySelector('.guide-embed-container').classList.add('visible');
             
             // Adjust iframe height to fit content
             function adjustIframeHeight() {
-                const iframe = document.querySelector('.guide-embed-iframe');
                 const container = document.querySelector('.guide-embed-container');
-                
-                // Set initial height based on viewport
                 const viewportHeight = window.innerHeight;
                 const navHeight = document.querySelector('.nav-menu').offsetHeight;
-                const introCardHeight = document.querySelector('.fallout-card').offsetHeight;
                 const footerHeight = document.querySelector('.fallout-footer').offsetHeight;
-                const padding = 40; // Extra padding
+                const padding = 20; // Extra padding
                 
-                const availableHeight = viewportHeight - navHeight - introCardHeight - footerHeight - padding;
-                container.style.height = Math.max(600, availableHeight) + 'px';
+                const availableHeight = viewportHeight - navHeight - footerHeight - padding;
+                container.style.height = availableHeight + 'px';
             }
             
             // Adjust height on load and resize
