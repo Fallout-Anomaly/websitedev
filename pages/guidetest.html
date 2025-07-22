@@ -1241,34 +1241,39 @@
             setTimeout(hideLoadingScreen, 5000);
             
             // Tab functionality
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabPanes = document.querySelectorAll('.tab-pane');
-
-            // Hide all tab panes except the first one
-            tabPanes.forEach((pane, index) => {
-                if (index !== 0) {
-                    pane.classList.remove('active');
-                }
-            });
-
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons and panes
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabPanes.forEach(pane => pane.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    // Show corresponding tab pane
-                    const tabId = this.getAttribute('data-tab');
-                    const targetPane = document.getElementById(tabId);
-                    if (targetPane) {
-                        targetPane.classList.add('active');
-                    }
+            document.addEventListener('DOMContentLoaded', function() {
+                // Get all tab buttons and content panes
+                const tabButtons = document.querySelectorAll('.tab-button');
+                const tabPanes = document.querySelectorAll('.tab-pane');
+                
+                // Set initial state - hide all panes except the first one
+                tabPanes.forEach(function(pane) {
+                    pane.style.display = 'none';
+                });
+                document.getElementById('getting-started').style.display = 'block';
+                
+                // Add click event to each tab button
+                tabButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        // Remove active class from all buttons
+                        tabButtons.forEach(function(btn) {
+                            btn.classList.remove('active');
+                        });
+                        
+                        // Add active class to clicked button
+                        this.classList.add('active');
+                        
+                        // Hide all tab panes
+                        tabPanes.forEach(function(pane) {
+                            pane.style.display = 'none';
+                        });
+                        
+                        // Show the selected tab pane
+                        const tabId = this.getAttribute('data-tab');
+                        document.getElementById(tabId).style.display = 'block';
+                    });
                 });
             });
-
             
             // Accordion functionality
             const accordionHeaders = document.querySelectorAll('.accordion-header');
