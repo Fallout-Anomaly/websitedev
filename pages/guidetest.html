@@ -36,15 +36,39 @@
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
             <text y='.9em' font-size='90'>☢️</text>
         </svg>">
+        
+    <!-- Inline CSS for guide embed -->
+    <style>
+        .guide-embed-container {
+            padding: 0 !important;
+            overflow: hidden;
+            margin-bottom: var(--spacing-xl);
+            height: 800px; /* Adjust based on content */
+        }
+        
+        .guide-embed-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            overflow: hidden;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .guide-embed-container {
+                height: 600px; /* Smaller height on mobile */
+            }
+        }
+    </style>
 </head>
 
 <body>
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="pip-os-boot">
-            <div class="pip-os-line">FALLOUT ANOMALY INSTALLATION GUIDE</div>
-            <div class="pip-os-line">Loading documentation...</div>
-            <div class="pip-os-line">Please stand by...</div>
+            <div class="pip-os-line visible">FALLOUT ANOMALY INSTALLATION GUIDE</div>
+            <div class="pip-os-line visible">Loading documentation...</div>
+            <div class="pip-os-line visible">Please stand by...</div>
         </div>
         <div class="continue-prompt" id="continuePrompt">PRESS ANY KEY TO CONTINUE</div>
     </div>
@@ -66,7 +90,7 @@
     </nav>
 
     <main class="main-content visible">
-        <div class="fallout-card">
+        <div class="fallout-card visible">
             <div class="fallout-card-header">
                 <span class="icon">📖</span>
                 <h1>FALLOUT ANOMALY - INSTALLATION GUIDE</h1>
@@ -78,7 +102,7 @@
         </div>
 
         <!-- Embedded iframe with custom styling to match your theme -->
-        <div class="fallout-card guide-embed-container">
+        <div class="fallout-card guide-embed-container visible">
             <iframe 
                 src="https://falloutanomaly.guildtag.com/readme/" 
                 title="Fallout Anomaly Installation Guide" 
@@ -93,7 +117,41 @@
         <p>© 2025 Fallout Anomaly Team. All rights reserved. This guide is not affiliated with Bethesda Softworks.</p>
     </footer>
 
-    <!-- Loading screen script -->
-    <script src="../src/js/loading.js"></script>
+    <!-- Inline JavaScript for loading screen -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make sure pip-os-lines are visible
+            const pipOsLines = document.querySelectorAll('.pip-os-line');
+            pipOsLines.forEach(function(line, index) {
+                setTimeout(function() {
+                    line.classList.add('visible');
+                }, index * 300);
+            });
+            
+            // Show continue prompt after a delay
+            setTimeout(function() {
+                document.getElementById('continuePrompt').classList.remove('hidden');
+            }, 1500);
+            
+            // Handle continue prompt
+            function hideLoadingScreen() {
+                document.getElementById('loadingScreen').classList.add('hidden');
+                document.removeEventListener('keydown', hideLoadingScreen);
+                document.getElementById('continuePrompt').removeEventListener('click', hideLoadingScreen);
+            }
+            
+            document.addEventListener('keydown', hideLoadingScreen);
+            document.getElementById('continuePrompt').addEventListener('click', hideLoadingScreen);
+            
+            // Auto-hide after 5 seconds if user doesn't interact
+            setTimeout(hideLoadingScreen, 5000);
+            
+            // Make sure all cards are visible
+            const cards = document.querySelectorAll('.fallout-card, .feature-card, .application-card, .staff-card, .donation-card');
+            cards.forEach(function(card) {
+                card.classList.add('visible');
+            });
+        });
+    </script>
 </body>
 </html>
