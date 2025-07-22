@@ -1243,7 +1243,14 @@
             // Tab functionality
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabPanes = document.querySelectorAll('.tab-pane');
-            
+
+            // Hide all tab panes except the first one
+            tabPanes.forEach((pane, index) => {
+                if (index !== 0) {
+                    pane.classList.remove('active');
+                }
+            });
+
             tabButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     // Remove active class from all buttons and panes
@@ -1255,9 +1262,13 @@
                     
                     // Show corresponding tab pane
                     const tabId = this.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
+                    const targetPane = document.getElementById(tabId);
+                    if (targetPane) {
+                        targetPane.classList.add('active');
+                    }
                 });
             });
+
             
             // Accordion functionality
             const accordionHeaders = document.querySelectorAll('.accordion-header');
