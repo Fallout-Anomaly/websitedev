@@ -119,7 +119,7 @@ body {
   text-shadow: var(--terminal-glow);
   min-height: 100vh;
   padding: var(--spacing-md);
-  padding-top: 5rem; /* Space for fixed nav */
+  padding-top: 5rem; /* CORRECTED: Pushes content down to account for fixed header */
   display: flex;
   flex-direction: column;
   letter-spacing: 0.5px;
@@ -322,7 +322,7 @@ body.no-fx .continue-prompt {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto var(--spacing-xl);
-  padding: var(--spacing-md) 0;
+  padding: 0; /* Let body padding handle horizontal space */
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
@@ -350,10 +350,7 @@ body.no-fx .continue-prompt {
   transition: opacity var(--transition-observer), transform var(--transition-observer),
               border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
-.staff-card {
-    padding: 0;
-    height: auto; /* Allow height to adjust */
-}
+
 .fallout-card.visible, .feature-card.visible, .application-card.visible, .staff-card.visible, .donation-card.visible {
   opacity: 1;
   transform: translateY(0);
@@ -362,7 +359,6 @@ body.no-fx .continue-prompt {
    box-shadow: 0 0 15px var(--terminal-shadow-color);
    border-color: var(--terminal-highlight);
 }
-
 /* Card Header (Uses Grid) */
 .fallout-card-header {
   display: grid;
@@ -604,12 +600,13 @@ textarea.form-control { min-height: 100px; resize: vertical; }
 /* Staff Grid */
 .rank-members, .staff-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, max-content));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: var(--spacing-lg);
     margin: var(--spacing-lg) 0;
     padding: 0;
     justify-items: center;
-    justify-content: start; /* Align grid items to the start (Default) */
+    align-items: stretch;
+    justify-content: start;
 }
 
 /* Staff Card */
@@ -619,9 +616,9 @@ textarea.form-control { min-height: 100px; resize: vertical; }
     flex-direction: column;
     align-items: center;
     text-align: center;
-    height: auto; /* Allow height to adjust */
+    height: 100%;
     width: 100%;
-    max-width: 180px;
+    max-width: 200px;
     margin-bottom: 0;
     border-radius: var(--border-radius-slight);
     overflow: hidden;
@@ -654,15 +651,13 @@ textarea.form-control { min-height: 100px; resize: vertical; }
 /* Staff Info Section */
 .staff-info {
     padding: var(--spacing-sm) var(--spacing-md);
-    /* flex-grow: 1; REMOVED */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    /* position: relative; REMOVED - No longer needed for absolute roles */
-    padding-bottom: var(--spacing-sm); /* Normal padding */
-    min-height: 150px; /* Add a reasonable min-height for the text content area */
+    padding-bottom: var(--spacing-sm);
+    flex-grow: 1;
 }
 
 /* Staff Text Styles */
@@ -680,31 +675,28 @@ textarea.form-control { min-height: 100px; resize: vertical; }
     justify-content: center;
     align-items: center;
     gap: var(--spacing-md);
-    margin-bottom: var(--spacing-sm);
     padding: var(--spacing-xs) var(--spacing-sm);
     flex-wrap: wrap;
     width: 100%;
-    margin-top: var(--spacing-sm); /* Added margin-top */
+    margin-top: auto;
+    padding-top: var(--spacing-sm);
 }
 .staff-social-links a { display: inline-block; color: var(--terminal-text-muted); font-size: 1.4rem; text-decoration: none; transition: color var(--transition-fast), transform var(--transition-fast); line-height: 1; }
 .staff-social-links a:hover { color: var(--terminal-highlight); transform: scale(1.15); }
 
-/* Roles Container - Now part of normal flow */
+/* Roles Container */
 .staff-roles-container {
-    /* position: absolute; REMOVED */
-    /* bottom: 0; REMOVED */
-    /* left: 0; REMOVED */
     width: 100%;
     padding: 0 var(--spacing-xs);
-    margin-top: auto; /* Pushes roles to the bottom of staff-info */
-    padding-bottom: var(--spacing-sm); /* Add padding to the bottom of the container */
+    margin-top: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
 }
 
 /* Role Tag */
 .staff-role-tag {
     display: block;
-    background-color: rgba(var(--terminal-text-rgb), 0.6); /* Green background for contrast */
-    color: var(--terminal-bg); /* Use neutral dark text color */
+    background-color: rgba(var(--terminal-text-rgb), 0.6);
+    color: var(--terminal-bg);
     padding: 2px 6px;
     font-size: large;
     font-family: var(--font-terminal);
@@ -732,11 +724,6 @@ textarea.form-control { min-height: 100px; resize: vertical; }
 
 .overview-text { margin-top: var(--spacing-lg); padding: var(--spacing-lg); background-color: rgba(var(--card-bg-rgb), 0.5); border: 1px solid var(--terminal-border); line-height: 1.8; font-size: 1.1em; font-family: var(--font-body); color: var(--terminal-text); }
 .disclaimer-text { color: var(--terminal-text-muted); font-size: var(--font-size-sm); margin-top: var(--spacing-md); font-style: italic; opacity: 0.8; text-align: center; padding: var(--spacing-sm); background-color: rgba(var(--card-bg-rgb), 0.3); border-top: 1px dashed var(--terminal-border); }
-
-/* Guide Page Specific Styles */
-.guide-content .tab-container { margin-top: 0; background-color: rgba(var(--card-bg-rgb), 0.7); border-color: var(--terminal-border); }
-.guide-content .terminal-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-md); width: 100%; }
-.guide-content .terminal-list-item { height: 100%; background-color: rgba(var(--card-bg-rgb), 0.9); border-color: var(--terminal-border); color: var(--terminal-text); }
 
 /* Utility Classes */
 .hidden { display: none !important; }
@@ -787,39 +774,273 @@ body.no-fx .pip-os-line { opacity: 1 !important; animation: none !important; }
 body.no-fx .staff-image { filter: none !important; }
 body.no-fx .main-content, body.no-fx .fallout-card, body.no-fx .feature-card, body.no-fx .application-card, body.no-fx .staff-card, body.no-fx .donation-card { opacity: 1 !important; transform: none !important; transition: none !important; }
 
+
+/* --- Error message styling --- */
+.error-card { border-color: #ff6b6b; background-color: rgba(100, 20, 20, 0.5); grid-column: 1 / -1; flex-basis: 100%; }
+.error-message { color: #ffcccc; font-weight: bold; font-family: var(--font-terminal); font-size: var(--font-size-terminal-base); text-align: center; padding: var(--spacing-md); }
+.error-message .icon { color: #ff6b6b; margin-right: var(--spacing-sm); font-size: 1.2em; }
+
+
+/*
+ * ===================================================================
+ *   GUIDE-SPECIFIC & EMBEDDED STYLES
+ *   Scoped to .guide-content to prevent conflicts
+ * ===================================================================
+ */
+
+.guide-content {
+    /* This class remains to scope child elements but no longer controls layout width. */
+}
+
+.guide-content .introduction,
+.guide-content .disclaimer,
+.guide-content .important-warning,
+.guide-content .content-box {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background-color: var(--card-bg);
+    border: var(--card-border);
+    border-radius: var(--border-radius);
+}
+
+.guide-content .important-warning,
+.guide-content .warning-box {
+    background-color: rgba(255, 100, 0, 0.1);
+    border-color: rgba(255, 100, 0, 0.5);
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    color: #ffcc00;
+}
+.guide-content .important-warning h3,
+.guide-content .important-warning strong {
+    color: #ffaa00;
+}
+
+.guide-content .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    margin-bottom: var(--spacing-lg);
+    border: var(--card-border);
+}
+.guide-content .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.guide-content .tab-container { margin-bottom: var(--spacing-lg); }
+
+.guide-content .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.guide-content .tab-button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--card-bg);
+    border: var(--card-border);
+    color: var(--terminal-text);
+    cursor: pointer;
+    font-family: var(--font-terminal);
+}
+.guide-content .tab-button.active {
+    background-color: rgba(var(--terminal-text-rgb), 0.2);
+    color: var(--terminal-highlight);
+    border-color: var(--terminal-highlight);
+}
+.guide-content .tab-pane {
+    display: none;
+    padding: var(--spacing-md);
+    background-color: var(--card-bg);
+    border: var(--card-border);
+}
+.guide-content .tab-pane.active { display: block; }
+.guide-content .guide-image,
+.guide-content .screenshot {
+    max-width: 100%;
+    height: auto;
+    margin: var(--spacing-md) 0;
+    border: var(--card-border);
+}
+.guide-content .accordion-item { margin-bottom: var(--spacing-md); }
+.guide-content .accordion-header {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--card-bg);
+    border: var(--card-border);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.guide-content .accordion-content {
+    display: none;
+    padding: var(--spacing-md);
+    background-color: rgba(var(--card-bg-rgb), 0.5);
+    border: var(--card-border);
+    border-top: none;
+}
+.guide-content .support-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+.guide-content .support-card {
+    padding: var(--spacing-md);
+    background-color: rgba(var(--card-bg-rgb), 0.7);
+    border: var(--card-border);
+    text-align: center;
+    text-decoration: none;
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+.guide-content .support-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--terminal-highlight);
+}
+.guide-content .checklist-item {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+.guide-content .check-icon {
+    font-size: 1.5em;
+    color: var(--terminal-highlight);
+}
+.guide-content .issue { margin-bottom: var(--spacing-md); }
+.guide-content .issue h4 { color: var(--terminal-highlight); }
+.guide-content .download-links {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+}
+.guide-content .download-link {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: rgba(var(--terminal-text-rgb), 0.1);
+    border: var(--card-border);
+    color: var(--terminal-text);
+    text-decoration: none;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.guide-content .download-link:hover {
+    background-color: rgba(var(--terminal-text-rgb), 0.2);
+    color: var(--terminal-highlight);
+}
+.guide-content .update-info,
+.guide-content .update-process,
+.guide-content .save-preservation {
+    margin-bottom: var(--spacing-md);
+}
+.guide-content .support-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+.guide-content .support-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: rgba(var(--card-bg-rgb), 0.7);
+    border: var(--card-border);
+    color: var(--terminal-text);
+    text-decoration: none;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.guide-content .support-link:hover {
+    background-color: rgba(var(--terminal-text-rgb), 0.1);
+    color: var(--terminal-highlight);
+}
+.guide-content .support-link.discord {
+    background-color: rgba(88, 101, 242, 0.2);
+    border-color: #5865f2;
+}
+.guide-content .support-link.discord:hover { background-color: rgba(88, 101, 242, 0.3); }
+.guide-content .launch-instructions,
+.guide-content .resolution-steps,
+.guide-content .controller-setup {
+    margin-top: var(--spacing-md);
+}
+.guide-content .setup-step { margin-bottom: var(--spacing-md); }
+.guide-content .nexus-card {
+    display: block;
+    padding: var(--spacing-md);
+    background-color: rgba(var(--card-bg-rgb), 0.7);
+    border: var(--card-border);
+    margin: var(--spacing-md) 0;
+    text-decoration: none;
+    transition: background-color var(--transition-fast);
+}
+.guide-content .nexus-card:hover { background-color: rgba(var(--terminal-text-rgb), 0.1); }
+.guide-content .nexus-card-content h4 {
+    color: var(--terminal-highlight);
+    margin-bottom: var(--spacing-xs);
+}
+.guide-content hr {
+    border: none;
+    border-top: 1px dashed var(--terminal-border);
+    margin: var(--spacing-md) 0;
+}
+.guide-content .thank-you { text-align: center; }
+
+/* Guide Embed Container */
+.guide-embed-container {
+    padding: 0 !important;
+    overflow: hidden;
+    margin-bottom: var(--spacing-xl);
+    height: 800px;
+    border: var(--card-border);
+    background-color: var(--card-bg);
+}
+.guide-embed-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    overflow: hidden;
+}
+
+
 /* --- Responsive Design --- */
 @media (max-width: 1024px) {
     .features-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
     .application-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
     .support-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-    .rank-members, .staff-grid { grid-template-columns: repeat(auto-fit, minmax(160px, max-content)); gap: var(--spacing-md); }
-    .staff-card { max-width: 160px; }
+    .rank-members, .staff-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--spacing-md); }
+    .staff-card { max-width: 180px; }
     .staff-image { width: 80px; height: 80px; }
-    .staff-info { padding-bottom: var(--spacing-sm); min-height: 140px; } /* Adjust min-height */
-    .staff-roles-container { padding-bottom: var(--spacing-sm); } /* Ensure padding */
+    .staff-info { min-height: 140px; }
 }
 @media (max-width: 768px) {
     html { font-size: 93.75%; }
-    body { padding: var(--spacing-sm); padding-top: 6rem; }
-    .main-content { margin-bottom: var(--spacing-lg); padding: var(--spacing-sm) 0; }
+    body {
+        padding: var(--spacing-sm);
+        padding-top: 6rem; /* CORRECTED: Adjust padding for smaller, taller header */
+    }
+    .main-content { margin-bottom: var(--spacing-lg); }
     h1 { font-size: var(--font-size-xl); }
     h2 { font-size: var(--font-size-lg); }
     h3 { font-size: var(--font-size-md); }
     :root { --font-size-terminal-base: 20px; --font-size-terminal-small: 18px; --font-size-terminal-large: 22px; }
     .fallout-card, .feature-card, .application-card, .donation-card { padding: var(--spacing-md); margin-bottom: var(--spacing-md); }
-    .staff-card { padding: 0; }
-    .staff-info { padding: var(--spacing-sm) var(--spacing-sm); padding-bottom: var(--spacing-sm); min-height: 130px; }
+    .staff-card { padding: 0; max-width: none; }
+    .staff-info { padding: var(--spacing-sm); min-height: 130px; }
     .staff-image { margin-top: var(--spacing-md); width: 70px; height: 70px; }
-    .staff-tagline { font-size: var(--font-size-sm); max-width: 95%; }
-    .staff-social-links { gap: var(--spacing-sm); margin-bottom: var(--spacing-sm); }
+    .staff-tagline { max-width: 95%; }
+    .staff-social-links { gap: var(--spacing-sm); }
     .staff-social-links a { font-size: 1.3rem; }
     .staff-role-tag { font-size: 0.85rem; padding: 1px 4px; }
-    .staff-roles-container { padding-bottom: var(--spacing-sm); }
     .fallout-card-header { padding: var(--spacing-sm) var(--spacing-md); font-size: var(--font-size-lg); gap: var(--spacing-sm); }
     .rank-header .fallout-card-header { padding: var(--spacing-sm) var(--spacing-md); font-size: var(--font-size-lg); gap: var(--spacing-sm); }
     .rank-header .fallout-card-header .icon { font-size: 1.5em; }
     .requirements-grid, .mods-grid, .application-grid, .donation-grid, .support-grid, .features-grid { grid-template-columns: 1fr; }
-    .rank-members, .staff-grid { grid-template-columns: repeat(auto-fit, minmax(150px, max-content)); gap: var(--spacing-md); justify-content: center; }
+    .rank-members, .staff-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--spacing-md); justify-content: center; }
     #staff-sections-container { gap: var(--spacing-lg); }
     .nav-menu-container { flex-direction: column; align-items: flex-start; gap: var(--spacing-sm); }
     #nav-links-container { width: 100%; justify-content: flex-start; }
@@ -831,10 +1052,13 @@ body.no-fx .main-content, body.no-fx .fallout-card, body.no-fx .feature-card, bo
     .cta-buttons .terminal-button, .cta-buttons .fallout-btn-discord { width: 100%; }
     .terminal-sublist { margin-left: var(--spacing-md); padding-left: var(--spacing-sm); }
     .terminal-sublist li::before { left: calc(-1 * var(--spacing-sm)); }
+    .guide-embed-container { height: 600px; }
 }
 @media (max-width: 480px) {
     html { font-size: 87.5%; }
-    body { padding-top: 7rem; }
+    body {
+        padding-top: 7rem; /* CORRECTED: Adjust for even taller header on smallest screens */
+    }
     .fallout-card-header { font-size: var(--font-size-md); }
     .rank-header .fallout-card-header h2 { font-size: var(--font-size-md); }
     :root { --font-size-terminal-base: 18px; --font-size-terminal-small: 16px; --font-size-terminal-large: 20px; }
@@ -844,46 +1068,15 @@ body.no-fx .main-content, body.no-fx .fallout-card, body.no-fx .feature-card, bo
     .terminal-sublist { font-size: 16px; }
     .feature-card .icon { font-size: 1.3rem; }
     .feature-card h3 { font-size: var(--font-size-md); }
-    .rank-members, .staff-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--spacing-sm); justify-content: center; }
-    .staff-card { max-width: none; }
-    .staff-info { padding-bottom: var(--spacing-sm); min-height: 120px; } /* Adjust min-height */
+    .rank-members, .staff-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--spacing-sm); }
+    .staff-info { min-height: 120px; }
     .staff-image { width: 60px; height: 60px; margin-top: var(--spacing-sm);}
     .staff-name { font-size: var(--font-size-md); }
-    .staff-rank { font-size: var(--font-size-sm); margin-bottom: var(--spacing-sm); }
+    .staff-rank { font-size: var(--font-size-sm); }
     .staff-tagline { font-size: 0.8rem; margin-bottom: var(--spacing-xs); }
-    .staff-social-links { gap: var(--spacing-sm); margin-bottom: var(--spacing-sm); }
+    .staff-social-links { gap: var(--spacing-sm); }
     .staff-social-links a { font-size: 1.2rem; }
     .staff-role-tag { font-size: 0.75rem; padding: 1px 3px; }
-    .staff-roles-container { padding-bottom: var(--spacing-sm); }
     .pip-os-boot { font-size: var(--font-size-terminal-base); }
     .pip-os-line { font-size: 16px; }
-   }
-
-/* Error message styling */
-.error-card { border-color: #ff6b6b; background-color: rgba(100, 20, 20, 0.5); grid-column: 1 / -1; flex-basis: 100%; }
-.error-message { color: #ffcccc; font-weight: bold; font-family: var(--font-terminal); font-size: var(--font-size-terminal-base); text-align: center; padding: var(--spacing-md); }
-.error-message .icon { color: #ff6b6b; margin-right: var(--spacing-sm); font-size: 1.2em; }
-
-/* Guide Embed Styles */
-.guide-embed-container {
-    padding: 0 !important;
-    overflow: hidden;
-    margin-bottom: var(--spacing-xl);
-    height: 800px; /* Adjust based on content */
-    border: var(--card-border);
-    background-color: var(--card-bg);
-}
-
-.guide-embed-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    overflow: hidden;
-}
-
-/* Responsive adjustments for guide embed */
-@media (max-width: 768px) {
-    .guide-embed-container {
-        height: 600px; /* Smaller height on mobile */
-    }
 }
