@@ -440,22 +440,16 @@ async function loadStaffData() {
 		if (!response.ok) {
 			throw new Error(`HTTP error fetching staff.json: ${response.status} ${response.statusText}`);
 		}
-		const staffList = await response.json();
+		// The JSON is now an object, not an array.
+		const groupedStaff = await response.json();
 		staffSectionsContainer.innerHTML = ''; // Clear loading message
 
-		if (!Array.isArray(staffList) || staffList.length === 0) {
+		if (typeof groupedStaff !== 'object' || groupedStaff === null || Object.keys(groupedStaff).length === 0) {
 			staffSectionsContainer.innerHTML = '<div class="fallout-card error-card"><p class="terminal-text error-message"><i class="fas fa-exclamation-triangle icon"></i> No staff members found or data is invalid.</p></div>';
 			return;
 		}
 
-		const groupedStaff = staffList.reduce((acc, staff) => {
-			const rank = staff.rank || 'Unranked';
-			if (!acc[rank]) acc[rank] = [];
-			acc[rank].push(staff);
-			return acc;
-		}, {});
-
-		const rankOrder = ["Lead Developer", "Head Admin", "Assistant Lead Developer", "Senior Developer", "Developer","Website Dev", "Community Manager", "Moderator", "Media Team", "Developer (On Leave)"];
+		const rankOrder = ["Lead Developer", "Head Admin", "Assistant Lead Developer", "Senior Developer", "Developer","Website Dev", "Community Manager", "Moderator", "Media Team", "Developer (On Leave)", "Retired"];
 		const processedRanks = new Set();
 
 		const createStaffCard = (staff) => {
@@ -467,10 +461,20 @@ async function loadStaffData() {
 			image.src = staff.image || '';
 			image.alt = staff.name ? `${staff.name}'s profile picture` : 'Staff member profile picture';
 			image.loading = 'lazy';
+
+			// --- MODIFIED SECTION START ---
 			image.onerror = function() {
-				this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="%23333"/%3E%3Ctext x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="monospace" font-size="40" fill="%23666"%3E👤%3C/text%3E%3C/svg%3E';
-				this.style.filter = 'none'; this.style.objectFit = 'contain';
+				// Determine path based on current page location
+				const path = window.location.pathname;
+    			const isPagesDir = path.includes('/pages/');
+    			this.src = isPagesDir ? '../src/img/vaultboy.png' : 'src/img/vaultboy.png';
+				
+				// Keep styles for consistent fallback appearance
+				this.style.filter = 'none'; 
+				this.style.objectFit = 'contain';
 			};
+			// --- MODIFIED SECTION END ---
+
 			card.appendChild(image);
 
 			const infoDiv = document.createElement('div');
@@ -506,17 +510,15 @@ async function loadStaffData() {
 
 					socialLinks.forEach(link => {
 						const linkA = document.createElement('a');
-						// Ensure the link starts with http:// or https:// for external links
 						const url = (link.startsWith('http://') || link.startsWith('https://') || link.startsWith('mailto:'))
 							? link
 							: `https://${link}`;
 						linkA.href = url;
 						linkA.target = '_blank';
 						linkA.rel = 'noopener noreferrer';
-						linkA.title = `Visit ${link}`; // Tooltip
+						linkA.title = `Visit ${link}`;
 
 						const icon = document.createElement('i');
-						// Use the helper function defined outside createStaffCard
 						icon.className = `icon ${getSocialIconClass(link)}`;
 						linkA.appendChild(icon);
 						socialContainer.appendChild(linkA);
@@ -525,7 +527,6 @@ async function loadStaffData() {
 				}
 			}
 
-			// Roles Container (Appended last, but styles will position it at bottom)
 			const rolesContainer = document.createElement('div');
 			rolesContainer.className = 'staff-roles-container';
 			let roles = [];
@@ -542,15 +543,9 @@ async function loadStaffData() {
 					roleTag.textContent = roleText;
 					rolesContainer.appendChild(roleTag);
 				});
-			} else {
-				// Optionally hide the container if no roles, or show an inactive tag
-				// const noRoleTag = document.createElement('span');
-				// noRoleTag.className = 'staff-role-tag inactive';
-				// noRoleTag.textContent = 'No Roles Listed';
-				// rolesContainer.appendChild(noRoleTag);
 			}
-			// Append rolesContainer *after* other info, CSS handles positioning
-			if (roles.length > 0) { // Only append if there are roles
+			
+			if (roles.length > 0) {
 				infoDiv.appendChild(rolesContainer);
 			}
 
@@ -605,6 +600,7 @@ async function loadStaffData() {
 	}
 }
 
+
 function getIconForRank(rank) {
 	const lowerRank = rank?.toLowerCase() || '';
 	if (lowerRank.includes('lead') || lowerRank.includes('head')) return 'fa-crown';
@@ -614,6 +610,7 @@ function getIconForRank(rank) {
 	if (lowerRank.includes('manager')) return 'fa-comments';
 	if (lowerRank.includes('media')) return 'fa-camera-retro';
 	if (lowerRank.includes('leave')) return 'fa-user-clock';
+    if (lowerRank.includes('retired')) return 'fa-user-slash';
 	return 'fa-user';
 }
 
@@ -627,8 +624,7 @@ function initializeTabs() {
 
 		if (tabButtons.length > 0 && tabContents.length > 0) {
 			const switchTab = (tabId) => {
-                // Check if tabId actually exists before proceeding
-                if (!tabId) return; // Exit if tabId is null or empty
+                if (!tabId) return;
 
 				const targetContent = container.querySelector(`#${tabId}`);
 				const targetButton = container.querySelector(`.tab-button[data-tab="${tabId}"]`);
@@ -653,7 +649,7 @@ function initializeTabs() {
 					const tabId = event.currentTarget.getAttribute('data-tab');
 					if (tabId) {
                         const currentHash = window.location.hash.substring(1);
-                        if (tabId !== currentHash) { // Only push state if hash changes
+                        if (tabId !== currentHash) {
                             if (history.pushState) {
                                history.pushState({tab: tabId}, null, `#${tabId}`);
                             } else {
@@ -673,12 +669,10 @@ function initializeTabs() {
 				if (hash && buttonForHash) {
 					switchTab(hash);
 				} else {
-                    // If no hash or hash invalid, activate the first tab as default
                     const currentlyActiveButton = container.querySelector('.tab-button.active');
-                    // Only switch to first tab if NO tab is currently active
                     if (!currentlyActiveButton && tabButtons.length > 0) {
                         const firstTabId = tabButtons[0].getAttribute('data-tab');
-                        switchTab(firstTabId); // Don't change history here, just set default view
+                        switchTab(firstTabId);
                     }
 				}
 			};
@@ -688,12 +682,10 @@ function initializeTabs() {
 
             // Listen for hash changes
 			window.addEventListener('hashchange', handleHashChange, false);
-            // Also handle browser back/forward navigation affecting state
             window.addEventListener('popstate', (event) => {
                 if (event.state && event.state.tab) {
                     switchTab(event.state.tab);
                 } else {
-                    // Fallback if state is missing or doesn't have tab
                     handleHashChange();
                 }
             });
