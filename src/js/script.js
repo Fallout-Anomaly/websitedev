@@ -323,6 +323,7 @@ async function initializeSite() {
 	loadFooter();
 	initializeCardObserver();
 	initializeTabs();
+	initializeAccordions();
 	initializeButtonHoverEffects();
 }
 
@@ -690,6 +691,39 @@ function initializeTabs() {
                 }
             });
 		}
+	});
+}
+
+function initializeAccordions() {
+	const accordionHeaders = document.querySelectorAll('.accordion-header');
+	
+	accordionHeaders.forEach(header => {
+		header.addEventListener('click', function() {
+			const accordionItem = this.closest('.accordion-item');
+			const accordionContent = accordionItem.querySelector('.accordion-content');
+			const toggleIcon = this.querySelector('.toggle-icon i');
+			
+			// Toggle the active state
+			const isActive = accordionItem.classList.contains('active');
+			
+			if (isActive) {
+				// Close the accordion
+				accordionItem.classList.remove('active');
+				accordionContent.style.display = 'none';
+				if (toggleIcon) {
+					toggleIcon.classList.remove('fa-minus');
+					toggleIcon.classList.add('fa-plus');
+				}
+			} else {
+				// Open the accordion
+				accordionItem.classList.add('active');
+				accordionContent.style.display = 'block';
+				if (toggleIcon) {
+					toggleIcon.classList.remove('fa-plus');
+					toggleIcon.classList.add('fa-minus');
+				}
+			}
+		});
 	});
 }
 
