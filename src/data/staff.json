@@ -44,17 +44,16 @@
       "role": "HUD, General Support",
       "image": "https://cdn.discordapp.com/guilds/1113971680419782666/users/337455184579919874/avatars/6c2628813730c76f37c18e9d7f75ddcc.webp?size=4096",
       "tagline": "Nomad's A Fed"
+    },
+	{
+      "name": "Joel",
+      "rank": "Developer",
+      "role": "LL, Patching Weapons",
+      "image": "https://cdn.discordapp.com/avatars/1106566423909769317/503f359740dfc6883f6c7c76cd7b0320.webp?size=4096",
+      "tagline": ""
     }
   ],
   "Developer (On Leave)": [
-    {
-      "name": "Thumblesteen",
-      "rank": "Developer (On Leave)",
-      "role": "Development",
-      "image": "https://cdn.discordapp.com/avatars/186270357789868033/82d0d9466a22f28d46903ab07c988c5d.webp?size=4096",
-      "tagline": "Currently AFK, but not forgotten.",
-      "social": ""
-    },
     {
       "name": "John",
       "rank": "Developer (On Leave)",
