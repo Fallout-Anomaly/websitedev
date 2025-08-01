@@ -214,6 +214,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 	// Initialize non-visual elements early
 	initializeFXToggleIfNeeded();
+	initializeThemeSwitcherIfNeeded();
 	// Removed call to initializeTerminalColorSwitcher()
 
 	// --- Stage 1: Wait for Boot Messages to Display ---
@@ -333,6 +334,12 @@ async function initializeSite() {
 function initializeFXToggleIfNeeded() {
     if (!document.querySelector('.fx-toggle-button')) {
         initializeFXToggle();
+    }
+}
+
+function initializeThemeSwitcherIfNeeded() {
+    if (!document.querySelector('.theme-switcher-container') && window.themeSwitcher) {
+        initializeThemeSwitcher();
     }
 }
 
@@ -763,11 +770,72 @@ function initializeCardObserver() {
 
 function initializeFXToggle() {
 	if (document.querySelector('.fx-toggle-button')) return;
-	const fxToggleContainer = document.createElement('div'); fxToggleContainer.className = 'nav-fx-toggle';
-	const toggleButton = document.createElement('button'); toggleButton.className = 'fx-toggle-button';
-	fxToggleContainer.appendChild(toggleButton); document.body.appendChild(fxToggleContainer);
+	
+	// Create or get existing container
+	let fxToggleContainer = document.querySelector('.nav-fx-toggle');
+	if (!fxToggleContainer) {
+		fxToggleContainer = document.createElement('div');
+		fxToggleContainer.className = 'nav-fx-toggle';
+		document.body.appendChild(fxToggleContainer);
+	}
+	
+	const toggleButton = document.createElement('button');
+	toggleButton.className = 'fx-toggle-button';
+	fxToggleContainer.appendChild(toggleButton);
+	
 	const body = document.body;
-	const updateButton = () => { const fxDisabled = body.classList.contains('no-fx'); if (fxDisabled) { toggleButton.innerHTML = '<i class="fas fa-eye icon"></i> Enable FX'; toggleButton.setAttribute('aria-pressed', 'false'); toggleButton.title = "Enable visual effects (scanlines, animations)"; } else { toggleButton.innerHTML = '<i class="fas fa-eye-slash icon"></i> Disable FX'; toggleButton.setAttribute('aria-pressed', 'true'); toggleButton.title = "Disable visual effects for performance or preference"; } };
-	if (localStorage.getItem('fxDisabled') === 'true') { body.classList.add('no-fx'); } else { body.classList.remove('no-fx'); } updateButton();
-	toggleButton.addEventListener('click', () => { body.classList.toggle('no-fx'); const fxDisabled = body.classList.contains('no-fx'); localStorage.setItem('fxDisabled', fxDisabled ? 'true' : 'false'); updateButton(); initializeCardObserver(); console.log(`Visual FX ${fxDisabled ? 'Disabled' : 'Enabled'}`); });
+	const updateButton = () => {
+		const fxDisabled = body.classList.contains('no-fx');
+		if (fxDisabled) {
+			toggleButton.innerHTML = '<i class="fas fa-eye icon"></i> Enable FX';
+			toggleButton.setAttribute('aria-pressed', 'false');
+			toggleButton.title = "Enable visual effects (scanlines, animations)";
+		} else {
+			toggleButton.innerHTML = '<i class="fas fa-eye-slash icon"></i> Disable FX';
+			toggleButton.setAttribute('aria-pressed', 'true');
+			toggleButton.title = "Disable visual effects for performance or preference";
+		}
+	};
+	
+	if (localStorage.getItem('fxDisabled') === 'true') {
+		body.classList.add('no-fx');
+	} else {
+		body.classList.remove('no-fx');
+	}
+	updateButton();
+	
+	toggleButton.addEventListener('click', () => {
+		body.classList.toggle('no-fx');
+		const fxDisabled = body.classList.contains('no-fx');
+		localStorage.setItem('fxDisabled', fxDisabled ? 'true' : 'false');
+		updateButton();
+		initializeCardObserver();
+		console.log(`Visual FX ${fxDisabled ? 'Disabled' : 'Enabled'}`);
+	});
+}
+
+async function initializeThemeSwitcher() {
+	if (document.querySelector('.theme-switcher-container') || !window.themeSwitcher) return;
+	
+	try {
+		// Initialize the theme switcher
+		await window.themeSwitcher.init();
+		
+		// Create or get existing container
+		let fxToggleContainer = document.querySelector('.nav-fx-toggle');
+		if (!fxToggleContainer) {
+			fxToggleContainer = document.createElement('div');
+			fxToggleContainer.className = 'nav-fx-toggle';
+			document.body.appendChild(fxToggleContainer);
+		}
+		
+		// Add the theme switcher component to the container
+		if (window.themeSwitcher.container) {
+			fxToggleContainer.appendChild(window.themeSwitcher.container);
+		}
+		
+		console.log('Theme Switcher added to navigation');
+	} catch (error) {
+		console.error('Failed to initialize theme switcher:', error);
+	}
 }
