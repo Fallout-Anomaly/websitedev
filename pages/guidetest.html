@@ -27,8 +27,6 @@
    <!-- <meta name="twitter:site" content="@[YourSiteTwitterHandle]" /> -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="../src/css/style.css">
-   <link rel="stylesheet" href="../src/css/themes.css">
    <style>
       /* Collapsible sections styling to match Fallout terminal theme */
       .collapsible-section {
@@ -284,6 +282,67 @@
       
       #step5 .collapsible-content h5 {
          margin: 8px 0 6px 0 !important;
+      }
+   </style>
+   <link rel="stylesheet" href="../src/css/style.css">
+   <link rel="stylesheet" href="../src/css/themes.css">
+   <style>
+      /* Final override for headers - must come after external CSS */
+      .tab-content .collapsible-content h4,
+      .tab-content .collapsible-content h5,
+      .tab-content .sub-collapsible-header strong,
+      .tab-content .sub-collapsible-content h4,
+      .tab-content .sub-collapsible-content h5 {
+         color: #00ff00 !important;
+         font-family: 'VT323', monospace !important;
+         text-shadow: 0 0 5px #00ff00 !important;
+         font-weight: bold !important;
+         text-transform: uppercase !important;
+         letter-spacing: 1px !important;
+         background: none !important;
+         border: none !important;
+         margin: 8px 0 6px 0 !important;
+         padding: 0 !important;
+      }
+      
+      .tab-content .collapsible-content h4 {
+         border-bottom: 1px solid #00ff00 !important;
+         padding-bottom: 4px !important;
+         margin: 12px 0 8px 0 !important;
+      }
+      
+      .tab-content .collapsible-content h5 {
+         margin: 8px 0 6px 0 !important;
+      }
+      
+      /* Ultra-specific overrides for stubborn theme styles */
+      body .tab-content .collapsible-content h4,
+      body .tab-content .collapsible-content h5,
+      body .tab-content .sub-collapsible-header strong,
+      body .tab-content .sub-collapsible-content h4,
+      body .tab-content .sub-collapsible-content h5,
+      html body .tab-content .collapsible-content h4,
+      html body .tab-content .collapsible-content h5,
+      html body .tab-content .sub-collapsible-header strong,
+      html body .tab-content .sub-collapsible-content h4,
+      html body .tab-content .sub-collapsible-content h5 {
+         color: #00ff00 !important;
+         font-family: 'VT323', monospace !important;
+         text-shadow: 0 0 5px #00ff00 !important;
+         font-weight: bold !important;
+         text-transform: uppercase !important;
+         letter-spacing: 1px !important;
+         background: none !important;
+         border: none !important;
+         margin: 8px 0 6px 0 !important;
+         padding: 0 !important;
+      }
+      
+      body .tab-content .collapsible-content h4,
+      html body .tab-content .collapsible-content h4 {
+         border-bottom: 1px solid #00ff00 !important;
+         padding-bottom: 4px !important;
+         margin: 12px 0 8px 0 !important;
       }
    </style>
    <link rel="icon" href="data:image/svg+xml,
@@ -720,20 +779,27 @@
                            <div class="warning-box">
                               <p><a href="https://www.nexusmods.com/fallout4/mods/72235" target="_blank" rel="noopener noreferrer"><strong>MAIM – Locational Damage & Medical Overhaul</strong><br>View full details on Nexus Mods</a></p>
                            </div>
-                           <h4><strong>MAIM Medical System Highlights</strong></h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>SP-1 Stimpak</strong>: Gradual HP + AP regen, cures NPC injuries, strong poison resistance (180s).</li>
-                              <li><strong>SP-2 Stimpak</strong>: 3%/s HP & limb healing (40s). Most powerful heal, but requires weapon holstered.</li>
-                              <li><strong>Med-X</strong>: Treats pain, shock, and contusion. Heals head 1%/s (180s). Addictive.</li>
-                              <li><strong>Ibuprofen</strong>: Heals head & non-crippled limbs 0.5%/s (180s). Mildly addictive.</li>
-                              <li><strong>Bandage</strong>: Stops light bleeds, heals injured limbs (1%/s for 60s).</li>
-                              <li><strong>QuikClot Injector</strong>: Stops heavy bleeds and prevents further bleeding until limb is healed.</li>
-                              <li><strong>IFAK</strong>: Stops heavy bleed, removes crippled status, heals 1%/s (80s).</li>
-                              <li><strong>SAM Splint</strong>: Sets crippled limbs to 1 HP, downgrades heavy bleed.</li>
-                              <li><strong>TXA Injector</strong>: Stops light bleeds, reduces heavy bleeds, +300s critical wound protection.</li>
-                              <li><strong>Ca-DTPA</strong>: Removes 10 RAD/s for 60s. Requires weapon holstered. - Replaces Vanilla Radaway - Also slowly removes IRA.</li>
-                              <li><strong>Potassium Iodide</strong>: +200 RAD resistance, -0.5 RAD/s for 300s.Replaces Rad-X</li>
-                           </ul>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>💊 MAIM Medical Items</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>SP-1 Stimpak:</strong> Gradual HP + AP regen, cures NPC injuries, strong poison resistance (180s)</div>
+                                    <div class="skill-item"><strong>SP-2 Stimpak:</strong> 3%/s HP & limb healing (40s). Most powerful heal, but requires weapon holstered</div>
+                                    <div class="skill-item"><strong>Med-X:</strong> Treats pain, shock, and contusion. Heals head 1%/s (180s). Addictive</div>
+                                    <div class="skill-item"><strong>Ibuprofen:</strong> Heals head & non-crippled limbs 0.5%/s (180s). Mildly addictive</div>
+                                    <div class="skill-item"><strong>Bandage:</strong> Stops light bleeds, heals injured limbs (1%/s for 60s)</div>
+                                    <div class="skill-item"><strong>QuikClot Injector:</strong> Stops heavy bleeds and prevents further bleeding until limb is healed</div>
+                                    <div class="skill-item"><strong>IFAK:</strong> Stops heavy bleed, removes crippled status, heals 1%/s (80s)</div>
+                                    <div class="skill-item"><strong>SAM Splint:</strong> Sets crippled limbs to 1 HP, downgrades heavy bleed</div>
+                                    <div class="skill-item"><strong>TXA Injector:</strong> Stops light bleeds, reduces heavy bleeds, +300s critical wound protection</div>
+                                    <div class="skill-item"><strong>Ca-DTPA:</strong> Removes 10 RAD/s for 60s. Requires weapon holstered. Replaces Vanilla Radaway - Also slowly removes IRA</div>
+                                    <div class="skill-item"><strong>Potassium Iodide:</strong> +200 RAD resistance, -0.5 RAD/s for 300s. Replaces Rad-X</div>
+                                 </div>
+                              </div>
+                           </div>
                            <div class="warning-box">
                               <p><strong>Pro Tip:</strong> Healing items do not stack with themselves, but you can combine different effects (e.g., SP-1 + SP-2). Pre-med with TXA and ibuprofen before a firefight for best results.</p>
                            </div>
