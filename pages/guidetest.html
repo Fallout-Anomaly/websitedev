@@ -102,28 +102,16 @@
          transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, text-shadow 0.3s ease;
       }
       
-      /* 4x4 Grid Layout */
-      .cards-grid-4x4 {
+      /* 4 Main Cards Layout */
+      .cards-grid-4main {
          display: grid;
-         grid-template-columns: repeat(4, 1fr);
-         gap: 12px;
-         margin: 12px 0;
-      }
-      
-      @media (max-width: 1200px) {
-         .cards-grid-4x4 {
-            grid-template-columns: repeat(3, 1fr);
-         }
+         grid-template-columns: repeat(2, 1fr);
+         gap: 20px;
+         margin: 20px 0;
       }
       
       @media (max-width: 900px) {
-         .cards-grid-4x4 {
-            grid-template-columns: repeat(2, 1fr);
-         }
-      }
-      
-      @media (max-width: 600px) {
-         .cards-grid-4x4 {
+         .cards-grid-4main {
             grid-template-columns: 1fr;
          }
       }
@@ -232,6 +220,179 @@
       .warning-card:hover {
          border-color: #ff4444 !important;
          background: rgba(255, 107, 107, 0.15) !important;
+      }
+      
+      /* Main Card Styling */
+      .info-card-main {
+         background: rgba(0, 0, 0, 0.2);
+         border: 1px solid var(--border-color);
+         border-radius: 8px;
+         overflow: hidden;
+         transition: all 0.3s ease;
+         min-height: 200px;
+         display: flex;
+         flex-direction: column;
+      }
+      
+      .info-card-main:hover {
+         background: rgba(0, 0, 0, 0.25);
+         border-color: var(--highlight-color);
+         transform: translateY(-2px);
+         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+      }
+      
+      .card-header-main {
+         background: rgba(0, 0, 0, 0.3);
+         padding: 15px 20px;
+         border-bottom: 1px solid var(--border-color);
+         display: flex;
+         align-items: center;
+         gap: 12px;
+         flex-shrink: 0;
+      }
+      
+      .card-header-main i {
+         color: var(--primary-color);
+         font-size: 1.2em;
+         text-shadow: var(--glow-effect);
+      }
+      
+      .card-header-main h3 {
+         color: var(--primary-color);
+         font-size: 1.1em;
+         font-weight: 600;
+         margin: 0;
+         text-shadow: 0 0 5px var(--highlight-color);
+         text-transform: uppercase;
+         letter-spacing: 1px;
+      }
+      
+      .card-content-main {
+         padding: 20px;
+         flex: 1;
+         display: flex;
+         flex-direction: column;
+         justify-content: flex-start;
+      }
+      
+      .card-content-main p {
+         font-size: 0.9em;
+         line-height: 1.4;
+         margin: 8px 0;
+         color: var(--text-color);
+         text-shadow: 0 0 2px var(--text-color);
+      }
+      
+      .requirements-list {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+         gap: 8px;
+         margin-bottom: 15px;
+      }
+      
+      .req-item {
+         font-size: 0.85em;
+         padding: 6px 10px;
+         background: rgba(0, 0, 0, 0.2);
+         border-radius: 3px;
+         border-left: 3px solid var(--primary-color);
+         color: var(--text-color);
+      }
+      
+      .req-item strong {
+         color: var(--primary-color);
+         font-weight: 600;
+      }
+      
+      .download-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+         gap: 10px;
+      }
+      
+      .download-item {
+         display: flex;
+         align-items: center;
+         gap: 10px;
+         padding: 10px 12px;
+         background: rgba(0, 0, 0, 0.2);
+         border: 1px solid var(--border-color);
+         border-radius: 4px;
+         text-decoration: none;
+         color: var(--text-color);
+         font-size: 0.85em;
+         transition: all 0.3s ease;
+      }
+      
+      .download-item:hover {
+         background: var(--hover-bg);
+         border-color: var(--highlight-color);
+         color: var(--highlight-color);
+         transform: translateY(-1px);
+      }
+      
+      .download-item i {
+         color: var(--primary-color);
+         font-size: 1em;
+         width: 20px;
+         text-align: center;
+      }
+      
+      .download-item span {
+         flex: 1;
+         font-weight: 500;
+      }
+      
+      .critical-steps {
+         display: flex;
+         flex-direction: column;
+         gap: 12px;
+      }
+      
+      .step-item {
+         padding: 12px;
+         background: rgba(255, 107, 107, 0.1);
+         border: 1px solid #ff6b6b;
+         border-radius: 4px;
+         border-left: 4px solid #ff6b6b;
+      }
+      
+      .step-item strong {
+         color: #ff6b6b;
+         font-size: 0.9em;
+         display: block;
+         margin-bottom: 4px;
+         text-shadow: 0 0 3px #ff6b6b;
+      }
+      
+      .step-item p {
+         color: var(--text-color);
+         font-size: 0.8em;
+         margin: 0;
+         line-height: 1.3;
+      }
+      
+      .warning-card {
+         border-color: #ff6b6b !important;
+         background: rgba(255, 107, 107, 0.05) !important;
+      }
+      
+      .warning-card .card-header-main {
+         background: rgba(255, 107, 107, 0.1) !important;
+         border-bottom-color: #ff6b6b !important;
+      }
+      
+      .warning-card .card-header-main i {
+         color: #ff6b6b !important;
+      }
+      
+      .warning-card .card-header-main h3 {
+         color: #ff6b6b !important;
+      }
+      
+      .warning-card:hover {
+         border-color: #ff4444 !important;
+         background: rgba(255, 107, 107, 0.08) !important;
       }
       
       /* Collapsible sections styling to match Fallout terminal theme */
@@ -645,7 +806,7 @@
             <i class="fas fa-book icon"></i>
             <h1>COMPLETE INSTALLATION GUIDE</h1>
          </div>
-           <div class="terminal-text guide-content">
+         <div class="terminal-text guide-content">
              <div class="banner-section">
                 <img src="https://raw.githubusercontent.com/NomadsReach/Fallout-Anomaly/refs/heads/master/images/Banner%20Images/Fo4Anomaly27.png" alt="Fallout Anomaly Banner" class="banner-image">
                 <div class="social-links">
@@ -684,7 +845,7 @@
                 <iframe src="https://www.youtube.com/embed/uYRev9mF4Q0?si=a6ar_TsmgJdy9QGG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
              </div>
              
-              <div class="tab-container">
+            <div class="tab-container">
                <div class="tab-buttons">
                   <button class="tab-button active" data-tab="step1">STEP 1: GETTING STARTED</button>
                   <button class="tab-button" data-tab="step2">STEP 2: INSTALLATION</button>
@@ -693,176 +854,106 @@
                   <button class="tab-button" data-tab="step5">STEP 5: GAMEPLAY</button>
                   <button class="tab-button" data-tab="support">SUPPORT & COMMUNITY</button>
                </div>
-                <div class="tab-content active" id="step1">
-                   <div class="cards-grid-4x4">
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
+               <div class="tab-content active" id="step1">
+                   <div class="cards-grid-4main">
+                      <div class="info-card-main">
+                         <div class="card-header-main">
                             <i class="fas fa-microchip"></i>
-                            <h3>CPU</h3>
+                            <h3>Hardware Requirements</h3>
                          </div>
-                         <div class="card-content-compact">
-                            <p><strong>6+ cores, 3GHz</strong></p>
-                         </div>
-                      </div>
-                      
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
-                            <i class="fas fa-memory"></i>
-                            <h3>RAM</h3>
-                         </div>
-                         <div class="card-content-compact">
-                            <p><strong>16GB min</strong><br>32GB ideal</p>
-                         </div>
-                      </div>
-                      
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
-                            <i class="fas fa-desktop"></i>
-                            <h3>GPU</h3>
-                         </div>
-                         <div class="card-content-compact">
-                            <p><strong>6GB VRAM</strong><br>8GB recommended</p>
+                         <div class="card-content-main">
+                            <div class="requirements-list">
+                               <div class="req-item"><strong>CPU:</strong> 6+ cores, 3GHz</div>
+                               <div class="req-item"><strong>RAM:</strong> 16GB min, 32GB ideal</div>
+                               <div class="req-item"><strong>GPU:</strong> 6GB VRAM, 8GB recommended</div>
+                               <div class="req-item"><strong>OS:</strong> Windows 10/11 (64-bit)</div>
+                               <div class="req-item"><strong>Storage:</strong> 350GB SSD required</div>
+                               <div class="req-item"><strong>Skills:</strong> Basic computer knowledge</div>
+                            </div>
+                            <div class="warning-box">
+                               <p>🚨 Install in dedicated folder: <code>C:\Fallout Modlist\Fallout Anomaly</code></p>
+                            </div>
                          </div>
                       </div>
                       
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
-                            <i class="fas fa-hdd"></i>
-                            <h3>Storage</h3>
-                         </div>
-                         <div class="card-content-compact">
-                            <p><strong>350GB SSD</strong><br>Required</p>
-                         </div>
-                      </div>
-                      
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
-                            <i class="fab fa-windows"></i>
-                            <h3>OS</h3>
-                         </div>
-                         <div class="card-content-compact">
-                            <p><strong>Windows 10/11</strong><br>(64-bit)</p>
-                         </div>
-                      </div>
-                      
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
+                      <div class="info-card-main">
+                         <div class="card-header-main">
                             <i class="fas fa-crown"></i>
                             <h3>Nexus Premium</h3>
                          </div>
-                         <div class="card-content-compact">
-                            <p>Highly recommended</p>
-                            <a href="https://next.nexusmods.com/premium" class="download-link" target="_blank">Subscribe</a>
+                         <div class="card-content-main">
+                            <p>Highly recommended for uncapped downloads and automated installation.</p>
+                            <a href="https://next.nexusmods.com/premium" class="cta-button" target="_blank">Subscribe to Nexus Premium</a>
                          </div>
                       </div>
                       
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
-                            <i class="fas fa-cog"></i>
-                            <h3>Visual C++</h3>
+                      <div class="info-card-main">
+                         <div class="card-header-main">
+                            <i class="fas fa-download"></i>
+                            <h3>Required Components</h3>
                          </div>
-                         <div class="card-content-compact">
-                            <p>Must be installed!</p>
-                            <a href="https://github.com/abbodi1406/vcredist/releases/download/v0.82.0/VisualCppRedist_AIO_x86_x64.exe" class="download-link" target="_blank">Download</a>
-                         </div>
-                      </div>
-                      
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
-                            <i class="fas fa-code"></i>
-                            <h3>NET Framework</h3>
-                         </div>
-                         <div class="card-content-compact">
-                            <p>4.6.2 & 5.0</p>
-                            <a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net462-web-installer" class="download-link" target="_blank">Download</a>
-                         </div>
-                      </div>
-                      
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
-                            <i class="fas fa-gamepad"></i>
-                            <h3>DirectX</h3>
-                         </div>
-                         <div class="card-content-compact">
-                            <p>Redist (June 2010)</p>
-                            <a href="https://www.microsoft.com/en-us/download/details.aspx?id=8109" class="download-link" target="_blank">Download</a>
-                         </div>
-                      </div>
-                      
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
-                            <i class="fas fa-play"></i>
-                            <h3>Launch Game</h3>
-                         </div>
-                         <div class="card-content-compact">
-                            <p>Vanilla game once</p>
-                            <a href="https://www.youtube.com/watch?v=8ARhusN5SFI&t=0s" class="download-link" target="_blank">Guide</a>
-                         </div>
-                      </div>
-                      
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
-                            <i class="fas fa-memory"></i>
-                            <h3>PageFile</h3>
-                         </div>
-                         <div class="card-content-compact">
-                            <p>Critical setup</p>
-                            <a href="https://github.com/NomadsReach/Fallout-Anomaly/blob/master/PageFile.md" class="download-link" target="_blank">Setup</a>
+                         <div class="card-content-main">
+                            <div class="download-grid">
+                               <a href="https://github.com/abbodi1406/vcredist/releases/download/v0.82.0/VisualCppRedist_AIO_x86_x64.exe" target="_blank" class="download-item">
+                                  <i class="fas fa-cog"></i>
+                                  <span>Microsoft Visual C++</span>
+                               </a>
+                               <a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net462-web-installer" target="_blank" class="download-item">
+                                  <i class="fas fa-code"></i>
+                                  <span>NET Framework 4.6.2 & 5.0</span>
+                               </a>
+                               <a href="https://www.microsoft.com/en-us/download/details.aspx?id=8109" target="_blank" class="download-item">
+                                  <i class="fas fa-gamepad"></i>
+                                  <span>DirectX Redist (June 2010)</span>
+                               </a>
+                               <a href="https://www.youtube.com/watch?v=8ARhusN5SFI&t=0s" target="_blank" class="download-item">
+                                  <i class="fas fa-play"></i>
+                                  <span>Launch Vanilla Game Once</span>
+                               </a>
+                               <a href="https://github.com/NomadsReach/Fallout-Anomaly/blob/master/PageFile.md" target="_blank" class="download-item">
+                                  <i class="fas fa-memory"></i>
+                                  <span>PageFile Setup</span>
+                               </a>
+                               <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=552541227" target="_blank" class="download-item">
+                                  <i class="fas fa-language"></i>
+                                  <span>English Voice Files</span>
+                               </a>
+                               <a href="https://www.youtube.com/watch?v=7e_kY6LmQ0Y" target="_blank" class="download-item">
+                                  <i class="fas fa-eye-slash"></i>
+                                  <span>Disable Overlays</span>
+                               </a>
+                               <a href="https://sharing.clickup.com/clip/p/t9014300118/775310b9-3dc0-402d-8726-2a184ee55560/How%20to%20remove%20HD%20Texture%20Pack..webm" target="_blank" class="download-item">
+                                  <i class="fas fa-trash"></i>
+                                  <span>HD Texture Pack Removal</span>
+                               </a>
+                            </div>
                          </div>
                       </div>
                       
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
-                            <i class="fas fa-language"></i>
-                            <h3>Voice Files</h3>
-                         </div>
-                         <div class="card-content-compact">
-                            <p>English required</p>
-                            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=552541227" class="download-link" target="_blank">Download</a>
-                         </div>
-                      </div>
-                      
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
-                            <i class="fas fa-eye-slash"></i>
-                            <h3>Disable Overlays</h3>
-                         </div>
-                         <div class="card-content-compact">
-                            <p>Prevent crashes</p>
-                            <a href="https://www.youtube.com/watch?v=7e_kY6LmQ0Y" class="download-link" target="_blank">Guide</a>
-                         </div>
-                      </div>
-                      
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
-                            <i class="fas fa-trash"></i>
-                            <h3>HD Texture Pack</h3>
-                         </div>
-                         <div class="card-content-compact">
-                            <p>Remove if needed</p>
-                            <a href="https://sharing.clickup.com/clip/p/t9014300118/775310b9-3dc0-402d-8726-2a184ee55560/How%20to%20remove%20HD%20Texture%20Pack..webm" class="download-link" target="_blank">Guide</a>
-                         </div>
-                      </div>
-                      
-                      <div class="info-card-compact warning-card">
-                         <div class="card-header-compact">
+                      <div class="info-card-main warning-card">
+                         <div class="card-header-main">
                             <i class="fas fa-exclamation-triangle"></i>
-                            <h3>Install Location</h3>
+                            <h3>Critical Setup Steps</h3>
                          </div>
-                         <div class="card-content-compact">
-                            <p><strong>🚨 DO NOT install on root drive!</strong></p>
-                            <p>Use: <code>C:\Fallout Modlist\Fallout Anomaly</code></p>
-                         </div>
-                      </div>
-                      
-                      <div class="info-card-compact">
-                         <div class="card-header-compact">
-                            <i class="fas fa-graduation-cap"></i>
-                            <h3>Skills Required</h3>
-                         </div>
-                         <div class="card-content-compact">
-                            <p><strong>Basic computer knowledge</strong></p>
-                            <p>File management & troubleshooting</p>
+                         <div class="card-content-main">
+                            <div class="critical-steps">
+                               <div class="step-item">
+                                  <strong>🚨 UPDATE FALLOUT 4 TO NEXT-GEN VERSION</strong>
+                                  <p>Mandatory for Wabbajack downgrade install</p>
+                               </div>
+                               <div class="step-item">
+                                  <strong>🚨 DISABLE ALL OVERLAYS</strong>
+                                  <p>Steam, Medal, etc. These cause crashes</p>
+                               </div>
+                               <div class="step-item">
+                                  <strong>🚨 SET UP PAGE FILE</strong>
+                                  <p>Minimum 16GB required for performance</p>
+                               </div>
+                               <div class="step-item">
+                                  <strong>🚨 SET ANTI-VIRUS EXCLUSIONS</strong>
+                                  <p>Prevent interference with ENB and mods</p>
+                               </div>
+                            </div>
                          </div>
                       </div>
                    </div>
@@ -894,13 +985,13 @@
                         <div class="card-content">
                            <div class="install-step">
                               <strong>Downloading Fallout Anomaly</strong>
-                              <ul class="terminal-sublist">
+                        <ul class="terminal-sublist">
                                  <li>Locate <em>Fallout Anomaly</em> in the Wabbajack Browser and download the file.</li>
                                  <li>Set both <strong>Install Location</strong> and <strong>Download Location</strong> on the same drive for best performance.</li>
-                              </ul>
+                        </ul>
                               <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/wabbajack%20install.png" alt="Verify Installation" class="guide-image">
-                           </div>
                         </div>
+                     </div>
                      </div>
                      
                      <div class="info-card">
@@ -912,29 +1003,29 @@
                            <div class="issues-grid">
                               <div class="issue-item">
                                  <h4>"Could Not Download MOD"</h4>
-                                 <ul class="terminal-sublist">
+                        <ul class="terminal-sublist">
                                     <li>Manually download the mod and place it in Wabbajack's download folder.</li>
                                     <li>Check if Nexus Mods is down: <a href="https://nexusmods.statuspage.io/" target="_blank">Nexus Mods Status</a></li>
-                                 </ul>
-                              </div>
+                        </ul>
+                     </div>
                               <div class="issue-item">
                                  <h4>"Mod Is Not a Whitelisted Download"</h4>
                                  <ul class="terminal-sublist">
                                     <li>The modlist may have been updated, making an old mod link invalid.</li>
                                     <li>Wait for a new release or notify us on <strong>Discord</strong>.</li>
                                  </ul>
-                              </div>
+                  </div>
                               <div class="issue-item">
                                  <h4>"Missing Game Files"</h4>
                                  <ul class="terminal-sublist">
                                     <li>Ensure your game is updated to the <strong>next-gen version</strong>.</li>
                                  </ul>
-                              </div>
+               </div>
                               <div class="issue-item">
                                  <h4>"Wabbajack Could Not Find My Game Folder"</h4>
-                                 <ul class="terminal-sublist">
+                        <ul class="terminal-sublist">
                                     <li><strong>Pirated versions are not supported</strong>. Ensure you own Fallout 4 on <strong>Steam</strong>.</li>
-                                 </ul>
+                        </ul>
                               </div>
                            </div>
                         </div>
@@ -944,22 +1035,22 @@
                         <i class="fas fa-tools"></i>Troubleshooting Download Issues</strong>
                         <div class="troubleshooting-section">
                            <h4>Google Drive Download Issues</h4>
-                           <ul class="terminal-sublist">
+                        <ul class="terminal-sublist">
                               <li>If downloads fail, <strong>download manually</strong> and place the file in your Wabbajack download folder.</li>
                               <li>Restart the install.</li>
-                           </ul>
+                        </ul>
                            <div class="download-links">
                               <a href="https://drive.google.com/file/d/1sWpTDjSYC4xwhEveSuVhykjzHpZ2Qk1Y/view" class="download-link" target="_blank">Download Link 1</a>
                               <a href="https://drive.google.com/file/d/1APDBlK9UuPkXgptW0U1IHtKgEv4s9ruP/view" class="download-link" target="_blank">Download Link 2</a>
-                           </div>
+                     </div>
                         </div>
                         <div class="troubleshooting-section">
                            <h4>ENB Download Issues</h4>
-                           <ul class="terminal-sublist">
+                        <ul class="terminal-sublist">
                               <li>If your ENB download fails, download it manually and move it to the <strong>Anomaly Downloads</strong> folder created by Wabbajack.</li>
                               <li>❗ <strong>DO NOT extract the file</strong>—just place it in the folder.</li>
                               <li>Restart Wabbajack and run the installer again.</li>
-                           </ul>
+                        </ul>
                            <a href="http://enbdev.com/mod_fallout4_v0496.htm" class="download-link" target="_blank">Download ENB for Fallout 4</a>
                         </div>
                      </div>
@@ -987,11 +1078,11 @@
                         <i class="fas fa-sync-alt"></i>Updating Fallout Anomaly</strong>
                         <div class="update-info">
                            <h4>✅ Update Notifications</h4>
-                           <ul class="terminal-sublist">
+                        <ul class="terminal-sublist">
                               <li>Announcements on <strong>Discord</strong> and <strong>Nexus Mods</strong>.</li>
                               <li>If a <strong>new save is required</strong>, we'll let you know.</li>
-                           </ul>
-                        </div>
+                        </ul>
+                     </div>
                         <div class="update-process">
                            <h4>🔄 Update Process in Wabbajack</h4>
                            <ul class="terminal-sublist">
@@ -1072,11 +1163,11 @@
                            <ol class="terminal-sublist">
                               <li><strong>Close</strong> <strong>Mod Organizer 2</strong>.</li>
                               <li>Navigate to your <strong>Anomaly installation folder</strong>:
-                              <ul class="terminal-sublist">
+                        <ul class="terminal-sublist">
                                  <li>Open the <strong><code>Tools</code></strong> directory.</li>
                                  <li>Inside, find and open the <strong>BethINI</strong> folder.</li>
                                  <li>Right-click <code>BethINI.exe</code> and select <strong>"Run as Administrator"</strong>.</li>
-                              </ul>
+                        </ul>
                               </li>
                               <li>In <strong>BethINI</strong>, select <strong>Fallout 4</strong> (<strong>DO NOT</strong> change INI paths!).</li>
                               <li>Go to the <strong>Basic</strong> tab and adjust your resolution.</li>
@@ -1134,26 +1225,26 @@
                               <div class="issue-item">
                                  <h4>Post-Character Creation Freeze</h4>
                                  <p>After creating your character:</p>
-                                 <ul class="terminal-sublist">
+                        <ul class="terminal-sublist">
                                     <li>Your game will save and may appear to freeze temporarily.</li>
                                     <li>This is due to multiple scripts loading simultaneously.</li>
                                     <li>Be patient and wait for a few minutes; the game will resume normally.</li>
-                                 </ul>
-                              </div>
+                        </ul>
+                     </div>
                               <div class="issue-item">
                                  <h4>Falling Through Vault Issue</h4>
                                  <p>If you're falling through the vault floor:</p>
-                                 <ul class="terminal-sublist">
+                        <ul class="terminal-sublist">
                                     <li>This is likely due to the "Uneducated Shooter" mod.</li>
                                     <li><strong>Solution</strong>: Only enable the "Uneducated Shooter" mod after leaving the vault.</li>
-                                 </ul>
-                              </div>
+                        </ul>
+                     </div>
                               <div class="issue-item">
                                  <h4>Known Crash Related Issues:</h4>
-                                 <ul class="terminal-sublist">
+                        <ul class="terminal-sublist">
                                     <li>Programs like medal (recording software) or anything that adds an overlay can conflict with the ENBS, or other DLL hooked mods. If you are crashing right at the launch of game or at the main menu this can be one of the main causes.</li>
-                                 </ul>
-                              </div>
+                        </ul>
+                     </div>
                            </div>
                         </div>
                      </div>
@@ -1168,20 +1259,20 @@
                            <div class="controller-setup">
                               <div class="setup-step">
                                  <h4>Step 1: Configure Steam Settings</h4>
-                                 <ul class="terminal-sublist">
+                        <ul class="terminal-sublist">
                                     <li>Ensure your <strong>Steam controller settings</strong> are correctly set up as shown in the window below.</li>
                                     <li><strong>Steam Overlay</strong> must be enabled for the controller to function properly.</li>
                                     <li><strong>Steam Input</strong>: Paste the following link into your browser and open Steam when prompted:<br>
                                        <code>steam://controllerconfig/377160/3420527035</code><br>
                                        This will install the <strong>custom controller profile</strong> for Fallout Anomaly.</li>
-                                 </ul>
-                              </div>
+                        </ul>
+                     </div>
                               <div class="setup-step">
                                  <h4>Step 2: Enable the Controller Support Mod</h4>
-                                 <ul class="terminal-sublist">
+                        <ul class="terminal-sublist">
                                     <li>In <strong>MO2</strong>, activate the optional mod:<br>
                                        <strong>"A - OPT - Controller Support - PS5 Support"</strong></li>
-                                 </ul>
+                        </ul>
                                  <p>This ensures full functionality for your PS5 controller in-game. 🚀</p>
                                  <img src="https://github.com/user-attachments/assets/06e65ae6-05b8-4a1e-9d33-ca8ec5b9bc7f" alt="Steam Settings" class="guide-image">
                                  <img src="https://github.com/user-attachments/assets/8b3ae832-e62e-4817-b858-d70256727bf8" alt="Controller Configuration" class="guide-image">
