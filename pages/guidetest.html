@@ -981,41 +981,64 @@
                             <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                          </div>
                          <div class="collapsible-content">
-                            <h4>Mechanics</h4>
-                            <ol class="terminal-sublist">
-                               <li><strong>Dual-layered radiation system:</strong>
-                                  <ul class="terminal-sublist">
-                                     <li><strong>IRA (Ingested Radioactive Particles)</strong>: Acquired from food, water, and ambient hazards like weather.</li>
-                                     <li><strong>RAD (Tissue Damage)</strong>: Traditional external radiation exposure (vanilla RADs).</li>
-                                  </ul>
-                               </li>
-                               <li><strong>Negative IRA values</strong> deal internal damage over time and add to total IRA buildup.</li>
-                               <li>High IRA levels simulate <strong>Acute Radiation Syndrome</strong>, causing periodic RAD damage and debilitating effects.</li>
-                               <li><strong>Weather hazards</strong> (like radiation storms) require functional protective gear (gas masks, hazmat suits, or power helmets).</li>
-                               <li>Radiation left unchecked will eventually kill the player—even retreating won't stop progression unless treated.</li>
-                               <li>Protective gear is now <strong>breakable</strong> and must be maintained.</li>
-                               <li>Differentiate between <strong>fusion and fission</strong> explosions—each behaves differently and impacts how radiation is applied.</li>
-                               <li>Doctors now charge <strong>separate fees</strong> for small vs. large radiation treatments.</li>
-                               <li>Optional tool: <strong>RadBoy</strong>—notifies players via text or voice when radiation or IRA levels rise dangerously.</li>
-                            </ol>
-                            <h4>New Items</h4>
-                            <ul class="terminal-sublist">
-                               <li><strong>Ca‑DTPA</strong>: Purges IRA. Removes 10 rads/sec for 60s (requires holstered weapon). - Replaces RadAway and slowly removes IRA.</li>
-                               <li><strong>Potassium Iodide</strong>: +200 RAD resistance and reduces RADs by 0.5/sec for 300s. - Replaces Vanilla Rad-X</li>
-                            </ul>
-                            <h4>Treating Diseases</h4>
-                            <p>Some conditions caused by radiation or exposure require specific medication:</p>
-                            <ul class="terminal-sublist">
-                               <li><strong>Antibiotics</strong>: Cure infections.</li>
-                               <li><strong>Sleep Aid</strong>: Treats insomnia. <em>(Warning: may be addictive)</em></li>
-                               <li><strong>Anodyne</strong>: Relieves fatigue.</li>
-                               <li><strong>Anti‑Parasitic</strong>: Removes parasites.</li>
-                               <li><strong>Stimulants</strong>: Counters lethargy.</li>
-                               <li><strong>Energy Pills</strong>: Mitigates weakness.</li>
-                            </ul>
-                            <p>Most of these medications can be purchased from doctors, or scavenged from raiders, gunners, and other NPCs. Be sure to stock up before venturing out.</p>
-                            <h4>Final Tips</h4>
-                            <p>The Wastes are unforgiving. Radiation is no longer a simple number—it's a slow, creeping death that can take hold in seconds or over days. Always carry enough protective gear and medication. Stock up on bandages, painkillers, Rad meds, and limb restoration tools. Being prepared isn't optional—it's survival.</p>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>⚛️ Radiation Mechanics</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <div class="skill-grid">
+                                     <div class="skill-item"><strong>Dual-layered System:</strong> IRA (Ingested Radioactive Particles) from food/water/weather + RAD (Tissue Damage) from external exposure</div>
+                                     <div class="skill-item"><strong>Negative IRA Values:</strong> Deal internal damage over time and add to total IRA buildup</div>
+                                     <div class="skill-item"><strong>Acute Radiation Syndrome:</strong> High IRA levels cause periodic RAD damage and debilitating effects</div>
+                                     <div class="skill-item"><strong>Weather Hazards:</strong> Radiation storms require functional protective gear (gas masks, hazmat suits, power helmets)</div>
+                                     <div class="skill-item"><strong>Progressive Damage:</strong> Radiation left unchecked will eventually kill the player—even retreating won't stop progression unless treated</div>
+                                     <div class="skill-item"><strong>Breakable Gear:</strong> Protective gear is now breakable and must be maintained</div>
+                                     <div class="skill-item"><strong>Explosion Types:</strong> Differentiate between fusion and fission explosions—each behaves differently</div>
+                                     <div class="skill-item"><strong>Doctor Fees:</strong> Separate fees for small vs. large radiation treatments</div>
+                                     <div class="skill-item"><strong>RadBoy Tool:</strong> Optional tool that notifies players via text or voice when radiation or IRA levels rise dangerously</div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>💊 Radiation Treatment Items</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <div class="skill-grid">
+                                     <div class="skill-item"><strong>Ca-DTPA:</strong> Purges IRA. Removes 10 rads/sec for 60s (requires holstered weapon). Replaces RadAway and slowly removes IRA</div>
+                                     <div class="skill-item"><strong>Potassium Iodide:</strong> +200 RAD resistance and reduces RADs by 0.5/sec for 300s. Replaces Vanilla Rad-X</div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>🏥 Disease Treatment Medications</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <p>Some conditions caused by radiation or exposure require specific medication:</p>
+                                  <div class="skill-grid">
+                                     <div class="skill-item"><strong>Antibiotics:</strong> Cure infections</div>
+                                     <div class="skill-item"><strong>Sleep Aid:</strong> Treats insomnia (Warning: may be addictive)</div>
+                                     <div class="skill-item"><strong>Anodyne:</strong> Relieves fatigue</div>
+                                     <div class="skill-item"><strong>Anti-Parasitic:</strong> Removes parasites</div>
+                                     <div class="skill-item"><strong>Stimulants:</strong> Counters lethargy</div>
+                                     <div class="skill-item"><strong>Energy Pills:</strong> Mitigates weakness</div>
+                                  </div>
+                                  <p>Most of these medications can be purchased from doctors, or scavenged from raiders, gunners, and other NPCs. Be sure to stock up before venturing out.</p>
+                               </div>
+                            </div>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>⚠️ Survival Tips</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <p>The Wastes are unforgiving. Radiation is no longer a simple number—it's a slow, creeping death that can take hold in seconds or over days. Always carry enough protective gear and medication. Stock up on bandages, painkillers, Rad meds, and limb restoration tools. Being prepared isn't optional—it's survival.</p>
+                               </div>
+                            </div>
                          </div>
                       </div>
                      <!-- Collapsible Section 7: Weather & Environment -->
@@ -1025,21 +1048,35 @@
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <h4>Vivid Weathers</h4>
-                           <p>Enhanced weather system with dynamic lighting and atmospheric effects.</p>
-                           <ul class="terminal-sublist">
-                              <li><strong>Radiation Storms:</strong> Dangerous weather events requiring protective gear</li>
-                              <li><strong>Dynamic Lighting:</strong> Realistic day/night cycles with enhanced shadows</li>
-                              <li><strong>Weather Hotkey:</strong> Numpad / to access weather controls</li>
-                              <li><strong>Atmospheric Effects:</strong> Fog, rain, snow, and dust storms</li>
-                           </ul>
-                           <h4>Environmental Hazards</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>Radiation Zones:</strong> High-radiation areas requiring protective equipment</li>
-                              <li><strong>Weather Protection:</strong> Gas masks, hazmat suits, and power helmets</li>
-                              <li><strong>Temperature Effects:</strong> Cold and heat impact on character performance</li>
-                              <li><strong>Visibility:</strong> Weather affects visibility and detection ranges</li>
-                           </ul>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🌦️ Vivid Weathers System</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <p>Enhanced weather system with dynamic lighting and atmospheric effects.</p>
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Radiation Storms:</strong> Dangerous weather events requiring protective gear</div>
+                                    <div class="skill-item"><strong>Dynamic Lighting:</strong> Realistic day/night cycles with enhanced shadows</div>
+                                    <div class="skill-item"><strong>Weather Hotkey:</strong> Numpad / to access weather controls</div>
+                                    <div class="skill-item"><strong>Atmospheric Effects:</strong> Fog, rain, snow, and dust storms</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>⚠️ Environmental Hazards</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Radiation Zones:</strong> High-radiation areas requiring protective equipment</div>
+                                    <div class="skill-item"><strong>Weather Protection:</strong> Gas masks, hazmat suits, and power helmets</div>
+                                    <div class="skill-item"><strong>Temperature Effects:</strong> Cold and heat impact on character performance</div>
+                                    <div class="skill-item"><strong>Visibility:</strong> Weather affects visibility and detection ranges</div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                      </div>
                      
@@ -1050,20 +1087,34 @@
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <h4>Workshop Framework</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>Workshop Mode:</strong> Home key to enter workshop mode</li>
-                              <li><strong>Enhanced Building:</strong> Expanded building options and materials</li>
-                              <li><strong>Settlement Items:</strong> New settlement objects and decorations</li>
-                              <li><strong>Power Systems:</strong> Advanced power generation and distribution</li>
-                           </ul>
-                           <h4>Building Materials</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>Scrap Requirements:</strong> More realistic material requirements</li>
-                              <li><strong>Salvage System:</strong> Enhanced scrap yield from junk items</li>
-                              <li><strong>Material Types:</strong> Wood, metal, concrete, and advanced materials</li>
-                              <li><strong>Storage Solutions:</strong> Improved storage and organization systems</li>
-                           </ul>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🔨 Workshop Framework</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Workshop Mode:</strong> Home key to enter workshop mode</div>
+                                    <div class="skill-item"><strong>Enhanced Building:</strong> Expanded building options and materials</div>
+                                    <div class="skill-item"><strong>Settlement Items:</strong> New settlement objects and decorations</div>
+                                    <div class="skill-item"><strong>Power Systems:</strong> Advanced power generation and distribution</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🧱 Building Materials</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Scrap Requirements:</strong> More realistic material requirements</div>
+                                    <div class="skill-item"><strong>Salvage System:</strong> Enhanced scrap yield from junk items</div>
+                                    <div class="skill-item"><strong>Material Types:</strong> Wood, metal, concrete, and advanced materials</div>
+                                    <div class="skill-item"><strong>Storage Solutions:</strong> Improved storage and organization systems</div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                      </div>
                      
@@ -1074,20 +1125,34 @@
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <h4>Enhanced Companions</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>Dogmeat:</strong> Enhanced AI and interaction options</li>
-                              <li><strong>Companion Damage:</strong> Improved companion combat effectiveness</li>
-                              <li><strong>Zoology Skill:</strong> Affects animal companion damage and abilities</li>
-                              <li><strong>Influence Skill:</strong> Affects humanoid companion damage</li>
-                           </ul>
-                           <h4>NPC Behavior</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>SCOURGE System:</strong> Randomized NPC stats for variety</li>
-                              <li><strong>Enhanced AI:</strong> Smarter enemy behavior and tactics</li>
-                              <li><strong>Faction Relations:</strong> Improved faction interaction systems</li>
-                              <li><strong>Dialogue Options:</strong> Expanded conversation choices</li>
-                           </ul>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🐕 Enhanced Companions</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Dogmeat:</strong> Enhanced AI and interaction options</div>
+                                    <div class="skill-item"><strong>Companion Damage:</strong> Improved companion combat effectiveness</div>
+                                    <div class="skill-item"><strong>Zoology Skill:</strong> Affects animal companion damage and abilities</div>
+                                    <div class="skill-item"><strong>Influence Skill:</strong> Affects humanoid companion damage</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🤖 NPC Behavior</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>SCOURGE System:</strong> Randomized NPC stats for variety</div>
+                                    <div class="skill-item"><strong>Enhanced AI:</strong> Smarter enemy behavior and tactics</div>
+                                    <div class="skill-item"><strong>Faction Relations:</strong> Improved faction interaction systems</div>
+                                    <div class="skill-item"><strong>Dialogue Options:</strong> Expanded conversation choices</div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                      </div>
                      
@@ -1098,20 +1163,34 @@
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <h4>Enhanced Crafting</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>Dank_ECO:</strong> Enhanced crafting options and workbenches</li>
-                              <li><strong>Universal Workbench:</strong> Page Up to drop universal workbench</li>
-                              <li><strong>Power Armor Workbench:</strong> Page Down to drop power armor workbench</li>
-                              <li><strong>Weapon Attack Modes:</strong> U key to switch weapon attack modes</li>
-                           </ul>
-                           <h4>Equipment Systems</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>Replaceable Armor Plates:</strong> Y key to use armor plates</li>
-                              <li><strong>Armor Modding:</strong> Enhanced armor customization options</li>
-                              <li><strong>Weapon Mods:</strong> Expanded weapon modification system</li>
-                              <li><strong>Equipment Durability:</strong> Realistic wear and repair systems</li>
-                           </ul>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🔧 Enhanced Crafting</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Dank_ECO:</strong> Enhanced crafting options and workbenches</div>
+                                    <div class="skill-item"><strong>Universal Workbench:</strong> Page Up to drop universal workbench</div>
+                                    <div class="skill-item"><strong>Power Armor Workbench:</strong> Page Down to drop power armor workbench</div>
+                                    <div class="skill-item"><strong>Weapon Attack Modes:</strong> U key to switch weapon attack modes</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🛡️ Equipment Systems</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Replaceable Armor Plates:</strong> Y key to use armor plates</div>
+                                    <div class="skill-item"><strong>Armor Modding:</strong> Enhanced armor customization options</div>
+                                    <div class="skill-item"><strong>Weapon Mods:</strong> Expanded weapon modification system</div>
+                                    <div class="skill-item"><strong>Equipment Durability:</strong> Realistic wear and repair systems</div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                      </div>
                      
@@ -1122,20 +1201,34 @@
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <h4>Immersive HUD</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>HUD Toggle:</strong> F2 to toggle HUD on/off</li>
-                              <li><strong>Dynamic Elements:</strong> HUD elements appear/disappear based on context</li>
-                              <li><strong>Customization:</strong> Extensive HUD customization options</li>
-                              <li><strong>Minimal Mode:</strong> Clean interface for immersive gameplay</li>
-                           </ul>
-                           <h4>Menu Systems</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>Wheel Menu:</strong> H key to open quick access wheel</li>
-                              <li><strong>MODExplorer:</strong> \ key to show mod list and information</li>
-                              <li><strong>Quick Inventory:</strong> I key for fast inventory access</li>
-                              <li><strong>Quick Map:</strong> M key for instant map access</li>
-                           </ul>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🖥️ Immersive HUD</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>HUD Toggle:</strong> F2 to toggle HUD on/off</div>
+                                    <div class="skill-item"><strong>Dynamic Elements:</strong> HUD elements appear/disappear based on context</div>
+                                    <div class="skill-item"><strong>Customization:</strong> Extensive HUD customization options</div>
+                                    <div class="skill-item"><strong>Minimal Mode:</strong> Clean interface for immersive gameplay</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>📋 Menu Systems</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Wheel Menu:</strong> H key to open quick access wheel</div>
+                                    <div class="skill-item"><strong>MODExplorer:</strong> \ key to show mod list and information</div>
+                                    <div class="skill-item"><strong>Quick Inventory:</strong> I key for fast inventory access</div>
+                                    <div class="skill-item"><strong>Quick Map:</strong> M key for instant map access</div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                      </div>
                      
@@ -1146,20 +1239,34 @@
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <h4>Audio Systems</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>Persistent Volume Sliders:</strong> Numpad 0 to mute music</li>
-                              <li><strong>Enhanced Sound Effects:</strong> Improved weapon and environmental sounds</li>
-                              <li><strong>Dynamic Music:</strong> Context-sensitive music system</li>
-                              <li><strong>Audio Immersion:</strong> Realistic audio positioning and effects</li>
-                           </ul>
-                           <h4>Visual Enhancements</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>ENB Integration:</strong> Enhanced visual effects and lighting</li>
-                              <li><strong>Letterbox Control:</strong> Disable black bars via ENB menu</li>
-                              <li><strong>Visual Filters:</strong> Customizable visual effects</li>
-                              <li><strong>Performance Options:</strong> Adjustable visual quality settings</li>
-                           </ul>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🔊 Audio Systems</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Persistent Volume Sliders:</strong> Numpad 0 to mute music</div>
+                                    <div class="skill-item"><strong>Enhanced Sound Effects:</strong> Improved weapon and environmental sounds</div>
+                                    <div class="skill-item"><strong>Dynamic Music:</strong> Context-sensitive music system</div>
+                                    <div class="skill-item"><strong>Audio Immersion:</strong> Realistic audio positioning and effects</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🎨 Visual Enhancements</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>ENB Integration:</strong> Enhanced visual effects and lighting</div>
+                                    <div class="skill-item"><strong>Letterbox Control:</strong> Disable black bars via ENB menu</div>
+                                    <div class="skill-item"><strong>Visual Filters:</strong> Customizable visual effects</div>
+                                    <div class="skill-item"><strong>Performance Options:</strong> Adjustable visual quality settings</div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                      </div>
                      
@@ -1170,20 +1277,34 @@
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <h4>Appearance Systems</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>Barber/Surgery Camera:</strong> Arrow Down to switch view</li>
-                              <li><strong>Enhanced Character Creation:</strong> More detailed appearance options</li>
-                              <li><strong>Clothing System:</strong> Expanded clothing and armor options</li>
-                              <li><strong>Hair & Facial Features:</strong> Detailed customization options</li>
-                           </ul>
-                           <h4>Character Progression</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>Background Selection:</strong> Choose character background for bonuses</li>
-                              <li><strong>Skill Tagging:</strong> Select 3 skills for +25 bonus</li>
-                              <li><strong>Trait System:</strong> Enhanced character traits and abilities</li>
-                              <li><strong>Perk Trees:</strong> Expanded perk system with new options</li>
-                           </ul>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>👤 Appearance Systems</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Barber/Surgery Camera:</strong> Arrow Down to switch view</div>
+                                    <div class="skill-item"><strong>Enhanced Character Creation:</strong> More detailed appearance options</div>
+                                    <div class="skill-item"><strong>Clothing System:</strong> Expanded clothing and armor options</div>
+                                    <div class="skill-item"><strong>Hair & Facial Features:</strong> Detailed customization options</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>📈 Character Progression</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Background Selection:</strong> Choose character background for bonuses</div>
+                                    <div class="skill-item"><strong>Skill Tagging:</strong> Select 3 skills for +25 bonus</div>
+                                    <div class="skill-item"><strong>Trait System:</strong> Enhanced character traits and abilities</div>
+                                    <div class="skill-item"><strong>Perk Trees:</strong> Expanded perk system with new options</div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                      </div>
                      
@@ -1194,27 +1315,48 @@
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <h4>Survival Tips</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>Always carry medical supplies:</strong> Bandages, stimpaks, and painkillers</li>
-                              <li><strong>Pre-medicate before combat:</strong> Use TXA and ibuprofen for protection</li>
-                              <li><strong>Manage radiation exposure:</strong> Carry protective gear and radiation meds</li>
-                              <li><strong>Plan your routes:</strong> Use APC travel system and subway networks</li>
-                           </ul>
-                           <h4>Combat Strategies</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>Use cover effectively:</strong> Take advantage of environmental protection</li>
-                              <li><strong>Manage ammunition weight:</strong> Balance firepower with mobility</li>
-                              <li><strong>Target weak points:</strong> Aim for headshots and vulnerable areas</li>
-                              <li><strong>Use stealth when possible:</strong> Avoid unnecessary confrontations</li>
-                           </ul>
-                           <h4>Resource Management</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>Salvage everything:</strong> Break down junk for materials</li>
-                              <li><strong>Plan settlements:</strong> Build strategically placed safe houses</li>
-                              <li><strong>Stockpile essentials:</strong> Food, water, and medical supplies</li>
-                              <li><strong>Maintain equipment:</strong> Repair armor and weapons regularly</li>
-                           </ul>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🛡️ Survival Tips</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Medical Supplies:</strong> Always carry bandages, stimpaks, and painkillers</div>
+                                    <div class="skill-item"><strong>Pre-medication:</strong> Use TXA and ibuprofen for protection before combat</div>
+                                    <div class="skill-item"><strong>Radiation Management:</strong> Carry protective gear and radiation meds</div>
+                                    <div class="skill-item"><strong>Route Planning:</strong> Use APC travel system and subway networks</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>⚔️ Combat Strategies</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Effective Cover:</strong> Take advantage of environmental protection</div>
+                                    <div class="skill-item"><strong>Ammunition Weight:</strong> Balance firepower with mobility</div>
+                                    <div class="skill-item"><strong>Weak Points:</strong> Aim for headshots and vulnerable areas</div>
+                                    <div class="skill-item"><strong>Stealth Approach:</strong> Avoid unnecessary confrontations</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>📦 Resource Management</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Salvage Everything:</strong> Break down junk for materials</div>
+                                    <div class="skill-item"><strong>Settlement Planning:</strong> Build strategically placed safe houses</div>
+                                    <div class="skill-item"><strong>Essential Stockpiles:</strong> Food, water, and medical supplies</div>
+                                    <div class="skill-item"><strong>Equipment Maintenance:</strong> Repair armor and weapons regularly</div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                      </div>
                      <!-- Collapsible Section 6: Keybind Preset -->
