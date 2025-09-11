@@ -102,6 +102,138 @@
          transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, text-shadow 0.3s ease;
       }
       
+      /* 4x4 Grid Layout */
+      .cards-grid-4x4 {
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+         gap: 12px;
+         margin: 12px 0;
+      }
+      
+      @media (max-width: 1200px) {
+         .cards-grid-4x4 {
+            grid-template-columns: repeat(3, 1fr);
+         }
+      }
+      
+      @media (max-width: 900px) {
+         .cards-grid-4x4 {
+            grid-template-columns: repeat(2, 1fr);
+         }
+      }
+      
+      @media (max-width: 600px) {
+         .cards-grid-4x4 {
+            grid-template-columns: 1fr;
+         }
+      }
+      
+      /* Compact Card Styling */
+      .info-card-compact {
+         background: rgba(0, 0, 0, 0.2);
+         border: 1px solid var(--border-color);
+         border-radius: 6px;
+         overflow: hidden;
+         transition: all 0.3s ease;
+         min-height: 120px;
+         display: flex;
+         flex-direction: column;
+      }
+      
+      .info-card-compact:hover {
+         background: rgba(0, 0, 0, 0.25);
+         border-color: var(--highlight-color);
+         transform: translateY(-2px);
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      
+      .card-header-compact {
+         background: rgba(0, 0, 0, 0.3);
+         padding: 8px 12px;
+         border-bottom: 1px solid var(--border-color);
+         display: flex;
+         align-items: center;
+         gap: 8px;
+         flex-shrink: 0;
+      }
+      
+      .card-header-compact i {
+         color: var(--primary-color);
+         font-size: 1em;
+         text-shadow: var(--glow-effect);
+      }
+      
+      .card-header-compact h3 {
+         color: var(--primary-color);
+         font-size: 0.9em;
+         font-weight: 600;
+         margin: 0;
+         text-shadow: 0 0 3px var(--highlight-color);
+         text-transform: uppercase;
+         letter-spacing: 1px;
+      }
+      
+      .card-content-compact {
+         padding: 12px;
+         flex: 1;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+      }
+      
+      .card-content-compact p {
+         font-size: 0.8em;
+         line-height: 1.3;
+         margin: 4px 0;
+         color: var(--text-color);
+         text-shadow: 0 0 2px var(--text-color);
+      }
+      
+      .card-content-compact .download-link {
+         display: inline-block;
+         background: var(--primary-color);
+         color: #000;
+         padding: 4px 8px;
+         text-decoration: none;
+         border-radius: 3px;
+         margin-top: 6px;
+         font-size: 0.7em;
+         font-weight: bold;
+         text-align: center;
+         transition: all 0.3s ease;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+      }
+      
+      .card-content-compact .download-link:hover {
+         background: var(--highlight-color);
+         transform: translateY(-1px);
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      
+      .warning-card {
+         border-color: #ff6b6b !important;
+         background: rgba(255, 107, 107, 0.1) !important;
+      }
+      
+      .warning-card .card-header-compact {
+         background: rgba(255, 107, 107, 0.2) !important;
+         border-bottom-color: #ff6b6b !important;
+      }
+      
+      .warning-card .card-header-compact i {
+         color: #ff6b6b !important;
+      }
+      
+      .warning-card .card-header-compact h3 {
+         color: #ff6b6b !important;
+      }
+      
+      .warning-card:hover {
+         border-color: #ff4444 !important;
+         background: rgba(255, 107, 107, 0.15) !important;
+      }
+      
       /* Collapsible sections styling to match Fallout terminal theme */
       .collapsible-section {
          margin-bottom: 12px;
@@ -562,41 +694,176 @@
                   <button class="tab-button" data-tab="support">SUPPORT & COMMUNITY</button>
                </div>
                 <div class="tab-content active" id="step1">
-                   <div class="terminal-list">
-                      <div class="terminal-list-item">
-                         <strong>
-                         <i class="fas fa-microchip"></i>HARDWARE REQUIREMENTS</strong>
-                         <ul class="terminal-sublist">
-                            <li><strong>CPU:</strong> 6+ cores, 3GHz</li>
-                            <li><strong>RAM:</strong> 16GB min, 32GB ideal</li>
-                            <li><strong>GPU:</strong> 6GB VRAM, 8GB recommended</li>
-                            <li><strong>OS:</strong> Windows 10/11 (64-bit)</li>
-                            <li><strong>Storage:</strong> 350GB SSD required</li>
-                            <li><strong>Skills:</strong> Basic computer knowledge</li>
-                         </ul>
-                         <div class="warning-box">
-                            <p>🚨 Install in dedicated folder: <code>C:\Fallout Modlist\Fallout Anomaly</code></p>
+                   <div class="cards-grid-4x4">
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fas fa-microchip"></i>
+                            <h3>CPU</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p><strong>6+ cores, 3GHz</strong></p>
                          </div>
                       </div>
-                      <div class="terminal-list-item">
-                         <strong>
-                         <i class="fas fa-crown"></i>NEXUS PREMIUM</strong>
-                         <p>Highly recommended for uncapped downloads and automated installation.</p>
-                         <a href="https://next.nexusmods.com/premium" class="cta-button" target="_blank">Subscribe to Nexus Premium</a>
+                      
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fas fa-memory"></i>
+                            <h3>RAM</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p><strong>16GB min</strong><br>32GB ideal</p>
+                         </div>
                       </div>
-                      <div class="terminal-list-item">
-                         <strong>
-                         <i class="fas fa-download"></i>REQUIRED COMPONENTS</strong>
-                         <ul class="terminal-sublist">
-                            <li><a href="https://github.com/abbodi1406/vcredist/releases/download/v0.82.0/VisualCppRedist_AIO_x86_x64.exe" target="_blank">Microsoft Visual C++</a> - Must be installed!</li>
-                            <li><a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net462-web-installer" target="_blank">NET Framework 4.6.2 & 5.0</a> - Required for mod list functionality</li>
-                            <li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=8109" target="_blank">DirectX Redist (June 2010)</a> - Ensures proper DirectX support</li>
-                            <li><a href="https://www.youtube.com/watch?v=8ARhusN5SFI&t=0s" target="_blank">Launch vanilla game at least once</a> - Ensures clean installation</li>
-                            <li><a href="https://github.com/NomadsReach/Fallout-Anomaly/blob/master/PageFile.md" target="_blank">PageFile Setup</a> - Critical for performance</li>
-                            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=552541227" target="_blank">English Voice Files</a> - Required for non-English games</li>
-                            <li><a href="https://www.youtube.com/watch?v=7e_kY6LmQ0Y" target="_blank">Disable Overlays</a> - Prevent crashes and performance issues</li>
-                            <li><a href="https://sharing.clickup.com/clip/p/t9014300118/775310b9-3dc0-402d-8726-2a184ee55560/How%20to%20remove%20HD%20Texture%20Pack..webm" target="_blank">HD Texture Pack Removal</a> - If needed</li>
-                         </ul>
+                      
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fas fa-desktop"></i>
+                            <h3>GPU</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p><strong>6GB VRAM</strong><br>8GB recommended</p>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fas fa-hdd"></i>
+                            <h3>Storage</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p><strong>350GB SSD</strong><br>Required</p>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fab fa-windows"></i>
+                            <h3>OS</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p><strong>Windows 10/11</strong><br>(64-bit)</p>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fas fa-crown"></i>
+                            <h3>Nexus Premium</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p>Highly recommended</p>
+                            <a href="https://next.nexusmods.com/premium" class="download-link" target="_blank">Subscribe</a>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fas fa-cog"></i>
+                            <h3>Visual C++</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p>Must be installed!</p>
+                            <a href="https://github.com/abbodi1406/vcredist/releases/download/v0.82.0/VisualCppRedist_AIO_x86_x64.exe" class="download-link" target="_blank">Download</a>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fas fa-code"></i>
+                            <h3>NET Framework</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p>4.6.2 & 5.0</p>
+                            <a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net462-web-installer" class="download-link" target="_blank">Download</a>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fas fa-gamepad"></i>
+                            <h3>DirectX</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p>Redist (June 2010)</p>
+                            <a href="https://www.microsoft.com/en-us/download/details.aspx?id=8109" class="download-link" target="_blank">Download</a>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fas fa-play"></i>
+                            <h3>Launch Game</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p>Vanilla game once</p>
+                            <a href="https://www.youtube.com/watch?v=8ARhusN5SFI&t=0s" class="download-link" target="_blank">Guide</a>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fas fa-memory"></i>
+                            <h3>PageFile</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p>Critical setup</p>
+                            <a href="https://github.com/NomadsReach/Fallout-Anomaly/blob/master/PageFile.md" class="download-link" target="_blank">Setup</a>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fas fa-language"></i>
+                            <h3>Voice Files</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p>English required</p>
+                            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=552541227" class="download-link" target="_blank">Download</a>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fas fa-eye-slash"></i>
+                            <h3>Disable Overlays</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p>Prevent crashes</p>
+                            <a href="https://www.youtube.com/watch?v=7e_kY6LmQ0Y" class="download-link" target="_blank">Guide</a>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fas fa-trash"></i>
+                            <h3>HD Texture Pack</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p>Remove if needed</p>
+                            <a href="https://sharing.clickup.com/clip/p/t9014300118/775310b9-3dc0-402d-8726-2a184ee55560/How%20to%20remove%20HD%20Texture%20Pack..webm" class="download-link" target="_blank">Guide</a>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-compact warning-card">
+                         <div class="card-header-compact">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>Install Location</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p><strong>🚨 DO NOT install on root drive!</strong></p>
+                            <p>Use: <code>C:\Fallout Modlist\Fallout Anomaly</code></p>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-compact">
+                         <div class="card-header-compact">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Skills Required</h3>
+                         </div>
+                         <div class="card-content-compact">
+                            <p><strong>Basic computer knowledge</strong></p>
+                            <p>File management & troubleshooting</p>
+                         </div>
                       </div>
                    </div>
                 </div>
