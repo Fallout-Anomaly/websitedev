@@ -32,12 +32,12 @@
    <style>
       /* Collapsible sections styling to match Fallout terminal theme */
       .collapsible-section {
-         margin-bottom: 15px;
+         margin-bottom: 12px;
       }
       
       .collapsible-header {
          cursor: pointer;
-         padding: 10px;
+         padding: 8px 12px;
          background: rgba(0, 0, 0, 0.3);
          border: 1px solid #00ff00;
          border-radius: 3px;
@@ -54,18 +54,20 @@
       .collapsible-header strong {
          color: #00ff00;
          font-family: 'VT323', monospace;
-         font-size: 1.1em;
+         font-size: 0.95em;
+         text-shadow: 0 0 5px #00ff00;
       }
       
       .collapsible-icon {
          color: #00ff00;
-         font-size: 1.2em;
+         font-size: 1em;
          transition: transform 0.3s ease;
+         text-shadow: 0 0 5px #00ff00;
       }
       
       .collapsible-content {
-         padding: 15px;
-         margin-top: 5px;
+         padding: 12px;
+         margin-top: 3px;
          background: rgba(0, 0, 0, 0.2);
          border: 1px solid #00ff00;
          border-radius: 3px;
@@ -73,57 +75,215 @@
       }
       
       .collapsible-content h4 {
-         color: #00ff00;
-         font-family: 'VT323', monospace;
-         font-size: 1.1em;
-         margin: 15px 0 10px 0;
-         border-bottom: 1px solid #00ff00;
-         padding-bottom: 5px;
+         color: #00ff00 !important;
+         font-family: 'VT323', monospace !important;
+         font-size: 0.9em !important;
+         margin: 12px 0 8px 0 !important;
+         border-bottom: 1px solid #00ff00 !important;
+         padding-bottom: 4px !important;
+         text-shadow: 0 0 5px #00ff00 !important;
+         font-weight: bold !important;
+         text-transform: uppercase !important;
+         letter-spacing: 1px !important;
+         background: none !important;
+         border-top: none !important;
+         border-left: none !important;
+         border-right: none !important;
       }
       
       .collapsible-content h5 {
-         color: #00ff00;
-         font-family: 'VT323', monospace;
-         font-size: 1em;
-         margin: 10px 0 5px 0;
+         color: #00ff00 !important;
+         font-family: 'VT323', monospace !important;
+         font-size: 0.85em !important;
+         margin: 8px 0 6px 0 !important;
+         text-shadow: 0 0 5px #00ff00 !important;
+         font-weight: bold !important;
+         text-transform: uppercase !important;
+         letter-spacing: 1px !important;
+         background: none !important;
+         border: none !important;
       }
       
       .collapsible-content p {
          color: #cccccc;
-         margin: 10px 0;
-         line-height: 1.4;
+         margin: 8px 0;
+         line-height: 1.3;
+         font-size: 0.8em;
+         text-shadow: 0 0 3px #cccccc;
       }
       
       .collapsible-content .terminal-sublist {
-         margin: 10px 0;
+         margin: 8px 0;
       }
       
       .collapsible-content .terminal-sublist li {
          color: #cccccc;
-         margin: 5px 0;
-         padding-left: 10px;
+         margin: 4px 0;
+         padding-left: 8px;
+         font-size: 0.8em;
+         text-shadow: 0 0 3px #cccccc;
+         line-height: 1.3;
       }
       
       .collapsible-content .warning-box {
          background: rgba(255, 165, 0, 0.1);
          border: 1px solid #ffa500;
          border-radius: 3px;
-         padding: 10px;
-         margin: 10px 0;
+         padding: 8px;
+         margin: 8px 0;
       }
       
       .collapsible-content .warning-box p {
          color: #ffa500;
          margin: 0;
+         font-size: 0.8em;
+         text-shadow: 0 0 3px #ffa500;
       }
       
       .collapsible-content .warning-box a {
          color: #00ff00;
          text-decoration: underline;
+         text-shadow: 0 0 3px #00ff00;
       }
       
       .collapsible-content .warning-box a:hover {
          color: #ffffff;
+         text-shadow: 0 0 5px #ffffff;
+      }
+      
+      /* Sub-collapsible sections */
+      .sub-collapsible {
+         margin: 8px 0;
+         border-left: 2px solid #00ff00;
+         padding-left: 12px;
+      }
+      
+      .sub-collapsible-header {
+         cursor: pointer;
+         padding: 6px 8px;
+         background: rgba(0, 0, 0, 0.2);
+         border: 1px solid #00ff00;
+         border-radius: 3px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         transition: background-color 0.3s ease;
+         margin-bottom: 4px;
+      }
+      
+      .sub-collapsible-header:hover {
+         background: rgba(0, 255, 0, 0.08);
+      }
+      
+      .sub-collapsible-header strong {
+         color: #00ff00 !important;
+         font-family: 'VT323', monospace !important;
+         font-size: 0.85em !important;
+         text-shadow: 0 0 5px #00ff00 !important;
+         font-weight: bold !important;
+         text-transform: uppercase !important;
+         letter-spacing: 1px !important;
+         background: none !important;
+         border: none !important;
+      }
+      
+      .sub-collapsible-icon {
+         color: #00ff00;
+         font-size: 0.9em;
+         transition: transform 0.3s ease;
+         text-shadow: 0 0 5px #00ff00;
+      }
+      
+      .sub-collapsible-content {
+         padding: 8px;
+         margin-top: 2px;
+         background: rgba(0, 0, 0, 0.15);
+         border: 1px solid #00ff00;
+         border-radius: 3px;
+         border-top: none;
+      }
+      
+      .sub-collapsible-content p {
+         color: #cccccc;
+         margin: 6px 0;
+         line-height: 1.3;
+         font-size: 0.75em;
+         text-shadow: 0 0 3px #cccccc;
+      }
+      
+      .sub-collapsible-content .terminal-sublist {
+         margin: 6px 0;
+      }
+      
+      .sub-collapsible-content .terminal-sublist li {
+         color: #cccccc;
+         margin: 3px 0;
+         padding-left: 6px;
+         font-size: 0.75em;
+         text-shadow: 0 0 3px #cccccc;
+         line-height: 1.3;
+      }
+      
+      /* Compact list styling */
+      .compact-list {
+         margin: 6px 0;
+      }
+      
+      .compact-list li {
+         margin: 2px 0;
+         padding-left: 6px;
+         font-size: 0.75em;
+         line-height: 1.2;
+      }
+      
+      /* Skill grid layout */
+      .skill-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+         gap: 8px;
+         margin: 8px 0;
+      }
+      
+      .skill-item {
+         background: rgba(0, 0, 0, 0.2);
+         border: 1px solid #00ff00;
+         border-radius: 3px;
+         padding: 6px;
+         font-size: 0.75em;
+      }
+      
+      .skill-item strong {
+         color: #00ff00;
+         text-shadow: 0 0 3px #00ff00;
+      }
+      
+      .skill-item em {
+         color: #cccccc;
+         text-shadow: 0 0 3px #cccccc;
+      }
+      
+      /* Override any existing theme styles for headers */
+      #step5 h4, #step5 h5 {
+         color: #00ff00 !important;
+         font-family: 'VT323', monospace !important;
+         text-shadow: 0 0 5px #00ff00 !important;
+         font-weight: bold !important;
+         text-transform: uppercase !important;
+         letter-spacing: 1px !important;
+         background: none !important;
+         border: none !important;
+         margin: 8px 0 6px 0 !important;
+         padding: 0 !important;
+      }
+      
+      #step5 .collapsible-content h4 {
+         border-bottom: 1px solid #00ff00 !important;
+         padding-bottom: 4px !important;
+         margin: 12px 0 8px 0 !important;
+      }
+      
+      #step5 .collapsible-content h5 {
+         margin: 8px 0 6px 0 !important;
       }
    </style>
    <link rel="icon" href="data:image/svg+xml,
@@ -451,35 +611,42 @@
                            </ul>
                            <h4>How Skills Work</h4>
                            <p>Each SPECIAL stat has 4 tied Skills (Luck has 2 but boosts all Skills slightly). Skills range from 0 to 100 and affect gameplay like damage, crafting, healing, and more.</p>
-                           <h4>All Skills</h4>
-                           <ul class="terminal-sublist">
-                              <li><strong>[STR] Artillery:</strong> The handling of large machinery, determining your damage with heavy guns, such as the Cryolator, Flamer, and Gatling Guns. This affects both ballistic and energy types. Skill Ranks below 50 cause a damage penalty.</li>
-                              <li><strong>[CHR] Barter:</strong> Affects merchant prices and provides perks related to vendors, usually in special situations.</li>
-                              <li><strong>[INT] Chemistry:</strong> Allows crafting of chems and chem-based weapons, and affects alcohol-based abilities. Skill Rank increases chem duration (excluding Stimpaks and RadAway).</li>
-                              <li><strong>[PER] Demolitions:</strong> Governs use of explosives like grenades, mines, the Fatman, and rocket launcher. Rank affects damage and crafting ability. Below 50 = damage penalty.</li>
-                              <li><strong>[STR] Engineering:</strong> Enables construction of machinery and power armor perks. Rank boosts damage of robotic companions.</li>
-                              <li><strong>[END] Fitness:</strong> A measure of your overall physique. Rank directly increases max health and helps with swimming.</li>
-                              <li><strong>[LCK] Gambling:</strong> Influences several skills and grants "risky" but powerful perks. Rank improves chance of finding caps in containers.</li>
-                              <li><strong>[PER] Gunsmithery:</strong> Affects crafting ballistic firearms and ammo. Skill Rank increases V.A.T.S. range for ballistic weapons.</li>
-                              <li><strong>[INT] Hacking:</strong> Covers terminal access and robot sabotage. You start with 2 guesses, increased through perks.</li>
-                              <li><strong>[AGI] Handguns:</strong> Governs use of pistols and revolvers, both ballistic and energy. Below 50 = damage penalty.</li>
-                              <li><strong>[CHR] Influence:</strong> Your charisma and inspirational presence. Rank affects humanoid companion damage and perks related to settlements and social perception.</li>
-                              <li><strong>[PER] Lockpicking:</strong> Affects your ability to unlock doors and containers. Rank tightens the "sweet spot" range.</li>
-                              <li><strong>[PER] Longarms:</strong> Governs rifles and shotguns, both ballistic and energy. Below 50 = damage penalty.</li>
-                              <li><strong>[INT] Medicine:</strong> Covers healing knowledge and anatomy. Rank improves effectiveness of Stimpaks and RadAway.</li>
-                              <li><strong>[LCK] Opportunity:</strong> Enhances critical mechanics and related perks. Rank increases chances for raw Critical Strikes without needing to use the crit meter.</li>
-                              <li><strong>[CHR] Persuasion:</strong> Directly affects success in Speech Checks. Rank unlocks perks for intimidation, charm, and gender manipulation.</li>
-                              <li><strong>[AGI] Pickpocket:</strong> Governs theft. Perks allow inventory manipulation and offer combat bonuses if lightly dressed.</li>
-                              <li><strong>[STR] Robustness:</strong> Increases carry weight. Rank unlocks perks for better movement when overencumbered or while heavily burdened.</li>
-                              <li><strong>[AGI] Salvage:</strong> Affects scrap yield from breaking down junk. Shipments are excluded and self-delete when stored. Also affects casual ingredient gathering. Below 50 = reduced scrap gain.</li>
-                              <li><strong>[INT] Science:</strong> Governs energy weapon upgrades and battery crafting. Skill Rank increases V.A.T.S. range with energy weapons.</li>
-                              <li><strong>[AGI] Stealth:</strong> Reduces detection chance. Rank unlocks perks for Sneak Attack damage and advanced stealth tactics.</li>
-                              <li><strong>[END] Survival:</strong> Affects how well food heals. Rank unlocks cooking recipes and perks for lasting longer in harsh environments.</li>
-                              <li><strong>[END] Tinkering:</strong> Focuses on armor modding and melee weapon crafting. It's broad and passive-heavy, and does not offer a direct bonus on its own.</li>
-                              <li><strong>[END] Unarmed:</strong> Bare-handed and glove combat. Perks include speed and status effects. Below 50 = damage penalty.</li>
-                              <li><strong>[STR] Weaponry:</strong> Governs melee weapons like daggers, clubs, and swords. Rank provides situational and Power Attack bonuses. Below 50 = damage penalty.</li>
-                              <li><strong>[CHR] Zoology:</strong> Improves damage dealt by animal companions. Rank affects bestial allies like Dogmeat and enhances creature interaction perks.</li>
-                           </ul>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>All Skills (26 Total)</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <div class="skill-grid">
+                                     <div class="skill-item"><strong>[STR] Artillery:</strong> Heavy guns damage and handling</div>
+                                     <div class="skill-item"><strong>[CHR] Barter:</strong> Merchant prices and vendor perks</div>
+                                     <div class="skill-item"><strong>[INT] Chemistry:</strong> Chem crafting and duration</div>
+                                     <div class="skill-item"><strong>[PER] Demolitions:</strong> Explosives damage and crafting</div>
+                                     <div class="skill-item"><strong>[STR] Engineering:</strong> Machinery and power armor</div>
+                                     <div class="skill-item"><strong>[END] Fitness:</strong> Max health and swimming</div>
+                                     <div class="skill-item"><strong>[LCK] Gambling:</strong> Risk/reward perks and caps</div>
+                                     <div class="skill-item"><strong>[PER] Gunsmithery:</strong> Ballistic weapon crafting</div>
+                                     <div class="skill-item"><strong>[INT] Hacking:</strong> Terminal access and robot sabotage</div>
+                                     <div class="skill-item"><strong>[AGI] Handguns:</strong> Pistols and revolvers</div>
+                                     <div class="skill-item"><strong>[CHR] Influence:</strong> Companion damage and settlements</div>
+                                     <div class="skill-item"><strong>[PER] Lockpicking:</strong> Door and container access</div>
+                                     <div class="skill-item"><strong>[PER] Longarms:</strong> Rifles and shotguns</div>
+                                     <div class="skill-item"><strong>[INT] Medicine:</strong> Healing effectiveness</div>
+                                     <div class="skill-item"><strong>[LCK] Opportunity:</strong> Critical mechanics and perks</div>
+                                     <div class="skill-item"><strong>[CHR] Persuasion:</strong> Speech checks and social perks</div>
+                                     <div class="skill-item"><strong>[AGI] Pickpocket:</strong> Theft and inventory manipulation</div>
+                                     <div class="skill-item"><strong>[STR] Robustness:</strong> Carry weight and movement</div>
+                                     <div class="skill-item"><strong>[AGI] Salvage:</strong> Scrap yield and ingredient gathering</div>
+                                     <div class="skill-item"><strong>[INT] Science:</strong> Energy weapons and batteries</div>
+                                     <div class="skill-item"><strong>[AGI] Stealth:</strong> Detection and sneak attacks</div>
+                                     <div class="skill-item"><strong>[END] Survival:</strong> Food healing and environment</div>
+                                     <div class="skill-item"><strong>[END] Tinkering:</strong> Armor and melee weapon crafting</div>
+                                     <div class="skill-item"><strong>[END] Unarmed:</strong> Bare-handed combat</div>
+                                     <div class="skill-item"><strong>[STR] Weaponry:</strong> Melee weapons and power attacks</div>
+                                     <div class="skill-item"><strong>[CHR] Zoology:</strong> Animal companion damage</div>
+                                  </div>
+                               </div>
+                            </div>
                            <div class="warning-box">
                               <p>This system gives you more freedom to build the kind of character you want, with meaningful choices and better progression. Check your Pip-Boy after installing to get started.</p>
                            </div>
@@ -822,99 +989,81 @@
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <h4>Fallout Anomaly – Keybind Overview</h4>
-                           <h5>🎮 Movement & Core Controls</h5>
-                           <ul class="terminal-sublist">
-                              <li><strong>W</strong> – Move Forward</li>
-                              <li><strong>S</strong> – Move Backward</li>
-                              <li><strong>A</strong> – Strafe Left</li>
-                              <li><strong>D</strong> – Strafe Right</li>
-                              <li><strong>Left Shift</strong> – Sprint</li>
-                              <li><strong>C</strong> – Run</li>
-                              <li><strong>Spacebar</strong> – Jump</li>
-                              <li><strong>Left Ctrl</strong> – Sneak</li>
-                              <li><strong>Caps Lock</strong> – Toggle Always Run</li>
-                              <li><strong>X</strong> – Auto-Move</li>
-                              <li><strong>F</strong> – Activate / Interact</li>
-                           </ul>
-                           <h5>⚔️ Combat</h5>
-                           <ul class="terminal-sublist">
-                              <li><strong>Mouse1</strong> – Attack / Fire</li>
-                              <li><strong>Mouse2</strong> – Aim / Block</li>
-                              <li><strong>Left Alt</strong> – Bash / Power Attack / Grenade</li>
-                              <li><strong>R</strong> – Ready Weapon / Reload</li>
-                              <li><strong>Q</strong> – VATS</li>
-                              <li><strong>J</strong> – Holster / Lower Weapon</li>
-                           </ul>
-                           <h5>📱 Menu & Inventory</h5>
-                           <ul class="terminal-sublist">
-                              <li><strong>Tab</strong> – Open Pip-Boy</li>
-                              <li><strong>Mouse3</strong> – Toggle POV / Workshop</li>
-                              <li><strong>Esc</strong> – Pause</li>
-                              <li><strong>I</strong> – Quick Inventory</li>
-                              <li><strong>M</strong> – Quick Map</li>
-                           </ul>
-                           <h5>🛠️ Mod-Specific Keybinds</h5>
-                           <strong>Bullet in the Chamber</strong>
-                           <ul class="terminal-sublist">
-                              <li><strong>R</strong> – Reload / Check Ammo</li>
-                              <li><strong>J</strong> – Holster Weapon</li>
-                           </ul>
-                           <strong>Dank_ECO</strong>
-                           <ul class="terminal-sublist">
-                              <li><strong>Page Down (PgDn)</strong> – Drop Power Armor Workbench</li>
-                              <li><strong>Page Up (PgUp)</strong> – Drop Universal Workbench</li>
-                              <li><strong>U</strong> – Switch Weapon Attack Mode</li>
-                           </ul>
-                           <strong>Enhanced Movement</strong>
-                           <ul class="terminal-sublist">
-                              <li><strong>N</strong> – Dodge</li>
-                           </ul>
-                           <strong>HOTC (Hunter of the Commonwealth)</strong>
-                           <ul class="terminal-sublist">
-                              <li><strong>K</strong> – Examine Prey</li>
-                           </ul>
-                           <strong>VAFS Redux</strong>
-                           <ul class="terminal-sublist">
-                              <li><strong>Z</strong> – Use Critical</li>
-                              <li><strong>G</strong> – Toggle Focus</li>
-                           </ul>
-                           <strong>Immersive HUD</strong>
-                           <ul class="terminal-sublist">
-                              <li><strong>F2</strong> – Toggle HUD</li>
-                           </ul>
-                           <strong>MODExplorer</strong>
-                           <ul class="terminal-sublist">
-                              <li><strong>\</strong> – Show Mod List</li>
-                           </ul>
-                           <strong>Replaceable Armor Plates</strong>
-                           <ul class="terminal-sublist">
-                              <li><strong>Y</strong> – Use Armor Plate</li>
-                           </ul>
-                           <strong>Wasteland Codex</strong>
-                           <ul class="terminal-sublist">
-                              <li><strong>Numpad 3</strong> – Play Unlocked Entry</li>
-                           </ul>
-                           <strong>Vivid Weathers</strong>
-                           <ul class="terminal-sublist">
-                              <li><strong>Numpad /</strong> – Weather Hotkey</li>
-                           </ul>
-                           <strong>Wheel Menu</strong>
-                           <ul class="terminal-sublist">
-                              <li><strong>H</strong> – Open Wheel</li>
-                           </ul>
-                           <strong>Workshop Framework</strong>
-                           <ul class="terminal-sublist">
-                              <li><strong>Home</strong> – Workshop Mode</li>
-                           </ul>
-                           <strong>Barber/Surgery Camera</strong>
-                           <ul class="terminal-sublist">
-                              <li><strong>Arrow Down (↓)</strong> – Switch View</li>
-                           </ul>
-                           <strong>Persistent Volume Sliders</strong>
-                           <ul class="terminal-sublist">
-                              <li><strong>Numpad 0</strong> – Mute Music</li>
-                           </ul>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>🎮 Movement & Core Controls</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <ul class="compact-list">
+                                     <li><strong>W/S/A/D</strong> – Move Forward/Backward/Strafe Left/Right</li>
+                                     <li><strong>Left Shift</strong> – Sprint</li>
+                                     <li><strong>C</strong> – Run</li>
+                                     <li><strong>Spacebar</strong> – Jump</li>
+                                     <li><strong>Left Ctrl</strong> – Sneak</li>
+                                     <li><strong>Caps Lock</strong> – Toggle Always Run</li>
+                                     <li><strong>X</strong> – Auto-Move</li>
+                                     <li><strong>F</strong> – Activate / Interact</li>
+                                  </ul>
+                               </div>
+                            </div>
+                            
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>⚔️ Combat Controls</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <ul class="compact-list">
+                                     <li><strong>Mouse1</strong> – Attack / Fire</li>
+                                     <li><strong>Mouse2</strong> – Aim / Block</li>
+                                     <li><strong>Left Alt</strong> – Bash / Power Attack / Grenade</li>
+                                     <li><strong>R</strong> – Ready Weapon / Reload</li>
+                                     <li><strong>Q</strong> – VATS</li>
+                                     <li><strong>J</strong> – Holster / Lower Weapon</li>
+                                  </ul>
+                               </div>
+                            </div>
+                            
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>📱 Menu & Inventory</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <ul class="compact-list">
+                                     <li><strong>Tab</strong> – Open Pip-Boy</li>
+                                     <li><strong>Mouse3</strong> – Toggle POV / Workshop</li>
+                                     <li><strong>Esc</strong> – Pause</li>
+                                     <li><strong>I</strong> – Quick Inventory</li>
+                                     <li><strong>M</strong> – Quick Map</li>
+                                  </ul>
+                               </div>
+                            </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🛠️ Mod-Specific Keybinds</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Bullet in Chamber:</strong> R (Reload/Check), J (Holster)</div>
+                                    <div class="skill-item"><strong>Dank_ECO:</strong> PgDn (PA Workbench), PgUp (Universal), U (Attack Mode)</div>
+                                    <div class="skill-item"><strong>Enhanced Movement:</strong> N (Dodge)</div>
+                                    <div class="skill-item"><strong>HOTC:</strong> K (Examine Prey)</div>
+                                    <div class="skill-item"><strong>VAFS Redux:</strong> Z (Critical), G (Focus)</div>
+                                    <div class="skill-item"><strong>Immersive HUD:</strong> F2 (Toggle HUD)</div>
+                                    <div class="skill-item"><strong>MODExplorer:</strong> \ (Show Mod List)</div>
+                                    <div class="skill-item"><strong>Armor Plates:</strong> Y (Use Plate)</div>
+                                    <div class="skill-item"><strong>Wasteland Codex:</strong> Numpad 3 (Play Entry)</div>
+                                    <div class="skill-item"><strong>Vivid Weathers:</strong> Numpad / (Weather)</div>
+                                    <div class="skill-item"><strong>Wheel Menu:</strong> H (Open Wheel)</div>
+                                    <div class="skill-item"><strong>Workshop:</strong> Home (Workshop Mode)</div>
+                                    <div class="skill-item"><strong>Barber/Surgery:</strong> ↓ (Switch View)</div>
+                                    <div class="skill-item"><strong>Volume Sliders:</strong> Numpad 0 (Mute Music)</div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -959,9 +1108,26 @@
    <script src="../src/js/script.js"></script>
    <script src="../src/js/navlinks.js"></script>
    <script>
+      // Collapsible functionality for Step 5 sections
       function toggleCollapsible(header) {
          const content = header.nextElementSibling;
          const icon = header.querySelector('.collapsible-icon i');
+         
+         if (content.style.display === 'none' || content.style.display === '') {
+            content.style.display = 'block';
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-up');
+         } else {
+            content.style.display = 'none';
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+         }
+      }
+      
+      // Sub-collapsible functionality
+      function toggleSubCollapsible(header) {
+         const content = header.nextElementSibling;
+         const icon = header.querySelector('.sub-collapsible-icon i');
          
          if (content.style.display === 'none' || content.style.display === '') {
             content.style.display = 'block';
@@ -980,6 +1146,17 @@
          collapsibleContents.forEach(content => {
             content.style.display = 'none';
          });
+         
+         const subCollapsibleContents = document.querySelectorAll('.sub-collapsible-content');
+         subCollapsibleContents.forEach(content => {
+            content.style.display = 'none';
+         });
+         
+         // Initialize search functionality
+         const searchInput = document.getElementById('step5Search');
+         if (searchInput) {
+            searchInput.addEventListener('input', performSearch);
+         }
       });
    </script>
 </body>
