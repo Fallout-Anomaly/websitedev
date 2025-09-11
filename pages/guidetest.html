@@ -38,25 +38,21 @@
          --header-bg: rgba(var(--terminal-bg-rgb, 0, 0, 0), 0.3);
          --highlight-color: var(--terminal-highlight, #00ff00);
          --shadow-color: var(--terminal-shadow-color, rgba(0, 255, 0, 0.2));
-         --glow-effect: var(--terminal-glow, 0 0 2px rgba(0, 255, 0, 0.3));
+         --glow-effect: var(--terminal-glow, 0 0 5px rgba(0, 255, 0, 0.6));
       }
       
-      /* Fixed theme switcher positioning */
+      /* Navigation styling for theme switcher */
       .nav-fx-toggle {
-         position: fixed;
-         bottom: 20px;
-         right: 20px;
-         z-index: 999;
          display: flex;
          align-items: center;
          gap: var(--spacing-xs);
+         margin-left: auto;
       }
       
       #theme-switcher-container {
          display: flex;
          align-items: center;
       }
-      
       
       
       /* Smooth theme transitions */
@@ -88,15 +84,15 @@
       .collapsible-header strong {
          color: var(--primary-color);
          font-family: 'VT323', monospace;
-         font-size: 1.05em;
-         text-shadow: 0 0 2px var(--primary-color);
+         font-size: 0.95em;
+         text-shadow: var(--glow-effect);
       }
       
       .collapsible-icon {
          color: var(--primary-color);
          font-size: 1em;
          transition: transform 0.3s ease;
-         text-shadow: 0 0 2px var(--primary-color);
+         text-shadow: var(--glow-effect);
       }
       
       .collapsible-content {
@@ -111,11 +107,11 @@
       .collapsible-content h4 {
          color: var(--primary-color) !important;
          font-family: 'VT323', monospace !important;
-         font-size: 1em !important;
+         font-size: 0.9em !important;
          margin: 12px 0 8px 0 !important;
          border-bottom: 1px solid var(--primary-color) !important;
          padding-bottom: 4px !important;
-         text-shadow: 0 0 2px var(--primary-color) !important;
+         text-shadow: 0 0 5px var(--primary-color) !important;
          font-weight: bold !important;
          text-transform: uppercase !important;
          letter-spacing: 1px !important;
@@ -128,9 +124,9 @@
       .collapsible-content h5 {
          color: var(--primary-color) !important;
          font-family: 'VT323', monospace !important;
-         font-size: 0.95em !important;
+         font-size: 0.85em !important;
          margin: 8px 0 6px 0 !important;
-         text-shadow: 0 0 2px var(--primary-color) !important;
+         text-shadow: 0 0 5px var(--primary-color) !important;
          font-weight: bold !important;
          text-transform: uppercase !important;
          letter-spacing: 1px !important;
@@ -141,9 +137,9 @@
       .collapsible-content p {
          color: var(--text-color);
          margin: 8px 0;
-         line-height: 1.4;
-         font-size: 0.9em;
-         text-shadow: 0 0 1px var(--text-color);
+         line-height: 1.3;
+         font-size: 0.8em;
+         text-shadow: 0 0 3px var(--text-color);
       }
       
       .collapsible-content .terminal-sublist {
@@ -154,9 +150,9 @@
          color: var(--text-color);
          margin: 4px 0;
          padding-left: 8px;
-         font-size: 0.9em;
-         text-shadow: 0 0 1px var(--text-color);
-         line-height: 1.4;
+         font-size: 0.8em;
+         text-shadow: 0 0 3px var(--text-color);
+         line-height: 1.3;
       }
       
       .collapsible-content .warning-box {
@@ -177,7 +173,7 @@
       .collapsible-content .warning-box a {
          color: var(--primary-color);
          text-decoration: underline;
-         text-shadow: 0 0 1px var(--highlight-color);
+         text-shadow: 0 0 3px var(--highlight-color);
       }
       
       .collapsible-content .warning-box a:hover {
@@ -216,8 +212,8 @@
       .sub-collapsible-header strong {
          color: var(--primary-color) !important;
          font-family: 'VT323', monospace !important;
-         font-size: 0.95em !important;
-         text-shadow: 0 0 2px var(--primary-color) !important;
+         font-size: 0.85em !important;
+         text-shadow: 0 0 5px var(--primary-color) !important;
          font-weight: bold !important;
          text-transform: uppercase !important;
          letter-spacing: 1px !important;
@@ -229,7 +225,7 @@
          color: var(--primary-color);
          font-size: 0.9em;
          transition: transform 0.3s ease;
-         text-shadow: 0 0 2px var(--primary-color);
+         text-shadow: var(--glow-effect);
       }
       
       .sub-collapsible-content {
@@ -245,9 +241,9 @@
       .sub-collapsible-content p {
          color: var(--text-color);
          margin: 6px 0;
-         line-height: 1.4;
-         font-size: 0.85em;
-         text-shadow: 0 0 1px var(--text-color);
+         line-height: 1.3;
+         font-size: 0.75em;
+         text-shadow: 0 0 3px var(--text-color);
       }
       
       .sub-collapsible-content .terminal-sublist {
@@ -258,9 +254,9 @@
          color: var(--text-color);
          margin: 3px 0;
          padding-left: 6px;
-         font-size: 0.85em;
-         text-shadow: 0 0 1px var(--text-color);
-         line-height: 1.4;
+         font-size: 0.75em;
+         text-shadow: 0 0 3px var(--text-color);
+         line-height: 1.3;
       }
       
       /* Compact list styling */
@@ -271,8 +267,8 @@
       .compact-list li {
          margin: 2px 0;
          padding-left: 6px;
-         font-size: 0.85em;
-         line-height: 1.3;
+         font-size: 0.75em;
+         line-height: 1.2;
       }
       
       /* Skill grid layout */
@@ -288,7 +284,7 @@
          border: 1px solid var(--border-color);
          border-radius: 3px;
          padding: 8px;
-         font-size: 0.85em;
+         font-size: 0.75em;
          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
          transition: background-color 0.3s ease;
       }
@@ -299,19 +295,19 @@
       
       .skill-item strong {
          color: var(--primary-color);
-         text-shadow: 0 0 1px var(--highlight-color);
+         text-shadow: 0 0 3px var(--highlight-color);
       }
       
       .skill-item em {
          color: var(--text-color);
-         text-shadow: 0 0 1px var(--text-color);
+         text-shadow: 0 0 3px var(--text-color);
       }
       
       /* Override any existing theme styles for headers */
       #step5 h4, #step5 h5 {
          color: var(--primary-color) !important;
          font-family: 'VT323', monospace !important;
-         text-shadow: 0 0 2px var(--primary-color) !important;
+         text-shadow: 0 0 5px var(--primary-color) !important;
          font-weight: bold !important;
          text-transform: uppercase !important;
          letter-spacing: 1px !important;
@@ -342,7 +338,7 @@
       .tab-content .sub-collapsible-content h5 {
          color: var(--primary-color) !important;
          font-family: 'VT323', monospace !important;
-         text-shadow: 0 0 2px var(--primary-color) !important;
+         text-shadow: 0 0 5px var(--primary-color) !important;
          font-weight: bold !important;
          text-transform: uppercase !important;
          letter-spacing: 1px !important;
@@ -375,7 +371,7 @@
       html body .tab-content .sub-collapsible-content h5 {
          color: var(--primary-color) !important;
          font-family: 'VT323', monospace !important;
-         text-shadow: 0 0 2px var(--primary-color) !important;
+         text-shadow: 0 0 5px var(--primary-color) !important;
          font-weight: bold !important;
          text-transform: uppercase !important;
          letter-spacing: 1px !important;
@@ -463,14 +459,11 @@
          <a href="index.html" class="nav-logo">
          <i class="fas fa-radiation icon"></i> FALLOUT ANOMALY </a>
          <div id="nav-links-container"></div>
+         <div class="nav-fx-toggle">
+            <div id="theme-switcher-container"></div>
+         </div>
       </div>
    </nav>
-   
-   <!-- Fixed theme switcher -->
-   <div class="nav-fx-toggle">
-      <div id="theme-switcher-container"></div>
-   </div>
-   
    <div class="loading-screen">
       <div class="pip-os-boot"></div>
       <div class="continue-prompt hidden">Press any key or click to continue...</div>
