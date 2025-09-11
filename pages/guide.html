@@ -27,8 +27,469 @@
    <!-- <meta name="twitter:site" content="@[YourSiteTwitterHandle]" /> -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+   <style>
+      /* Theme-aware CSS variables - Map to theme system variables */
+      :root {
+         --primary-color: var(--terminal-text, #00ff00);
+         --text-color: var(--terminal-text-muted, #cccccc);
+         --border-color: var(--terminal-border, #00ff00);
+         --hover-bg: rgba(var(--terminal-text-rgb, 0, 255, 0), 0.1);
+         --card-bg: var(--card-bg, rgba(0, 0, 0, 0.2));
+         --header-bg: rgba(var(--terminal-bg-rgb, 0, 0, 0), 0.3);
+         --highlight-color: var(--terminal-highlight, #00ff00);
+         --shadow-color: var(--terminal-shadow-color, rgba(0, 255, 0, 0.2));
+         --glow-effect: var(--terminal-glow, 0 0 5px rgba(0, 255, 0, 0.6));
+      }
+      
+      /* Navigation styling for theme switcher */
+      .nav-fx-toggle {
+         display: flex;
+         align-items: center;
+         gap: var(--spacing-xs);
+         margin-left: auto;
+      }
+      
+      #theme-switcher-container {
+         display: flex;
+         align-items: center;
+      }
+      
+      /* Theme switcher as navigation item */
+      .theme-switcher-nav-item {
+         display: flex;
+         align-items: center;
+      }
+      
+      .theme-switcher-nav-item .theme-switcher-button {
+         background: none;
+         border: 1px solid var(--terminal-border);
+         color: var(--terminal-text);
+         padding: 8px 12px;
+         font-family: 'VT323', monospace;
+         font-size: 0.9em;
+         text-transform: uppercase;
+         letter-spacing: 1px;
+         cursor: pointer;
+         transition: all 0.3s ease;
+         display: flex;
+         align-items: center;
+         gap: 6px;
+         text-decoration: none;
+      }
+      
+      .theme-switcher-nav-item .theme-switcher-button:hover {
+         background: rgba(var(--terminal-text-rgb), 0.1);
+         border-color: var(--terminal-highlight);
+         color: var(--terminal-highlight);
+      }
+      
+      .theme-switcher-nav-item .theme-switcher-button .icon {
+         font-size: 0.8em;
+      }
+      
+      .theme-switcher-nav-item .theme-switcher-button .dropdown-icon {
+         font-size: 0.7em;
+         transition: transform 0.3s ease;
+      }
+      
+      .theme-switcher-nav-item .theme-switcher-button[aria-expanded="true"] .dropdown-icon {
+         transform: rotate(180deg);
+      }
+      
+      
+      /* Smooth theme transitions */
+      * {
+         transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, text-shadow 0.3s ease;
+      }
+      
+      /* Collapsible sections styling to match Fallout terminal theme */
+      .collapsible-section {
+         margin-bottom: 12px;
+      }
+      
+      .collapsible-header {
+         cursor: pointer;
+         padding: 8px 12px;
+         background: var(--header-bg);
+         border: 1px solid var(--border-color);
+         border-radius: 3px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         transition: background-color 0.3s ease;
+      }
+      
+      .collapsible-header:hover {
+         background: var(--hover-bg);
+      }
+      
+      .collapsible-header strong {
+         color: var(--primary-color);
+         font-family: 'VT323', monospace;
+         font-size: 0.95em;
+         text-shadow: var(--glow-effect);
+      }
+      
+      .collapsible-icon {
+         color: var(--primary-color);
+         font-size: 1em;
+         transition: transform 0.3s ease;
+         text-shadow: var(--glow-effect);
+      }
+      
+      .collapsible-content {
+         padding: 12px;
+         margin-top: 3px;
+         background: var(--card-bg);
+         border: 1px solid var(--border-color);
+         border-radius: 3px;
+         border-top: none;
+      }
+      
+      .collapsible-content h4 {
+         color: var(--primary-color) !important;
+         font-family: 'VT323', monospace !important;
+         font-size: 0.9em !important;
+         margin: 12px 0 8px 0 !important;
+         border-bottom: 1px solid var(--primary-color) !important;
+         padding-bottom: 4px !important;
+         text-shadow: 0 0 5px var(--primary-color) !important;
+         font-weight: bold !important;
+         text-transform: uppercase !important;
+         letter-spacing: 1px !important;
+         background: none !important;
+         border-top: none !important;
+         border-left: none !important;
+         border-right: none !important;
+      }
+      
+      .collapsible-content h5 {
+         color: var(--primary-color) !important;
+         font-family: 'VT323', monospace !important;
+         font-size: 0.85em !important;
+         margin: 8px 0 6px 0 !important;
+         text-shadow: 0 0 5px var(--primary-color) !important;
+         font-weight: bold !important;
+         text-transform: uppercase !important;
+         letter-spacing: 1px !important;
+         background: none !important;
+         border: none !important;
+      }
+      
+      .collapsible-content p {
+         color: var(--text-color);
+         margin: 8px 0;
+         line-height: 1.3;
+         font-size: 0.8em;
+         text-shadow: 0 0 3px var(--text-color);
+      }
+      
+      .collapsible-content .terminal-sublist {
+         margin: 8px 0;
+      }
+      
+      .collapsible-content .terminal-sublist li {
+         color: var(--text-color);
+         margin: 4px 0;
+         padding-left: 8px;
+         font-size: 0.8em;
+         text-shadow: 0 0 3px var(--text-color);
+         line-height: 1.3;
+      }
+      
+      .collapsible-content .warning-box {
+         background: rgba(255, 165, 0, 0.1);
+         border: 1px solid #ffa500;
+         border-radius: 3px;
+         padding: 8px;
+         margin: 8px 0;
+      }
+      
+      .collapsible-content .warning-box p {
+         color: #ffa500;
+         margin: 0;
+         font-size: 0.8em;
+         text-shadow: 0 0 3px #ffa500;
+      }
+      
+      .collapsible-content .warning-box a {
+         color: var(--primary-color);
+         text-decoration: underline;
+         text-shadow: 0 0 3px var(--highlight-color);
+      }
+      
+      .collapsible-content .warning-box a:hover {
+         color: #ffffff;
+         text-shadow: 0 0 5px #ffffff;
+      }
+      
+      /* Sub-collapsible sections */
+      .sub-collapsible {
+         margin: 12px 0;
+         background: rgba(0, 0, 0, 0.15);
+         border: 1px solid var(--border-color);
+         border-radius: 5px;
+         padding: 8px;
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      
+      .sub-collapsible-header {
+         cursor: pointer;
+         padding: 8px 12px;
+         background: rgba(0, 0, 0, 0.3);
+         border: 1px solid var(--border-color);
+         border-radius: 3px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         transition: background-color 0.3s ease;
+         margin-bottom: 6px;
+         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      }
+      
+      .sub-collapsible-header:hover {
+         background: rgba(0, 255, 0, 0.08);
+      }
+      
+      .sub-collapsible-header strong {
+         color: var(--primary-color) !important;
+         font-family: 'VT323', monospace !important;
+         font-size: 0.85em !important;
+         text-shadow: 0 0 5px var(--primary-color) !important;
+         font-weight: bold !important;
+         text-transform: uppercase !important;
+         letter-spacing: 1px !important;
+         background: none !important;
+         border: none !important;
+      }
+      
+      .sub-collapsible-icon {
+         color: var(--primary-color);
+         font-size: 0.9em;
+         transition: transform 0.3s ease;
+         text-shadow: var(--glow-effect);
+      }
+      
+      .sub-collapsible-content {
+         padding: 12px;
+         margin-top: 6px;
+         background: rgba(0, 0, 0, 0.25);
+         border: 1px solid var(--border-color);
+         border-radius: 3px;
+         border-top: none;
+         box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+      }
+      
+      .sub-collapsible-content p {
+         color: var(--text-color);
+         margin: 6px 0;
+         line-height: 1.3;
+         font-size: 0.75em;
+         text-shadow: 0 0 3px var(--text-color);
+      }
+      
+      .sub-collapsible-content .terminal-sublist {
+         margin: 6px 0;
+      }
+      
+      .sub-collapsible-content .terminal-sublist li {
+         color: var(--text-color);
+         margin: 3px 0;
+         padding-left: 6px;
+         font-size: 0.75em;
+         text-shadow: 0 0 3px var(--text-color);
+         line-height: 1.3;
+      }
+      
+      /* Compact list styling */
+      .compact-list {
+         margin: 6px 0;
+      }
+      
+      .compact-list li {
+         margin: 2px 0;
+         padding-left: 6px;
+         font-size: 0.75em;
+         line-height: 1.2;
+      }
+      
+      /* Skill grid layout */
+      .skill-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+         gap: 8px;
+         margin: 8px 0;
+      }
+      
+      .skill-item {
+         background: rgba(0, 0, 0, 0.3);
+         border: 1px solid var(--border-color);
+         border-radius: 3px;
+         padding: 8px;
+         font-size: 0.75em;
+         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+         transition: background-color 0.3s ease;
+      }
+      
+      .skill-item:hover {
+         background: rgba(0, 0, 0, 0.4);
+      }
+      
+      .skill-item strong {
+         color: var(--primary-color);
+         text-shadow: 0 0 3px var(--highlight-color);
+      }
+      
+      .skill-item em {
+         color: var(--text-color);
+         text-shadow: 0 0 3px var(--text-color);
+      }
+      
+      /* Override any existing theme styles for headers */
+      #step5 h4, #step5 h5 {
+         color: var(--primary-color) !important;
+         font-family: 'VT323', monospace !important;
+         text-shadow: 0 0 5px var(--primary-color) !important;
+         font-weight: bold !important;
+         text-transform: uppercase !important;
+         letter-spacing: 1px !important;
+         background: none !important;
+         border: none !important;
+         margin: 8px 0 6px 0 !important;
+         padding: 0 !important;
+      }
+      
+      #step5 .collapsible-content h4 {
+         border-bottom: 1px solid var(--primary-color) !important;
+         padding-bottom: 4px !important;
+         margin: 12px 0 8px 0 !important;
+      }
+      
+      #step5 .collapsible-content h5 {
+         margin: 8px 0 6px 0 !important;
+      }
+   </style>
    <link rel="stylesheet" href="../src/css/style.css">
    <link rel="stylesheet" href="../src/css/themes.css">
+   <style>
+      /* Final override for headers - must come after external CSS */
+      .tab-content .collapsible-content h4,
+      .tab-content .collapsible-content h5,
+      .tab-content .sub-collapsible-header strong,
+      .tab-content .sub-collapsible-content h4,
+      .tab-content .sub-collapsible-content h5 {
+         color: var(--primary-color) !important;
+         font-family: 'VT323', monospace !important;
+         text-shadow: 0 0 5px var(--primary-color) !important;
+         font-weight: bold !important;
+         text-transform: uppercase !important;
+         letter-spacing: 1px !important;
+         background: none !important;
+         border: none !important;
+         margin: 8px 0 6px 0 !important;
+         padding: 0 !important;
+      }
+      
+      .tab-content .collapsible-content h4 {
+         border-bottom: 1px solid var(--primary-color) !important;
+         padding-bottom: 4px !important;
+         margin: 12px 0 8px 0 !important;
+      }
+      
+      .tab-content .collapsible-content h5 {
+         margin: 8px 0 6px 0 !important;
+      }
+      
+      /* Ultra-specific overrides for stubborn theme styles */
+      body .tab-content .collapsible-content h4,
+      body .tab-content .collapsible-content h5,
+      body .tab-content .sub-collapsible-header strong,
+      body .tab-content .sub-collapsible-content h4,
+      body .tab-content .sub-collapsible-content h5,
+      html body .tab-content .collapsible-content h4,
+      html body .tab-content .collapsible-content h5,
+      html body .tab-content .sub-collapsible-header strong,
+      html body .tab-content .sub-collapsible-content h4,
+      html body .tab-content .sub-collapsible-content h5 {
+         color: var(--primary-color) !important;
+         font-family: 'VT323', monospace !important;
+         text-shadow: 0 0 5px var(--primary-color) !important;
+         font-weight: bold !important;
+         text-transform: uppercase !important;
+         letter-spacing: 1px !important;
+         background: none !important;
+         border: none !important;
+         margin: 8px 0 6px 0 !important;
+         padding: 0 !important;
+      }
+      
+      body .tab-content .collapsible-content h4,
+      html body .tab-content .collapsible-content h4 {
+         border-bottom: 1px solid var(--primary-color) !important;
+         padding-bottom: 4px !important;
+         margin: 12px 0 8px 0 !important;
+      }
+      
+      /* Override sub-headings and outlined text */
+      .tab-content .collapsible-content ul li strong,
+      .tab-content .collapsible-content ol li strong,
+      .tab-content .collapsible-content p strong,
+      .tab-content .sub-collapsible-content ul li strong,
+      .tab-content .sub-collapsible-content ol li strong,
+      .tab-content .sub-collapsible-content p strong,
+      body .tab-content .collapsible-content ul li strong,
+      body .tab-content .collapsible-content ol li strong,
+      body .tab-content .collapsible-content p strong,
+      body .tab-content .sub-collapsible-content ul li strong,
+      body .tab-content .sub-collapsible-content ol li strong,
+      body .tab-content .sub-collapsible-content p strong,
+      html body .tab-content .collapsible-content ul li strong,
+      html body .tab-content .collapsible-content ol li strong,
+      html body .tab-content .collapsible-content p strong,
+      html body .tab-content .sub-collapsible-content ul li strong,
+      html body .tab-content .sub-collapsible-content ol li strong,
+      html body .tab-content .sub-collapsible-content p strong {
+         color: var(--primary-color) !important;
+         font-weight: bold !important;
+         text-shadow: 0 0 3px var(--primary-color) !important;
+         background: none !important;
+         border: none !important;
+      }
+      
+      /* Override all text in collapsible sections */
+      .tab-content .collapsible-content,
+      .tab-content .sub-collapsible-content,
+      body .tab-content .collapsible-content,
+      body .tab-content .sub-collapsible-content,
+      html body .tab-content .collapsible-content,
+      html body .tab-content .sub-collapsible-content {
+         color: var(--text-color) !important;
+      }
+      
+      .tab-content .collapsible-content p,
+      .tab-content .sub-collapsible-content p,
+      body .tab-content .collapsible-content p,
+      body .tab-content .sub-collapsible-content p,
+      html body .tab-content .collapsible-content p,
+      html body .tab-content .sub-collapsible-content p {
+         color: var(--text-color) !important;
+      }
+      
+      .tab-content .collapsible-content ul li,
+      .tab-content .collapsible-content ol li,
+      .tab-content .sub-collapsible-content ul li,
+      .tab-content .sub-collapsible-content ol li,
+      body .tab-content .collapsible-content ul li,
+      body .tab-content .collapsible-content ol li,
+      body .tab-content .sub-collapsible-content ul li,
+      body .tab-content .sub-collapsible-content ol li,
+      html body .tab-content .collapsible-content ul li,
+      html body .tab-content .collapsible-content ol li,
+      html body .tab-content .sub-collapsible-content ul li,
+      html body .tab-content .sub-collapsible-content ol li {
+         color: var(--text-color) !important;
+      }
+   </style>
    <link rel="icon" href="data:image/svg+xml,
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
       <text y='.9em' font-size='90'>☢️</text>
@@ -60,6 +521,7 @@
                   <button class="tab-button" data-tab="step3">STEP 3: LAUNCHING</button>
                   <button class="tab-button" data-tab="step4">STEP 4: KNOWN ISSUES</button>
                   <button class="tab-button" data-tab="step5">STEP 5: GAMEPLAY</button>
+                  <button class="tab-button" data-tab="support">SUPPORT & COMMUNITY</button>
                </div>
                <div class="tab-content active" id="step1">
                   <div class="terminal-list grid-layout">
@@ -81,14 +543,28 @@
                      </div>
                      <div class="terminal-list-item">
                         <strong>
-                        <i class="fas fa-exclamation-triangle"></i>IMPORTANT NOTICE TESTNOMAD</strong>
+                        <i class="fas fa-exclamation-triangle"></i>IMPORTANT NOTICE</strong>
                         <ul class="terminal-sublist">
-                           <li>Update Fallout 4 to the next-gen version</li>
-                           <li>Disable all overlays (Steam, Medal, etc.)</li>
-                           <li>Set up page file for performance</li>
-                           <li>Configure anti-virus exclusions</li>
+                           <li>🚨 YOU ABSOLUTELY NEED TO UPDATE FALLOUT 4 TO THE NEXT-GEN VERSION. THIS IS MANDATORY FOR WABBAJACK TO RUN ITS DOWNGRADE INSTALL.</li>
+                           <li>🚨 YOU ABSOLUTELY NEED TO DISABLE OVERLAYS SUCH AS STEAM, MEDAL, ETC. THESE ARE KNOWN TO CAUSE CRASHES.</li>
+                           <li>🚨 YOU ABSOLUTELY NEED TO SET UP PAGE FILE. THIS WILL HELP PREVENT CRASHES OR PERFORMANCE ISSUES.</li>
+                           <li>🚨 YOU ABSOLUTELY NEED TO SET ANTI-VIRUS EXCLUSIONS. AV IS KNOWN TO WRECK HAVOC WITH MODS SUCH AS ENB, ETC.</li>
                            <li>Install in dedicated folder (not root drive)</li>
                            <li>Nexus Premium recommended for faster downloads</li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-download"></i>REQUIRED COMPONENTS</strong>
+                        <ul class="terminal-sublist">
+                           <li><a href="https://github.com/abbodi1406/vcredist/releases/download/v0.82.0/VisualCppRedist_AIO_x86_x64.exe" target="_blank">Microsoft Visual C++ x64 and x86</a> - Must be installed!</li>
+                           <li><a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net462-web-installer" target="_blank">NET Framework 4.6.2 & 5.0</a> - Required for mod list functionality</li>
+                           <li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=8109" target="_blank">DirectX Redist (June 2010)</a> - Ensures proper DirectX support</li>
+                           <li><a href="https://www.youtube.com/watch?v=8ARhusN3SFI&t=0s" target="_blank">Launch vanilla game at least once</a> - Ensures clean installation</li>
+                           <li><a href="https://github.com/NomadsReach/Fallout-Anomaly/blob/master/PageFile.md" target="_blank">PageFile Setup</a> - Critical for performance</li>
+                           <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=552541227" target="_blank">English Voice Files</a> - Required for non-English games</li>
+                           <li><a href="https://www.youtube.com/watch?v=7e_kY6LmQ0Y" target="_blank">Disable Overlays</a> - Prevent crashes and performance issues</li>
+                           <li><a href="https://sharing.clickup.com/clip/p/t9014300118/775310b9-3dc0-402d-8726-2a184ee55560/How%20to%20remove%20HD%20Texture%20Pack..webm" target="_blank">HD Texture Pack Removal</a> - If needed</li>
                         </ul>
                      </div>
                   </div>
@@ -97,48 +573,63 @@
                   <div class="terminal-list">
                      <div class="terminal-list-item">
                         <strong>
-                        <i class="fas fa-download"></i>Download Required Components </strong>
-                        <ul class="terminal-sublist">
-                           <li>Microsoft Visual C++ x64 and x86</li>
-                           <li>NET Framework 4.6.2 & 5.0</li>
-                           <li>DirectX Redist (June 2010)</li>
-                           <li>English Voice Files (if not using English)</li>
-                           <li>Verify all components are properly installed</li>
-                        </ul>
-                     </div>
-                     <div class="terminal-list-item">
-                        <strong>
-                        <i class="fas fa-gamepad"></i>Game Setup </strong>
-                        <ul class="terminal-sublist">
-                           <li>Launch vanilla game at least once</li>
-                           <li>Update to version 1.10.980.0</li>
-                           <li>Remove HD texture pack if installed</li>
-                           <li>Verify game files through Steam</li>
-                           <li>Install in dedicated folder (not root drive)</li>
-                           <li>Ensure clean game installation</li>
-                        </ul>
-                     </div>
-                     <div class="terminal-list-item">
-                        <strong>
-                        <i class="fas fa-cogs"></i>System Configuration </strong>
-                        <ul class="terminal-sublist">
-                           <li>Set up page file (minimum 16GB)</li>
-                           <li>Configure anti-virus exclusions for game folder</li>
-                           <li>Disable all overlays (Steam, Medal, etc.)</li>
-                           <li>Update graphics drivers</li>
-                           <li>Add exceptions for MO2.exe, Fallout4.exe, F4SE_Loader.exe</li>
-                           <li>Add 'Stock Folder' from Mod Organizer 2 to exceptions</li>
-                        </ul>
-                     </div>
-                     <div class="terminal-list-item">
-                        <strong>
                         <i class="fas fa-database"></i>Wabbajack Setup </strong>
                         <ul class="terminal-sublist">
-                           <li>Log into Nexus in Wabbajack</li>
+                           <li>Log into Nexus in Wabbajack (click ⚙️ cogwheel, log in under Nexus panel)</li>
                            <li>Set Install Location and Download Location on same drive</li>
+                           <li>Locate Fallout Anomaly in Wabbajack Browser and download</li>
                            <li>Verify installation after completion</li>
                            <li>Check for errors in verification process</li>
-                           <li>Contact Discord support if issues persist</li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-exclamation-triangle"></i>Common Issues & Fixes </strong>
+                        <ul class="terminal-sublist">
+                           <li><strong>"Could Not Download MOD":</strong> Manually download and place in Wabbajack download folder</li>
+                           <li><strong>"Mod Is Not a Whitelisted Download":</strong> Modlist may have been updated, wait for new release</li>
+                           <li><strong>"Missing Game Files":</strong> Ensure game is updated to next-gen version</li>
+                           <li><strong>"Wabbajack Could Not Find My Game Folder":</strong> Pirated versions not supported, ensure you own Fallout 4 on Steam</li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-download"></i>Troubleshooting Download Issues </strong>
+                        <ul class="terminal-sublist">
+                           <li><strong>Google Drive Issues:</strong> Download manually and place in Wabbajack download folder</li>
+                           <li><strong>ENB Download Issues:</strong> Download manually and move to Anomaly Downloads folder (DO NOT extract)</li>
+                           <li><strong>Download Links:</strong> <a href="https://drive.google.com/file/d/1sWpTDjSYC4xwhEveSuVhykjzHpZ2Qk1Y/view" target="_blank">Link 1</a> | <a href="https://drive.google.com/file/d/1APDBlK9UuPkXgptW0U1IHtKgEv4s9ruP/view" target="_blank">Link 2</a></li>
+                           <li><strong>ENB Download:</strong> <a href="http://enbdev.com/mod_fallout4_v0496.htm" target="_blank">Download ENB for Fallout 4</a></li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-shield-alt"></i>Antivirus Folder Exclusion </strong>
+                        <ul class="terminal-sublist">
+                           <li>Open Windows Security → Virus & threat protection</li>
+                           <li>Scroll to Exclusions and select Add or remove exclusions</li>
+                           <li>Click Add an exclusion → choose Folder and browse to your install folder</li>
+                           <li>This prevents interference with mods like ENB</li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-sync-alt"></i>Updating Fallout Anomaly </strong>
+                        <ul class="terminal-sublist">
+                           <li>Announcements on Discord and Nexus Mods</li>
+                           <li>Wabbajack deletes manually installed mods not part of official modlist</li>
+                           <li>Re-run installer on same path and check "Overwrite existing"</li>
+                           <li>Save files remain intact unless explicitly stated otherwise</li>
+                           <li>Find saves in: (Install Folder)/Profiles/Fallout Anomaly/Saves</li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-question-circle"></i>Need Help? </strong>
+                        <ul class="terminal-sublist">
+                           <li><a href="https://discord.gg/anomaly-1113971680419782666" target="_blank">Discord Support</a></li>
+                           <li><a href="https://wiki.wabbajack.org/" target="_blank">Wabbajack Wiki</a></li>
+                           <li><a href="https://discord.gg/wabbajack" target="_blank">Wabbajack Discord</a></li>
                         </ul>
                      </div>
                   </div>
@@ -147,47 +638,64 @@
                   <div class="terminal-list">
                      <div class="terminal-list-item">
                         <strong>
-                        <i class="fas fa-play"></i>Initial Launch </strong>
+                        <i class="fas fa-play"></i>Launching Fallout Anomaly </strong>
                         <ul class="terminal-sublist">
-                           <li>Use Mod Organizer 2 to launch the game</li>
-                           <li>Do not use the vanilla launcher</li>
-                           <li>F4SE is automatically included</li>
-                           <li>Save crash logs if issues occur</li>
-                           <li>Upload logs via bug report form</li>
-                           <li>Attach recent save files for debugging</li>
+                           <li>Open Mod Organizer 2 (MO2) - interface may seem complex but process is streamlined</li>
+                           <li>Click "Launch Fallout Anomaly" in top-right corner of MO2 interface</li>
+                           <li>⚠️ DO NOT use the vanilla game launcher!</li>
+                           <li>F4SE is automatically included in "Launch Fallout Anomaly" - no extra setup needed</li>
                         </ul>
                      </div>
                      <div class="terminal-list-item">
                         <strong>
-                        <i class="fas fa-sliders-h"></i>Resolution Settings </strong>
+                        <i class="fas fa-bug"></i>Crash Handling </strong>
                         <ul class="terminal-sublist">
-                           <li>Use BethINI to adjust resolution</li>
-                           <li>Do not modify other settings</li>
+                           <li>Save the log to an easily accessible location</li>
+                           <li>Upload the log via <a href="https://falloutanomaly.fillout.com/bugreports" target="_blank">bug report form</a> OR Discord support section</li>
+                           <li>Attach your most recent save file to help with debugging</li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-sliders-h"></i>Changing Resolution (BethINI) </strong>
+                        <ul class="terminal-sublist">
                            <li>Close Mod Organizer 2 first</li>
-                           <li>Run BethINI as Administrator</li>
-                           <li>Select Fallout 4 in BethINI</li>
-                           <li>Do not change INI paths</li>
+                           <li>Navigate to Anomaly installation folder → Tools → BethINI folder</li>
+                           <li>Right-click BethINI.exe and select "Run as Administrator"</li>
+                           <li>In BethINI, select Fallout 4 (DO NOT change INI paths!)</li>
+                           <li>Go to Basic tab and adjust your resolution</li>
+                           <li>Click Save & Exit to apply changes</li>
+                           <li>Do NOT modify other settings!</li>
                         </ul>
                      </div>
                      <div class="terminal-list-item">
                         <strong>
-                        <i class="fas fa-cog"></i>MCM Preset </strong>
+                        <i class="fas fa-cog"></i>Apply the MCM Preset! </strong>
                         <ul class="terminal-sublist">
-                           <li>Apply the MCM preset for proper settings</li>
+                           <li>Don't forget to apply the preset for proper settings</li>
                            <li>Do not modify preset settings</li>
                            <li>Verify all settings are applied correctly</li>
                         </ul>
                      </div>
                      <div class="terminal-list-item">
                         <strong>
-                        <i class="fas fa-gamepad"></i>Controller Support </strong>
+                        <i class="fas fa-film"></i>Disabling Black Bars (Letterbox) in ENB </strong>
                         <ul class="terminal-sublist">
-                           <li>PS5 controllers currently supported (Xbox planned)</li>
-                           <li>Enable Steam controller settings</li>
-                           <li>Enable Steam Overlay</li>
-                           <li>Install custom controller profile</li>
-                           <li>Activate "A - OPT - Controller Support - PS5 Support" mod</li>
-                           <li>Configure Steam Input settings</li>
+                           <li>Press ~ key (next to 1 key) to open console</li>
+                           <li>Press END to open ENB menu</li>
+                           <li>Navigate to Post Processing section</li>
+                           <li>Uncheck the Letterbox option</li>
+                           <li>Click Save Configuration (top-left)</li>
+                           <li>Press END and ~ again to exit menus</li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-puzzle-piece"></i>Optional Mods </strong>
+                        <ul class="terminal-sublist">
+                           <li>Anomaly includes collection of optional mods to enhance gameplay</li>
+                           <li>Browse through them and customize your experience</li>
+                           <li>Activate mods based on your preferences</li>
                         </ul>
                      </div>
                   </div>
@@ -198,85 +706,824 @@
                         <strong>
                         <i class="fas fa-exclamation-circle"></i>Main Menu Delay </strong>
                         <ul class="terminal-sublist">
-                           <li>Initial delay as scripts load</li>
-                           <li>Varies based on system power</li>
-                           <li>More powerful systems may not experience delay</li>
+                           <li>When launching the game you may experience a delay as scripts load</li>
+                           <li>This delay varies based on your system's power</li>
+                           <li>More powerful systems may not encounter this issue</li>
                         </ul>
                      </div>
                      <div class="terminal-list-item">
                         <strong>
                         <i class="fas fa-exclamation-circle"></i>Stuck in Menu </strong>
                         <ul class="terminal-sublist">
-                           <li>If unable to progress, check provided video guide</li>
-                           <li>Use new save files if needed</li>
-                           <li>Customize character as needed</li>
+                           <li>If you find yourself unable to progress from the first loading or main menu</li>
+                           <li>Watch <a href="https://www.youtube.com/watch?v=JTnhJsM3_hg&t" target="_blank">this video</a> for help with the issue</li>
+                           <li>If the video doesn't resolve it, we've provided new save files for you to load and customize your character as needed</li>
                         </ul>
                      </div>
                      <div class="terminal-list-item">
                         <strong>
                         <i class="fas fa-exclamation-circle"></i>Post-Character Creation Freeze </strong>
                         <ul class="terminal-sublist">
-                           <li>Temporary freeze due to script loading</li>
-                           <li>Game will save during freeze</li>
-                           <li>Wait for a few minutes</li>
-                           <li>Game will resume normally</li>
+                           <li>After creating your character, your game will save and may appear to freeze temporarily</li>
+                           <li>This is due to multiple scripts loading simultaneously</li>
+                           <li>Be patient and wait for a few minutes; the game will resume normally</li>
                         </ul>
                      </div>
                      <div class="terminal-list-item">
                         <strong>
-                        <i class="fas fa-exclamation-circle"></i>Falling Through Vault </strong>
+                        <i class="fas fa-exclamation-circle"></i>Falling Through Vault Issue </strong>
                         <ul class="terminal-sublist">
-                           <li>Issue caused by "Uneducated Shooter" mod</li>
-                           <li>Enable mod after leaving vault</li>
-                           <li>Do not enable during vault sequence</li>
+                           <li>If you're falling through the vault floor, this is likely due to the "Uneducated Shooter" mod</li>
+                           <li><strong>Solution:</strong> Only enable the "Uneducated Shooter" mod after leaving the vault</li>
                         </ul>
                      </div>
                      <div class="terminal-list-item">
                         <strong>
-                        <i class="fas fa-exclamation-circle"></i>Crash Issues </strong>
+                        <i class="fas fa-exclamation-circle"></i>Known Crash Related Issues </strong>
                         <ul class="terminal-sublist">
-                           <li>Programs with overlays can cause conflicts</li>
-                           <li>Disable Steam, Nvidia, Medal overlays</li>
-                           <li>Conflicts with ENB and DLL mods</li>
-                           <li>Check for overlay-related crashes</li>
+                           <li>Programs like medal (recording software) or anything that adds an overlay can conflict with the ENBS, or other DLL hooked mods</li>
+                           <li>If you are crashing right at the launch of game or at the main menu this can be one of the main causes</li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-gamepad"></i>Controller Support </strong>
+                        <ul class="terminal-sublist">
+                           <li>We currently support <strong>PS5 controllers</strong>, with <strong>Xbox support planned for the future</strong></li>
+                           <li><strong>Step 1:</strong> Configure Steam Settings - ensure Steam controller settings are correctly set up</li>
+                           <li><strong>Steam Overlay</strong> must be enabled for the controller to function properly</li>
+                           <li><strong>Steam Input:</strong> Paste this link into your browser: <code>steam://controllerconfig/377160/3420527035</code></li>
+                           <li><strong>Step 2:</strong> Enable the Controller Support Mod - activate "A - OPT - Controller Support - PS5 Support" in MO2</li>
                         </ul>
                      </div>
                   </div>
                </div>
                <div class="tab-content" id="step5">
                   <div class="terminal-list">
+                     <!-- Collapsible Section 1: Survival Mechanics -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-heartbeat"></i>1. Survival Mechanics</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🍽️ Survival Mode Features</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Needs System:</strong> You must regularly eat, drink, and sleep to avoid penalties. Hunger, thirst, and fatigue will reduce your stats and eventually cause damage or even death</div>
+                                    <div class="skill-item"><strong>Fast Travel:</strong> Traditional fast travel is disabled. You can only fast travel by using the APC Travel System or navigating the expanded subway system found across the Commonwealth</div>
+                                    <div class="skill-item"><strong>Saving the Game:</strong> Manual saving and quicksaving are disabled. You can only save by sitting in a chair or using a Survival Pack item found in the Aid menu</div>
+                                    <div class="skill-item"><strong>Combat Difficulty:</strong> Both you and enemies deal more damage. Healing is slowed, and combat is more lethal across the board</div>
+                                    <div class="skill-item"><strong>Ammo Has Weight:</strong> Every bullet, shell, or fusion cell you carry adds weight to your inventory, forcing smarter inventory management</div>
+                                    <div class="skill-item"><strong>Illness & Injury:</strong> You can get sick, suffer broken limbs, or require items like antibiotics and splints for proper healing. Doctors may be needed to cure serious conditions</div>
+                                    <div class="skill-item"><strong>Carry Weight Reduced:</strong> Your base carry weight is significantly lower, making every item choice matter. Backpacks and perks help extend capacity</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🎒 Backpacks</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <p>Backpacks can be found or crafted using perks from the <em>Junk Jockey</em> skill.</p>
+                              </div>
+                           </div>
+                           <div class="warning-box">
+                              <p><strong>Note:</strong> The mods featured in the sections below also play a major role in shaping the survival experience. Be sure to explore them to get the full intended gameplay challenge.</p>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Collapsible Section 2: Skills and Levels -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-graduation-cap"></i>2. Skills and Levels</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <ul class="terminal-sublist">
+                              <li>Utilizes the <strong><a href="https://www.nexusmods.com/fallout4/mods/76739" target="_blank">YAE mod</a></strong>, which introduces new skills and modifies the perk system.</li>
+                              <li>Adds new traits for enhanced character customization.</li>
+                           </ul>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🎯 You Are Exceptional – What Is It?</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <p>A major upgrade to Fallout 4's Skills and Perks system. Inspired by <em>Be Exceptional</em> and <em>You Are SPECIAL!</em>, but expands far beyond them.</p>
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>26 total Skills</strong> - Comprehensive skill system</div>
+                                    <div class="skill-item"><strong>250+ new and reworked Perks</strong> - Enhanced progression</div>
+                                    <div class="skill-item"><strong>More control over character growth</strong> - Better customization</div>
+                                    <div class="skill-item"><strong>Background Selection</strong> - Choose a Background at the start, which gives your character a backstory, starter gear, and Skill bonuses</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>⚡ What's Different?</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Reworked Perks:</strong> All vanilla perks have been reworked, split, or enhanced</div>
+                                    <div class="skill-item"><strong>Skill-Based Unlocks:</strong> Perks are unlocked through Skill levels, not SPECIAL stats</div>
+                                    <div class="skill-item"><strong>Tagged Skills:</strong> Choose 3 Skills to "Tag" at the start for a +25 bonus</div>
+                                    <div class="skill-item"><strong>Bonus Perk Points:</strong> Bonus Perk Point every 5 levels</div>
+                                    <div class="skill-item"><strong>Perk Cap:</strong> Perks cap at level 10</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🔧 How Skills Work</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <p>Each SPECIAL stat has 4 tied Skills (Luck has 2 but boosts all Skills slightly). Skills range from 0 to 100 and affect gameplay like damage, crafting, healing, and more.</p>
+                              </div>
+                           </div>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>All Skills (26 Total)</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <div class="skill-grid">
+                                     <div class="skill-item"><strong>[STR] Artillery:</strong> Heavy guns damage and handling</div>
+                                     <div class="skill-item"><strong>[CHR] Barter:</strong> Merchant prices and vendor perks</div>
+                                     <div class="skill-item"><strong>[INT] Chemistry:</strong> Chem crafting and duration</div>
+                                     <div class="skill-item"><strong>[PER] Demolitions:</strong> Explosives damage and crafting</div>
+                                     <div class="skill-item"><strong>[STR] Engineering:</strong> Machinery and power armor</div>
+                                     <div class="skill-item"><strong>[END] Fitness:</strong> Max health and swimming</div>
+                                     <div class="skill-item"><strong>[LCK] Gambling:</strong> Risk/reward perks and caps</div>
+                                     <div class="skill-item"><strong>[PER] Gunsmithery:</strong> Ballistic weapon crafting</div>
+                                     <div class="skill-item"><strong>[INT] Hacking:</strong> Terminal access and robot sabotage</div>
+                                     <div class="skill-item"><strong>[AGI] Handguns:</strong> Pistols and revolvers</div>
+                                     <div class="skill-item"><strong>[CHR] Influence:</strong> Companion damage and settlements</div>
+                                     <div class="skill-item"><strong>[PER] Lockpicking:</strong> Door and container access</div>
+                                     <div class="skill-item"><strong>[PER] Longarms:</strong> Rifles and shotguns</div>
+                                     <div class="skill-item"><strong>[INT] Medicine:</strong> Healing effectiveness</div>
+                                     <div class="skill-item"><strong>[LCK] Opportunity:</strong> Critical mechanics and perks</div>
+                                     <div class="skill-item"><strong>[CHR] Persuasion:</strong> Speech checks and social perks</div>
+                                     <div class="skill-item"><strong>[AGI] Pickpocket:</strong> Theft and inventory manipulation</div>
+                                     <div class="skill-item"><strong>[STR] Robustness:</strong> Carry weight and movement</div>
+                                     <div class="skill-item"><strong>[AGI] Salvage:</strong> Scrap yield and ingredient gathering</div>
+                                     <div class="skill-item"><strong>[INT] Science:</strong> Energy weapons and batteries</div>
+                                     <div class="skill-item"><strong>[AGI] Stealth:</strong> Detection and sneak attacks</div>
+                                     <div class="skill-item"><strong>[END] Survival:</strong> Food healing and environment</div>
+                                     <div class="skill-item"><strong>[END] Tinkering:</strong> Armor and melee weapon crafting</div>
+                                     <div class="skill-item"><strong>[END] Unarmed:</strong> Bare-handed combat</div>
+                                     <div class="skill-item"><strong>[STR] Weaponry:</strong> Melee weapons and power attacks</div>
+                                     <div class="skill-item"><strong>[CHR] Zoology:</strong> Animal companion damage</div>
+                                  </div>
+                               </div>
+                            </div>
+                           <div class="warning-box">
+                              <p>This system gives you more freedom to build the kind of character you want, with meaningful choices and better progression. Check your Pip-Boy after installing to get started.</p>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Collapsible Section 3: Combat Overhaul -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-crosshairs"></i>3. Combat Overhaul: Realistic Damage, Ammo, and Enemy Scaling</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🎯 True Damage – Realistic Weapon Behavior</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <p>True Damage reworks Fallout's combat mechanics for realism and balance:</p>
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>NPC Damage Reduction:</strong> All NPCs with guns get a perk that reduces base damage by 90%</div>
+                                    <div class="skill-item"><strong>Realistic Damage:</strong> Realistic damage is applied via ammo, scaled by caliber</div>
+                                    <div class="skill-item"><strong>Logical Ranges:</strong> Same-caliber weapons have logical damage ranges (e.g. .38 weapons do ~19–25 dmg)</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>⚙️ Weapon Customization</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Independent Sliders:</strong> For Pistols, Rifles, Snipers, Shotguns, Heavy, Melee, Suppressed, etc.</div>
+                                    <div class="skill-item"><strong>Damage Type Controls:</strong> Separate controls by damage type: Ballistic, Laser, Plasma, Gamma, Explosive</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>📈 Built-in Buffs</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Rifles:</strong> +100% range, +20% accuracy</div>
+                                    <div class="skill-item"><strong>Snipers:</strong> +300% range, +50% accuracy, +100% damage</div>
+                                    <div class="skill-item"><strong>Shotguns:</strong> +30% accuracy for tighter spread</div>
+                                    <div class="skill-item"><strong>Suppressors:</strong> Apply small stat penalties for balance</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🚀 Advanced Features</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Energy Weapons:</strong> Excluded from ammo scaling to preserve lore and balance</div>
+                                    <div class="skill-item"><strong>Global Damage Sliders:</strong> Easily override difficulty/damage mods via MCM</div>
+                                    <div class="skill-item"><strong>Smart Scaling:</strong> Incoming damage adapts to your HP to avoid bullet sponges</div>
+                                    <div class="skill-item"><strong>Perks Module:</strong> Gun perks are reworked with new effects (e.g. Gunslinger → Light Loadout)</div>
+                                    <div class="skill-item"><strong>Vehicle Module:</strong> Prevents vehicles from exploding too easily with added resistances</div>
+                                    <div class="skill-item"><strong>Optional Tweaks:</strong> Improve reload speed, range, and accuracy for more realism</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🔫 Munitions – Expanded Ammunition Framework</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <p>Munitions is a modular, lore-friendly ammo expansion project that adds new ballistic, energy, and explosive rounds into the game without breaking balance.</p>
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Seamless Integration:</strong> High-quality custom ammo types</div>
+                                    <div class="skill-item"><strong>Player Control:</strong> Toggle individual ammo types to control what's added</div>
+                                    <div class="skill-item"><strong>Lore-Friendly:</strong> Designed to match Fallout's existing universe and weapon lore</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🤖 SCOURGE – Smarter Enemy Scaling</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <p>SCOURGE brings realism to NPC combat by replacing predictable scaling with randomized stat generation.</p>
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Random Stats:</strong> Uses normal distribution to assign random but believable stats (health, resistance, damage)</div>
+                                    <div class="skill-item"><strong>Fully Customizable:</strong> Via MCM — includes race-specific tuning and NPC/stat exclusions</div>
+                                    <div class="skill-item"><strong>Optimized:</strong> Highly optimized scripting ensures no lag or save bloat</div>
+                                 </div>
+                                 <p><strong>Example:</strong></p>
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Deathclaw Health:</strong> Can now spawn with health between 500–900 (avg. ~700)</div>
+                                    <div class="skill-item"><strong>Stat Combinations:</strong> Over 12 million stat combinations are possible for just Deathclaws</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Collapsible Section 4: Healing Guide -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-medkit"></i>4. Healing Guide</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <p><strong>MAIM</strong> is a realistic combat and medical overhaul that introduces lethal headshots, injuries, bleeding, pain, and more. It is highly customizable through the MCM, allowing most features to be tweaked or disabled. The system remains performance-friendly with minimal scripts.</p>
+                           <p>This is a major gameplay overhaul. We recommend reading the full mod page on Nexus Mods. A solid MCM setup is pre-configured for you out of the box.</p>
+                           <div class="warning-box">
+                              <p><a href="https://www.nexusmods.com/fallout4/mods/72235" target="_blank" rel="noopener noreferrer"><strong>MAIM – Locational Damage & Medical Overhaul</strong><br>View full details on Nexus Mods</a></p>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>💊 MAIM Medical Items</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>SP-1 Stimpak:</strong> Gradual HP + AP regen, cures NPC injuries, strong poison resistance (180s)</div>
+                                    <div class="skill-item"><strong>SP-2 Stimpak:</strong> 3%/s HP & limb healing (40s). Most powerful heal, but requires weapon holstered</div>
+                                    <div class="skill-item"><strong>Med-X:</strong> Treats pain, shock, and contusion. Heals head 1%/s (180s). Addictive</div>
+                                    <div class="skill-item"><strong>Ibuprofen:</strong> Heals head & non-crippled limbs 0.5%/s (180s). Mildly addictive</div>
+                                    <div class="skill-item"><strong>Bandage:</strong> Stops light bleeds, heals injured limbs (1%/s for 60s)</div>
+                                    <div class="skill-item"><strong>QuikClot Injector:</strong> Stops heavy bleeds and prevents further bleeding until limb is healed</div>
+                                    <div class="skill-item"><strong>IFAK:</strong> Stops heavy bleed, removes crippled status, heals 1%/s (80s)</div>
+                                    <div class="skill-item"><strong>SAM Splint:</strong> Sets crippled limbs to 1 HP, downgrades heavy bleed</div>
+                                    <div class="skill-item"><strong>TXA Injector:</strong> Stops light bleeds, reduces heavy bleeds, +300s critical wound protection</div>
+                                    <div class="skill-item"><strong>Ca-DTPA:</strong> Removes 10 RAD/s for 60s. Requires weapon holstered. Replaces Vanilla Radaway - Also slowly removes IRA</div>
+                                    <div class="skill-item"><strong>Potassium Iodide:</strong> +200 RAD resistance, -0.5 RAD/s for 300s. Replaces Rad-X</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="warning-box">
+                              <p><strong>Pro Tip:</strong> Healing items do not stack with themselves, but you can combine different effects (e.g., SP-1 + SP-2). Pre-med with TXA and ibuprofen before a firefight for best results.</p>
+                           </div>
+                        </div>
+                     </div>
+                      <!-- Collapsible Section 5: Radiation System -->
+                      <div class="terminal-list-item collapsible-section">
+                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <strong><i class="fas fa-radiation"></i>5. Radiation System</strong>
+                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                         </div>
+                         <div class="collapsible-content">
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>⚛️ Radiation Mechanics</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <div class="skill-grid">
+                                     <div class="skill-item"><strong>Dual-layered System:</strong> IRA (Ingested Radioactive Particles) from food/water/weather + RAD (Tissue Damage) from external exposure</div>
+                                     <div class="skill-item"><strong>Negative IRA Values:</strong> Deal internal damage over time and add to total IRA buildup</div>
+                                     <div class="skill-item"><strong>Acute Radiation Syndrome:</strong> High IRA levels cause periodic RAD damage and debilitating effects</div>
+                                     <div class="skill-item"><strong>Weather Hazards:</strong> Radiation storms require functional protective gear (gas masks, hazmat suits, power helmets)</div>
+                                     <div class="skill-item"><strong>Progressive Damage:</strong> Radiation left unchecked will eventually kill the player—even retreating won't stop progression unless treated</div>
+                                     <div class="skill-item"><strong>Breakable Gear:</strong> Protective gear is now breakable and must be maintained</div>
+                                     <div class="skill-item"><strong>Explosion Types:</strong> Differentiate between fusion and fission explosions—each behaves differently</div>
+                                     <div class="skill-item"><strong>Doctor Fees:</strong> Separate fees for small vs. large radiation treatments</div>
+                                     <div class="skill-item"><strong>RadBoy Tool:</strong> Optional tool that notifies players via text or voice when radiation or IRA levels rise dangerously</div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>💊 Radiation Treatment Items</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <div class="skill-grid">
+                                     <div class="skill-item"><strong>Ca-DTPA:</strong> Purges IRA. Removes 10 rads/sec for 60s (requires holstered weapon). Replaces RadAway and slowly removes IRA</div>
+                                     <div class="skill-item"><strong>Potassium Iodide:</strong> +200 RAD resistance and reduces RADs by 0.5/sec for 300s. Replaces Vanilla Rad-X</div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>🏥 Disease Treatment Medications</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <p>Some conditions caused by radiation or exposure require specific medication:</p>
+                                  <div class="skill-grid">
+                                     <div class="skill-item"><strong>Antibiotics:</strong> Cure infections</div>
+                                     <div class="skill-item"><strong>Sleep Aid:</strong> Treats insomnia (Warning: may be addictive)</div>
+                                     <div class="skill-item"><strong>Anodyne:</strong> Relieves fatigue</div>
+                                     <div class="skill-item"><strong>Anti-Parasitic:</strong> Removes parasites</div>
+                                     <div class="skill-item"><strong>Stimulants:</strong> Counters lethargy</div>
+                                     <div class="skill-item"><strong>Energy Pills:</strong> Mitigates weakness</div>
+                                  </div>
+                                  <p>Most of these medications can be purchased from doctors, or scavenged from raiders, gunners, and other NPCs. Be sure to stock up before venturing out.</p>
+                               </div>
+                            </div>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>⚠️ Survival Tips</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <p>The Wastes are unforgiving. Radiation is no longer a simple number—it's a slow, creeping death that can take hold in seconds or over days. Always carry enough protective gear and medication. Stock up on bandages, painkillers, Rad meds, and limb restoration tools. Being prepared isn't optional—it's survival.</p>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                     <!-- Collapsible Section 7: Weather & Environment -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-cloud-rain"></i>7. Weather & Environment</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🌦️ Vivid Weathers System</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <p>Enhanced weather system with dynamic lighting and atmospheric effects.</p>
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Radiation Storms:</strong> Dangerous weather events requiring protective gear</div>
+                                    <div class="skill-item"><strong>Dynamic Lighting:</strong> Realistic day/night cycles with enhanced shadows</div>
+                                    <div class="skill-item"><strong>Weather Hotkey:</strong> Numpad / to access weather controls</div>
+                                    <div class="skill-item"><strong>Atmospheric Effects:</strong> Fog, rain, snow, and dust storms</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>⚠️ Environmental Hazards</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Radiation Zones:</strong> High-radiation areas requiring protective equipment</div>
+                                    <div class="skill-item"><strong>Weather Protection:</strong> Gas masks, hazmat suits, and power helmets</div>
+                                    <div class="skill-item"><strong>Temperature Effects:</strong> Cold and heat impact on character performance</div>
+                                    <div class="skill-item"><strong>Visibility:</strong> Weather affects visibility and detection ranges</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 8: Settlement & Building -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-hammer"></i>8. Settlement & Building</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🔨 Workshop Framework</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Workshop Mode:</strong> Home key to enter workshop mode</div>
+                                    <div class="skill-item"><strong>Enhanced Building:</strong> Expanded building options and materials</div>
+                                    <div class="skill-item"><strong>Settlement Items:</strong> New settlement objects and decorations</div>
+                                    <div class="skill-item"><strong>Power Systems:</strong> Advanced power generation and distribution</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🧱 Building Materials</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Scrap Requirements:</strong> More realistic material requirements</div>
+                                    <div class="skill-item"><strong>Salvage System:</strong> Enhanced scrap yield from junk items</div>
+                                    <div class="skill-item"><strong>Material Types:</strong> Wood, metal, concrete, and advanced materials</div>
+                                    <div class="skill-item"><strong>Storage Solutions:</strong> Improved storage and organization systems</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 9: Companions & NPCs -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-users"></i>9. Companions & NPCs</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🐕 Enhanced Companions</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Dogmeat:</strong> Enhanced AI and interaction options</div>
+                                    <div class="skill-item"><strong>Companion Damage:</strong> Improved companion combat effectiveness</div>
+                                    <div class="skill-item"><strong>Zoology Skill:</strong> Affects animal companion damage and abilities</div>
+                                    <div class="skill-item"><strong>Influence Skill:</strong> Affects humanoid companion damage</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🤖 NPC Behavior</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>SCOURGE System:</strong> Randomized NPC stats for variety</div>
+                                    <div class="skill-item"><strong>Enhanced AI:</strong> Smarter enemy behavior and tactics</div>
+                                    <div class="skill-item"><strong>Faction Relations:</strong> Improved faction interaction systems</div>
+                                    <div class="skill-item"><strong>Dialogue Options:</strong> Expanded conversation choices</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 10: Crafting & Equipment -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-tools"></i>10. Crafting & Equipment</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🔧 Enhanced Crafting</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Dank_ECO:</strong> Enhanced crafting options and workbenches</div>
+                                    <div class="skill-item"><strong>Universal Workbench:</strong> Page Up to drop universal workbench</div>
+                                    <div class="skill-item"><strong>Power Armor Workbench:</strong> Page Down to drop power armor workbench</div>
+                                    <div class="skill-item"><strong>Weapon Attack Modes:</strong> U key to switch weapon attack modes</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🛡️ Equipment Systems</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Replaceable Armor Plates:</strong> Y key to use armor plates</div>
+                                    <div class="skill-item"><strong>Armor Modding:</strong> Enhanced armor customization options</div>
+                                    <div class="skill-item"><strong>Weapon Mods:</strong> Expanded weapon modification system</div>
+                                    <div class="skill-item"><strong>Equipment Durability:</strong> Realistic wear and repair systems</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 11: User Interface & HUD -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-desktop"></i>11. User Interface & HUD</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🖥️ Immersive HUD</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>HUD Toggle:</strong> F2 to toggle HUD on/off</div>
+                                    <div class="skill-item"><strong>Dynamic Elements:</strong> HUD elements appear/disappear based on context</div>
+                                    <div class="skill-item"><strong>Customization:</strong> Extensive HUD customization options</div>
+                                    <div class="skill-item"><strong>Minimal Mode:</strong> Clean interface for immersive gameplay</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>📋 Menu Systems</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Wheel Menu:</strong> H key to open quick access wheel</div>
+                                    <div class="skill-item"><strong>MODExplorer:</strong> \ key to show mod list and information</div>
+                                    <div class="skill-item"><strong>Quick Inventory:</strong> I key for fast inventory access</div>
+                                    <div class="skill-item"><strong>Quick Map:</strong> M key for instant map access</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 12: Audio & Visual -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-volume-up"></i>12. Audio & Visual</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🔊 Audio Systems</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Persistent Volume Sliders:</strong> Numpad 0 to mute music</div>
+                                    <div class="skill-item"><strong>Enhanced Sound Effects:</strong> Improved weapon and environmental sounds</div>
+                                    <div class="skill-item"><strong>Dynamic Music:</strong> Context-sensitive music system</div>
+                                    <div class="skill-item"><strong>Audio Immersion:</strong> Realistic audio positioning and effects</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🎨 Visual Enhancements</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>ENB Integration:</strong> Enhanced visual effects and lighting</div>
+                                    <div class="skill-item"><strong>Letterbox Control:</strong> Disable black bars via ENB menu</div>
+                                    <div class="skill-item"><strong>Visual Filters:</strong> Customizable visual effects</div>
+                                    <div class="skill-item"><strong>Performance Options:</strong> Adjustable visual quality settings</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 13: Character Customization -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-user-edit"></i>13. Character Customization</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>👤 Appearance Systems</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Barber/Surgery Camera:</strong> Arrow Down to switch view</div>
+                                    <div class="skill-item"><strong>Enhanced Character Creation:</strong> More detailed appearance options</div>
+                                    <div class="skill-item"><strong>Clothing System:</strong> Expanded clothing and armor options</div>
+                                    <div class="skill-item"><strong>Hair & Facial Features:</strong> Detailed customization options</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>📈 Character Progression</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Background Selection:</strong> Choose character background for bonuses</div>
+                                    <div class="skill-item"><strong>Skill Tagging:</strong> Select 3 skills for +25 bonus</div>
+                                    <div class="skill-item"><strong>Trait System:</strong> Enhanced character traits and abilities</div>
+                                    <div class="skill-item"><strong>Perk Trees:</strong> Expanded perk system with new options</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 14: Tips & Strategies -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-lightbulb"></i>14. Tips & Strategies</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🛡️ Survival Tips</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Medical Supplies:</strong> Always carry bandages, stimpaks, and painkillers</div>
+                                    <div class="skill-item"><strong>Pre-medication:</strong> Use TXA and ibuprofen for protection before combat</div>
+                                    <div class="skill-item"><strong>Radiation Management:</strong> Carry protective gear and radiation meds</div>
+                                    <div class="skill-item"><strong>Route Planning:</strong> Use APC travel system and subway networks</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>⚔️ Combat Strategies</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Effective Cover:</strong> Take advantage of environmental protection</div>
+                                    <div class="skill-item"><strong>Ammunition Weight:</strong> Balance firepower with mobility</div>
+                                    <div class="skill-item"><strong>Weak Points:</strong> Aim for headshots and vulnerable areas</div>
+                                    <div class="skill-item"><strong>Stealth Approach:</strong> Avoid unnecessary confrontations</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>📦 Resource Management</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Salvage Everything:</strong> Break down junk for materials</div>
+                                    <div class="skill-item"><strong>Settlement Planning:</strong> Build strategically placed safe houses</div>
+                                    <div class="skill-item"><strong>Essential Stockpiles:</strong> Food, water, and medical supplies</div>
+                                    <div class="skill-item"><strong>Equipment Maintenance:</strong> Repair armor and weapons regularly</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Collapsible Section 6: Keybind Preset -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-keyboard"></i>6. Keybind Preset</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>🎮 Movement & Core Controls</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <ul class="compact-list">
+                                     <li><strong>W/S/A/D</strong> – Move Forward/Backward/Strafe Left/Right</li>
+                                     <li><strong>Left Shift</strong> – Sprint</li>
+                                     <li><strong>C</strong> – Run</li>
+                                     <li><strong>Spacebar</strong> – Jump</li>
+                                     <li><strong>Left Ctrl</strong> – Sneak</li>
+                                     <li><strong>Caps Lock</strong> – Toggle Always Run</li>
+                                     <li><strong>X</strong> – Auto-Move</li>
+                                     <li><strong>F</strong> – Activate / Interact</li>
+                                  </ul>
+                               </div>
+                            </div>
+                            
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>⚔️ Combat Controls</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <ul class="compact-list">
+                                     <li><strong>Mouse1</strong> – Attack / Fire</li>
+                                     <li><strong>Mouse2</strong> – Aim / Block</li>
+                                     <li><strong>Left Alt</strong> – Bash / Power Attack / Grenade</li>
+                                     <li><strong>R</strong> – Ready Weapon / Reload</li>
+                                     <li><strong>Q</strong> – VATS</li>
+                                     <li><strong>J</strong> – Holster / Lower Weapon</li>
+                                  </ul>
+                               </div>
+                            </div>
+                            
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                  <strong>📱 Menu & Inventory</strong>
+                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <ul class="compact-list">
+                                     <li><strong>Tab</strong> – Open Pip-Boy</li>
+                                     <li><strong>Mouse3</strong> – Toggle POV / Workshop</li>
+                                     <li><strong>Esc</strong> – Pause</li>
+                                     <li><strong>I</strong> – Quick Inventory</li>
+                                     <li><strong>M</strong> – Quick Map</li>
+                                  </ul>
+                               </div>
+                            </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 <strong>🛠️ Mod-Specific Keybinds</strong>
+                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item"><strong>Bullet in Chamber:</strong> R (Reload/Check), J (Holster)</div>
+                                    <div class="skill-item"><strong>Dank_ECO:</strong> PgDn (PA Workbench), PgUp (Universal), U (Attack Mode)</div>
+                                    <div class="skill-item"><strong>Enhanced Movement:</strong> N (Dodge)</div>
+                                    <div class="skill-item"><strong>HOTC:</strong> K (Examine Prey)</div>
+                                    <div class="skill-item"><strong>VAFS Redux:</strong> Z (Critical), G (Focus)</div>
+                                    <div class="skill-item"><strong>Immersive HUD:</strong> F2 (Toggle HUD)</div>
+                                    <div class="skill-item"><strong>MODExplorer:</strong> \ (Show Mod List)</div>
+                                    <div class="skill-item"><strong>Armor Plates:</strong> Y (Use Plate)</div>
+                                    <div class="skill-item"><strong>Wasteland Codex:</strong> Numpad 3 (Play Entry)</div>
+                                    <div class="skill-item"><strong>Vivid Weathers:</strong> Numpad / (Weather)</div>
+                                    <div class="skill-item"><strong>Wheel Menu:</strong> H (Open Wheel)</div>
+                                    <div class="skill-item"><strong>Workshop:</strong> Home (Workshop Mode)</div>
+                                    <div class="skill-item"><strong>Barber/Surgery:</strong> ↓ (Switch View)</div>
+                                    <div class="skill-item"><strong>Volume Sliders:</strong> Numpad 0 (Mute Music)</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="tab-content" id="support">
+                  <div class="terminal-list">
                      <div class="terminal-list-item">
                         <strong>
-                        <i class="fas fa-heartbeat"></i>Survival Mechanics </strong>
+                        <i class="fas fa-users"></i>Community and Support </strong>
                         <ul class="terminal-sublist">
-                           <li>Advanced food mechanics with spoilage</li>
-                           <li>Camping system</li>
-                           <li>Challenges and achievements</li>
-                           <li>Cooking overhaul</li>
-                           <li>Dynamic weather effects</li>
-                           <li>Temperature system</li>
-                           <li>Carry weight system with STR-based calculations</li>
-                           <li>Backpack system with 100 CW capacity</li>
-                           <li>Keybinding system for backpack access</li>
-                           <li>Backpack bug fixes and troubleshooting</li>
+                           <li>The quickest way to receive support is by joining our <strong>Discord</strong> community</li>
+                           <li>If you encounter any issues or need assistance, our Discord channel provides direct access to our team and fellow users</li>
+                           <li>Alternatively, you can submit a bug report using the links below</li>
                         </ul>
                      </div>
                      <div class="terminal-list-item">
                         <strong>
-                        <i class="fas fa-fist-raised"></i>Combat System </strong>
+                        <i class="fas fa-link"></i>Support Links </strong>
                         <ul class="terminal-sublist">
-                           <li>Better Locational Damage</li>
-                           <li>Stagger and bleeding effects</li>
-                           <li>Stealth killmoves</li>
-                           <li>Weapon and armor balance</li>
-                           <li>Realistic recoil and spread</li>
-                           <li>Advanced AI behavior</li>
-                           <li>SCOURGE system for NPC stat randomization</li>
-                           <li>Deadeye headshot mechanics</li>
-                           <li>Munitions ammo expansion system</li>
-                           <li>Enemy categories and resistance levels</li>
-                           <li>Headshot mechanics by race type</li>
-                           <li>Pain system with three levels</li>
+                           <li><a href="https://discord.gg/ECuAthsdwJ" target="_blank">💬 Discord Community</a> - Join our Discord community</li>
+                           <li><a href="https://loadorderlibrary.com/lists/fallout-anomaly-0-5" target="_blank">📋 Mod List</a> - View the mod list</li>
+                           <li><a href="https://falloutanomaly.fillout.com/bugreports" target="_blank">🐞 Bug Report</a> - Submit a bug report</li>
+                           <li><a href="https://falloutanomaly.fillout.com/suggestions" target="_blank">💡 Suggestions</a> - Share your suggestions</li>
+                           <li><a href="https://www.nexusmods.com/fallout4/mods/74075?tab=description" target="_blank">🎮 Nexus</a> - Visit our Nexus page</li>
+                           <li><a href="https://www.youtube.com/@FalloutAnomaly/videos" target="_blank">📺 YouTube</a> - Check out our YouTube channel</li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <strong>
+                        <i class="fas fa-heart"></i>Thank You </strong>
+                        <ul class="terminal-sublist">
+                           <li><strong>Thank you for your dedication to our community and team. We are excited about the future and confident that, together, we will continue to shape Anomaly into an extraordinary mod list for Fallout 4.</strong></li>
                         </ul>
                      </div>
                   </div>
@@ -288,5 +1535,58 @@
    <script src="../src/js/theme-switcher.js"></script>
    <script src="../src/js/script.js"></script>
    <script src="../src/js/navlinks.js"></script>
+   <script>
+      // Collapsible functionality for Step 5 sections
+      function toggleCollapsible(header) {
+         const content = header.nextElementSibling;
+         const icon = header.querySelector('.collapsible-icon i');
+         
+         if (content.style.display === 'none' || content.style.display === '') {
+            content.style.display = 'block';
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-up');
+         } else {
+            content.style.display = 'none';
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+         }
+      }
+      
+      // Sub-collapsible functionality
+      function toggleSubCollapsible(header) {
+         const content = header.nextElementSibling;
+         const icon = header.querySelector('.sub-collapsible-icon i');
+         
+         if (content.style.display === 'none' || content.style.display === '') {
+            content.style.display = 'block';
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-up');
+         } else {
+            content.style.display = 'none';
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+         }
+      }
+      
+      // Initialize collapsible sections - all closed by default
+      document.addEventListener('DOMContentLoaded', function() {
+         const collapsibleContents = document.querySelectorAll('.collapsible-content');
+         collapsibleContents.forEach(content => {
+            content.style.display = 'none';
+         });
+         
+         const subCollapsibleContents = document.querySelectorAll('.sub-collapsible-content');
+         subCollapsibleContents.forEach(content => {
+            content.style.display = 'none';
+         });
+         
+         // Initialize search functionality
+         const searchInput = document.getElementById('step5Search');
+         if (searchInput) {
+            searchInput.addEventListener('input', performSearch);
+         }
+         
+      });
+   </script>
 </body>
 </html>
