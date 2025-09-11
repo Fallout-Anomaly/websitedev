@@ -30,9 +30,9 @@
    <style>
       /* Theme-aware CSS variables */
       :root {
-         --primary-color: var(--accent-color, #00ff00);
+         --primary-color: var(--accent-color, #f3f3f300);
          --text-color: var(--text-color, #cccccc);
-         --border-color: var(--accent-color, #00ff00);
+         --border-color: var(--accent-color, #ffffff00);
          --hover-bg: rgba(0, 255, 0, 0.1);
          --card-bg: rgba(0, 0, 0, 0.2);
          --header-bg: rgba(0, 0, 0, 0.3);
@@ -297,15 +297,32 @@
    <link rel="stylesheet" href="../src/css/style.css">
    <link rel="stylesheet" href="../src/css/themes.css">
    <style>
-      /* Final override for headers - must come after external CSS */
+      /* AGGRESSIVE THEME OVERRIDE - Must come after external CSS */
+      * {
+         --force-primary: var(--accent-color, #00ff00) !important;
+         --force-text: var(--text-color, #cccccc) !important;
+      }
+      
+      /* Override ALL green colors with theme colors */
       .tab-content .collapsible-content h4,
       .tab-content .collapsible-content h5,
       .tab-content .sub-collapsible-header strong,
       .tab-content .sub-collapsible-content h4,
-      .tab-content .sub-collapsible-content h5 {
-         color: var(--primary-color) !important;
+      .tab-content .sub-collapsible-content h5,
+      .tab-content .collapsible-content ul li strong,
+      .tab-content .collapsible-content ol li strong,
+      .tab-content .collapsible-content p strong,
+      .tab-content .sub-collapsible-content ul li strong,
+      .tab-content .sub-collapsible-content ol li strong,
+      .tab-content .sub-collapsible-content p strong,
+      .collapsible-header strong,
+      .collapsible-icon,
+      .sub-collapsible-header strong,
+      .sub-collapsible-icon,
+      .skill-item strong {
+         color: var(--force-primary) !important;
          font-family: 'VT323', monospace !important;
-         text-shadow: 0 0 5px var(--primary-color) !important;
+         text-shadow: 0 0 5px var(--force-primary) !important;
          font-weight: bold !important;
          text-transform: uppercase !important;
          letter-spacing: 1px !important;
@@ -413,6 +430,25 @@
       html body .tab-content .sub-collapsible-content ul li,
       html body .tab-content .sub-collapsible-content ol li {
          color: var(--text-color) !important;
+      }
+      
+      /* FINAL AGGRESSIVE OVERRIDE - Override ALL borders and remaining elements */
+      .collapsible-header,
+      .collapsible-content,
+      .sub-collapsible-header,
+      .sub-collapsible-content,
+      .skill-item,
+      .warning-box {
+         border-color: var(--force-primary) !important;
+      }
+      
+      /* Override any remaining green colors */
+      [style*="color: #00ff00"],
+      [style*="color: green"],
+      [style*="border-color: #00ff00"],
+      [style*="border-color: green"] {
+         color: var(--force-primary) !important;
+         border-color: var(--force-primary) !important;
       }
    </style>
    <link rel="icon" href="data:image/svg+xml,
@@ -1244,6 +1280,24 @@
    <script src="../src/js/script.js"></script>
    <script src="../src/js/navlinks.js"></script>
    <script>
+      // Force theme colors on page load
+      function forceThemeColors() {
+         const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-color') || '#00ff00';
+         const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-color') || '#cccccc';
+         
+         // Override all green colors
+         const elements = document.querySelectorAll('*');
+         elements.forEach(el => {
+            const computedStyle = getComputedStyle(el);
+            if (computedStyle.color === 'rgb(0, 255, 0)' || computedStyle.color === '#00ff00') {
+               el.style.setProperty('color', primaryColor, 'important');
+            }
+            if (computedStyle.borderColor === 'rgb(0, 255, 0)' || computedStyle.borderColor === '#00ff00') {
+               el.style.setProperty('border-color', primaryColor, 'important');
+            }
+         });
+      }
+      
       // Collapsible functionality for Step 5 sections
       function toggleCollapsible(header) {
          const content = header.nextElementSibling;
@@ -1293,6 +1347,9 @@
          if (searchInput) {
             searchInput.addEventListener('input', performSearch);
          }
+         
+         // Force theme colors after page load
+         setTimeout(forceThemeColors, 100);
       });
    </script>
 </body>
