@@ -41,12 +41,15 @@
          --glow-effect: var(--terminal-glow, 0 0 2px rgba(0, 255, 0, 0.3));
       }
       
-      /* Navigation styling for theme switcher */
+      /* Fixed theme switcher positioning */
       .nav-fx-toggle {
+         position: fixed;
+         bottom: 20px;
+         right: 20px;
+         z-index: 999;
          display: flex;
          align-items: center;
          gap: var(--spacing-xs);
-         margin-left: auto;
       }
       
       #theme-switcher-container {
@@ -460,11 +463,14 @@
          <a href="index.html" class="nav-logo">
          <i class="fas fa-radiation icon"></i> FALLOUT ANOMALY </a>
          <div id="nav-links-container"></div>
-         <div class="nav-fx-toggle">
-            <div id="theme-switcher-container"></div>
-         </div>
       </div>
    </nav>
+   
+   <!-- Fixed theme switcher -->
+   <div class="nav-fx-toggle">
+      <div id="theme-switcher-container"></div>
+   </div>
+   
    <div class="loading-screen">
       <div class="pip-os-boot"></div>
       <div class="continue-prompt hidden">Press any key or click to continue...</div>
