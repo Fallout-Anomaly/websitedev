@@ -54,6 +54,50 @@
          align-items: center;
       }
       
+      /* Theme switcher as navigation item */
+      .theme-switcher-nav-item {
+         display: flex;
+         align-items: center;
+      }
+      
+      .theme-switcher-nav-item .theme-switcher-button {
+         background: none;
+         border: 1px solid var(--terminal-border);
+         color: var(--terminal-text);
+         padding: 8px 12px;
+         font-family: 'VT323', monospace;
+         font-size: 0.9em;
+         text-transform: uppercase;
+         letter-spacing: 1px;
+         cursor: pointer;
+         transition: all 0.3s ease;
+         display: flex;
+         align-items: center;
+         gap: 6px;
+         text-decoration: none;
+         width: 100%;
+         justify-content: space-between;
+      }
+      
+      .theme-switcher-nav-item .theme-switcher-button:hover {
+         background: rgba(var(--terminal-text-rgb), 0.1);
+         border-color: var(--terminal-highlight);
+         color: var(--terminal-highlight);
+      }
+      
+      .theme-switcher-nav-item .theme-switcher-button .icon {
+         font-size: 0.8em;
+      }
+      
+      .theme-switcher-nav-item .theme-switcher-button .dropdown-icon {
+         font-size: 0.7em;
+         transition: transform 0.3s ease;
+      }
+      
+      .theme-switcher-nav-item .theme-switcher-button[aria-expanded="true"] .dropdown-icon {
+         transform: rotate(180deg);
+      }
+      
       
       /* Smooth theme transitions */
       * {
@@ -459,9 +503,6 @@
          <a href="index.html" class="nav-logo">
          <i class="fas fa-radiation icon"></i> FALLOUT ANOMALY </a>
          <div id="nav-links-container"></div>
-         <div class="nav-fx-toggle">
-            <div id="theme-switcher-container"></div>
-         </div>
       </div>
    </nav>
    <div class="loading-screen">
@@ -1547,17 +1588,6 @@
             searchInput.addEventListener('input', performSearch);
          }
          
-         // Initialize theme switcher
-         if (window.themeSwitcher) {
-            window.themeSwitcher.init().then(() => {
-               const container = document.getElementById('theme-switcher-container');
-               if (container && window.themeSwitcher.container) {
-                  container.appendChild(window.themeSwitcher.container);
-               }
-            }).catch(error => {
-               console.error('Failed to initialize theme switcher:', error);
-            });
-         }
       });
    </script>
 </body>
