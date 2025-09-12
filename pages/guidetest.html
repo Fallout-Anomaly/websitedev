@@ -656,6 +656,46 @@
          background: rgba(var(--terminal-highlight-rgb), 0.1);
       }
       
+      /* Checklist Card Styling */
+      .checklist-card .card-header-main {
+         display: flex;
+         align-items: center;
+         gap: 12px;
+      }
+      
+      .checklist-card .checklist-box {
+         width: 18px;
+         height: 18px;
+         margin: 0;
+         flex-shrink: 0;
+      }
+      
+      .checklist-card .card-header-main h3 {
+         margin: 0;
+         flex: 1;
+      }
+      
+      .checklist-card .card-header-main i {
+         margin-left: auto;
+      }
+      
+      .progress-card .checklist-progress {
+         margin: 0;
+         padding: 12px;
+         background: rgba(0, 0, 0, 0.3);
+         border: 1px solid var(--terminal-border);
+         border-radius: 4px;
+         text-align: center;
+         font-family: 'VT323', monospace;
+         color: var(--terminal-text);
+      }
+      
+      .progress-card .checklist-progress.completed {
+         color: var(--terminal-highlight);
+         border-color: var(--terminal-highlight);
+         background: rgba(var(--terminal-highlight-rgb), 0.1);
+      }
+      
       .collapsible-header {
          cursor: pointer;
          padding: 8px 12px;
@@ -1213,60 +1253,73 @@
                          </div>
                       </div>
                       
-                      <!-- Step 1 Checklist -->
-                      <div class="terminal-checklist">
-                         <div class="checklist-item">
-                            <input type="checkbox" id="step1-1" class="checklist-box">
-                            <label for="step1-1">
-                               <div class="checklist-instruction">
-                                  <div class="checklist-title">Hardware Requirements</div>
-                                  <div class="checklist-body">→ I have verified my system meets the requirements: 6+ core CPU, 16GB+ RAM, 6GB+ VRAM GPU, 350GB SSD space, and Windows 10/11.</div>
-                               </div>
-                            </label>
+                      <!-- Step 1 Checklist Cards -->
+                      <div class="cards-grid-4main">
+                         <div class="info-card-main checklist-card">
+                            <div class="card-header-main">
+                               <input type="checkbox" id="step1-1" class="checklist-box">
+                               <i class="fas fa-microchip"></i>
+                               <h3>Hardware Requirements</h3>
+                            </div>
+                            <div class="card-content-main">
+                               <p>→ I have verified my system meets the requirements: 6+ core CPU, 16GB+ RAM, 6GB+ VRAM GPU, 350GB SSD space, and Windows 10/11.</p>
+                            </div>
                          </div>
                          
-                         <div class="checklist-item">
-                            <input type="checkbox" id="step1-2" class="checklist-box">
-                            <label for="step1-2">
-                               <div class="checklist-instruction">
-                                  <div class="checklist-title">Nexus Premium</div>
-                                  <div class="checklist-body">→ I have subscribed to <a href="https://next.nexusmods.com/premium" target="_blank" class="terminal-link">Nexus Premium</a> for uncapped downloads and automated installation.</div>
-                               </div>
-                            </label>
+                         <div class="info-card-main checklist-card">
+                            <div class="card-header-main">
+                               <input type="checkbox" id="step1-2" class="checklist-box">
+                               <i class="fas fa-crown"></i>
+                               <h3>Nexus Premium</h3>
+                            </div>
+                            <div class="card-content-main">
+                               <p>→ I have subscribed to <a href="https://next.nexusmods.com/premium" target="_blank" class="terminal-link">Nexus Premium</a> for uncapped downloads and automated installation.</p>
+                            </div>
                          </div>
                          
-                         <div class="checklist-item">
-                            <input type="checkbox" id="step1-3" class="checklist-box">
-                            <label for="step1-3">
-                               <div class="checklist-instruction">
-                                  <div class="checklist-title">Required Components</div>
-                                  <div class="checklist-body">→ I have downloaded and installed: Microsoft Visual C++, .NET Framework 4.6.2 & 5.0, and DirectX End-User Runtime.</div>
-                               </div>
-                            </label>
+                         <div class="info-card-main checklist-card">
+                            <div class="card-header-main">
+                               <input type="checkbox" id="step1-3" class="checklist-box">
+                               <i class="fas fa-download"></i>
+                               <h3>Required Components</h3>
+                            </div>
+                            <div class="card-content-main">
+                               <p>→ I have downloaded and installed: Microsoft Visual C++, .NET Framework 4.6.2 & 5.0, and DirectX End-User Runtime.</p>
+                            </div>
                          </div>
                          
-                         <div class="checklist-item">
-                            <input type="checkbox" id="step1-4" class="checklist-box">
-                            <label for="step1-4">
-                               <div class="checklist-instruction">
-                                  <div class="checklist-title">Wabbajack Installation</div>
-                                  <div class="checklist-body">→ I have downloaded and installed <a href="https://www.wabbajack.org/" target="_blank" class="terminal-link">Wabbajack</a> from the official website.</div>
-                               </div>
-                            </label>
+                         <div class="info-card-main checklist-card">
+                            <div class="card-header-main">
+                               <input type="checkbox" id="step1-4" class="checklist-box">
+                               <i class="fas fa-tools"></i>
+                               <h3>Wabbajack Installation</h3>
+                            </div>
+                            <div class="card-content-main">
+                               <p>→ I have downloaded and installed <a href="https://www.wabbajack.org/" target="_blank" class="terminal-link">Wabbajack</a> from the official website.</p>
+                            </div>
                          </div>
                          
-                         <div class="checklist-item">
-                            <input type="checkbox" id="step1-5" class="checklist-box">
-                            <label for="step1-5">
-                               <div class="checklist-instruction">
-                                  <div class="checklist-title">Installation Folder</div>
-                                  <div class="checklist-body">→ I have created a dedicated folder: <code>C:\Fallout Modlist\Fallout Anomaly</code> for the installation.</div>
-                               </div>
-                            </label>
+                         <div class="info-card-main checklist-card">
+                            <div class="card-header-main">
+                               <input type="checkbox" id="step1-5" class="checklist-box">
+                               <i class="fas fa-folder"></i>
+                               <h3>Installation Folder</h3>
+                            </div>
+                            <div class="card-content-main">
+                               <p>→ I have created a dedicated folder: <code>C:\Fallout Modlist\Fallout Anomaly</code> for the installation.</p>
+                            </div>
                          </div>
                          
-                         <div class="checklist-progress" id="step1Progress">
-                            <span id="step1ProgressText">Complete all items to proceed to Step 2</span>
+                         <div class="info-card-main progress-card">
+                            <div class="card-header-main">
+                               <i class="fas fa-tasks"></i>
+                               <h3>Progress</h3>
+                            </div>
+                            <div class="card-content-main">
+                               <div class="checklist-progress" id="step1Progress">
+                                  <span id="step1ProgressText">Complete all items to proceed to Step 2</span>
+                               </div>
+                            </div>
                          </div>
                       </div>
                    </div>
@@ -2861,6 +2914,16 @@
          }
       }
       
+      // Ensure DOM is ready and elements exist before any operations
+      function ensureElementExists(elementId) {
+         const element = document.getElementById(elementId);
+         if (!element) {
+            console.warn(`Element with id "${elementId}" not found. Retrying...`);
+            return false;
+         }
+         return true;
+      }
+      
       // Initialize collapsible sections - all closed by default except Step 1 first section
       document.addEventListener('DOMContentLoaded', function() {
          const collapsibleContents = document.querySelectorAll('.collapsible-content');
@@ -2907,6 +2970,15 @@
          const searchInput = document.getElementById('step5Search');
          if (searchInput) {
             searchInput.addEventListener('input', performSearch);
+         }
+         
+         // Verify all tab elements exist before initializing
+         const requiredTabs = ['step1', 'step2', 'step3', 'step4', 'step5'];
+         const missingTabs = requiredTabs.filter(tabId => !ensureElementExists(tabId));
+         
+         if (missingTabs.length > 0) {
+            console.error('Missing tab elements:', missingTabs);
+            return;
          }
          
          // Initialize all checklists
