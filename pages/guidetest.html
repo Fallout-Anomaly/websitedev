@@ -1212,6 +1212,63 @@
                             </div>
                          </div>
                       </div>
+                      
+                      <!-- Step 1 Checklist -->
+                      <div class="terminal-checklist">
+                         <div class="checklist-item">
+                            <input type="checkbox" id="step1-1" class="checklist-box">
+                            <label for="step1-1">
+                               <div class="checklist-instruction">
+                                  <div class="checklist-title">Hardware Requirements</div>
+                                  <div class="checklist-body">→ I have verified my system meets the requirements: 6+ core CPU, 16GB+ RAM, 6GB+ VRAM GPU, 350GB SSD space, and Windows 10/11.</div>
+                               </div>
+                            </label>
+                         </div>
+                         
+                         <div class="checklist-item">
+                            <input type="checkbox" id="step1-2" class="checklist-box">
+                            <label for="step1-2">
+                               <div class="checklist-instruction">
+                                  <div class="checklist-title">Nexus Premium</div>
+                                  <div class="checklist-body">→ I have subscribed to <a href="https://next.nexusmods.com/premium" target="_blank" class="terminal-link">Nexus Premium</a> for uncapped downloads and automated installation.</div>
+                               </div>
+                            </label>
+                         </div>
+                         
+                         <div class="checklist-item">
+                            <input type="checkbox" id="step1-3" class="checklist-box">
+                            <label for="step1-3">
+                               <div class="checklist-instruction">
+                                  <div class="checklist-title">Required Components</div>
+                                  <div class="checklist-body">→ I have downloaded and installed: Microsoft Visual C++, .NET Framework 4.6.2 & 5.0, and DirectX End-User Runtime.</div>
+                               </div>
+                            </label>
+                         </div>
+                         
+                         <div class="checklist-item">
+                            <input type="checkbox" id="step1-4" class="checklist-box">
+                            <label for="step1-4">
+                               <div class="checklist-instruction">
+                                  <div class="checklist-title">Wabbajack Installation</div>
+                                  <div class="checklist-body">→ I have downloaded and installed <a href="https://www.wabbajack.org/" target="_blank" class="terminal-link">Wabbajack</a> from the official website.</div>
+                               </div>
+                            </label>
+                         </div>
+                         
+                         <div class="checklist-item">
+                            <input type="checkbox" id="step1-5" class="checklist-box">
+                            <label for="step1-5">
+                               <div class="checklist-instruction">
+                                  <div class="checklist-title">Installation Folder</div>
+                                  <div class="checklist-body">→ I have created a dedicated folder: <code>C:\Fallout Modlist\Fallout Anomaly</code> for the installation.</div>
+                               </div>
+                            </label>
+                         </div>
+                         
+                         <div class="checklist-progress" id="step1Progress">
+                            <span id="step1ProgressText">Complete all items to proceed to Step 2</span>
+                         </div>
+                      </div>
                    </div>
                 </div>
                <div class="tab-content" id="step2">
@@ -1251,61 +1308,6 @@
                               </ol>
                            </div>
                            
-                           <div class="terminal-checklist">
-                              <div class="checklist-item">
-                                 <input type="checkbox" id="step1-1" class="checklist-box">
-                                 <label for="step1-1">
-                                    <div class="checklist-instruction">
-                                       <div class="checklist-title">Hardware Requirements</div>
-                                       <div class="checklist-body">→ I have verified my system meets the requirements: 6+ core CPU, 16GB+ RAM, 6GB+ VRAM GPU, 350GB SSD space, and Windows 10/11.</div>
-                                    </div>
-                                 </label>
-                              </div>
-                              
-                              <div class="checklist-item">
-                                 <input type="checkbox" id="step1-2" class="checklist-box">
-                                 <label for="step1-2">
-                                    <div class="checklist-instruction">
-                                       <div class="checklist-title">Nexus Premium</div>
-                                       <div class="checklist-body">→ I have subscribed to <a href="https://next.nexusmods.com/premium" target="_blank" class="terminal-link">Nexus Premium</a> for uncapped downloads and automated installation.</div>
-                                    </div>
-                                 </label>
-                              </div>
-                              
-                              <div class="checklist-item">
-                                 <input type="checkbox" id="step1-3" class="checklist-box">
-                                 <label for="step1-3">
-                                    <div class="checklist-instruction">
-                                       <div class="checklist-title">Required Components</div>
-                                       <div class="checklist-body">→ I have downloaded and installed: Microsoft Visual C++, .NET Framework 4.6.2 & 5.0, and DirectX End-User Runtime.</div>
-                                    </div>
-                                 </label>
-                              </div>
-                              
-                              <div class="checklist-item">
-                                 <input type="checkbox" id="step1-4" class="checklist-box">
-                                 <label for="step1-4">
-                                    <div class="checklist-instruction">
-                                       <div class="checklist-title">Wabbajack Installation</div>
-                                       <div class="checklist-body">→ I have downloaded and installed <a href="https://www.wabbajack.org/" target="_blank" class="terminal-link">Wabbajack</a> from the official website.</div>
-                                    </div>
-                                 </label>
-                              </div>
-                              
-                              <div class="checklist-item">
-                                 <input type="checkbox" id="step1-5" class="checklist-box">
-                                 <label for="step1-5">
-                                    <div class="checklist-instruction">
-                                       <div class="checklist-title">Installation Folder</div>
-                                       <div class="checklist-body">→ I have created a dedicated folder: <code>C:\Fallout Modlist\Fallout Anomaly</code> for the installation.</div>
-                                    </div>
-                                 </label>
-                              </div>
-                              
-                              <div class="checklist-progress" id="step1Progress">
-                                 <span id="step1ProgressText">Complete all items to proceed to Step 2</span>
-                              </div>
-                           </div>
                         </div>
                      </div>
                      
@@ -2874,6 +2876,21 @@
             const step1Header = document.querySelector('#step1 .collapsible-header');
             if (step1Header) {
                const icon = step1Header.querySelector('.collapsible-icon i');
+               if (icon) {
+                  icon.classList.remove('fa-chevron-down');
+                  icon.classList.add('fa-chevron-up');
+               }
+            }
+         }
+         
+         // Open the first collapsible section in Step 5 by default
+         const step5FirstSection = document.querySelector('#step5 .collapsible-content');
+         if (step5FirstSection) {
+            step5FirstSection.style.display = 'block';
+            // Also update the chevron icon
+            const step5Header = document.querySelector('#step5 .collapsible-header');
+            if (step5Header) {
+               const icon = step5Header.querySelector('.collapsible-icon i');
                if (icon) {
                   icon.classList.remove('fa-chevron-down');
                   icon.classList.add('fa-chevron-up');
