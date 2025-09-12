@@ -3843,12 +3843,12 @@ The Commonwealth is your home now, and you're determined to make it a better pla
          } else {
             let html = `<div class="search-stats">${results.length} result${results.length !== 1 ? 's' : ''} found</div>`;
             
-            results.slice(0, 10).forEach(result => {
+            results.slice(0, 10).forEach((result, index) => {
                const highlightedPreview = highlightText(result.preview, query);
                const highlightedTitle = highlightText(result.title, query);
                
                html += `
-                  <div class="search-result-item" onclick="scrollToSearchResult('${result.element.id || 'content'}')">
+                  <div class="search-result-item" onclick="navigateToSearchResult(${index})">
                      <div class="search-result-title">${highlightedTitle}</div>
                      <div class="search-result-preview">${highlightedPreview}</div>
                      <div class="search-result-section">${result.section}</div>
@@ -3857,6 +3857,9 @@ The Commonwealth is your home now, and you're determined to make it a better pla
             });
             
             searchResults.innerHTML = html;
+            
+            // Store results globally for navigation
+            window.searchResults = results;
          }
          
          searchResults.style.display = 'block';
@@ -3878,29 +3881,97 @@ The Commonwealth is your home now, and you're determined to make it a better pla
          if (clearBtn) clearBtn.style.display = 'none';
       }
       
-      function scrollToSearchResult(elementId) {
-         const element = document.getElementById(elementId);
-         if (element) {
-            // If it's in a collapsible section, expand it first
-            const collapsible = element.closest('.collapsible-section');
-            if (collapsible) {
-               const header = collapsible.querySelector('.collapsible-header');
-               if (header && collapsible.querySelector('.collapsible-content').style.display === 'none') {
-                  toggleCollapsible(header);
-               }
+      function navigateToSearchResult(resultIndex) {
+         if (!window.searchResults || !window.searchResults[resultIndex]) {
+            hideSearchResults();
+            return;
+         }
+         
+         const result = window.searchResults[resultIndex];
+         const element = result.element;
+         
+         // Find which tab this element belongs to
+         const tabContent = element.closest('.tab-content');
+         if (tabContent) {
+            const tabId = tabContent.id;
+            const tabButton = document.querySelector(`[data-tab="${tabId}"]`);
+            
+            if (tabButton) {
+               // Switch to the correct tab
+               switchTab(tabId);
+               
+               // Wait for tab switch to complete, then navigate to element
+               setTimeout(() => {
+                  navigateToElement(element);
+               }, 100);
             }
-            
-            // Scroll to element
-            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Highlight the element briefly
-            element.style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
-            setTimeout(() => {
-               element.style.backgroundColor = '';
-            }, 2000);
+         } else {
+            // If not in a tab, just navigate directly
+            navigateToElement(element);
          }
          
          hideSearchResults();
+      }
+      
+      function navigateToElement(element) {
+         // If it's in a collapsible section, expand it first
+         const collapsible = element.closest('.collapsible-section');
+         if (collapsible) {
+            const header = collapsible.querySelector('.collapsible-header');
+            if (header) {
+               const content = collapsible.querySelector('.collapsible-content');
+               if (content && (content.style.display === 'none' || content.style.display === '')) {
+                  toggleCollapsible(header);
+               }
+            }
+         }
+         
+         // If it's in a sub-collapsible section, expand it too
+         const subCollapsible = element.closest('.sub-collapsible');
+         if (subCollapsible) {
+            const header = subCollapsible.querySelector('.sub-collapsible-header');
+            if (header) {
+               const content = subCollapsible.querySelector('.sub-collapsible-content');
+               if (content && (content.style.display === 'none' || content.style.display === '')) {
+                  toggleSubCollapsible(header);
+               }
+            }
+         }
+         
+         // Scroll to element
+         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+         
+         // Highlight the element briefly
+         element.style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
+         setTimeout(() => {
+            element.style.backgroundColor = '';
+         }, 2000);
+      }
+      
+      function switchTab(tabId) {
+         // Hide all tab contents
+         const allTabContents = document.querySelectorAll('.tab-content');
+         allTabContents.forEach(content => {
+            content.classList.remove('active');
+         });
+         
+         // Remove active class from all tab buttons
+         const allTabButtons = document.querySelectorAll('.tab-button');
+         allTabButtons.forEach(button => {
+            button.classList.remove('active');
+         });
+         
+         // Show the target tab content
+         const targetTabContent = document.getElementById(tabId);
+         if (targetTabContent) {
+            targetTabContent.classList.add('active');
+         }
+         
+         // Activate the target tab button
+         const targetTabButton = document.querySelector(`[data-tab="${tabId}"]`);
+         if (targetTabButton) {
+            targetTabButton.classList.add('active');
+         }
       }
       
       // Collapsible functionality for Step 5 sections
