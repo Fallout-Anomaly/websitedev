@@ -2973,8 +2973,18 @@
       </div>
    </div>
    <script src="../src/js/theme-switcher.js"></script>
-   <script src="../src/js/script.js"></script>
    <script src="../src/js/navlinks.js"></script>
+   <script>
+      // Ensure DOM is fully loaded before loading external script.js
+      document.addEventListener('DOMContentLoaded', function() {
+         // Add a small delay to ensure all content is rendered
+         setTimeout(function() {
+            const script = document.createElement('script');
+            script.src = '../src/js/script.js';
+            document.head.appendChild(script);
+         }, 100);
+      });
+   </script>
    <script>
       // Collapsible functionality for Step 5 sections
       function toggleCollapsible(header) {
@@ -3053,6 +3063,23 @@
                   icon.classList.add('fa-chevron-up');
                }
             }
+         } else {
+            console.warn('Step 5 first collapsible section not found');
+            // Retry after a short delay
+            setTimeout(function() {
+               const retryStep5Section = document.querySelector('#step5 .collapsible-content');
+               if (retryStep5Section) {
+                  retryStep5Section.style.display = 'block';
+                  const retryStep5Header = document.querySelector('#step5 .collapsible-header');
+                  if (retryStep5Header) {
+                     const retryIcon = retryStep5Header.querySelector('.collapsible-icon i');
+                     if (retryIcon) {
+                        retryIcon.classList.remove('fa-chevron-down');
+                        retryIcon.classList.add('fa-chevron-up');
+                     }
+                  }
+               }
+            }, 500);
          }
          
          const subCollapsibleContents = document.querySelectorAll('.sub-collapsible-content');
