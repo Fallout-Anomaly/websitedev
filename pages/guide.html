@@ -1053,6 +1053,34 @@
          font-weight: bold;
       }
       
+      /* Video Disclaimer Styling */
+      .video-disclaimer {
+         margin-top: 15px;
+         padding: 12px 16px;
+         background: rgba(255, 193, 7, 0.1);
+         border: 1px solid rgba(255, 193, 7, 0.3);
+         border-radius: 6px;
+         color: var(--terminal-text);
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         font-size: 14px;
+         line-height: 1.4;
+         display: flex;
+         align-items: center;
+         gap: 10px;
+      }
+      
+      .video-disclaimer i {
+         color: #ffc107;
+         font-size: 16px;
+         text-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+         min-width: 20px;
+      }
+      
+      .video-disclaimer strong {
+         color: #ffc107;
+         font-weight: bold;
+      }
+      
       .collapsible-header {
          cursor: pointer;
          padding: 8px 12px;
@@ -1516,6 +1544,10 @@
              
              <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/uYRev9mF4Q0?si=a6ar_TsmgJdy9QGG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="video-disclaimer">
+                   <i class="fas fa-info-circle"></i>
+                   <strong>Video Disclaimer:</strong> This video shows a slightly outdated user interface, but all installation information and steps remain accurate and up-to-date.
+                </div>
              </div>
              
              <div class="search-container">
