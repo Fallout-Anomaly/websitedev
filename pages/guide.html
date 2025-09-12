@@ -698,6 +698,123 @@
          to { transform: rotate(360deg); }
       }
       
+      /* Enhanced Social Links for Banner */
+      .banner-section .social-links {
+         display: flex;
+         justify-content: center;
+         gap: 20px;
+         margin: 30px 0;
+         flex-wrap: wrap;
+      }
+      
+      .banner-section .social-link {
+         position: relative;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         padding: 20px 25px;
+         background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 20, 0.9));
+         border: 2px solid var(--terminal-border);
+         border-radius: 8px;
+         color: var(--terminal-text);
+         text-decoration: none;
+         transition: all 0.4s ease;
+         font-weight: bold;
+         min-width: 140px;
+         text-align: center;
+         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+         overflow: hidden;
+      }
+      
+      .banner-section .social-link::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: -100%;
+         width: 100%;
+         height: 100%;
+         background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+         transition: left 0.6s ease;
+      }
+      
+      .banner-section .social-link:hover::before {
+         left: 100%;
+      }
+      
+      .banner-section .social-link i {
+         font-size: 24px;
+         margin-bottom: 8px;
+         color: var(--terminal-highlight);
+         text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+         transition: all 0.3s ease;
+      }
+      
+      .banner-section .social-link span {
+         font-size: 14px;
+         font-weight: bold;
+         letter-spacing: 1px;
+         margin-bottom: 4px;
+         text-transform: uppercase;
+         transition: all 0.3s ease;
+      }
+      
+      .banner-section .social-link small {
+         font-size: 11px;
+         opacity: 0.8;
+         font-weight: normal;
+         text-transform: none;
+         letter-spacing: 0.5px;
+      }
+      
+      .banner-section .social-link:hover {
+         background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(0, 200, 0, 0.2));
+         border-color: var(--terminal-highlight);
+         color: var(--terminal-highlight);
+         transform: translateY(-4px) scale(1.05);
+         box-shadow: 0 8px 20px rgba(0, 255, 0, 0.4), 0 0 20px rgba(0, 255, 0, 0.2);
+      }
+      
+      .banner-section .social-link:hover i {
+         color: var(--terminal-highlight);
+         text-shadow: 0 0 12px rgba(0, 255, 0, 0.8);
+         transform: scale(1.1);
+      }
+      
+      .banner-section .social-link:hover span {
+         text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+      }
+      
+      /* Specific button themes */
+      .banner-section .social-link.discord:hover {
+         background: linear-gradient(135deg, rgba(88, 101, 242, 0.2), rgba(88, 101, 242, 0.3));
+         border-color: #5865f2;
+         box-shadow: 0 8px 20px rgba(88, 101, 242, 0.4);
+      }
+      
+      .banner-section .social-link.youtube:hover {
+         background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(255, 0, 0, 0.3));
+         border-color: #ff0000;
+         box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+      }
+      
+      .banner-section .social-link.nexus:hover {
+         background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 165, 0, 0.3));
+         border-color: #ffa500;
+         box-shadow: 0 8px 20px rgba(255, 165, 0, 0.4);
+      }
+      
+      .banner-section .social-link.bug-report:hover {
+         background: linear-gradient(135deg, rgba(255, 69, 0, 0.2), rgba(255, 69, 0, 0.3));
+         border-color: #ff4500;
+         box-shadow: 0 8px 20px rgba(255, 69, 0, 0.4);
+      }
+      
+      .banner-section .social-link.donate:hover {
+         background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(255, 20, 147, 0.3));
+         border-color: #ff1493;
+         box-shadow: 0 8px 20px rgba(255, 20, 147, 0.4);
+      }
+      
       .collapsible-header {
          cursor: pointer;
          padding: 8px 12px;
@@ -1108,11 +1225,31 @@
              <div class="banner-section">
                 <img src="https://raw.githubusercontent.com/NomadsReach/Fallout-Anomaly/refs/heads/master/images/Banner%20Images/Fo4Anomaly27.png" alt="Fallout Anomaly Banner" class="banner-image">
                 <div class="social-links">
-                   <a href="https://discord.gg/bBngBN5A" class="social-link discord">Discord</a>
-                   <a href="https://www.youtube.com/@FalloutAnomaly" class="social-link youtube">YouTube</a>
-                   <a href="https://www.nexusmods.com/fallout4/mods/74075" class="social-link nexus">Nexus</a>
-                   <a href="https://falloutanomaly.fillout.com/bugreports" class="social-link bug-report">Bug Report</a>
-                   <a href="https://falloutanomaly.guildtag.com/donate/" class="social-link donate">Donate to support Development</a>
+                   <a href="https://discord.gg/bBngBN5A" class="social-link discord">
+                      <i class="fab fa-discord"></i>
+                      <span>JOIN COMMUNITY</span>
+                      <small>Discord Server</small>
+                   </a>
+                   <a href="https://www.youtube.com/@FalloutAnomaly" class="social-link youtube">
+                      <i class="fab fa-youtube"></i>
+                      <span>WATCH VIDEOS</span>
+                      <small>YouTube Channel</small>
+                   </a>
+                   <a href="https://www.nexusmods.com/fallout4/mods/74075" class="social-link nexus">
+                      <i class="fas fa-download"></i>
+                      <span>DOWNLOAD MOD</span>
+                      <small>Nexus Mods</small>
+                   </a>
+                   <a href="https://falloutanomaly.fillout.com/bugreports" class="social-link bug-report">
+                      <i class="fas fa-bug"></i>
+                      <span>REPORT ISSUES</span>
+                      <small>Bug Reports</small>
+                   </a>
+                   <a href="https://falloutanomaly.guildtag.com/donate/" class="social-link donate">
+                      <i class="fas fa-heart"></i>
+                      <span>SUPPORT PROJECT</span>
+                      <small>Donate</small>
+                   </a>
                 </div>
              </div>
              
