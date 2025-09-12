@@ -588,6 +588,116 @@
          text-shadow: none;
       }
       
+      /* AI Assistant Styling */
+      .ai-feature-box {
+         margin: 20px 0;
+         padding: 20px;
+         background: rgba(0, 0, 0, 0.3);
+         border: 1px solid var(--terminal-border);
+         border-radius: 6px;
+      }
+      
+      .ai-feature-box h4 {
+         color: var(--terminal-highlight);
+         font-size: 1.2em;
+         margin-bottom: 10px;
+         text-shadow: var(--glow-effect);
+      }
+      
+      .ai-feature-box p {
+         color: var(--terminal-text);
+         margin-bottom: 15px;
+         line-height: 1.4;
+      }
+      
+      .ai-feature-box textarea {
+         width: 100%;
+         min-height: 100px;
+         padding: 12px;
+         background: rgba(0, 0, 0, 0.5);
+         border: 1px solid var(--terminal-border);
+         border-radius: 4px;
+         color: var(--terminal-text);
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         font-size: 14px;
+         line-height: 1.4;
+         resize: vertical;
+         margin-bottom: 15px;
+      }
+      
+      .ai-feature-box textarea:focus {
+         outline: none;
+         border-color: var(--terminal-highlight);
+         box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
+      }
+      
+      .ai-feature-box textarea::placeholder {
+         color: rgba(255, 255, 255, 0.5);
+      }
+      
+      .ai-feature-box button {
+         background: var(--terminal-highlight);
+         color: #000;
+         border: 1px solid var(--terminal-border);
+         padding: 10px 20px;
+         border-radius: 4px;
+         cursor: pointer;
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         font-size: 14px;
+         font-weight: bold;
+         transition: all 0.3s ease;
+         margin-bottom: 15px;
+      }
+      
+      .ai-feature-box button:hover {
+         background: var(--terminal-text);
+         color: var(--terminal-highlight);
+         transform: translateY(-1px);
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      
+      .ai-feature-box button:disabled {
+         background: rgba(255, 255, 255, 0.2);
+         color: rgba(255, 255, 255, 0.5);
+         cursor: not-allowed;
+         transform: none;
+         box-shadow: none;
+      }
+      
+      .ai-result-box {
+         min-height: 100px;
+         padding: 15px;
+         background: rgba(0, 0, 0, 0.4);
+         border: 1px dashed var(--terminal-border);
+         border-radius: 4px;
+         color: var(--terminal-text);
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         line-height: 1.5;
+         white-space: pre-wrap;
+         word-wrap: break-word;
+      }
+      
+      .ai-result-box:empty::before {
+         content: "Generated content will appear here...";
+         color: rgba(255, 255, 255, 0.3);
+         font-style: italic;
+      }
+      
+      .ai-loading {
+         display: inline-block;
+         width: 20px;
+         height: 20px;
+         border: 2px solid var(--terminal-border);
+         border-radius: 50%;
+         border-top-color: transparent;
+         animation: spin 1s ease-in-out infinite;
+         margin-right: 10px;
+      }
+      
+      @keyframes spin {
+         to { transform: rotate(360deg); }
+      }
+      
       .collapsible-header {
          cursor: pointer;
          padding: 8px 12px;
@@ -1040,6 +1150,7 @@
                   <button class="tab-button" data-tab="step3">STEP 3: LAUNCHING</button>
                   <button class="tab-button" data-tab="step4">STEP 4: KNOWN ISSUES</button>
                   <button class="tab-button" data-tab="step5">STEP 5: GAMEPLAY</button>
+                  <button class="tab-button" data-tab="ai-assistant">✨ AI ASSISTANT</button>
                   <button class="tab-button" data-tab="support">SUPPORT & COMMUNITY</button>
                </div>
                <div class="tab-content active" id="step1">
@@ -2294,10 +2405,10 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                               </div>
                               <div class="sub-collapsible-content">
                                  <div class="skill-grid">
-                                    <div class="skill-item">Wheel Menu: H key to open quick access wheel</div>
-                                    <div class="skill-item">MODExplorer: \ key to show mod list and information</div>
-                                    <div class="skill-item">Quick Inventory: I key for fast inventory access</div>
-                                    <div class="skill-item">Quick Map: M key for instant map access</div>
+                                    <div class="skill-item">Wheel Menu: Quick access wheel for items and actions</div>
+                                    <div class="skill-item">MODExplorer: Mod list and information display</div>
+                                    <div class="skill-item">Quick Inventory: Fast inventory access system</div>
+                                    <div class="skill-item">Quick Map: Instant map access system</div>
                                  </div>
                               </div>
                            </div>
@@ -2330,6 +2441,20 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                                     <li>R – Ready Weapon / Reload</li>
                                     <li>Q – VATS</li>
                                     <li>J – Holster / Lower Weapon</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+📱 Menu & Inventory Controls                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <ul class="compact-list">
+                                    <li>Tab – Open Pip-Boy</li>
+                                    <li>Mouse3 – Toggle POV / Workshop</li>
+                                    <li>Esc – Pause</li>
+                                    <li>I – Quick Inventory</li>
+                                    <li>M – Quick Map</li>
                                  </ul>
                               </div>
                            </div>
@@ -2371,7 +2496,7 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                               </div>
                               <div class="sub-collapsible-content">
                                  <div class="skill-grid">
-                                    <div class="skill-item">Persistent Volume Sliders: Numpad 0 to mute music</div>
+                                    <div class="skill-item">Persistent Volume Sliders: Customizable audio controls</div>
                                     <div class="skill-item">Enhanced Sound Effects: Improved weapon and environmental sounds</div>
                                     <div class="skill-item">Dynamic Music: Context-sensitive music system</div>
                                     <div class="skill-item">Audio Immersion: Realistic audio positioning and effects</div>
@@ -2482,6 +2607,38 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                      <i class="fas fa-arrow-up"></i>
                   </div>
                </div>
+               <div class="tab-content" id="ai-assistant">
+                  <div class="info-card">
+                     <div class="card-header">
+                        <i class="fas fa-robot"></i><h3>Wasteland Assistant</h3>
+                     </div>
+                     <div class="card-content">
+                        <p>Struggling with your new identity in the Commonwealth? Let our advanced RobCo terminal assist you. Describe your desired playstyle or character concept below, and we'll generate a custom build or backstory to get you started on your journey.</p>
+                        
+                        <!-- Character Build Generator -->
+                        <div class="ai-feature-box">
+                           <h4>✨ Generate a Character Build</h4>
+                           <p>Describe the kind of survivor you want to be (e.g., "a sneaky sniper who uses rifles," "a charismatic leader who builds large settlements," or "a brute who smashes things with a sledgehammer").</p>
+                           <textarea id="build-prompt" placeholder="Enter your desired playstyle..."></textarea>
+                           <button id="generate-build-btn" class="social-link">Generate Build</button>
+                           <div id="build-result" class="ai-result-box"></div>
+                        </div>
+
+                        <!-- Backstory Generator -->
+                        <div class="ai-feature-box">
+                           <h4>✨ Generate a Character Backstory</h4>
+                           <p>Provide a few keywords about your character's past or personality (e.g., "ex-raider, regretful, good with pistols" or "scared scientist, smart, avoids fights").</p>
+                           <textarea id="backstory-prompt" placeholder="Enter a few keywords..."></textarea>
+                           <button id="generate-backstory-btn" class="social-link">Generate Backstory</button>
+                           <div id="backstory-result" class="ai-result-box"></div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
+                  </div>
+               </div>
                <div class="tab-content" id="support">
                   <div class="terminal-list">
                      <div class="terminal-list-item">
@@ -2526,6 +2683,333 @@ All Skills (26 Total)                                  <span class="sub-collapsi
             top: 0,
             behavior: 'smooth'
          });
+      }
+      
+      // AI Assistant functionality
+      document.addEventListener('DOMContentLoaded', function() {
+         const buildBtn = document.getElementById('generate-build-btn');
+         const backstoryBtn = document.getElementById('generate-backstory-btn');
+         const buildPrompt = document.getElementById('build-prompt');
+         const backstoryPrompt = document.getElementById('backstory-prompt');
+         const buildResult = document.getElementById('build-result');
+         const backstoryResult = document.getElementById('backstory-result');
+         
+         if (buildBtn && buildPrompt && buildResult) {
+            buildBtn.addEventListener('click', function() {
+               generateCharacterBuild();
+            });
+         }
+         
+         if (backstoryBtn && backstoryPrompt && backstoryResult) {
+            backstoryBtn.addEventListener('click', function() {
+               generateCharacterBackstory();
+            });
+         }
+      });
+      
+      function generateCharacterBuild() {
+         const prompt = document.getElementById('build-prompt').value.trim();
+         const resultBox = document.getElementById('build-result');
+         const button = document.getElementById('generate-build-btn');
+         
+         if (!prompt) {
+            resultBox.textContent = "Please enter a playstyle description first.";
+            return;
+         }
+         
+         // Show loading state
+         button.disabled = true;
+         button.innerHTML = '<span class="ai-loading"></span>Generating...';
+         resultBox.textContent = "Analyzing your playstyle preferences...";
+         
+         // Simulate AI generation with realistic delay
+         setTimeout(() => {
+            const build = generateBuildFromPrompt(prompt);
+            resultBox.textContent = build;
+            button.disabled = false;
+            button.textContent = 'Generate Build';
+         }, 2000 + Math.random() * 2000); // 2-4 second delay
+      }
+      
+      function generateCharacterBackstory() {
+         const prompt = document.getElementById('backstory-prompt').value.trim();
+         const resultBox = document.getElementById('backstory-result');
+         const button = document.getElementById('generate-backstory-btn');
+         
+         if (!prompt) {
+            resultBox.textContent = "Please enter some character keywords first.";
+            return;
+         }
+         
+         // Show loading state
+         button.disabled = true;
+         button.innerHTML = '<span class="ai-loading"></span>Generating...';
+         resultBox.textContent = "Crafting your character's story...";
+         
+         // Simulate AI generation with realistic delay
+         setTimeout(() => {
+            const backstory = generateBackstoryFromPrompt(prompt);
+            resultBox.textContent = backstory;
+            button.disabled = false;
+            button.textContent = 'Generate Backstory';
+         }, 2000 + Math.random() * 2000); // 2-4 second delay
+      }
+      
+      function generateBuildFromPrompt(prompt) {
+         const builds = {
+            // Sniper builds
+            sniper: `🎯 SNIPER SPECIALIST BUILD
+                     
+SPECIAL Distribution:
+• Perception: 8 (Essential for VATS accuracy and rifle damage)
+• Agility: 7 (AP for VATS and stealth)
+• Intelligence: 6 (Mod crafting and energy weapons)
+• Strength: 3 (Minimal carry weight)
+• Endurance: 4 (Survival basics)
+• Charisma: 2 (Lone wanderer)
+• Luck: 6 (Critical hits and better loot)
+
+Key Perks:
+• Rifleman (Perception) - Core damage perk
+• Sniper (Perception) - VATS accuracy and range
+• Sneak (Agility) - Essential for stealth
+• Ninja (Agility) - Massive sneak attack damage
+• Concentrated Fire (Perception) - VATS targeting
+• Better Criticals (Luck) - Enhanced critical damage
+
+Recommended Weapons:
+• Hunting Rifle (early game)
+• Gauss Rifle (end game)
+• .50 Cal Sniper Rifle
+• Plasma Rifle (energy option)
+
+Playstyle Tips:
+• Use high ground for better sight lines
+• Invest in stealth boys for difficult encounters
+• Focus on headshots for maximum damage
+• Keep distance from enemies
+• Use VATS for guaranteed hits on moving targets`,
+
+            // Melee builds
+            melee: `⚔️ MELEE BRUTE BUILD
+                    
+SPECIAL Distribution:
+• Strength: 10 (Maximum melee damage and carry weight)
+• Endurance: 8 (Survival and damage resistance)
+• Agility: 6 (AP for power attacks and movement)
+• Intelligence: 3 (Minimal crafting)
+• Perception: 2 (Basic awareness)
+• Charisma: 2 (Lone wanderer)
+• Luck: 5 (Critical hits and loot)
+
+Key Perks:
+• Big Leagues (Strength) - Core melee damage
+• Rooted (Strength) - Damage bonus when standing still
+• Pain Train (Strength) - Power armor charge attacks
+• Iron Fist (Strength) - Unarmed damage (alternative)
+• Toughness (Endurance) - Damage resistance
+• Life Giver (Endurance) - Extra health
+
+Recommended Weapons:
+• Super Sledge (highest damage)
+• Baseball Bat (early game)
+• Power Fist (unarmed option)
+• Deathclaw Gauntlet (unique unarmed)
+
+Playstyle Tips:
+• Charge into combat aggressively
+• Use power armor for protection
+• Focus on strength and endurance
+• Use chems for damage boosts
+• Target multiple enemies with sweeping attacks`,
+
+            // Charismatic leader builds
+            leader: `👑 CHARISMATIC LEADER BUILD
+                     
+SPECIAL Distribution:
+• Charisma: 10 (Maximum companion benefits and settlement)
+• Intelligence: 7 (Settlement building and crafting)
+• Endurance: 5 (Survival basics)
+• Agility: 4 (Basic combat)
+• Strength: 4 (Carry weight for settlement materials)
+• Perception: 3 (Basic awareness)
+• Luck: 3 (Minimal investment)
+
+Key Perks:
+• Local Leader (Charisma) - Settlement supply lines
+• Cap Collector (Charisma) - Better vendor prices
+• Inspirational (Charisma) - Companion damage boost
+• Party Boy/Girl (Charisma) - Alcohol benefits
+• Gun Nut (Intelligence) - Weapon crafting
+• Science! (Intelligence) - Advanced crafting
+
+Recommended Weapons:
+• Combat Rifle (versatile)
+• Laser Rifle (energy option)
+• Automatic weapons for companions
+
+Playstyle Tips:
+• Focus on settlement building
+• Use companions effectively
+• Invest in charisma-based dialogue
+• Build supply lines between settlements
+• Use alcohol for temporary charisma boosts`,
+
+            // Stealth builds
+            stealth: `🥷 STEALTH ASSASSIN BUILD
+                      
+SPECIAL Distribution:
+• Agility: 10 (Maximum stealth and AP)
+• Perception: 7 (Detection and VATS)
+• Intelligence: 6 (Crafting and energy weapons)
+• Endurance: 4 (Basic survival)
+• Strength: 3 (Minimal carry weight)
+• Charisma: 2 (Lone wanderer)
+• Luck: 4 (Critical hits)
+
+Key Perks:
+• Sneak (Agility) - Core stealth ability
+• Ninja (Agility) - Massive sneak attack damage
+• Mister Sandman (Agility) - Sleeping enemy damage
+• Pickpocket (Agility) - Theft and sabotage
+• Demolition Expert (Perception) - Explosive traps
+• Action Boy/Girl (Agility) - More AP
+
+Recommended Weapons:
+• Combat Knife (silent melee)
+• Deliverer (silent pistol)
+• Suppressed weapons
+• Throwing knives
+• Explosives for traps
+
+Playstyle Tips:
+• Stay hidden at all times
+• Use shadows and cover
+• Set up traps before combat
+• Pickpocket enemies for sabotage
+• Focus on one-shot kills`,
+
+            // Default balanced build
+            default: `⚖️ BALANCED SURVIVOR BUILD
+                      
+SPECIAL Distribution:
+• Strength: 5 (Moderate carry weight)
+• Perception: 5 (Good awareness)
+• Endurance: 5 (Decent survival)
+• Charisma: 5 (Basic social skills)
+• Intelligence: 5 (Good crafting)
+• Agility: 5 (Moderate stealth and AP)
+• Luck: 5 (Balanced loot and crits)
+
+Key Perks:
+• Gun Nut (Intelligence) - Weapon crafting
+• Armorer (Intelligence) - Armor crafting
+• Local Leader (Charisma) - Settlement building
+• Lone Wanderer (Charisma) - Solo survival
+• Scrapper (Intelligence) - Better materials
+• Scrounger (Luck) - More ammo
+
+Recommended Weapons:
+• Combat Rifle (versatile)
+• Shotgun (close combat)
+• Laser weapons (energy option)
+
+Playstyle Tips:
+• Adapt to different situations
+• Focus on crafting and settlement building
+• Use companions when needed
+• Balance stealth and direct combat
+• Invest in multiple weapon types`
+         };
+         
+         // Analyze prompt and select appropriate build
+         const lowerPrompt = prompt.toLowerCase();
+         
+         if (lowerPrompt.includes('sniper') || lowerPrompt.includes('rifle') || lowerPrompt.includes('long range')) {
+            return builds.sniper;
+         } else if (lowerPrompt.includes('melee') || lowerPrompt.includes('close') || lowerPrompt.includes('brute') || lowerPrompt.includes('sledge')) {
+            return builds.melee;
+         } else if (lowerPrompt.includes('charismatic') || lowerPrompt.includes('leader') || lowerPrompt.includes('settlement') || lowerPrompt.includes('build')) {
+            return builds.leader;
+         } else if (lowerPrompt.includes('stealth') || lowerPrompt.includes('sneak') || lowerPrompt.includes('assassin') || lowerPrompt.includes('silent')) {
+            return builds.stealth;
+         } else {
+            return builds.default;
+         }
+      }
+      
+      function generateBackstoryFromPrompt(prompt) {
+         const backstories = {
+            // Ex-raider themes
+            exRaider: `🔥 THE REDEEMED RAIDER
+                      
+Before the bombs fell, you were known as "Scar" - a ruthless raider who terrorized the Commonwealth. You led a gang called the "Iron Fangs" and showed no mercy to anyone who crossed your path. But something changed when you witnessed the destruction of a family settlement you had raided. The sight of children hiding in the rubble haunted you.
+
+Now, you wander the wasteland seeking redemption. Your combat skills are unmatched, but you've sworn to use them only to protect the innocent. You carry the guilt of your past actions, and every life you save is a small step toward forgiveness.
+
+Your expertise with pistols comes from years of close-quarters combat in raider camps. You know how to make every shot count, and you're not afraid to get your hands dirty when justice demands it.
+
+The wasteland has taught you that survival sometimes requires making difficult choices, but you've learned that there's always a better way than violence and cruelty.`,
+
+            // Scientist themes
+            scientist: `🧪 THE FEARFUL SCIENTIST
+                       
+Dr. Sarah Chen was a brilliant researcher at the Institute before the war. She specialized in radiation biology and was working on a cure for radiation sickness when the bombs fell. Trapped in her underground lab for months, she emerged to find a world she barely recognized.
+
+Now, you're a nervous wreck in the wasteland. Your intelligence is your greatest asset, but your fear of conflict often paralyzes you. You prefer to solve problems through science and reason rather than violence. When combat is unavoidable, you rely on energy weapons and chems to give you an edge.
+
+Your knowledge of chemistry and biology makes you invaluable to settlements, but your social anxiety makes it difficult to interact with people. You're constantly analyzing threats and calculating survival probabilities, which sometimes leads to indecision.
+
+Despite your fears, you're driven by a desire to help others and find a way to heal the wasteland. Your research could be the key to humanity's survival, if only you can overcome your own limitations.`,
+
+            // Vault dweller themes
+            vaultDweller: `🏠 THE VAULT OUTCAST
+                          
+You were born in Vault 111, but you never quite fit in. While others followed the Overseer's rules blindly, you questioned everything. Your rebellious nature and thirst for knowledge made you an outcast among your fellow vault dwellers.
+
+When the vault opened and you emerged into the wasteland, you were both terrified and exhilarated. The freedom was overwhelming, but so was the danger. You've had to learn quickly how to survive in a world where your vault education means nothing.
+
+Your adaptability and quick learning have served you well. You're not the strongest or most skilled fighter, but you're resourceful and determined. You approach every challenge with a mix of vault-bred caution and newfound wasteland cunning.
+
+The wasteland has become your real home now, and you've discovered that sometimes the best way to survive is to embrace the chaos rather than fight it.`,
+
+            // Mercenary themes
+            mercenary: `💰 THE PROFESSIONAL MERCENARY
+                        
+You're a hired gun with a reputation for getting the job done, no questions asked. Before the war, you were a private military contractor, and those skills have served you well in the wasteland. You've worked for everyone from the Brotherhood of Steel to raider gangs - whoever pays the most.
+
+Your combat skills are professional-grade, and you approach every situation with tactical precision. You're not driven by ideology or emotion, just cold, hard caps. But even mercenaries have their limits, and you've developed a code of honor over the years.
+
+You're excellent with all types of weapons, but you prefer reliable, well-maintained firearms. You invest heavily in your equipment and always have a backup plan. Your survival depends on your reputation, so you never leave a job unfinished.
+
+The wasteland is your office, and every contract is a new challenge. You've seen the worst of humanity, but you've also seen moments of heroism that remind you why you keep fighting.`,
+
+            // Default backstory
+            default: `🌟 THE WANDERING SURVIVOR
+                      
+You're a mystery to yourself and others. Your past is a blur of fragmented memories - perhaps you were a pre-war civilian, a soldier, or something else entirely. The radiation and trauma of the wasteland have left you with gaps in your memory that may never be filled.
+
+What you do know is that you're a survivor. You've learned to adapt to whatever the wasteland throws at you, developing skills through necessity rather than training. You're not the strongest, smartest, or most charismatic person in the Commonwealth, but you're resourceful and determined.
+
+Your approach to problems is pragmatic - you use whatever tools and methods work best for the situation. Sometimes that means stealth, sometimes direct confrontation, and sometimes just running away to fight another day.
+
+The wasteland has taught you that survival is about more than just staying alive. It's about finding purpose, building connections, and making a difference in a world that's been torn apart. You may not know where you came from, but you're determined to shape where you're going.`
+         };
+         
+         // Analyze prompt and select appropriate backstory
+         const lowerPrompt = prompt.toLowerCase();
+         
+         if (lowerPrompt.includes('raider') || lowerPrompt.includes('ex-raider') || lowerPrompt.includes('regretful')) {
+            return backstories.exRaider;
+         } else if (lowerPrompt.includes('scientist') || lowerPrompt.includes('smart') || lowerPrompt.includes('scared') || lowerPrompt.includes('avoids')) {
+            return backstories.scientist;
+         } else if (lowerPrompt.includes('vault') || lowerPrompt.includes('dweller') || lowerPrompt.includes('outcast')) {
+            return backstories.vaultDweller;
+         } else if (lowerPrompt.includes('mercenary') || lowerPrompt.includes('hired') || lowerPrompt.includes('professional')) {
+            return backstories.mercenary;
+         } else {
+            return backstories.default;
+         }
       }
       
       // Collapsible functionality for Step 5 sections
