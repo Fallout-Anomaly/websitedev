@@ -1022,22 +1022,53 @@
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <p><strong>Having issues? Here are the most common problems and solutions:</strong></p>
-                           
-                           <div class="simple-issues">
-                              <p><strong>"Could Not Download MOD"</strong> → Manually download and place in Wabbajack's download folder. Check <a href="https://nexusmods.statuspage.io/" target="_blank">Nexus Mods Status</a> if needed.</p>
+                           <div class="cards-grid">
+                              <div class="info-card">
+                                 <div class="card-header">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <h3>Common Error Messages</h3>
+                                 </div>
+                                 <div class="card-content">
+                                    <div class="error-item">
+                                       <strong>"Could Not Download MOD"</strong>
+                                       <p>Manually download and place in Wabbajack's download folder. Check <a href="https://nexusmods.statuspage.io/" target="_blank">Nexus Mods Status</a> if needed.</p>
+                                    </div>
+                                    <div class="error-item">
+                                       <strong>"Mod Is Not a Whitelisted Download"</strong>
+                                       <p>The modlist may have been updated. Wait for a new release or contact us on <strong>Discord</strong>.</p>
+                                    </div>
+                                    <div class="error-item">
+                                       <strong>"Missing Game Files"</strong>
+                                       <p>Ensure your game is updated to the <strong>next-gen version</strong>.</p>
+                                    </div>
+                                    <div class="error-item">
+                                       <strong>"Wabbajack Could Not Find My Game Folder"</strong>
+                                       <p><strong>Pirated versions are not supported</strong>. Ensure you own Fallout 4 on <strong>Steam</strong>.</p>
+                                    </div>
+                                 </div>
+                              </div>
                               
-                              <p><strong>"Mod Is Not a Whitelisted Download"</strong> → The modlist may have been updated. Wait for a new release or contact us on <strong>Discord</strong>.</p>
-                              
-                              <p><strong>"Missing Game Files"</strong> → Ensure your game is updated to the <strong>next-gen version</strong>.</p>
-                              
-                              <p><strong>"Wabbajack Could Not Find My Game Folder"</strong> → <strong>Pirated versions are not supported</strong>. Ensure you own Fallout 4 on <strong>Steam</strong>.</p>
-                           </div>
-                           
-                           <div class="manual-downloads">
-                              <h4>Manual Downloads</h4>
-                              <p><strong>Google Drive Issues:</strong> <a href="https://drive.google.com/file/d/1sWpTDjSYC4xwhEveSuVhykjzHpZ2Qk1Y/view" target="_blank">Link 1</a> | <a href="https://drive.google.com/file/d/1APDBlK9UuPkXgptW0U1IHtKgEv4s9ruP/view" target="_blank">Link 2</a></p>
-                              <p><strong>ENB Issues:</strong> <a href="http://enbdev.com/mod_fallout4_v0496.htm" target="_blank">Download ENB</a> - Place in Anomaly Downloads folder (don't extract!)</p>
+                              <div class="info-card">
+                                 <div class="card-header">
+                                    <i class="fas fa-download"></i>
+                                    <h3>Manual Downloads</h3>
+                                 </div>
+                                 <div class="card-content">
+                                    <div class="download-section">
+                                       <h4>Google Drive Issues</h4>
+                                       <div class="download-links">
+                                          <a href="https://drive.google.com/file/d/1sWpTDjSYC4xwhEveSuVhykjzHpZ2Qk1Y/view" class="download-link" target="_blank">Download Link 1</a>
+                                          <a href="https://drive.google.com/file/d/1APDBlK9UuPkXgptW0U1IHtKgEv4s9ruP/view" class="download-link" target="_blank">Download Link 2</a>
+                                       </div>
+                                    </div>
+                                    <div class="download-section">
+                                       <h4>ENB Download Issues</h4>
+                                       <p>If your ENB download fails, download it manually and move it to the <strong>Anomaly Downloads</strong> folder created by Wabbajack.</p>
+                                       <p><strong>❗ DO NOT extract the file</strong>—just place it in the folder.</p>
+                                       <a href="http://enbdev.com/mod_fallout4_v0496.htm" class="download-link" target="_blank">Download ENB for Fallout 4</a>
+                                    </div>
+                                 </div>
+                              </div>
                            </div>
                         </div>
                      </div>
@@ -1048,24 +1079,50 @@
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <div class="post-install-simple">
-                              <h4>🔄 Updates</h4>
-                              <p>We announce updates on <strong>Discord</strong> and <strong>Nexus Mods</strong>. To update: re-run Wabbajack on the same path and check "Overwrite existing."</p>
+                           <div class="cards-grid">
+                              <div class="info-card">
+                                 <div class="card-header">
+                                    <i class="fas fa-sync-alt"></i>
+                                    <h3>Updates</h3>
+                                 </div>
+                                 <div class="card-content">
+                                    <p>We announce updates on <strong>Discord</strong> and <strong>Nexus Mods</strong>.</p>
+                                    <p><strong>To update:</strong> Re-run Wabbajack on the same path and check "Overwrite existing."</p>
+                                    <div class="warning-box">
+                                       <p>⚠️ Wabbajack will delete any manually installed mods not part of the official modlist.</p>
+                                    </div>
+                                 </div>
+                              </div>
                               
-                              <h4>💾 Save Files</h4>
-                              <p>Your saves are safe and located in: <code>(Install Folder)/Profiles/Fallout Anomaly/Saves</code></p>
+                              <div class="info-card">
+                                 <div class="card-header">
+                                    <i class="fas fa-save"></i>
+                                    <h3>Save Files</h3>
+                                 </div>
+                                 <div class="card-content">
+                                    <p>Your save files remain intact unless we explicitly state otherwise.</p>
+                                    <p><strong>Location:</strong> <code>(Install Folder)/Profiles/Fallout Anomaly/Saves</code></p>
+                                 </div>
+                              </div>
                               
-                              <h4>🆘 Need Help?</h4>
-                              <div class="support-links-simple">
-                                 <a href="https://discord.gg/anomaly-1113971680419782666" class="support-link discord" target="_blank">
-                                    <i class="fab fa-discord"></i> Discord Support
-                                 </a>
-                                 <a href="https://wiki.wabbajack.org/" class="support-link wiki" target="_blank">
-                                    <i class="fas fa-book"></i> Wabbajack Wiki
-                                 </a>
-                                 <a href="https://discord.gg/wabbajack" class="support-link discord" target="_blank">
-                                    <i class="fab fa-discord"></i> Wabbajack Discord
-                                 </a>
+                              <div class="info-card">
+                                 <div class="card-header">
+                                    <i class="fas fa-question-circle"></i>
+                                    <h3>Need Help?</h3>
+                                 </div>
+                                 <div class="card-content">
+                                    <div class="support-links">
+                                       <a href="https://discord.gg/anomaly-1113971680419782666" class="support-link discord" target="_blank">
+                                          <i class="fab fa-discord"></i> Discord Support
+                                       </a>
+                                       <a href="https://wiki.wabbajack.org/" class="support-link wiki" target="_blank">
+                                          <i class="fas fa-book"></i> Wabbajack Wiki
+                                       </a>
+                                       <a href="https://discord.gg/wabbajack" class="support-link discord" target="_blank">
+                                          <i class="fab fa-discord"></i> Wabbajack Discord
+                                       </a>
+                                    </div>
+                                 </div>
                               </div>
                            </div>
                         </div>
