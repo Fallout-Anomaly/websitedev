@@ -1139,13 +1139,14 @@
                   </div>
                </div>
                <div class="tab-content" id="step3">
-                  <div class="cards-grid">
-                     <div class="info-card">
-                        <div class="card-header">
-                           <i class="fas fa-rocket"></i>
-                           <h3>Launching Fallout Anomaly</h3>
+                  <div class="terminal-list">
+                     <!-- Collapsible Section 1: Launching Fallout Anomaly -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-rocket"></i>1. Launching Fallout Anomaly</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
-                        <div class="card-content">
+                        <div class="collapsible-content">
                            <p>When you open <strong>Mod Organizer 2 (MO2)</strong>, the interface might seem complex at first, but don't worry—we've streamlined the process!</p>
                            <div class="launch-instructions">
                               <h4>🎮 How to Launch the Game</h4>
@@ -1157,84 +1158,111 @@
                         </div>
                      </div>
                      
-                     <div class="info-card">
-                        <div class="card-header">
-                           <i class="fas fa-tools"></i>
-                           <h3>F4SE (Fallout 4 Script Extender)</h3>
+                     <!-- Collapsible Section 2: F4SE (Fallout 4 Script Extender) -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-tools"></i>2. F4SE (Fallout 4 Script Extender)</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
-                        <div class="card-content">
+                        <div class="collapsible-content">
                            <p><strong>F4SE</strong> is essential for most Fallout mods and is required to run Fallout Anomaly.<br>
                               When using MO2, <strong>F4SE</strong> is automatically included in <strong>"Launch Fallout Anomaly"</strong>—no extra setup needed!</p>
                         </div>
                      </div>
-                     <div class="terminal-list-item">
-                        <strong>
-                        <i class="fas fa-bug"></i>Crash Handling</strong>
-                        <p>If your game crashes, follow these steps to report the issue:</p>
-                        <ol class="terminal-sublist">
-                           <li><strong>Save the log</strong> to an easily accessible location.</li>
-                           <li><strong>Upload the log</strong> via our <a href="https://falloutanomaly.fillout.com/bugreports" target="_blank">bug report form</a> OR post it in our <strong>Discord support section</strong>.</li>
-                           <li><strong>Attach your most recent save file</strong> to help with debugging.</li>
-                        </ol>
-                     </div>
-                     <div class="terminal-list-item">
-                        <strong>
-                        <i class="fas fa-desktop"></i>Changing Resolution (BethINI)</strong>
-                        <p>If your game's resolution isn't correct, use <strong>BethINI</strong> to adjust it. <strong>Do NOT modify other settings!</strong></p>
-                        <div class="resolution-steps">
-                           <h4>📌 How to Change Resolution:</h4>
+                     <!-- Collapsible Section 3: Crash Handling -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-bug"></i>3. Crash Handling</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <p>If your game crashes, follow these steps to report the issue:</p>
                            <ol class="terminal-sublist">
-                              <li><strong>Close</strong> <strong>Mod Organizer 2</strong>.</li>
-                              <li>Navigate to your <strong>Anomaly installation folder</strong>:
-                        <ul class="terminal-sublist">
-                                 <li>Open the <strong><code>Tools</code></strong> directory.</li>
-                                 <li>Inside, find and open the <strong>BethINI</strong> folder.</li>
-                                 <li>Right-click <code>BethINI.exe</code> and select <strong>"Run as Administrator"</strong>.</li>
-                        </ul>
-                              </li>
-                              <li>In <strong>BethINI</strong>, select <strong>Fallout 4</strong> (<strong>DO NOT</strong> change INI paths!).</li>
-                              <li>Go to the <strong>Basic</strong> tab and adjust your resolution.</li>
-                              <li>Click <strong>Save & Exit</strong> to apply the changes.</li>
+                              <li><strong>Save the log</strong> to an easily accessible location.</li>
+                              <li><strong>Upload the log</strong> via our <a href="https://falloutanomaly.fillout.com/bugreports" target="_blank">bug report form</a> OR post it in our <strong>Discord support section</strong>.</li>
+                              <li><strong>Attach your most recent save file</strong> to help with debugging.</li>
                            </ol>
-                           <img src="https://github.com/user-attachments/assets/e83c48cc-d321-4fd9-b17f-02d7f399c80c" alt="BethINI Screenshot" class="guide-image">
                         </div>
                      </div>
-                     <div class="terminal-list-item">
-                        <strong>
-                        <i class="fas fa-exclamation-triangle"></i>Apply the MCM Preset!</strong>
-                        <p>Don't forget to apply the preset for proper settings:</p>
-                        <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/mcmpreset.png" alt="Preset Screenshot" class="guide-image">
+                     <!-- Collapsible Section 4: Changing Resolution (BethINI) -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-desktop"></i>4. Changing Resolution (BethINI)</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <p>If your game's resolution isn't correct, use <strong>BethINI</strong> to adjust it. <strong>Do NOT modify other settings!</strong></p>
+                           <div class="resolution-steps">
+                              <h4>📌 How to Change Resolution:</h4>
+                              <ol class="terminal-sublist">
+                                 <li><strong>Close</strong> <strong>Mod Organizer 2</strong>.</li>
+                                 <li>Navigate to your <strong>Anomaly installation folder</strong>:
+                           <ul class="terminal-sublist">
+                                    <li>Open the <strong><code>Tools</code></strong> directory.</li>
+                                    <li>Inside, find and open the <strong>BethINI</strong> folder.</li>
+                                    <li>Right-click <code>BethINI.exe</code> and select <strong>"Run as Administrator"</strong>.</li>
+                           </ul>
+                                 </li>
+                                 <li>In <strong>BethINI</strong>, select <strong>Fallout 4</strong> (<strong>DO NOT</strong> change INI paths!).</li>
+                                 <li>Go to the <strong>Basic</strong> tab and adjust your resolution.</li>
+                                 <li>Click <strong>Save & Exit</strong> to apply the changes.</li>
+                              </ol>
+                              <img src="https://github.com/user-attachments/assets/e83c48cc-d321-4fd9-b17f-02d7f399c80c" alt="BethINI Screenshot" class="guide-image">
+                           </div>
+                        </div>
                      </div>
-                     <div class="terminal-list-item">
-                        <strong>
-                        <i class="fas fa-film"></i>Disabling Black Bars (Letterbox) in ENB</strong>
-                        <p>If you don't like the black bars at the top and bottom of the screen, follow these steps to disable them:</p>
-                        <ol class="terminal-sublist">
-                           <li>Press the <strong><code>~</code></strong> key (next to the <code>1</code> key) to open the console.</li>
-                           <li>Press <strong><code>END</code></strong> to open the ENB menu.</li>
-                           <li>Navigate to the <strong>Post Processing</strong> section.</li>
-                           <li><strong>Uncheck</strong> the <strong>Letterbox</strong> option.</li>
-                           <li>Click <strong>Save Configuration</strong> (top-left).</li>
-                           <li>Press <strong><code>END</code></strong> and <strong><code>~</code></strong> again to exit the menus.</li>
-                        </ol>
-                        <img src="https://github.com/user-attachments/assets/c416445f-e1b8-4bc3-9efa-7906d7eb586e" alt="ENB Menu Screenshot" class="guide-image">
+                     <!-- Collapsible Section 5: Apply the MCM Preset -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-exclamation-triangle"></i>5. Apply the MCM Preset!</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <p>Don't forget to apply the preset for proper settings:</p>
+                           <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/mcmpreset.png" alt="Preset Screenshot" class="guide-image">
+                        </div>
                      </div>
-                     <div class="terminal-list-item">
-                        <strong>
-                        <i class="fas fa-puzzle-piece"></i>Optional Mods</strong>
-                        <p>Anomaly includes a collection of <strong>optional</strong> mods to enhance your gameplay experience. Browse through them and customize your experience!</p>
-                        <img src="https://github.com/user-attachments/assets/708ad0e6-37fe-4ecd-a215-82e110ae1c4f" alt="Optional Mods" class="guide-image">
+                     <!-- Collapsible Section 6: Disabling Black Bars (Letterbox) in ENB -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-film"></i>6. Disabling Black Bars (Letterbox) in ENB</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <p>If you don't like the black bars at the top and bottom of the screen, follow these steps to disable them:</p>
+                           <ol class="terminal-sublist">
+                              <li>Press the <strong><code>~</code></strong> key (next to the <code>1</code> key) to open the console.</li>
+                              <li>Press <strong><code>END</code></strong> to open the ENB menu.</li>
+                              <li>Navigate to the <strong>Post Processing</strong> section.</li>
+                              <li><strong>Uncheck</strong> the <strong>Letterbox</strong> option.</li>
+                              <li>Click <strong>Save Configuration</strong> (top-left).</li>
+                              <li>Press <strong><code>END</code></strong> and <strong><code>~</code></strong> again to exit the menus.</li>
+                           </ol>
+                           <img src="https://github.com/user-attachments/assets/c416445f-e1b8-4bc3-9efa-7906d7eb586e" alt="ENB Menu Screenshot" class="guide-image">
+                        </div>
+                     </div>
+                     <!-- Collapsible Section 7: Optional Mods -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-puzzle-piece"></i>7. Optional Mods</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <p>Anomaly includes a collection of <strong>optional</strong> mods to enhance your gameplay experience. Browse through them and customize your experience!</p>
+                           <img src="https://github.com/user-attachments/assets/708ad0e6-37fe-4ecd-a215-82e110ae1c4f" alt="Optional Mods" class="guide-image">
+                        </div>
                      </div>
                   </div>
                </div>
                <div class="tab-content" id="step4">
-                  <div class="cards-grid">
-                     <div class="info-card">
-                        <div class="card-header">
-                           <i class="fas fa-exclamation-triangle"></i>
-                           <h3>Known Issues</h3>
+                  <div class="terminal-list">
+                     <!-- Collapsible Section 1: Known Issues -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-exclamation-triangle"></i>1. Known Issues</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
-                        <div class="card-content">
+                        <div class="collapsible-content">
                            <div class="issues-grid">
                               <div class="issue-item">
                                  <h4>Main Menu Delay</h4>
@@ -1248,54 +1276,55 @@
                               <div class="issue-item">
                                  <h4>Post-Character Creation Freeze</h4>
                                  <p>After creating your character:</p>
-                        <ul class="terminal-sublist">
-                                    <li>Your game will save and may appear to freeze temporarily.</li>
-                                    <li>This is due to multiple scripts loading simultaneously.</li>
-                                    <li>Be patient and wait for a few minutes; the game will resume normally.</li>
-                        </ul>
-                     </div>
+                           <ul class="terminal-sublist">
+                                     <li>Your game will save and may appear to freeze temporarily.</li>
+                                     <li>This is due to multiple scripts loading simultaneously.</li>
+                                     <li>Be patient and wait for a few minutes; the game will resume normally.</li>
+                           </ul>
+                        </div>
                               <div class="issue-item">
                                  <h4>Falling Through Vault Issue</h4>
                                  <p>If you're falling through the vault floor:</p>
-                        <ul class="terminal-sublist">
-                                    <li>This is likely due to the "Uneducated Shooter" mod.</li>
-                                    <li><strong>Solution</strong>: Only enable the "Uneducated Shooter" mod after leaving the vault.</li>
-                        </ul>
-                     </div>
+                           <ul class="terminal-sublist">
+                                     <li>This is likely due to the "Uneducated Shooter" mod.</li>
+                                     <li><strong>Solution</strong>: Only enable the "Uneducated Shooter" mod after leaving the vault.</li>
+                           </ul>
+                        </div>
                               <div class="issue-item">
                                  <h4>Known Crash Related Issues:</h4>
-                        <ul class="terminal-sublist">
-                                    <li>Programs like medal (recording software) or anything that adds an overlay can conflict with the ENBS, or other DLL hooked mods. If you are crashing right at the launch of game or at the main menu this can be one of the main causes.</li>
-                        </ul>
-                     </div>
+                           <ul class="terminal-sublist">
+                                     <li>Programs like medal (recording software) or anything that adds an overlay can conflict with the ENBS, or other DLL hooked mods. If you are crashing right at the launch of game or at the main menu this can be one of the main causes.</li>
+                           </ul>
+                        </div>
                            </div>
                         </div>
                      </div>
                      
-                     <div class="info-card">
-                        <div class="card-header">
-                           <i class="fas fa-gamepad"></i>
-                           <h3>Controller Support</h3>
+                     <!-- Collapsible Section 2: Controller Support -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                           <strong><i class="fas fa-gamepad"></i>2. Controller Support</strong>
+                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
-                        <div class="card-content">
+                        <div class="collapsible-content">
                            <p>We currently support <strong>PS5 controllers</strong>, with <strong>Xbox support planned for the future.</strong></p>
                            <div class="controller-setup">
                               <div class="setup-step">
                                  <h4>Step 1: Configure Steam Settings</h4>
-                        <ul class="terminal-sublist">
-                                    <li>Ensure your <strong>Steam controller settings</strong> are correctly set up as shown in the window below.</li>
-                                    <li><strong>Steam Overlay</strong> must be enabled for the controller to function properly.</li>
-                                    <li><strong>Steam Input</strong>: Paste the following link into your browser and open Steam when prompted:<br>
-                                       <code>steam://controllerconfig/377160/3420527035</code><br>
-                                       This will install the <strong>custom controller profile</strong> for Fallout Anomaly.</li>
-                        </ul>
-                     </div>
+                           <ul class="terminal-sublist">
+                                     <li>Ensure your <strong>Steam controller settings</strong> are correctly set up as shown in the window below.</li>
+                                     <li><strong>Steam Overlay</strong> must be enabled for the controller to function properly.</li>
+                                     <li><strong>Steam Input</strong>: Paste the following link into your browser and open Steam when prompted:<br>
+                                        <code>steam://controllerconfig/377160/3420527035</code><br>
+                                        This will install the <strong>custom controller profile</strong> for Fallout Anomaly.</li>
+                           </ul>
+                        </div>
                               <div class="setup-step">
                                  <h4>Step 2: Enable the Controller Support Mod</h4>
-                        <ul class="terminal-sublist">
-                                    <li>In <strong>MO2</strong>, activate the optional mod:<br>
-                                       <strong>"A - OPT - Controller Support - PS5 Support"</strong></li>
-                        </ul>
+                           <ul class="terminal-sublist">
+                                     <li>In <strong>MO2</strong>, activate the optional mod:<br>
+                                        <strong>"A - OPT - Controller Support - PS5 Support"</strong></li>
+                           </ul>
                                  <p>This ensures full functionality for your PS5 controller in-game. 🚀</p>
                                  <img src="https://github.com/user-attachments/assets/06e65ae6-05b8-4a1e-9d33-ca8ec5b9bc7f" alt="Steam Settings" class="guide-image">
                                  <img src="https://github.com/user-attachments/assets/8b3ae832-e62e-4817-b858-d70256727bf8" alt="Controller Configuration" class="guide-image">
