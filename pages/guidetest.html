@@ -400,6 +400,141 @@
          margin-bottom: 12px;
       }
       
+      /* Refined Retro Terminal Styling */
+      .terminal-troubleshooting {
+         font-family: 'VT323', monospace;
+         background: rgba(0, 0, 0, 0.3);
+         border: 1px solid var(--terminal-border);
+         border-radius: 4px;
+         padding: 16px;
+         margin: 8px 0;
+      }
+      
+      .terminal-section {
+         margin-bottom: 24px;
+      }
+      
+      .terminal-section:last-child {
+         margin-bottom: 0;
+      }
+      
+      .terminal-header {
+         display: flex;
+         align-items: center;
+         margin-bottom: 16px;
+         padding-bottom: 8px;
+         border-bottom: 1px solid var(--terminal-border);
+      }
+      
+      .terminal-prompt {
+         background: var(--terminal-highlight);
+         color: #000;
+         padding: 4px 8px;
+         border-radius: 2px;
+         font-weight: bold;
+         font-size: 0.8em;
+         margin-right: 12px;
+         text-shadow: none;
+      }
+      
+      .terminal-title {
+         color: var(--terminal-highlight);
+         font-size: 1.1em;
+         font-weight: bold;
+         text-shadow: var(--glow-effect);
+      }
+      
+      .terminal-error-block, .terminal-download-block {
+         margin-bottom: 16px;
+         padding: 12px;
+         background: rgba(var(--terminal-text-rgb), 0.05);
+         border-left: 3px solid var(--terminal-highlight);
+         border-radius: 2px;
+      }
+      
+      .error-header, .download-header {
+         font-family: 'VT323', monospace;
+         color: var(--terminal-highlight);
+         font-size: 1em;
+         font-weight: bold;
+         margin-bottom: 8px;
+         text-shadow: var(--glow-effect);
+      }
+      
+      .error-solution, .download-solution {
+         margin-bottom: 12px;
+      }
+      
+      .solution-step {
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         color: var(--terminal-text);
+         margin: 6px 0;
+         padding-left: 8px;
+         line-height: 1.4;
+      }
+      
+      .terminal-divider {
+         height: 1px;
+         background: linear-gradient(90deg, transparent, var(--terminal-border), transparent);
+         margin: 16px 0;
+      }
+      
+      .terminal-buttons {
+         display: flex;
+         gap: 8px;
+         flex-wrap: wrap;
+         margin-top: 12px;
+      }
+      
+      .terminal-button {
+         display: inline-flex;
+         align-items: center;
+         gap: 6px;
+         padding: 8px 12px;
+         background: rgba(var(--terminal-text-rgb), 0.1);
+         border: 1px solid var(--terminal-border);
+         border-radius: 3px;
+         color: var(--terminal-text);
+         text-decoration: none;
+         font-family: 'VT323', monospace;
+         font-size: 0.9em;
+         transition: all 0.3s ease;
+         text-shadow: none;
+      }
+      
+      .terminal-button:hover {
+         background: var(--terminal-highlight);
+         color: #000;
+         border-color: var(--terminal-highlight);
+         text-shadow: none;
+         transform: translateY(-1px);
+         box-shadow: 0 2px 8px rgba(var(--terminal-highlight-rgb), 0.3);
+      }
+      
+      .terminal-button.primary {
+         background: rgba(var(--terminal-highlight-rgb), 0.2);
+         border-color: var(--terminal-highlight);
+         color: var(--terminal-highlight);
+      }
+      
+      .terminal-button.primary:hover {
+         background: var(--terminal-highlight);
+         color: #000;
+      }
+      
+      .terminal-link {
+         color: var(--terminal-highlight);
+         text-decoration: underline;
+         text-decoration-color: var(--terminal-highlight);
+         transition: all 0.3s ease;
+      }
+      
+      .terminal-link:hover {
+         color: #fff;
+         text-decoration-color: #fff;
+         text-shadow: var(--glow-effect);
+      }
+      
       .collapsible-header {
          cursor: pointer;
          padding: 8px 12px;
@@ -1022,68 +1157,86 @@
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <div class="cards-grid">
-                              <div class="info-card">
-                                 <div class="card-header">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                    <h3>Common Error Messages</h3>
+                           <div class="terminal-troubleshooting">
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[ERROR]</span>
+                                    <span class="terminal-title">Common Error Messages</span>
                                  </div>
-                                 <div class="card-content">
-                                    <div class="error-item">
-                                       <h4>"Could Not Download MOD"</h4>
-                                       <ul>
-                                          <li>Manually download the mod and place it in Wabbajack's download folder</li>
-                                          <li>Check <a href="https://nexusmods.statuspage.io/" target="_blank">Nexus Mods Status</a> if needed</li>
-                                       </ul>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">"Could Not Download MOD"</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Manually download the mod and place it in Wabbajack's download folder</div>
+                                       <div class="solution-step">→ Check <a href="https://nexusmods.statuspage.io/" target="_blank" class="terminal-link">Nexus Mods Status</a> if needed</div>
                                     </div>
-                                    <div class="error-item">
-                                       <h4>"Mod Is Not a Whitelisted Download"</h4>
-                                       <ul>
-                                          <li>The modlist may have been updated, making an old mod link invalid</li>
-                                          <li>Wait for a new release or notify us on <strong>Discord</strong></li>
-                                       </ul>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">"Mod Is Not a Whitelisted Download"</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ The modlist may have been updated, making an old mod link invalid</div>
+                                       <div class="solution-step">→ Wait for a new release or notify us on <strong>Discord</strong></div>
                                     </div>
-                                    <div class="error-item">
-                                       <h4>"Missing Game Files"</h4>
-                                       <ul>
-                                          <li>Ensure your game is updated to the <strong>next-gen version</strong></li>
-                                       </ul>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">"Missing Game Files"</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Ensure your game is updated to the <strong>next-gen version</strong></div>
                                     </div>
-                                    <div class="error-item">
-                                       <h4>"Wabbajack Could Not Find My Game Folder"</h4>
-                                       <ul>
-                                          <li><strong>Pirated versions are not supported</strong></li>
-                                          <li>Ensure you own Fallout 4 on <strong>Steam</strong></li>
-                                       </ul>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">"Wabbajack Could Not Find My Game Folder"</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ <strong>Pirated versions are not supported</strong></div>
+                                       <div class="solution-step">→ Ensure you own Fallout 4 on <strong>Steam</strong></div>
                                     </div>
                                  </div>
                               </div>
                               
-                              <div class="info-card">
-                                 <div class="card-header">
-                                    <i class="fas fa-download"></i>
-                                    <h3>Manual Downloads</h3>
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[DOWNLOAD]</span>
+                                    <span class="terminal-title">Manual Downloads</span>
                                  </div>
-                                 <div class="card-content">
-                                    <div class="download-section">
-                                       <h4>Google Drive Issues</h4>
-                                       <ul>
-                                          <li>If downloads fail, download manually and place the file in your Wabbajack download folder</li>
-                                          <li>Restart the install</li>
-                                       </ul>
-                                       <div class="download-links">
-                                          <a href="https://drive.google.com/file/d/1sWpTDjSYC4xwhEveSuVhykjzHpZ2Qk1Y/view" class="download-link" target="_blank">Download Link 1</a>
-                                          <a href="https://drive.google.com/file/d/1APDBlK9UuPkXgptW0U1IHtKgEv4s9ruP/view" class="download-link" target="_blank">Download Link 2</a>
-                                       </div>
+                                 
+                                 <div class="terminal-download-block">
+                                    <div class="download-header">Google Drive Issues</div>
+                                    <div class="download-solution">
+                                       <div class="solution-step">→ If downloads fail, download manually and place the file in your Wabbajack download folder</div>
+                                       <div class="solution-step">→ Restart the install</div>
                                     </div>
-                                    <div class="download-section">
-                                       <h4>ENB Download Issues</h4>
-                                       <ul>
-                                          <li>If your ENB download fails, download it manually and move it to the <strong>Anomaly Downloads</strong> folder created by Wabbajack</li>
-                                          <li><strong>❗ DO NOT extract the file</strong>—just place it in the folder</li>
-                                          <li>Restart Wabbajack and run the installer again</li>
-                                       </ul>
-                                       <a href="http://enbdev.com/mod_fallout4_v0496.htm" class="download-link" target="_blank">Download ENB for Fallout 4</a>
+                                    <div class="terminal-buttons">
+                                       <a href="https://drive.google.com/file/d/1sWpTDjSYC4xwhEveSuVhykjzHpZ2Qk1Y/view" class="terminal-button" target="_blank">
+                                          <i class="fas fa-download"></i> Download Link 1
+                                       </a>
+                                       <a href="https://drive.google.com/file/d/1APDBlK9UuPkXgptW0U1IHtKgEv4s9ruP/view" class="terminal-button" target="_blank">
+                                          <i class="fas fa-download"></i> Download Link 2
+                                       </a>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-download-block">
+                                    <div class="download-header">ENB Download Issues</div>
+                                    <div class="download-solution">
+                                       <div class="solution-step">→ If your ENB download fails, download it manually and move it to the <strong>Anomaly Downloads</strong> folder created by Wabbajack</div>
+                                       <div class="solution-step">→ <strong>❗ DO NOT extract the file</strong>—just place it in the folder</div>
+                                       <div class="solution-step">→ Restart Wabbajack and run the installer again</div>
+                                    </div>
+                                    <div class="terminal-buttons">
+                                       <a href="http://enbdev.com/mod_fallout4_v0496.htm" class="terminal-button primary" target="_blank">
+                                          <i class="fas fa-download"></i> Download ENB for Fallout 4
+                                       </a>
                                     </div>
                                  </div>
                               </div>
