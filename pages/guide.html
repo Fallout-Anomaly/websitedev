@@ -1055,7 +1055,7 @@
       
       /* Video Disclaimer Styling */
       .video-disclaimer {
-         margin-top: 15px;
+         margin: 20px 0 15px 0;
          padding: 12px 16px;
          background: rgba(255, 193, 7, 0.15) !important;
          border: 2px solid rgba(255, 193, 7, 0.5) !important;
@@ -1071,6 +1071,8 @@
          opacity: 1 !important;
          position: relative;
          z-index: 10;
+         width: 100%;
+         box-sizing: border-box;
       }
       
       .video-disclaimer i {
@@ -1548,12 +1550,13 @@
                 </div>
              </div>
              
+             <div class="video-disclaimer">
+                <i class="fas fa-info-circle"></i>
+                <strong>Video Disclaimer:</strong> This video shows a slightly outdated user interface, but all installation information and steps remain accurate and up-to-date.
+             </div>
+             
              <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/uYRev9mF4Q0?si=a6ar_TsmgJdy9QGG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <div class="video-disclaimer">
-                   <i class="fas fa-info-circle"></i>
-                   <strong>Video Disclaimer:</strong> This video shows a slightly outdated user interface, but all installation information and steps remain accurate and up-to-date.
-                </div>
              </div>
              
              <div class="search-container">
@@ -1575,7 +1578,7 @@
                   <button class="tab-button" data-tab="step4">STEP 4: KNOWN ISSUES</button>
                   <button class="tab-button" data-tab="step5">STEP 5: GAMEPLAY Guide</button>
                   <button class="tab-button" data-tab="ai-assistant">Character Build Generator</button>
-                  <button class="tab-button" data-tab="faq">❓ FAQ</button>
+                  <button class="tab-button" data-tab="faq">FAQ</button>
                   <button class="tab-button" data-tab="support">SUPPORT & COMMUNITY</button>
                </div>
                <div class="tab-content active" id="step1">
@@ -1680,7 +1683,7 @@
                   <!-- Back to Top Button -->
                   <div class="back-to-top" onclick="scrollToTop()">
                      <i class="fas fa-arrow-up"></i>
-                  </div>
+                   </div>
                 </div>
                <div class="tab-content" id="step2">
                   <div class="terminal-list">
@@ -2976,8 +2979,8 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                                  </div>
                               </div>
                            </div>
-                              </div>
-                                 </div>
+                        </div>
+                     </div>
                      
                      <!-- Collapsible Section 13: Tips & Strategies -->
                      <div class="terminal-list-item collapsible-section">
@@ -2985,32 +2988,32 @@ All Skills (26 Total)                                  <span class="sub-collapsi
 <i class="fas fa-lightbulb"></i>13. Tips & Strategies                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                            <div class="sub-collapsible">
-                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
 🛡️ Survival Tips                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                               </div>
-                               <div class="sub-collapsible-content">
+                              </div>
+                              <div class="sub-collapsible-content">
                                  <div class="skill-grid">
                                     <div class="skill-item">Medical Supplies: Always carry bandages, stimpaks, and painkillers</div>
                                     <div class="skill-item">Pre-medication: Use TXA and ibuprofen for protection before combat</div>
                                     <div class="skill-item">Radiation Management: Carry protective gear and radiation meds</div>
                                     <div class="skill-item">Route Planning: Use APC travel system and subway networks</div>
-                               </div>
-                            </div>
-                               </div>
-                            <div class="sub-collapsible">
-                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
 ⚔️ Combat Strategies                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                               </div>
-                               <div class="sub-collapsible-content">
+                              </div>
+                              <div class="sub-collapsible-content">
                                  <div class="skill-grid">
                                     <div class="skill-item">Effective Cover: Take advantage of environmental protection</div>
                                     <div class="skill-item">Ammunition Weight: Balance firepower with mobility</div>
                                     <div class="skill-item">Weak Points: Aim for headshots and vulnerable areas</div>
                                     <div class="skill-item">Stealth Approach: Avoid unnecessary confrontations</div>
                                  </div>
-                               </div>
-                            </div>
+                              </div>
+                           </div>
                            <div class="sub-collapsible">
                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
 📦 Resource Management                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
@@ -3026,11 +3029,11 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                            </div>
                         </div>
                      </div>
-                  </div>
+                        </div>
                   <!-- Back to Top Button -->
                   <div class="back-to-top" onclick="scrollToTop()">
                      <i class="fas fa-arrow-up"></i>
-                  </div>
+                               </div>
                </div>
                <div class="tab-content" id="ai-assistant">
                   <div class="info-card">
@@ -3087,15 +3090,15 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                                     <li><strong>Antivirus:</strong> Your antivirus might be interfering with the modlist. Please ensure you have set up exclusions for the entire Fallout Anomaly installation folder.</li>
                                     <li><strong>Missing Prerequisites:</strong> Double-check that you have installed all the required components from Step 1, including Visual C++ Redistributables and .NET Frameworks.</li>
                                     <li><strong>Game Version:</strong> The modlist requires the latest version of Fallout 4 from Steam, which Wabbajack will then downgrade. Make sure your game is up to date before running the installer.</li>
-                                 </ul>
-                              </div>
-                           </div>
-                           
+                                  </ul>
+                               </div>
+                            </div>
+                            
                            <div class="faq-item">
                               <div class="faq-question">
                                  <i class="fas fa-pause-circle"></i>
                                  <strong>Q: I'm stuck on the main menu and can't start a new game.</strong>
-                              </div>
+                               </div>
                               <div class="faq-answer">
                                  <p>This can happen if some of the initial scripts are slow to load. Please be patient and wait a few minutes. If it still doesn't work, refer to the "Stuck in Menu" section in the "Known Issues" tab for a video guide and alternative solutions.</p>
                               </div>
@@ -3122,11 +3125,11 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                                     <li><strong>Nexus Mods Rate Limiting:</strong> Free accounts have download speed limits. Consider getting Nexus Premium for faster downloads.</li>
                                     <li><strong>Server Load:</strong> Nexus Mods servers can be busy during peak hours. Try downloading during off-peak times.</li>
                                     <li><strong>Network Issues:</strong> Check your internet connection and try pausing/resuming the download.</li>
-                                 </ul>
+                                  </ul>
                               </div>
-                           </div>
-                        </div>
-                        
+                               </div>
+                            </div>
+                            
                         <div class="faq-section">
                            <h4>🎮 Gameplay & Performance</h4>
                            
@@ -3134,7 +3137,7 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                               <div class="faq-question">
                                  <i class="fas fa-tachometer-alt"></i>
                                  <strong>Q: The game is running slowly. How can I improve performance?</strong>
-                              </div>
+                               </div>
                               <div class="faq-answer">
                                  <p>Performance issues can be addressed by:</p>
                                  <ul>
@@ -3142,9 +3145,9 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                                     <li><strong>BethINI:</strong> Use BethINI to optimize your Fallout4.ini files for better performance.</li>
                                     <li><strong>Hardware:</strong> Ensure you meet the minimum requirements (16GB RAM, 6GB VRAM GPU).</li>
                                     <li><strong>Background Programs:</strong> Close unnecessary programs and overlays while playing.</li>
-                                 </ul>
-                              </div>
-                           </div>
+                                  </ul>
+                               </div>
+                            </div>
                            
                            <div class="faq-item">
                               <div class="faq-question">
@@ -3153,18 +3156,18 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                               </div>
                               <div class="faq-answer">
                                  <p>Yes! Controller support is included. Check the "Known Issues" tab for specific controller setup instructions and any known limitations.</p>
+                                 </div>
                               </div>
-                           </div>
                            
                            <div class="faq-item">
                               <div class="faq-question">
                                  <i class="fas fa-save"></i>
                                  <strong>Q: Can I use my old save files with Fallout Anomaly?</strong>
-                              </div>
+                           </div>
                               <div class="faq-answer">
                                  <p>No, Fallout Anomaly requires a fresh start. The modlist makes extensive changes to the game that are incompatible with vanilla or other modded saves. You'll need to start a new character.</p>
-                              </div>
-                           </div>
+                        </div>
+                     </div>
                         </div>
                         
                         <div class="faq-section">
