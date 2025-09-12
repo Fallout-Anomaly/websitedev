@@ -472,9 +472,15 @@
          margin: 6px 0;
          padding-left: 8px;
          line-height: 1.4;
-         word-wrap: break-word;
-         overflow-wrap: break-word;
-         hyphens: auto;
+         word-break: break-word;
+         overflow-wrap: anywhere;
+         white-space: normal;
+      }
+      
+      .solution-step strong {
+         display: inline;
+         white-space: nowrap;
+         word-break: keep-all;
       }
       
       .terminal-divider {
@@ -1805,7 +1811,7 @@
                                  <div class="skill-grid">
                                     <div class="skill-item"><strong>Needs System:</strong> You must regularly eat, drink, and sleep to avoid penalties. Hunger, thirst, and fatigue will reduce your stats and eventually cause damage or even death</div>
                                     <div class="skill-item"><strong>Fast Travel:</strong> Traditional fast travel is disabled. You can only fast travel by using the APC Travel System or navigating the expanded subway system found across the Commonwealth</div>
-                                    <div class="skill-item"><strong>Saving the Game:</strong> Manual saving and quicksaving are disabled. You can only save by sitting in a chair or using a Survival Pack item found in the Aid menu</div>
+                                    <div class="skill-item"><strong>Saving the Game:</strong> Manual saving and quicksaving are disabled. You can only save by smoking, using Survival Pack item found in the Aid menu or by sleeping.</div>
                                     <div class="skill-item"><strong>Combat Difficulty:</strong> Both you and enemies deal more damage. Healing is slowed, and combat is more lethal across the board</div>
                                     <div class="skill-item"><strong>Ammo Has Weight:</strong> Every bullet, shell, or fusion cell you carry adds weight to your inventory, forcing smarter inventory management</div>
                                     <div class="skill-item"><strong>Illness & Injury:</strong> You can get sick, suffer broken limbs, or require items like antibiotics and splints for proper healing. Doctors may be needed to cure serious conditions</div>
