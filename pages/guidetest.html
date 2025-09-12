@@ -559,27 +559,29 @@
          position: fixed;
          bottom: 20px;
          right: 20px;
-         background: var(--terminal-highlight);
+         background: #00ff00;
          color: #000;
-         border: 1px solid var(--terminal-border);
+         border: 2px solid #00ff00;
          border-radius: 50%;
-         width: 50px;
-         height: 50px;
+         width: 60px;
+         height: 60px;
          display: flex;
          align-items: center;
          justify-content: center;
          cursor: pointer;
-         font-size: 18px;
-         z-index: 1000;
+         font-size: 20px;
+         z-index: 9999;
          transition: all 0.3s ease;
-         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+         box-shadow: 0 4px 12px rgba(0, 255, 0, 0.4);
+         opacity: 0.9;
       }
       
       .back-to-top:hover {
-         background: var(--terminal-text);
-         color: var(--terminal-highlight);
-         transform: translateY(-2px);
-         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+         background: #000;
+         color: #00ff00;
+         transform: translateY(-3px);
+         box-shadow: 0 6px 16px rgba(0, 255, 0, 0.6);
+         opacity: 1;
       }
       
       .back-to-top i {
@@ -1136,14 +1138,14 @@
 🚨 SET ANTI-VIRUS EXCLUSIONS                                  <p>Prevent interference with ENB and mods</p>
                                </div>
                             </div>
-                        </div>
-                     </div>
-                  </div>
+                         </div>
+                      </div>
+                   </div>
                   <!-- Back to Top Button -->
                   <div class="back-to-top" onclick="scrollToTop()">
                      <i class="fas fa-arrow-up"></i>
                   </div>
-               </div>
+                </div>
                <div class="tab-content" id="step2">
                   <div class="terminal-list">
                      <!-- Collapsible Section 1: Before You Start -->
@@ -1189,13 +1191,13 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                         <div class="collapsible-content">
                            <div class="install-step">
                               <h4>📥 Downloading Fallout Anomaly</h4>
-                              <ul class="terminal-sublist">
+                        <ul class="terminal-sublist">
                                  <li>Locate <em>Fallout Anomaly</em> in the Wabbajack Browser and download the file.</li>
                                  <li>Set both Install Location and Download Location on the same drive for best performance.</li>
-                              </ul>
+                        </ul>
                               <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/wabbajack%20install.png" alt="Verify Installation" class="guide-image">
-                           </div>
                         </div>
+                     </div>
                      </div>
                      
                      <!-- Collapsible Section 3: Troubleshooting -->
@@ -1209,15 +1211,15 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                  <div class="terminal-header">
                                     <span class="terminal-prompt">[ERROR]</span>
                                     <span class="terminal-title">Common Error Messages</span>
-                                 </div>
+                     </div>
                                  
                                  <div class="terminal-error-block">
                                     <div class="error-header">"Could Not Download MOD"</div>
                                     <div class="error-solution">
                                        <div class="solution-step">→ Manually download the mod and place it in Wabbajack's download folder</div>
                                        <div class="solution-step">→ Check <a href="https://nexusmods.statuspage.io/" target="_blank" class="terminal-link">Nexus Mods Status</a> if needed</div>
-                                    </div>
-                                 </div>
+                  </div>
+               </div>
                                  
                                  <div class="terminal-divider"></div>
                                  
@@ -1226,8 +1228,8 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                     <div class="error-solution">
                                        <div class="solution-step">→ The modlist may have been updated, making an old mod link invalid</div>
                                        <div class="solution-step">→ Wait for a new release or notify us on <a href="#" class="terminal-link">Discord</a></div>
-                                    </div>
-                                 </div>
+                              </div>
+                           </div>
                                  
                                  <div class="terminal-divider"></div>
                                  
@@ -1235,8 +1237,8 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                     <div class="error-header">"Missing Game Files"</div>
                                     <div class="error-solution">
                                        <div class="solution-step">→ Ensure your game is updated to the next-gen version</div>
-                                    </div>
-                                 </div>
+                        </div>
+                     </div>
                                  
                                  <div class="terminal-divider"></div>
                                  
@@ -1245,22 +1247,22 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                     <div class="error-solution">
                                        <div class="solution-step">→ Pirated versions are not supported</div>
                                        <div class="solution-step">→ Ensure you own Fallout 4 on <a href="#" class="terminal-link">Steam</a></div>
-                                    </div>
-                                 </div>
-                              </div>
+                     </div>
+                        </div>
+                        </div>
                               
                               <div class="terminal-section">
                                  <div class="terminal-header">
                                     <span class="terminal-prompt">[DOWNLOAD]</span>
                                     <span class="terminal-title">Manual Downloads</span>
-                                 </div>
+                     </div>
                                  
                                  <div class="terminal-download-block">
                                     <div class="download-header">Google Drive Issues</div>
                                     <div class="download-solution">
                                        <div class="solution-step">→ If downloads fail, download manually and place the file in your Wabbajack download folder</div>
                                        <div class="solution-step">→ Restart the install</div>
-                                    </div>
+                     </div>
                                     <div class="terminal-buttons">
                                        <a href="https://drive.google.com/file/d/1sWpTDjSYC4xwhEveSuVhykjzHpZ2Qk1Y/view" class="terminal-button" target="_blank">
                                           <i class="fas fa-download"></i> Download Link 1
@@ -1268,8 +1270,8 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                        <a href="https://drive.google.com/file/d/1APDBlK9UuPkXgptW0U1IHtKgEv4s9ruP/view" class="terminal-button" target="_blank">
                                           <i class="fas fa-download"></i> Download Link 2
                                        </a>
-                                    </div>
-                                 </div>
+                     </div>
+                        </div>
                                  
                                  <div class="terminal-divider"></div>
                                  
@@ -1280,12 +1282,12 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                        <div class="solution-step">→ This folder is created by Wabbajack during installation</div>
                                        <div class="solution-step">→ <span class="warning-text">❗ DO NOT extract the file</span>—just place it in the folder</div>
                                        <div class="solution-step">→ Restart Wabbajack and run the installer again</div>
-                                    </div>
+                        </div>
                                     <div class="terminal-buttons">
                                        <a href="http://enbdev.com/mod_fallout4_v0496.htm" class="terminal-button primary" target="_blank">
                                           <i class="fas fa-download"></i> Download ENB for Fallout 4
                                        </a>
-                                    </div>
+                     </div>
                                  </div>
                               </div>
                            </div>
@@ -1329,18 +1331,18 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                     <h3>Need Help?</h3>
                                  </div>
                                  <div class="card-content">
-                                    <div class="support-links">
-                                       <a href="https://discord.gg/anomaly-1113971680419782666" class="support-link discord" target="_blank">
-                                          <i class="fab fa-discord"></i> Discord Support
-                                       </a>
-                                       <a href="https://wiki.wabbajack.org/" class="support-link wiki" target="_blank">
-                                          <i class="fas fa-book"></i> Wabbajack Wiki
-                                       </a>
-                                       <a href="https://discord.gg/wabbajack" class="support-link discord" target="_blank">
-                                          <i class="fab fa-discord"></i> Wabbajack Discord
-                                       </a>
-                                    </div>
-                                 </div>
+                        <div class="support-links">
+                           <a href="https://discord.gg/anomaly-1113971680419782666" class="support-link discord" target="_blank">
+                              <i class="fab fa-discord"></i> Discord Support
+                           </a>
+                           <a href="https://wiki.wabbajack.org/" class="support-link wiki" target="_blank">
+                              <i class="fas fa-book"></i> Wabbajack Wiki
+                           </a>
+                           <a href="https://discord.gg/wabbajack" class="support-link discord" target="_blank">
+                              <i class="fab fa-discord"></i> Wabbajack Discord
+                           </a>
+                        </div>
+                     </div>
                               </div>
                            </div>
                         </div>
@@ -1364,14 +1366,14 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                  <div class="terminal-header">
                                     <span class="terminal-prompt">[LAUNCH]</span>
                                     <span class="terminal-title">Game Launch Instructions</span>
-                                 </div>
+                              </div>
                                  
                                  <div class="terminal-error-block">
                                     <div class="error-header">Getting Started</div>
                                     <div class="error-solution">
                                        <div class="solution-step">→ When you open Mod Organizer 2 (MO2), the interface might seem complex at first</div>
                                        <div class="solution-step">→ Don't worry—we've streamlined the process for you!</div>
-                                    </div>
+                           </div>
                                  </div>
                                  
                                  <div class="terminal-divider"></div>
@@ -1381,9 +1383,9 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                     <div class="error-solution">
                                        <div class="solution-step">→ In the top-right corner of the MO2 interface, click "Launch Fallout Anomaly"</div>
                                        <div class="solution-step">→ This will start the game with all mods properly loaded</div>
-                                    </div>
-                                 </div>
-                                 
+                        </div>
+                     </div>
+                     
                                  <div class="terminal-divider"></div>
                                  
                                  <div class="terminal-error-block">
@@ -1391,10 +1393,10 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                     <div class="error-solution">
                                        <div class="solution-step">→ <span class="warning-text">⚠️ DO NOT use the vanilla game launcher!</span></div>
                                        <div class="solution-step">→ Always use the MO2 launcher to ensure proper mod loading</div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
+                        </div>
+                        </div>
+                     </div>
+                     </div>
                         </div>
                      </div>
                      
@@ -1543,9 +1545,9 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                  
                                  <div class="terminal-buttons">
                                     <div class="guide-image">
-                                       <img src="https://github.com/user-attachments/assets/e83c48cc-d321-4fd9-b17f-02d7f399c80c" alt="BethINI Screenshot" class="guide-image">
-                                    </div>
-                                 </div>
+                           <img src="https://github.com/user-attachments/assets/e83c48cc-d321-4fd9-b17f-02d7f399c80c" alt="BethINI Screenshot" class="guide-image">
+                        </div>
+                     </div>
                               </div>
                            </div>
                         </div>
@@ -1573,8 +1575,8 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                  
                                  <div class="terminal-buttons">
                                     <div class="guide-image">
-                                       <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/mcmpreset.png" alt="Preset Screenshot" class="guide-image">
-                                    </div>
+                        <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/mcmpreset.png" alt="Preset Screenshot" class="guide-image">
+                     </div>
                                  </div>
                               </div>
                            </div>
@@ -1644,8 +1646,8 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                  
                                  <div class="terminal-buttons">
                                     <div class="guide-image">
-                                       <img src="https://github.com/user-attachments/assets/c416445f-e1b8-4bc3-9efa-7906d7eb586e" alt="ENB Menu Screenshot" class="guide-image">
-                                    </div>
+                        <img src="https://github.com/user-attachments/assets/c416445f-e1b8-4bc3-9efa-7906d7eb586e" alt="ENB Menu Screenshot" class="guide-image">
+                     </div>
                                  </div>
                               </div>
                            </div>
@@ -1675,8 +1677,8 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                  
                                  <div class="terminal-buttons">
                                     <div class="guide-image">
-                                       <img src="https://github.com/user-attachments/assets/708ad0e6-37fe-4ecd-a215-82e110ae1c4f" alt="Optional Mods" class="guide-image">
-                                    </div>
+                        <img src="https://github.com/user-attachments/assets/708ad0e6-37fe-4ecd-a215-82e110ae1c4f" alt="Optional Mods" class="guide-image">
+                     </div>
                                  </div>
                               </div>
                            </div>
@@ -1701,7 +1703,7 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                  <div class="terminal-header">
                                     <span class="terminal-prompt">[ISSUES]</span>
                                     <span class="terminal-title">Known Game Issues</span>
-                                 </div>
+                              </div>
                                  
                                  <div class="terminal-error-block">
                                     <div class="error-header">Main Menu Delay</div>
@@ -1709,8 +1711,8 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                        <div class="solution-step">→ When launching the game you may experience a delay as scripts load</div>
                                        <div class="solution-step">→ This delay varies based on your system's power</div>
                                        <div class="solution-step">→ More powerful systems may not encounter this issue</div>
-                                    </div>
-                                 </div>
+                              </div>
+                     </div>
                                  
                                  <div class="terminal-divider"></div>
                                  
@@ -1720,8 +1722,8 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                        <div class="solution-step">→ If you find yourself unable to progress from the first loading or main menu</div>
                                        <div class="solution-step">→ Watch <a href="https://www.youtube.com/watch?v=JTnhJsM3_hg&t" target="_blank" class="terminal-link">this video</a> for help with the issue</div>
                                        <div class="solution-step">→ If the video doesn't resolve it, we've provided new save files for you to load and customize your character as needed</div>
-                                    </div>
-                                 </div>
+                     </div>
+                     </div>
                                  
                                  <div class="terminal-divider"></div>
                                  
@@ -1731,7 +1733,7 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                        <div class="solution-step">→ After creating your character, your game will save and may appear to freeze temporarily</div>
                                        <div class="solution-step">→ This is due to multiple scripts loading simultaneously</div>
                                        <div class="solution-step">→ <span class="warning-text">Be patient and wait for a few minutes</span>; the game will resume normally</div>
-                                    </div>
+                           </div>
                                  </div>
                                  
                                  <div class="terminal-divider"></div>
@@ -1741,9 +1743,9 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                     <div class="error-solution">
                                        <div class="solution-step">→ If you're falling through the vault floor, this is likely due to the "Uneducated Shooter" mod</div>
                                        <div class="solution-step">→ Solution: Only enable the "Uneducated Shooter" mod after leaving the vault</div>
-                                    </div>
-                                 </div>
-                                 
+                        </div>
+                     </div>
+                     
                                  <div class="terminal-divider"></div>
                                  
                                  <div class="terminal-error-block">
@@ -1751,8 +1753,8 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                     <div class="error-solution">
                                        <div class="solution-step">→ Programs like medal (recording software) or anything that adds an overlay can conflict with ENBS or other DLL hooked mods</div>
                                        <div class="solution-step">→ If you are crashing right at the launch of game or at the main menu, this can be one of the main causes</div>
-                                    </div>
-                                 </div>
+                        </div>
+                     </div>
                               </div>
                            </div>
                         </div>
@@ -1805,12 +1807,12 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                  
                                  <div class="terminal-buttons">
                                     <div class="guide-image">
-                                       <img src="https://github.com/user-attachments/assets/06e65ae6-05b8-4a1e-9d33-ca8ec5b9bc7f" alt="Steam Settings" class="guide-image">
-                                       <img src="https://github.com/user-attachments/assets/8b3ae832-e62e-4817-b858-d70256727bf8" alt="Controller Configuration" class="guide-image">
-                                    </div>
-                                 </div>
+                                 <img src="https://github.com/user-attachments/assets/06e65ae6-05b8-4a1e-9d33-ca8ec5b9bc7f" alt="Steam Settings" class="guide-image">
+                                 <img src="https://github.com/user-attachments/assets/8b3ae832-e62e-4817-b858-d70256727bf8" alt="Controller Configuration" class="guide-image">
                               </div>
                            </div>
+                        </div>
+                     </div>
                         </div>
                      </div>
                   </div>
@@ -2052,7 +2054,8 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                                     <div class="skill-item">IFAK: Stops heavy bleed, removes crippled status, heals 1%/s (80s)</div>
                                     <div class="skill-item">SAM Splint: Sets crippled limbs to 1 HP, downgrades heavy bleed</div>
                                     <div class="skill-item">TXA Injector: Stops light bleeds, reduces heavy bleeds, +300s critical wound protection</div>
-                                    <div class="skill-item">Ca-DTPA: Removes 10 RAD/s for 60s. Requires weapon holstered. Replaces Vanilla Radaway - Also slowly removes IRA</div>
+                                    <div class="skill-item">Ca-DTPA: Removes 10 RAD/s for 60s. Requires weapon holstered. - Replaces Vanilla Radaway - Also 
+                                       slowly removes IRA.</div>
                                     <div class="skill-item">Potassium Iodide: +200 RAD resistance, -0.5 RAD/s for 300s. Replaces Rad-X</div>
                                  </div>
                               </div>
@@ -2122,93 +2125,13 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                                   <p>The Wastes are unforgiving. Radiation is no longer a simple number—it's a slow, creeping death that can take hold in seconds or over days. Always carry enough protective gear and medication. Stock up on bandages, painkillers, Rad meds, and limb restoration tools. Being prepared isn't optional—it's survival.</p>
                                </div>
                             </div>
-                        </div>
-                     </div>
+                         </div>
+                      </div>
                      
-                     <!-- Collapsible Section 6: Keybind Preset -->
+                     <!-- Collapsible Section 6: Weather & Environment -->
                      <div class="terminal-list-item collapsible-section">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
-<i class="fas fa-keyboard"></i>6. Keybind Preset                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                        </div>
-                        <div class="collapsible-content">
-                            <div class="sub-collapsible">
-                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
-🎮 Movement & Core Controls                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                               </div>
-                               <div class="sub-collapsible-content">
-                                  <ul class="compact-list">
-                                     <li>W/S/A/D – Move Forward/Backward/Strafe Left/Right</li>
-                                     <li>Left Shift – Sprint</li>
-                                     <li>C – Run</li>
-                                     <li>Spacebar – Jump</li>
-                                     <li>Left Ctrl – Sneak</li>
-                                     <li>Caps Lock – Toggle Always Run</li>
-                                     <li>X – Auto-Move</li>
-                                     <li>F – Activate / Interact</li>
-                                  </ul>
-                               </div>
-                            </div>
-                            
-                            <div class="sub-collapsible">
-                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
-⚔️ Combat Controls                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                               </div>
-                               <div class="sub-collapsible-content">
-                                  <ul class="compact-list">
-                                     <li>Mouse1 – Attack / Fire</li>
-                                     <li>Mouse2 – Aim / Block</li>
-                                     <li>Left Alt – Bash / Power Attack / Grenade</li>
-                                     <li>R – Ready Weapon / Reload</li>
-                                     <li>Q – VATS</li>
-                                     <li>J – Holster / Lower Weapon</li>
-                                  </ul>
-                               </div>
-                            </div>
-                            
-                            <div class="sub-collapsible">
-                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
-📱 Menu & Inventory                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                               </div>
-                               <div class="sub-collapsible-content">
-                                  <ul class="compact-list">
-                                     <li>Tab – Open Pip-Boy</li>
-                                     <li>Mouse3 – Toggle POV / Workshop</li>
-                                     <li>Esc – Pause</li>
-                                     <li>I – Quick Inventory</li>
-                                     <li>M – Quick Map</li>
-                                  </ul>
-                               </div>
-                            </div>
-                           <div class="sub-collapsible">
-                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
-🛠️ Mod-Specific Keybinds                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                              </div>
-                              <div class="sub-collapsible-content">
-                                 <div class="skill-grid">
-                                    <div class="skill-item">Bullet in Chamber: R (Reload/Check), J (Holster)</div>
-                                    <div class="skill-item">Dank_ECO: PgDn (PA Workbench), PgUp (Universal), U (Attack Mode)</div>
-                                    <div class="skill-item">Enhanced Movement: N (Dodge)</div>
-                                    <div class="skill-item">HOTC: K (Examine Prey)</div>
-                                    <div class="skill-item">VAFS Redux: Z (Critical), G (Focus)</div>
-                                    <div class="skill-item">Immersive HUD: F2 (Toggle HUD)</div>
-                                    <div class="skill-item">MODExplorer: \ (Show Mod List)</div>
-                                    <div class="skill-item">Armor Plates: Y (Use Plate)</div>
-                                    <div class="skill-item">Wasteland Codex: Numpad 3 (Play Entry)</div>
-                                    <div class="skill-item">Vivid Weathers: Numpad / (Weather)</div>
-                                    <div class="skill-item">Wheel Menu: H (Open Wheel)</div>
-                                    <div class="skill-item">Workshop: Home (Workshop Mode)</div>
-                                    <div class="skill-item">Barber/Surgery: ↓ (Switch View)</div>
-                                    <div class="skill-item">Volume Sliders: Numpad 0 (Mute Music)</div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     
-                     <!-- Collapsible Section 7: Weather & Environment -->
-                     <div class="terminal-list-item collapsible-section">
-                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
-<i class="fas fa-cloud-rain"></i>7. Weather & Environment                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+<i class="fas fa-cloud-rain"></i>6. Weather & Environment                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
                            <div class="sub-collapsible">
@@ -2241,10 +2164,10 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                         </div>
                      </div>
                      
-                     <!-- Collapsible Section 8: Settlement & Building -->
+                     <!-- Collapsible Section 7: Settlement & Building -->
                      <div class="terminal-list-item collapsible-section">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
-<i class="fas fa-hammer"></i>8. Settlement & Building                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+<i class="fas fa-hammer"></i>7. Settlement & Building                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
                            <div class="sub-collapsible">
@@ -2276,10 +2199,10 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                         </div>
                      </div>
                      
-                     <!-- Collapsible Section 9: Companions & NPCs -->
+                     <!-- Collapsible Section 8: Companions & NPCs -->
                      <div class="terminal-list-item collapsible-section">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
-<i class="fas fa-users"></i>9. Companions & NPCs                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+<i class="fas fa-users"></i>8. Companions & NPCs                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
                            <div class="sub-collapsible">
@@ -2311,10 +2234,10 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                         </div>
                      </div>
                      
-                     <!-- Collapsible Section 10: Crafting & Equipment -->
+                     <!-- Collapsible Section 9: Crafting & Equipment -->
                      <div class="terminal-list-item collapsible-section">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
-<i class="fas fa-tools"></i>10. Crafting & Equipment                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+<i class="fas fa-tools"></i>9. Crafting & Equipment                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
                            <div class="sub-collapsible">
@@ -2346,10 +2269,10 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                         </div>
                      </div>
                      
-                     <!-- Collapsible Section 11: User Interface & HUD -->
+                     <!-- Collapsible Section 10: User Interface & HUD -->
                      <div class="terminal-list-item collapsible-section">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
-<i class="fas fa-desktop"></i>11. User Interface & HUD                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+<i class="fas fa-desktop"></i>10. User Interface & HUD                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
                            <div class="sub-collapsible">
@@ -2378,13 +2301,68 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                                  </div>
                               </div>
                            </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🎮 Movement & Core Controls                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                              <div class="sub-collapsible-content">
+                                 <ul class="compact-list">
+                                    <li>W/S/A/D – Move Forward/Backward/Strafe Left/Right</li>
+                                    <li>Left Shift – Sprint</li>
+                                    <li>C – Run</li>
+                                    <li>Spacebar – Jump</li>
+                                    <li>Left Ctrl – Sneak</li>
+                                    <li>Caps Lock – Toggle Always Run</li>
+                                    <li>X – Auto-Move</li>
+                                    <li>F – Activate / Interact</li>
+                                 </ul>
+                     </div>
+                        </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+⚔️ Combat Controls                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <ul class="compact-list">
+                                    <li>Mouse1 – Attack / Fire</li>
+                                    <li>Mouse2 – Aim / Block</li>
+                                    <li>Left Alt – Bash / Power Attack / Grenade</li>
+                                    <li>R – Ready Weapon / Reload</li>
+                                    <li>Q – VATS</li>
+                                    <li>J – Holster / Lower Weapon</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🛠️ Mod-Specific Keybinds                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Bullet in Chamber: R (Reload/Check), J (Holster)</div>
+                                    <div class="skill-item">Dank_ECO: PgDn (PA Workbench), PgUp (Universal), U (Attack Mode)</div>
+                                    <div class="skill-item">Enhanced Movement: N (Dodge)</div>
+                                    <div class="skill-item">HOTC: K (Examine Prey)</div>
+                                    <div class="skill-item">VAFS Redux: Z (Critical), G (Focus)</div>
+                                    <div class="skill-item">Immersive HUD: F2 (Toggle HUD)</div>
+                                    <div class="skill-item">MODExplorer: \ (Show Mod List)</div>
+                                    <div class="skill-item">Armor Plates: Y (Use Plate)</div>
+                                    <div class="skill-item">Wasteland Codex: Numpad 3 (Play Entry)</div>
+                                    <div class="skill-item">Vivid Weathers: Numpad / (Weather)</div>
+                                    <div class="skill-item">Wheel Menu: H (Open Wheel)</div>
+                                    <div class="skill-item">Workshop: Home (Workshop Mode)</div>
+                                    <div class="skill-item">Barber/Surgery: ↓ (Switch View)</div>
+                                    <div class="skill-item">Volume Sliders: Numpad 0 (Mute Music)</div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                      </div>
                      
-                     <!-- Collapsible Section 12: Audio & Visual -->
+                     <!-- Collapsible Section 11: Audio & Visual -->
                      <div class="terminal-list-item collapsible-section">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
-<i class="fas fa-volume-up"></i>12. Audio & Visual                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+<i class="fas fa-volume-up"></i>11. Audio & Visual                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
                            <div class="sub-collapsible">
@@ -2416,10 +2394,10 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                         </div>
                      </div>
                      
-                     <!-- Collapsible Section 13: Character Customization -->
+                     <!-- Collapsible Section 12: Character Customization -->
                      <div class="terminal-list-item collapsible-section">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
-<i class="fas fa-user-edit"></i>13. Character Customization                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+<i class="fas fa-user-edit"></i>12. Character Customization                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
                            <div class="sub-collapsible">
@@ -2448,41 +2426,41 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                                  </div>
                               </div>
                            </div>
-                        </div>
-                     </div>
+                              </div>
+                                 </div>
                      
-                     <!-- Collapsible Section 14: Tips & Strategies -->
+                     <!-- Collapsible Section 13: Tips & Strategies -->
                      <div class="terminal-list-item collapsible-section">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
-<i class="fas fa-lightbulb"></i>14. Tips & Strategies                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+<i class="fas fa-lightbulb"></i>13. Tips & Strategies                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <div class="sub-collapsible">
-                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
 🛡️ Survival Tips                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                              </div>
-                              <div class="sub-collapsible-content">
+                               </div>
+                               <div class="sub-collapsible-content">
                                  <div class="skill-grid">
                                     <div class="skill-item">Medical Supplies: Always carry bandages, stimpaks, and painkillers</div>
                                     <div class="skill-item">Pre-medication: Use TXA and ibuprofen for protection before combat</div>
                                     <div class="skill-item">Radiation Management: Carry protective gear and radiation meds</div>
                                     <div class="skill-item">Route Planning: Use APC travel system and subway networks</div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="sub-collapsible">
-                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+                               </div>
+                            </div>
+                               </div>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
 ⚔️ Combat Strategies                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                              </div>
-                              <div class="sub-collapsible-content">
+                               </div>
+                               <div class="sub-collapsible-content">
                                  <div class="skill-grid">
                                     <div class="skill-item">Effective Cover: Take advantage of environmental protection</div>
                                     <div class="skill-item">Ammunition Weight: Balance firepower with mobility</div>
                                     <div class="skill-item">Weak Points: Aim for headshots and vulnerable areas</div>
                                     <div class="skill-item">Stealth Approach: Avoid unnecessary confrontations</div>
                                  </div>
-                              </div>
-                           </div>
+                               </div>
+                            </div>
                            <div class="sub-collapsible">
                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
 📦 Resource Management                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
