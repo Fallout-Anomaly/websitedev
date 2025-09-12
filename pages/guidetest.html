@@ -960,10 +960,10 @@
                 </div>
                <div class="tab-content" id="step2">
                   <div class="terminal-list">
-                     <!-- Collapsible Section 1: Pre-Installation Checklist -->
+                     <!-- Collapsible Section 1: Before You Start -->
                      <div class="terminal-list-item collapsible-section">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
-                           <strong><i class="fas fa-check-circle"></i>1. Pre-Installation Checklist</strong>
+                           <strong><i class="fas fa-check-circle"></i>1. Before You Start</strong>
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
@@ -975,164 +975,154 @@
                                  <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/wabbajack.png" alt="Nexus Login in Wabbajack" class="guide-image">
                               </div>
                            </div>
+                           
+                           <div class="setup-section">
+                              <h4><i class="fas fa-shield-alt"></i> Antivirus Setup</h4>
+                              <p>To prevent interference, <strong>add a folder exclusion</strong> for your entire install directory:</p>
+                              <ol class="terminal-sublist">
+                                 <li>
+                                    Open <strong>Windows Security</strong> → <em>Virus & threat protection</em><br>
+                                    <img src="https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-defender-security-center/images/security-center-home.png" alt="Virus & threat protection home" class="screenshot">
+                                 </li>
+                                 <li>
+                                    Scroll to <em>Exclusions</em> and select <em>Add or remove exclusions</em><br>
+                                    <img src="https://www.avoiderrors.com/wp-content/uploads/2020/07/AEW10A-3.png" alt="Exclusions page" class="screenshot">
+                                 </li>
+                                 <li>
+                                    Click <em>Add an exclusion</em> → choose <em>Folder</em> and browse to your install folder<br>
+                                    <img src="https://www.tenforums.com/attachments/tutorials/256525d1574614840-add-remove-microsoft-defender-antivirus-exclusions-windows-10-a-windows_defender_exclusions-4.png" alt="Add folder exclusion dialog" class="screenshot">
+                                 </li>
+                              </ol>
+                           </div>
                         </div>
                      </div>
                      
-                     <!-- Collapsible Section 2: Installation Instructions -->
+                     <!-- Collapsible Section 2: Installation Process -->
                      <div class="terminal-list-item collapsible-section">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
-                           <strong><i class="fas fa-download"></i>2. Installation Instructions</strong>
+                           <strong><i class="fas fa-download"></i>2. Installation Process</strong>
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
                            <div class="install-step">
-                              <strong>Downloading Fallout Anomaly</strong>
-                        <ul class="terminal-sublist">
+                              <h4>📥 Downloading Fallout Anomaly</h4>
+                              <ul class="terminal-sublist">
                                  <li>Locate <em>Fallout Anomaly</em> in the Wabbajack Browser and download the file.</li>
                                  <li>Set both <strong>Install Location</strong> and <strong>Download Location</strong> on the same drive for best performance.</li>
-                        </ul>
+                              </ul>
                               <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/wabbajack%20install.png" alt="Verify Installation" class="guide-image">
-                        </div>
+                           </div>
                         </div>
                      </div>
                      
-                     <!-- Collapsible Section 3: Common Issues & Fixes -->
+                     <!-- Collapsible Section 3: Troubleshooting -->
                      <div class="terminal-list-item collapsible-section">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
-                           <strong><i class="fas fa-exclamation-triangle"></i>3. Common Issues & Fixes</strong>
+                           <strong><i class="fas fa-tools"></i>3. Troubleshooting</strong>
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <div class="issues-grid">
-                              <div class="issue-item">
-                                 <h4>"Could Not Download MOD"</h4>
-                        <ul class="terminal-sublist">
-                                    <li>Manually download the mod and place it in Wabbajack's download folder.</li>
-                                    <li>Check if Nexus Mods is down: <a href="https://nexusmods.statuspage.io/" target="_blank">Nexus Mods Status</a></li>
-                        </ul>
-                     </div>
-                              <div class="issue-item">
-                                 <h4>"Mod Is Not a Whitelisted Download"</h4>
+                           <div class="troubleshooting-section">
+                              <h4>🚫 Common Error Messages</h4>
+                              <div class="issues-grid">
+                                 <div class="issue-item">
+                                    <h5>"Could Not Download MOD"</h5>
+                                    <ul class="terminal-sublist">
+                                       <li>Manually download the mod and place it in Wabbajack's download folder.</li>
+                                       <li>Check if Nexus Mods is down: <a href="https://nexusmods.statuspage.io/" target="_blank">Nexus Mods Status</a></li>
+                                    </ul>
+                                 </div>
+                                 <div class="issue-item">
+                                    <h5>"Mod Is Not a Whitelisted Download"</h5>
+                                    <ul class="terminal-sublist">
+                                       <li>The modlist may have been updated, making an old mod link invalid.</li>
+                                       <li>Wait for a new release or notify us on <strong>Discord</strong>.</li>
+                                    </ul>
+                                 </div>
+                                 <div class="issue-item">
+                                    <h5>"Missing Game Files"</h5>
+                                    <ul class="terminal-sublist">
+                                       <li>Ensure your game is updated to the <strong>next-gen version</strong>.</li>
+                                    </ul>
+                                 </div>
+                                 <div class="issue-item">
+                                    <h5>"Wabbajack Could Not Find My Game Folder"</h5>
+                                    <ul class="terminal-sublist">
+                                       <li><strong>Pirated versions are not supported</strong>. Ensure you own Fallout 4 on <strong>Steam</strong>.</li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                           
+                           <div class="troubleshooting-section">
+                              <h4>📁 Manual Download Issues</h4>
+                              <div class="download-issues">
+                                 <h5>Google Drive Downloads</h5>
                                  <ul class="terminal-sublist">
-                                    <li>The modlist may have been updated, making an old mod link invalid.</li>
-                                    <li>Wait for a new release or notify us on <strong>Discord</strong>.</li>
+                                    <li>If downloads fail, <strong>download manually</strong> and place the file in your Wabbajack download folder.</li>
+                                    <li>Restart the install.</li>
                                  </ul>
-                  </div>
-                              <div class="issue-item">
-                                 <h4>"Missing Game Files"</h4>
+                                 <div class="download-links">
+                                    <a href="https://drive.google.com/file/d/1sWpTDjSYC4xwhEveSuVhykjzHpZ2Qk1Y/view" class="download-link" target="_blank">Download Link 1</a>
+                                    <a href="https://drive.google.com/file/d/1APDBlK9UuPkXgptW0U1IHtKgEv4s9ruP/view" class="download-link" target="_blank">Download Link 2</a>
+                                 </div>
+                                 
+                                 <h5>ENB Download Issues</h5>
                                  <ul class="terminal-sublist">
-                                    <li>Ensure your game is updated to the <strong>next-gen version</strong>.</li>
+                                    <li>If your ENB download fails, download it manually and move it to the <strong>Anomaly Downloads</strong> folder created by Wabbajack.</li>
+                                    <li>❗ <strong>DO NOT extract the file</strong>—just place it in the folder.</li>
+                                    <li>Restart Wabbajack and run the installer again.</li>
                                  </ul>
-               </div>
-                              <div class="issue-item">
-                                 <h4>"Wabbajack Could Not Find My Game Folder"</h4>
-                        <ul class="terminal-sublist">
-                                    <li><strong>Pirated versions are not supported</strong>. Ensure you own Fallout 4 on <strong>Steam</strong>.</li>
-                        </ul>
+                                 <a href="http://enbdev.com/mod_fallout4_v0496.htm" class="download-link" target="_blank">Download ENB for Fallout 4</a>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <!-- Collapsible Section 4: Troubleshooting Download Issues -->
+                     <!-- Collapsible Section 4: After Installation -->
                      <div class="terminal-list-item collapsible-section">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
-                           <strong><i class="fas fa-tools"></i>4. Troubleshooting Download Issues</strong>
+                           <strong><i class="fas fa-check-double"></i>4. After Installation</strong>
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <div class="troubleshooting-section">
-                              <h4>Google Drive Download Issues</h4>
-                           <ul class="terminal-sublist">
-                                 <li>If downloads fail, <strong>download manually</strong> and place the file in your Wabbajack download folder.</li>
-                                 <li>Restart the install.</li>
-                           </ul>
-                              <div class="download-links">
-                                 <a href="https://drive.google.com/file/d/1sWpTDjSYC4xwhEveSuVhykjzHpZ2Qk1Y/view" class="download-link" target="_blank">Download Link 1</a>
-                                 <a href="https://drive.google.com/file/d/1APDBlK9UuPkXgptW0U1IHtKgEv4s9ruP/view" class="download-link" target="_blank">Download Link 2</a>
-                        </div>
+                           <div class="post-install-section">
+                              <h4>🔄 Updating Fallout Anomaly</h4>
+                              <div class="update-info">
+                                 <h5>✅ Update Notifications</h5>
+                                 <ul class="terminal-sublist">
+                                    <li>Announcements on <strong>Discord</strong> and <strong>Nexus Mods</strong>.</li>
+                                    <li>If a <strong>new save is required</strong>, we'll let you know.</li>
+                                 </ul>
+                              </div>
+                              <div class="update-process">
+                                 <h5>🔄 Update Process in Wabbajack</h5>
+                                 <ul class="terminal-sublist">
+                                    <li>Wabbajack deletes any manually installed mods not part of the official modlist.</li>
+                                    <li>Re-run the installer on the same path and check "Overwrite existing."</li>
+                                 </ul>
+                              </div>
+                              <div class="save-preservation">
+                                 <h5>💾 Save Preservation</h5>
+                                 <ul class="terminal-sublist">
+                                    <li>Your save files remain intact unless we explicitly state otherwise.</li>
+                                    <li>Find them in <code>(Install Folder)/Profiles/Fallout Anomaly/Saves</code>.</li>
+                                 </ul>
+                              </div>
                            </div>
-                           <div class="troubleshooting-section">
-                              <h4>ENB Download Issues</h4>
-                           <ul class="terminal-sublist">
-                                 <li>If your ENB download fails, download it manually and move it to the <strong>Anomaly Downloads</strong> folder created by Wabbajack.</li>
-                                 <li>❗ <strong>DO NOT extract the file</strong>—just place it in the folder.</li>
-                                 <li>Restart Wabbajack and run the installer again.</li>
-                           </ul>
-                              <a href="http://enbdev.com/mod_fallout4_v0496.htm" class="download-link" target="_blank">Download ENB for Fallout 4</a>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- Collapsible Section 5: Antivirus Folder Exclusion -->
-                     <div class="terminal-list-item collapsible-section">
-                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
-                           <strong><i class="fas fa-shield-alt"></i>5. Antivirus Folder Exclusion</strong>
-                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                        </div>
-                        <div class="collapsible-content">
-                           <p>To prevent interference, <strong>add a folder exclusion</strong> for your entire install directory:</p>
-                           <ol class="terminal-sublist">
-                              <li>
-                                 Open <strong>Windows Security</strong> → <em>Virus & threat protection</em><br>
-                                 <img src="https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-defender-security-center/images/security-center-home.png" alt="Virus & threat protection home" class="screenshot">
-                              </li>
-                              <li>
-                                 Scroll to <em>Exclusions</em> and select <em>Add or remove exclusions</em><br>
-                                 <img src="https://www.avoiderrors.com/wp-content/uploads/2020/07/AEW10A-3.png" alt="Exclusions page" class="screenshot">
-                              </li>
-                              <li>
-                                 Click <em>Add an exclusion</em> → choose <em>Folder</em> and browse to your install folder<br>
-                                 <img src="https://www.tenforums.com/attachments/tutorials/256525d1574614840-add-remove-microsoft-defender-antivirus-exclusions-windows-10-a-windows_defender_exclusions-4.png" alt="Add folder exclusion dialog" class="screenshot">
-                              </li>
-                           </ol>
-                        </div>
-                     </div>
-                     <!-- Collapsible Section 6: Updating Fallout Anomaly -->
-                     <div class="terminal-list-item collapsible-section">
-                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
-                           <strong><i class="fas fa-sync-alt"></i>6. Updating Fallout Anomaly</strong>
-                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                        </div>
-                        <div class="collapsible-content">
-                           <div class="update-info">
-                              <h4>✅ Update Notifications</h4>
-                           <ul class="terminal-sublist">
-                                 <li>Announcements on <strong>Discord</strong> and <strong>Nexus Mods</strong>.</li>
-                                 <li>If a <strong>new save is required</strong>, we'll let you know.</li>
-                           </ul>
-                        </div>
-                           <div class="update-process">
-                              <h4>🔄 Update Process in Wabbajack</h4>
-                              <ul class="terminal-sublist">
-                                 <li>Wabbajack deletes any manually installed mods not part of the official modlist.</li>
-                                 <li>Re-run the installer on the same path and check "Overwrite existing."</li>
-                              </ul>
-                           </div>
-                           <div class="save-preservation">
-                              <h4>💾 Save Preservation</h4>
-                              <ul class="terminal-sublist">
-                                 <li>Your save files remain intact unless we explicitly state otherwise.</li>
-                                 <li>Find them in <code>(Install Folder)/Profiles/Fallout Anomaly/Saves</code>.</li>
-                              </ul>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- Collapsible Section 7: Need Help? -->
-                     <div class="terminal-list-item collapsible-section">
-                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
-                           <strong><i class="fas fa-question-circle"></i>7. Need Help?</strong>
-                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                        </div>
-                        <div class="collapsible-content">
-                           <div class="support-links">
-                              <a href="https://discord.gg/anomaly-1113971680419782666" class="support-link discord" target="_blank">
-                                 <i class="fab fa-discord"></i> Discord Support
-                              </a>
-                              <a href="https://wiki.wabbajack.org/" class="support-link wiki" target="_blank">
-                                 <i class="fas fa-book"></i> Wabbajack Wiki
-                              </a>
-                              <a href="https://discord.gg/wabbajack" class="support-link discord" target="_blank">
-                                 <i class="fab fa-discord"></i> Wabbajack Discord
-                              </a>
+                           
+                           <div class="post-install-section">
+                              <h4>🆘 Need Help?</h4>
+                              <div class="support-links">
+                                 <a href="https://discord.gg/anomaly-1113971680419782666" class="support-link discord" target="_blank">
+                                    <i class="fab fa-discord"></i> Discord Support
+                                 </a>
+                                 <a href="https://wiki.wabbajack.org/" class="support-link wiki" target="_blank">
+                                    <i class="fas fa-book"></i> Wabbajack Wiki
+                                 </a>
+                                 <a href="https://discord.gg/wabbajack" class="support-link discord" target="_blank">
+                                    <i class="fab fa-discord"></i> Wabbajack Discord
+                                 </a>
+                              </div>
                            </div>
                         </div>
                      </div>
