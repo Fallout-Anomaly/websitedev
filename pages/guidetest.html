@@ -552,150 +552,6 @@
          border: 1px solid rgba(255, 170, 0, 0.3);
       }
       
-      /* Checklist Styling for Fallout Terminal */
-      .terminal-checklist {
-         margin-top: 16px;
-         padding: 12px;
-         background: rgba(0, 0, 0, 0.2);
-         border: 1px solid var(--terminal-border);
-         border-radius: 3px;
-      }
-      
-      .checklist-item {
-         display: flex;
-         align-items: flex-start;
-         margin-bottom: 12px;
-         padding: 8px;
-         background: rgba(var(--terminal-text-rgb), 0.03);
-         border-radius: 2px;
-         transition: background-color 0.3s ease;
-      }
-      
-      .checklist-item:hover {
-         background: rgba(var(--terminal-text-rgb), 0.08);
-      }
-      
-      .checklist-item input[type="checkbox"] {
-         -webkit-appearance: none;
-         -moz-appearance: none;
-         appearance: none;
-         width: 18px;
-         height: 18px;
-         border: 2px solid var(--terminal-border);
-         border-radius: 3px;
-         cursor: pointer;
-         margin-right: 12px;
-         position: relative;
-         top: 2px;
-         flex-shrink: 0;
-         background: rgba(0, 0, 0, 0.3);
-         transition: all 0.3s ease;
-      }
-      
-      .checklist-item input[type="checkbox"]:hover {
-         border-color: var(--terminal-highlight);
-         box-shadow: 0 0 6px rgba(var(--terminal-highlight-rgb), 0.3);
-      }
-      
-      .checklist-item input[type="checkbox"]:checked {
-         background-color: var(--terminal-highlight);
-         border-color: var(--terminal-highlight);
-         box-shadow: 0 0 8px rgba(var(--terminal-highlight-rgb), 0.5);
-      }
-      
-      .checklist-item input[type="checkbox"]:checked::after {
-         content: '✓';
-         font-size: 14px;
-         color: #000;
-         position: absolute;
-         left: 50%;
-         top: 50%;
-         transform: translate(-50%, -50%);
-         font-weight: bold;
-         text-shadow: none;
-      }
-      
-      .checklist-item label {
-         cursor: pointer;
-         flex: 1;
-         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-         color: var(--terminal-text);
-         line-height: 1.4;
-      }
-      
-      .checklist-instruction {
-         font-size: 0.95em;
-      }
-      
-      .checklist-title {
-         font-family: 'VT323', monospace;
-         color: var(--terminal-highlight);
-         font-weight: bold;
-         margin-bottom: 4px;
-         text-shadow: var(--glow-effect);
-      }
-      
-      .checklist-body {
-         color: var(--terminal-text);
-      }
-      
-      .checklist-progress {
-         margin-top: 16px;
-         padding: 8px 12px;
-         background: rgba(0, 0, 0, 0.4);
-         border: 1px solid var(--terminal-border);
-         border-radius: 3px;
-         text-align: center;
-         font-family: 'VT323', monospace;
-         color: var(--terminal-text);
-      }
-      
-      .checklist-progress.completed {
-         color: var(--terminal-highlight);
-         border-color: var(--terminal-highlight);
-         background: rgba(var(--terminal-highlight-rgb), 0.1);
-      }
-      
-      /* Checklist Card Styling */
-      .checklist-card .card-header-main {
-         display: flex;
-         align-items: center;
-         gap: 12px;
-      }
-      
-      .checklist-card .checklist-box {
-         width: 18px;
-         height: 18px;
-         margin: 0;
-         flex-shrink: 0;
-      }
-      
-      .checklist-card .card-header-main h3 {
-         margin: 0;
-         flex: 1;
-      }
-      
-      .checklist-card .card-header-main i {
-         margin-left: auto;
-      }
-      
-      .progress-card .checklist-progress {
-         margin: 0;
-         padding: 12px;
-         background: rgba(0, 0, 0, 0.3);
-         border: 1px solid var(--terminal-border);
-         border-radius: 4px;
-         text-align: center;
-         font-family: 'VT323', monospace;
-         color: var(--terminal-text);
-      }
-      
-      .progress-card .checklist-progress.completed {
-         color: var(--terminal-highlight);
-         border-color: var(--terminal-highlight);
-         background: rgba(var(--terminal-highlight-rgb), 0.1);
-      }
-      
       .collapsible-header {
          cursor: pointer;
          padding: 8px 12px;
@@ -1078,91 +934,6 @@
       html body .tab-content .sub-collapsible-content ol li {
          color: var(--text-color) !important;
       }
-      
-      /* Completion Notice Styling */
-      .completion-notice {
-         background: rgba(0, 255, 0, 0.1);
-         border: 2px solid var(--primary-color);
-         border-radius: 6px;
-         margin: 2rem 0;
-         padding: 0;
-         overflow: hidden;
-         box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-      }
-      
-      .notice-header {
-         background: rgba(0, 255, 0, 0.2);
-         padding: 12px 16px;
-         border-bottom: 1px solid var(--primary-color);
-         display: flex;
-         align-items: center;
-         gap: 12px;
-      }
-      
-      .notice-header i {
-         color: var(--primary-color);
-         font-size: 1.2em;
-         text-shadow: 0 0 5px var(--primary-color);
-      }
-      
-      .notice-header h3 {
-         color: var(--primary-color);
-         font-family: 'VT323', monospace;
-         font-size: 1.1em;
-         font-weight: bold;
-         text-shadow: 0 0 5px var(--primary-color);
-         margin: 0;
-         text-transform: uppercase;
-         letter-spacing: 1px;
-      }
-      
-      .notice-content {
-         padding: 16px;
-      }
-      
-      .notice-content p {
-         color: var(--text-color);
-         margin: 0;
-         line-height: 1.6;
-         font-size: 0.95em;
-      }
-      
-      /* Back to Top Button Styling */
-      .back-to-top {
-         position: fixed;
-         bottom: 20px;
-         right: 20px;
-         background: var(--primary-color);
-         color: #000;
-         border: 2px solid var(--primary-color);
-         border-radius: 50%;
-         width: 50px;
-         height: 50px;
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         cursor: pointer;
-         font-size: 1.2em;
-         font-weight: bold;
-         text-shadow: none;
-         box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-         transition: all 0.3s ease;
-         z-index: 1000;
-         opacity: 0;
-         visibility: hidden;
-      }
-      
-      .back-to-top.visible {
-         opacity: 1;
-         visibility: visible;
-      }
-      
-      .back-to-top:hover {
-         background: #000;
-         color: var(--primary-color);
-         transform: translateY(-2px);
-         box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
-      }
    </style>
    <link rel="icon" href="data:image/svg+xml,
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
@@ -1223,19 +994,9 @@
              </div>
              
              <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/uYRev9mF4Q0?si=a6ar_TsmgJdy9QGG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                <iframe src="https://www.youtube.com/embed/uYRev9mF4Q0?si=a6ar_TsmgJdy9QGG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
              </div>
              
-            <div class="completion-notice">
-               <div class="notice-header">
-                  <i class="fas fa-info-circle"></i>
-                  <h3>IMPORTANT: Complete All Checkboxes</h3>
-               </div>
-               <div class="notice-content">
-                  <p>Each step contains checkboxes that must be completed before proceeding to the next step. Complete all items in each step to unlock the next tab.</p>
-               </div>
-            </div>
-            
             <div class="tab-container">
                <div class="tab-buttons">
                   <button class="tab-button active" data-tab="step1">STEP 1: GETTING STARTED</button>
@@ -1347,75 +1108,6 @@
                             </div>
                          </div>
                       </div>
-                      
-                      <!-- Step 1 Checklist Cards -->
-                         <div class="info-card-main checklist-card">
-                            <div class="card-header-main">
-                               <input type="checkbox" id="step1-1" class="checklist-box">
-                               <i class="fas fa-microchip"></i>
-                               <h3>Hardware Requirements</h3>
-                            </div>
-                            <div class="card-content-main">
-                               <p>→ I have verified my system meets the requirements: 6+ core CPU, 16GB+ RAM, 6GB+ VRAM GPU, 350GB SSD space, and Windows 10/11.</p>
-                            </div>
-                         </div>
-                         
-                         <div class="info-card-main checklist-card">
-                            <div class="card-header-main">
-                               <input type="checkbox" id="step1-2" class="checklist-box">
-                               <i class="fas fa-crown"></i>
-                               <h3>Nexus Premium</h3>
-                            </div>
-                            <div class="card-content-main">
-                               <p>→ I have subscribed to <a href="https://next.nexusmods.com/premium" target="_blank" class="terminal-link">Nexus Premium</a> for uncapped downloads and automated installation.</p>
-                            </div>
-                         </div>
-                         
-                         <div class="info-card-main checklist-card">
-                            <div class="card-header-main">
-                               <input type="checkbox" id="step1-3" class="checklist-box">
-                               <i class="fas fa-download"></i>
-                               <h3>Required Components</h3>
-                            </div>
-                            <div class="card-content-main">
-                               <p>→ I have downloaded and installed: Microsoft Visual C++, .NET Framework 4.6.2 & 5.0, and DirectX End-User Runtime.</p>
-                            </div>
-                         </div>
-                         
-                         <div class="info-card-main checklist-card">
-                            <div class="card-header-main">
-                               <input type="checkbox" id="step1-4" class="checklist-box">
-                               <i class="fas fa-tools"></i>
-                               <h3>Wabbajack Installation</h3>
-                            </div>
-                            <div class="card-content-main">
-                               <p>→ I have downloaded and installed <a href="https://www.wabbajack.org/" target="_blank" class="terminal-link">Wabbajack</a> from the official website.</p>
-                            </div>
-                         </div>
-                         
-                         <div class="info-card-main checklist-card">
-                            <div class="card-header-main">
-                               <input type="checkbox" id="step1-5" class="checklist-box">
-                               <i class="fas fa-folder"></i>
-                               <h3>Installation Folder</h3>
-                            </div>
-                            <div class="card-content-main">
-                               <p>→ I have created a dedicated folder: <code>C:\Fallout Modlist\Fallout Anomaly</code> for the installation.</p>
-                            </div>
-                         </div>
-                         
-                         <div class="info-card-main progress-card">
-                            <div class="card-header-main">
-                               <i class="fas fa-tasks"></i>
-                               <h3>Progress</h3>
-                            </div>
-                            <div class="card-content-main">
-                               <div class="checklist-progress" id="step1Progress">
-                                  <span id="step1ProgressText">Complete all items to proceed to Step 2</span>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
                    </div>
                 </div>
                <div class="tab-content" id="step2">
@@ -1454,7 +1146,6 @@
                                  </li>
                               </ol>
                            </div>
-                           
                         </div>
                      </div>
                      
@@ -1472,52 +1163,6 @@
                                  <li>Set both <strong>Install Location</strong> and <strong>Download Location</strong> on the same drive for best performance.</li>
                               </ul>
                               <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/wabbajack%20install.png" alt="Verify Installation" class="guide-image">
-                           </div>
-                           
-                           <div class="terminal-checklist">
-                              <div class="checklist-item">
-                                 <input type="checkbox" id="step2-1" class="checklist-box">
-                                 <label for="step2-1">
-                                    <div class="checklist-instruction">
-                                       <div class="checklist-title">Nexus Login</div>
-                                       <div class="checklist-body">→ I have logged into Nexus in Wabbajack by clicking the ⚙️ cogwheel and logging in under the Nexus panel.</div>
-                                    </div>
-                                 </label>
-                              </div>
-                              
-                              <div class="checklist-item">
-                                 <input type="checkbox" id="step2-2" class="checklist-box">
-                                 <label for="step2-2">
-                                    <div class="checklist-instruction">
-                                       <div class="checklist-title">Download Location</div>
-                                       <div class="checklist-body">→ I have set both Install Location and Download Location on the same drive for best performance.</div>
-                                    </div>
-                                 </label>
-                              </div>
-                              
-                              <div class="checklist-item">
-                                 <input type="checkbox" id="step2-3" class="checklist-box">
-                                 <label for="step2-3">
-                                    <div class="checklist-instruction">
-                                       <div class="checklist-title">Antivirus Exclusion</div>
-                                       <div class="checklist-body">→ I have added a folder exclusion for my entire install directory in Windows Security to prevent interference.</div>
-                                    </div>
-                                 </label>
-                              </div>
-                              
-                              <div class="checklist-item">
-                                 <input type="checkbox" id="step2-4" class="checklist-box">
-                                 <label for="step2-4">
-                                    <div class="checklist-instruction">
-                                       <div class="checklist-title">Installation Started</div>
-                                       <div class="checklist-body">→ I have located Fallout Anomaly in the Wabbajack Browser and started the download/installation process.</div>
-                                    </div>
-                                 </label>
-                              </div>
-                              
-                              <div class="checklist-progress" id="step2Progress">
-                                 <span id="step2ProgressText">Complete all items to proceed to Step 3</span>
-                              </div>
                            </div>
                         </div>
                      </div>
@@ -1613,62 +1258,6 @@
                                     </div>
                                  </div>
                               </div>
-                              
-                              <div class="terminal-checklist">
-                                 <div class="checklist-item">
-                                    <input type="checkbox" id="troubleshoot1" class="checklist-box">
-                                    <label for="troubleshoot1">
-                                       <div class="checklist-instruction">
-                                          <div class="checklist-title">"Could Not Download MOD"</div>
-                                          <div class="checklist-body">→ I have manually downloaded the mod and placed it in Wabbajack's download folder. I have checked <a href="https://nexusmods.statuspage.io/" target="_blank" class="terminal-link">Nexus Mods Status</a> if needed.</div>
-                                       </div>
-                                    </label>
-                                 </div>
-                                 
-                                 <div class="checklist-item">
-                                    <input type="checkbox" id="troubleshoot2" class="checklist-box">
-                                    <label for="troubleshoot2">
-                                       <div class="checklist-instruction">
-                                          <div class="checklist-title">"Mod Is Not a Whitelisted Download"</div>
-                                          <div class="checklist-body">→ I understand the modlist may have updated and will wait for a new release or contact support on <a href="#" class="terminal-link">Discord</a>.</div>
-                                       </div>
-                                    </label>
-                                 </div>
-                                 
-                                 <div class="checklist-item">
-                                    <input type="checkbox" id="troubleshoot3" class="checklist-box">
-                                    <label for="troubleshoot3">
-                                       <div class="checklist-instruction">
-                                          <div class="checklist-title">"Missing Game Files"</div>
-                                          <div class="checklist-body">→ I have ensured my game is updated to the <strong>next-gen version</strong>.</div>
-                                       </div>
-                                    </label>
-                                 </div>
-                                 
-                                 <div class="checklist-item">
-                                    <input type="checkbox" id="troubleshoot4" class="checklist-box">
-                                    <label for="troubleshoot4">
-                                       <div class="checklist-instruction">
-                                          <div class="checklist-title">"Wabbajack Could Not Find My Game Folder"</div>
-                                          <div class="checklist-body">→ I understand that <strong>pirated versions are not supported</strong> and I own Fallout 4 on <a href="#" class="terminal-link">Steam</a>.</div>
-                                       </div>
-                                    </label>
-                                 </div>
-                                 
-                                 <div class="checklist-item">
-                                    <input type="checkbox" id="troubleshoot5" class="checklist-box">
-                                    <label for="troubleshoot5">
-                                       <div class="checklist-instruction">
-                                          <div class="checklist-title">ENB Download Issues</div>
-                                          <div class="checklist-body">→ I will manually move ENB files to the <strong>Anomaly Downloads</strong> folder if needed.<br>→ <span class="warning-text">❗ I WILL NOT extract the file</span>, I will just place it in the folder.</div>
-                                       </div>
-                                    </label>
-                                 </div>
-                                 
-                                 <div class="checklist-progress" id="troubleshootProgress">
-                                    <span id="progressText">Complete all items to proceed to Step 4</span>
-                                 </div>
-                              </div>
                            </div>
                         </div>
                      </div>
@@ -1724,62 +1313,6 @@
                                     </div>
                                  </div>
                               </div>
-                              
-                              <div class="terminal-checklist">
-                                 <div class="checklist-item">
-                                    <input type="checkbox" id="step4-1" class="checklist-box">
-                                    <label for="step4-1">
-                                       <div class="checklist-instruction">
-                                          <div class="checklist-title">MCM Preset Applied</div>
-                                          <div class="checklist-body">→ I have applied the MCM preset for proper settings as shown in the guide.</div>
-                                       </div>
-                                    </label>
-                                 </div>
-                                 
-                                 <div class="checklist-item">
-                                    <input type="checkbox" id="step4-2" class="checklist-box">
-                                    <label for="step4-2">
-                                       <div class="checklist-instruction">
-                                          <div class="checklist-title">Game Resolution</div>
-                                          <div class="checklist-body">→ I have used BethINI to adjust my game resolution if needed (without modifying other settings).</div>
-                                       </div>
-                                    </label>
-                                 </div>
-                                 
-                                 <div class="checklist-item">
-                                    <input type="checkbox" id="step4-3" class="checklist-box">
-                                    <label for="step4-3">
-                                       <div class="checklist-instruction">
-                                          <div class="checklist-title">ENB Letterbox (Optional)</div>
-                                          <div class="checklist-body">→ I have disabled the black bars (letterbox) in ENB if I don't like them, using the console and END key method.</div>
-                                       </div>
-                                    </label>
-                                 </div>
-                                 
-                                 <div class="checklist-item">
-                                    <input type="checkbox" id="step4-4" class="checklist-box">
-                                    <label for="step4-4">
-                                       <div class="checklist-instruction">
-                                          <div class="checklist-title">Optional Mods</div>
-                                          <div class="checklist-body">→ I have reviewed and enabled any optional mods I want to use from the collection.</div>
-                                       </div>
-                                    </label>
-                                 </div>
-                                 
-                                 <div class="checklist-item">
-                                    <input type="checkbox" id="step4-5" class="checklist-box">
-                                    <label for="step4-5">
-                                       <div class="checklist-instruction">
-                                          <div class="checklist-title">Update Notifications</div>
-                                          <div class="checklist-body">→ I understand that updates are announced on <a href="#" class="terminal-link">Discord</a> and <a href="#" class="terminal-link">Nexus Mods</a>, and I know how to update when needed.</div>
-                                       </div>
-                                    </label>
-                                 </div>
-                                 
-                                 <div class="checklist-progress" id="step4Progress">
-                                    <span id="step4ProgressText">Complete all items to proceed to Step 5</span>
-                                 </div>
-                              </div>
                            </div>
                         </div>
                      </div>
@@ -1802,16 +1335,18 @@
                                  </div>
                                  
                                  <div class="terminal-error-block">
-                                    <div class="error-header">Mod Organizer 2 Interface</div>
+                                    <div class="error-header">Getting Started</div>
                                     <div class="error-solution">
                                        <div class="solution-step">→ When you open <strong>Mod Organizer 2 (MO2)</strong>, the interface might seem complex at first</div>
                                        <div class="solution-step">→ Don't worry—we've streamlined the process for you!</div>
                                     </div>
                                  </div>
                                  
-                                 <div class="terminal-download-block">
-                                    <div class="download-header">How to Launch the Game</div>
-                                    <div class="download-solution">
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">How to Launch the Game</div>
+                                    <div class="error-solution">
                                        <div class="solution-step">→ In the <strong>top-right corner</strong> of the MO2 interface, click <strong>"Launch Fallout Anomaly"</strong></div>
                                        <div class="solution-step">→ This will start the game with all mods properly loaded</div>
                                     </div>
@@ -1820,10 +1355,10 @@
                                  <div class="terminal-divider"></div>
                                  
                                  <div class="terminal-error-block">
-                                    <div class="error-header">⚠️ CRITICAL WARNING</div>
+                                    <div class="error-header">Important Warning</div>
                                     <div class="error-solution">
-                                       <div class="solution-step">→ <span class="warning-text">❗ DO NOT use the vanilla game launcher!</span></div>
-                                       <div class="solution-step">→ Always use the "Launch Fallout Anomaly" button in MO2</div>
+                                       <div class="solution-step">→ <span class="warning-text">⚠️ DO NOT use the vanilla game launcher!</span></div>
+                                       <div class="solution-step">→ Always use the MO2 launcher to ensure proper mod loading</div>
                                     </div>
                                  </div>
                               </div>
@@ -1842,15 +1377,24 @@
                               <div class="terminal-section">
                                  <div class="terminal-header">
                                     <span class="terminal-prompt">[F4SE]</span>
-                                    <span class="terminal-title">Fallout 4 Script Extender</span>
+                                    <span class="terminal-title">Script Extender Information</span>
                                  </div>
                                  
-                                 <div class="terminal-download-block">
-                                    <div class="download-header">F4SE Information</div>
-                                    <div class="download-solution">
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">What is F4SE?</div>
+                                    <div class="error-solution">
                                        <div class="solution-step">→ <strong>F4SE</strong> is essential for most Fallout mods and is required to run Fallout Anomaly</div>
+                                       <div class="solution-step">→ It extends the game's scripting capabilities beyond what's normally possible</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Automatic Setup</div>
+                                    <div class="error-solution">
                                        <div class="solution-step">→ When using MO2, <strong>F4SE</strong> is automatically included in <strong>"Launch Fallout Anomaly"</strong></div>
-                                       <div class="solution-step">→ <span class="warning-text">❗ No extra setup needed!</span> Everything is handled automatically</div>
+                                       <div class="solution-step">→ <span class="warning-text">No extra setup needed!</span> Everything is handled automatically</div>
                                     </div>
                                  </div>
                               </div>
@@ -1868,16 +1412,44 @@
                               <div class="terminal-section">
                                  <div class="terminal-header">
                                     <span class="terminal-prompt">[CRASH]</span>
-                                    <span class="terminal-title">Crash Handling & Reporting</span>
+                                    <span class="terminal-title">Crash Reporting Process</span>
                                  </div>
                                  
                                  <div class="terminal-error-block">
-                                    <div class="error-header">Game Crash Protocol</div>
+                                    <div class="error-header">If Your Game Crashes</div>
                                     <div class="error-solution">
-                                       <div class="solution-step">→ If your game crashes, follow these steps to report the issue</div>
+                                       <div class="solution-step">→ Follow these steps to report the issue and get help</div>
+                                       <div class="solution-step">→ The more information you provide, the faster we can help you</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 1: Save the Log</div>
+                                    <div class="error-solution">
                                        <div class="solution-step">→ <strong>Save the log</strong> to an easily accessible location</div>
-                                       <div class="solution-step">→ <strong>Upload the log</strong> via our <a href="https://falloutanomaly.fillout.com/bugreports" target="_blank" class="terminal-link">bug report form</a> OR post it in our <a href="#" class="terminal-link">Discord support section</a></div>
+                                       <div class="solution-step">→ This contains important debugging information</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 2: Upload the Log</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ <strong>Upload the log</strong> via our <a href="https://falloutanomaly.fillout.com/bugreports" target="_blank" class="terminal-link">bug report form</a></div>
+                                       <div class="solution-step">→ OR post it in our <a href="#" class="terminal-link">Discord support section</a></div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 3: Attach Save File</div>
+                                    <div class="error-solution">
                                        <div class="solution-step">→ <strong>Attach your most recent save file</strong> to help with debugging</div>
+                                       <div class="solution-step">→ This helps us reproduce the issue and find a solution</div>
                                     </div>
                                  </div>
                               </div>
@@ -1898,32 +1470,52 @@
                                     <span class="terminal-title">Resolution Adjustment Tool</span>
                                  </div>
                                  
-                                 <div class="terminal-download-block">
-                                    <div class="download-header">BethINI Usage</div>
-                                    <div class="download-solution">
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">When to Use BethINI</div>
+                                    <div class="error-solution">
                                        <div class="solution-step">→ If your game's resolution isn't correct, use <strong>BethINI</strong> to adjust it</div>
-                                       <div class="solution-step">→ <span class="warning-text">❗ DO NOT modify other settings!</span> Only change resolution</div>
+                                       <div class="solution-step">→ <span class="warning-text">Do NOT modify other settings!</span> Only change resolution</div>
                                     </div>
                                  </div>
                                  
                                  <div class="terminal-divider"></div>
                                  
                                  <div class="terminal-error-block">
-                                    <div class="error-header">How to Change Resolution</div>
+                                    <div class="error-header">Step 1: Close MO2</div>
                                     <div class="error-solution">
-                                       <div class="solution-step">→ <strong>Close</strong> <strong>Mod Organizer 2</strong> first</div>
+                                       <div class="solution-step">→ <strong>Close Mod Organizer 2</strong> before making changes</div>
+                                       <div class="solution-step">→ This ensures changes are applied correctly</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 2: Navigate to BethINI</div>
+                                    <div class="error-solution">
                                        <div class="solution-step">→ Navigate to your <strong>Anomaly installation folder</strong></div>
                                        <div class="solution-step">→ Open the <strong><code>Tools</code></strong> directory</div>
                                        <div class="solution-step">→ Inside, find and open the <strong>BethINI</strong> folder</div>
                                        <div class="solution-step">→ Right-click <code>BethINI.exe</code> and select <strong>"Run as Administrator"</strong></div>
-                                       <div class="solution-step">→ In <strong>BethINI</strong>, select <strong>Fallout 4</strong> (<span class="warning-text">❗ DO NOT change INI paths!</span>)</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 3: Configure Settings</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ In <strong>BethINI</strong>, select <strong>Fallout 4</strong></div>
+                                       <div class="solution-step">→ <span class="warning-text">DO NOT change INI paths!</span></div>
                                        <div class="solution-step">→ Go to the <strong>Basic</strong> tab and adjust your resolution</div>
                                        <div class="solution-step">→ Click <strong>Save & Exit</strong> to apply the changes</div>
                                     </div>
                                  </div>
                                  
                                  <div class="terminal-buttons">
-                                    <img src="https://github.com/user-attachments/assets/e83c48cc-d321-4fd9-b17f-02d7f399c80c" alt="BethINI Screenshot" class="guide-image">
+                                    <div class="guide-image">
+                                       <img src="https://github.com/user-attachments/assets/e83c48cc-d321-4fd9-b17f-02d7f399c80c" alt="BethINI Screenshot" class="guide-image">
+                                    </div>
                                  </div>
                               </div>
                            </div>
@@ -1940,20 +1532,21 @@
                               <div class="terminal-section">
                                  <div class="terminal-header">
                                     <span class="terminal-prompt">[MCM]</span>
-                                    <span class="terminal-title">MCM Preset Application</span>
+                                    <span class="terminal-title">Mod Configuration Menu Preset</span>
                                  </div>
                                  
                                  <div class="terminal-error-block">
-                                    <div class="error-header">⚠️ CRITICAL: Apply MCM Preset</div>
+                                    <div class="error-header">Important: Apply the Preset</div>
                                     <div class="error-solution">
-                                       <div class="solution-step">→ <span class="warning-text">❗ Don't forget to apply the preset for proper settings!</span></div>
-                                       <div class="solution-step">→ This ensures all mod configurations are set correctly</div>
-                                       <div class="solution-step">→ Skipping this step may cause gameplay issues</div>
+                                       <div class="solution-step">→ <span class="warning-text">Don't forget to apply the preset for proper settings!</span></div>
+                                       <div class="solution-step">→ This ensures all mods are configured correctly for the best experience</div>
                                     </div>
                                  </div>
                                  
                                  <div class="terminal-buttons">
-                                    <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/mcmpreset.png" alt="Preset Screenshot" class="guide-image">
+                                    <div class="guide-image">
+                                       <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/mcmpreset.png" alt="Preset Screenshot" class="guide-image">
+                                    </div>
                                  </div>
                               </div>
                            </div>
@@ -1970,33 +1563,62 @@
                               <div class="terminal-section">
                                  <div class="terminal-header">
                                     <span class="terminal-prompt">[ENB]</span>
-                                    <span class="terminal-title">ENB Letterbox Configuration</span>
+                                    <span class="terminal-title">Disable Letterbox Effect</span>
                                  </div>
                                  
-                                 <div class="terminal-download-block">
-                                    <div class="download-header">Optional: Disable Black Bars</div>
-                                    <div class="download-solution">
-                                       <div class="solution-step">→ If you don't like the black bars at the top and bottom of the screen, follow these steps to disable them</div>
-                                       <div class="solution-step">→ This is completely optional and based on personal preference</div>
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Removing Black Bars</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ If you don't like the black bars at the top and bottom of the screen, follow these steps</div>
+                                       <div class="solution-step">→ This will give you a full-screen experience without the letterbox effect</div>
                                     </div>
                                  </div>
                                  
                                  <div class="terminal-divider"></div>
                                  
                                  <div class="terminal-error-block">
-                                    <div class="error-header">ENB Letterbox Disable Steps</div>
+                                    <div class="error-header">Step 1: Open Console</div>
                                     <div class="error-solution">
                                        <div class="solution-step">→ Press the <strong><code>~</code></strong> key (next to the <code>1</code> key) to open the console</div>
+                                       <div class="solution-step">→ This gives you access to the game's developer console</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 2: Open ENB Menu</div>
+                                    <div class="error-solution">
                                        <div class="solution-step">→ Press <strong><code>END</code></strong> to open the ENB menu</div>
+                                       <div class="solution-step">→ This will overlay the ENB configuration interface</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 3: Disable Letterbox</div>
+                                    <div class="error-solution">
                                        <div class="solution-step">→ Navigate to the <strong>Post Processing</strong> section</div>
                                        <div class="solution-step">→ <strong>Uncheck</strong> the <strong>Letterbox</strong> option</div>
                                        <div class="solution-step">→ Click <strong>Save Configuration</strong> (top-left)</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 4: Exit Menus</div>
+                                    <div class="error-solution">
                                        <div class="solution-step">→ Press <strong><code>END</code></strong> and <strong><code>~</code></strong> again to exit the menus</div>
+                                       <div class="solution-step">→ The changes will be applied immediately</div>
                                     </div>
                                  </div>
                                  
                                  <div class="terminal-buttons">
-                                    <img src="https://github.com/user-attachments/assets/c416445f-e1b8-4bc3-9efa-7906d7eb586e" alt="ENB Menu Screenshot" class="guide-image">
+                                    <div class="guide-image">
+                                       <img src="https://github.com/user-attachments/assets/c416445f-e1b8-4bc3-9efa-7906d7eb586e" alt="ENB Menu Screenshot" class="guide-image">
+                                    </div>
                                  </div>
                               </div>
                            </div>
@@ -2009,75 +1631,29 @@
                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="collapsible-content">
-                           <p>Anomaly includes a collection of <strong>optional</strong> mods to enhance your gameplay experience. Browse through them and customize your experience!</p>
-                           <img src="https://github.com/user-attachments/assets/708ad0e6-37fe-4ecd-a215-82e110ae1c4f" alt="Optional Mods" class="guide-image">
-                        </div>
-                     </div>
-                     
-                     <!-- Step 3 Checklist -->
-                     <div class="terminal-checklist">
-                        <div class="checklist-item">
-                           <input type="checkbox" id="step3-1" class="checklist-box">
-                           <label for="step3-1">
-                              <div class="checklist-instruction">
-                                 <div class="checklist-title">Game Launch Method</div>
-                                 <div class="checklist-body">→ I understand to use the "Launch Fallout Anomaly" button in MO2, not the vanilla game launcher.</div>
+                           <div class="terminal-troubleshooting">
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[MODS]</span>
+                                    <span class="terminal-title">Optional Modifications</span>
+                                 </div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Customize Your Experience</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Anomaly includes a collection of <strong>optional</strong> mods to enhance your gameplay experience</div>
+                                       <div class="solution-step">→ Browse through them and customize your experience to your liking</div>
+                                       <div class="solution-step">→ These mods are not required but can add extra features and improvements</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-buttons">
+                                    <div class="guide-image">
+                                       <img src="https://github.com/user-attachments/assets/708ad0e6-37fe-4ecd-a215-82e110ae1c4f" alt="Optional Mods" class="guide-image">
+                                    </div>
+                                 </div>
                               </div>
-                           </label>
-                        </div>
-                        
-                        <div class="checklist-item">
-                           <input type="checkbox" id="step3-2" class="checklist-box">
-                           <label for="step3-2">
-                              <div class="checklist-instruction">
-                                 <div class="checklist-title">F4SE Understanding</div>
-                                 <div class="checklist-body">→ I understand that F4SE is automatically included and no extra setup is needed.</div>
-                              </div>
-                           </label>
-                        </div>
-                        
-                        <div class="checklist-item">
-                           <input type="checkbox" id="step3-3" class="checklist-box">
-                           <label for="step3-3">
-                              <div class="checklist-instruction">
-                                 <div class="checklist-title">Crash Reporting</div>
-                                 <div class="checklist-body">→ I know how to report crashes using the <a href="https://falloutanomaly.fillout.com/bugreports" target="_blank" class="terminal-link">bug report form</a> or <a href="#" class="terminal-link">Discord</a>.</div>
-                              </div>
-                           </label>
-                        </div>
-                        
-                        <div class="checklist-item">
-                           <input type="checkbox" id="step3-4" class="checklist-box">
-                           <label for="step3-4">
-                              <div class="checklist-instruction">
-                                 <div class="checklist-title">Resolution Adjustment</div>
-                                 <div class="checklist-body">→ I know how to use BethINI to adjust resolution if needed (without modifying other settings).</div>
-                              </div>
-                           </label>
-                        </div>
-                        
-                        <div class="checklist-item">
-                           <input type="checkbox" id="step3-5" class="checklist-box">
-                           <label for="step3-5">
-                              <div class="checklist-instruction">
-                                 <div class="checklist-title">MCM Preset Applied</div>
-                                 <div class="checklist-body">→ I have applied the MCM preset for proper settings as shown in the guide.</div>
-                              </div>
-                           </label>
-                        </div>
-                        
-                        <div class="checklist-item">
-                           <input type="checkbox" id="step3-6" class="checklist-box">
-                           <label for="step3-6">
-                              <div class="checklist-instruction">
-                                 <div class="checklist-title">ENB Letterbox (Optional)</div>
-                                 <div class="checklist-body">→ I have disabled the black bars (letterbox) in ENB if I don't like them, using the console and END key method.</div>
-                              </div>
-                           </label>
-                        </div>
-                        
-                        <div class="checklist-progress" id="step3Progress">
-                           <span id="step3ProgressText">Complete all items to proceed to Step 4</span>
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -2095,7 +1671,7 @@
                               <div class="terminal-section">
                                  <div class="terminal-header">
                                     <span class="terminal-prompt">[ISSUES]</span>
-                                    <span class="terminal-title">Known Issues & Solutions</span>
+                                    <span class="terminal-title">Known Game Issues</span>
                                  </div>
                                  
                                  <div class="terminal-error-block">
@@ -2107,31 +1683,39 @@
                                     </div>
                                  </div>
                                  
-                                 <div class="terminal-download-block">
-                                    <div class="download-header">Stuck in Menu</div>
-                                    <div class="download-solution">
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Stuck in Menu</div>
+                                    <div class="error-solution">
                                        <div class="solution-step">→ If you find yourself unable to progress from the first loading or main menu</div>
                                        <div class="solution-step">→ Watch <a href="https://www.youtube.com/watch?v=JTnhJsM3_hg&t" target="_blank" class="terminal-link">this video</a> for help with the issue</div>
                                        <div class="solution-step">→ If the video doesn't resolve it, we've provided new save files for you to load and customize your character as needed</div>
                                     </div>
                                  </div>
                                  
+                                 <div class="terminal-divider"></div>
+                                 
                                  <div class="terminal-error-block">
                                     <div class="error-header">Post-Character Creation Freeze</div>
                                     <div class="error-solution">
                                        <div class="solution-step">→ After creating your character, your game will save and may appear to freeze temporarily</div>
                                        <div class="solution-step">→ This is due to multiple scripts loading simultaneously</div>
-                                       <div class="solution-step">→ <span class="warning-text">❗ Be patient and wait for a few minutes</span>; the game will resume normally</div>
+                                       <div class="solution-step">→ <span class="warning-text">Be patient and wait for a few minutes</span>; the game will resume normally</div>
                                     </div>
                                  </div>
                                  
-                                 <div class="terminal-download-block">
-                                    <div class="download-header">Falling Through Vault Issue</div>
-                                    <div class="download-solution">
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Falling Through Vault Issue</div>
+                                    <div class="error-solution">
                                        <div class="solution-step">→ If you're falling through the vault floor, this is likely due to the "Uneducated Shooter" mod</div>
-                                       <div class="solution-step">→ <strong>Solution</strong>: Only enable the "Uneducated Shooter" mod after leaving the vault</div>
+                                       <div class="solution-step">→ <strong>Solution:</strong> Only enable the "Uneducated Shooter" mod after leaving the vault</div>
                                     </div>
                                  </div>
+                                 
+                                 <div class="terminal-divider"></div>
                                  
                                  <div class="terminal-error-block">
                                     <div class="error-header">Known Crash Related Issues</div>
@@ -2156,12 +1740,12 @@
                               <div class="terminal-section">
                                  <div class="terminal-header">
                                     <span class="terminal-prompt">[CONTROLLER]</span>
-                                    <span class="terminal-title">Controller Support Information</span>
+                                    <span class="terminal-title">Gamepad Configuration</span>
                                  </div>
                                  
-                                 <div class="terminal-download-block">
-                                    <div class="download-header">Controller Compatibility</div>
-                                    <div class="download-solution">
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Supported Controllers</div>
+                                    <div class="error-solution">
                                        <div class="solution-step">→ We currently support <strong>PS5 controllers</strong></div>
                                        <div class="solution-step">→ <strong>Xbox support planned for the future</strong></div>
                                     </div>
@@ -2174,24 +1758,29 @@
                                     <div class="error-solution">
                                        <div class="solution-step">→ Ensure your <strong>Steam controller settings</strong> are correctly set up as shown in the window below</div>
                                        <div class="solution-step">→ <strong>Steam Overlay</strong> must be enabled for the controller to function properly</div>
-                                       <div class="solution-step">→ <strong>Steam Input</strong>: Paste the following link into your browser and open Steam when prompted:</div>
+                                       <div class="solution-step">→ <strong>Steam Input:</strong> Paste the following link into your browser and open Steam when prompted:</div>
                                        <div class="solution-step">→ <code>steam://controllerconfig/377160/3420527035</code></div>
                                        <div class="solution-step">→ This will install the <strong>custom controller profile</strong> for Fallout Anomaly</div>
                                     </div>
                                  </div>
                                  
-                                 <div class="terminal-download-block">
-                                    <div class="download-header">Step 2: Enable the Controller Support Mod</div>
-                                    <div class="download-solution">
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 2: Enable the Controller Support Mod</div>
+                                    <div class="error-solution">
                                        <div class="solution-step">→ In <strong>MO2</strong>, activate the optional mod:</div>
                                        <div class="solution-step">→ <strong>"A - OPT - Controller Support - PS5 Support"</strong></div>
                                        <div class="solution-step">→ This ensures full functionality for your PS5 controller in-game</div>
                                     </div>
                                  </div>
-                              </div>
-                           </div>
-                                 <img src="https://github.com/user-attachments/assets/06e65ae6-05b8-4a1e-9d33-ca8ec5b9bc7f" alt="Steam Settings" class="guide-image">
-                                 <img src="https://github.com/user-attachments/assets/8b3ae832-e62e-4817-b858-d70256727bf8" alt="Controller Configuration" class="guide-image">
+                                 
+                                 <div class="terminal-buttons">
+                                    <div class="guide-image">
+                                       <img src="https://github.com/user-attachments/assets/06e65ae6-05b8-4a1e-9d33-ca8ec5b9bc7f" alt="Steam Settings" class="guide-image">
+                                       <img src="https://github.com/user-attachments/assets/8b3ae832-e62e-4817-b858-d70256727bf8" alt="Controller Configuration" class="guide-image">
+                                    </div>
+                                 </div>
                               </div>
                            </div>
                         </div>
@@ -2973,18 +2562,8 @@
       </div>
    </div>
    <script src="../src/js/theme-switcher.js"></script>
+   <script src="../src/js/script.js"></script>
    <script src="../src/js/navlinks.js"></script>
-   <script>
-      // Ensure DOM is fully loaded before loading external script.js
-      document.addEventListener('DOMContentLoaded', function() {
-         // Add a small delay to ensure all content is rendered
-         setTimeout(function() {
-            const script = document.createElement('script');
-            script.src = '../src/js/script.js';
-            document.head.appendChild(script);
-         }, 100);
-      });
-   </script>
    <script>
       // Collapsible functionality for Step 5 sections
       function toggleCollapsible(header) {
@@ -3018,69 +2597,12 @@
          }
       }
       
-      // Ensure DOM is ready and elements exist before any operations
-      function ensureElementExists(elementId) {
-         const element = document.getElementById(elementId);
-         if (!element) {
-            console.warn(`Element with id "${elementId}" not found. Retrying...`);
-            return false;
-         }
-         return true;
-      }
-      
-      // Initialize collapsible sections - all closed by default except Step 1 first section
+      // Initialize collapsible sections - all closed by default
       document.addEventListener('DOMContentLoaded', function() {
          const collapsibleContents = document.querySelectorAll('.collapsible-content');
          collapsibleContents.forEach(content => {
             content.style.display = 'none';
          });
-         
-         // Open the first collapsible section in Step 1 by default
-         const step1FirstSection = document.querySelector('#step1 .collapsible-content');
-         if (step1FirstSection) {
-            step1FirstSection.style.display = 'block';
-            // Also update the chevron icon
-            const step1Header = document.querySelector('#step1 .collapsible-header');
-            if (step1Header) {
-               const icon = step1Header.querySelector('.collapsible-icon i');
-               if (icon) {
-                  icon.classList.remove('fa-chevron-down');
-                  icon.classList.add('fa-chevron-up');
-               }
-            }
-         }
-         
-         // Open the first collapsible section in Step 5 by default
-         const step5FirstSection = document.querySelector('#step5 .collapsible-content');
-         if (step5FirstSection) {
-            step5FirstSection.style.display = 'block';
-            // Also update the chevron icon
-            const step5Header = document.querySelector('#step5 .collapsible-header');
-            if (step5Header) {
-               const icon = step5Header.querySelector('.collapsible-icon i');
-               if (icon) {
-                  icon.classList.remove('fa-chevron-down');
-                  icon.classList.add('fa-chevron-up');
-               }
-            }
-         } else {
-            console.warn('Step 5 first collapsible section not found');
-            // Retry after a short delay
-            setTimeout(function() {
-               const retryStep5Section = document.querySelector('#step5 .collapsible-content');
-               if (retryStep5Section) {
-                  retryStep5Section.style.display = 'block';
-                  const retryStep5Header = document.querySelector('#step5 .collapsible-header');
-                  if (retryStep5Header) {
-                     const retryIcon = retryStep5Header.querySelector('.collapsible-icon i');
-                     if (retryIcon) {
-                        retryIcon.classList.remove('fa-chevron-down');
-                        retryIcon.classList.add('fa-chevron-up');
-                     }
-                  }
-               }
-            }, 500);
-         }
          
          const subCollapsibleContents = document.querySelectorAll('.sub-collapsible-content');
          subCollapsibleContents.forEach(content => {
@@ -3090,219 +2612,10 @@
          // Initialize search functionality
          const searchInput = document.getElementById('step5Search');
          if (searchInput) {
-            searchInput.addEventListener('input', performSearch, { passive: true });
+            searchInput.addEventListener('input', performSearch);
          }
-         
-         // Verify all tab elements exist before initializing
-         const requiredTabs = ['step1', 'step2', 'step3', 'step4', 'step5'];
-         const missingTabs = requiredTabs.filter(tabId => !ensureElementExists(tabId));
-         
-         if (missingTabs.length > 0) {
-            console.error('Missing tab elements:', missingTabs);
-            return;
-         }
-         
-         // Initialize all checklists
-         initializeStep1Checklist();
-         initializeStep2Checklist();
-         initializeTroubleshootingChecklist();
-         initializeStep3Checklist();
-         initializeStep4Checklist();
          
       });
-      
-      // Step 1 Checklist Functionality
-      function initializeStep1Checklist() {
-         const checkboxes = document.querySelectorAll('#step1-1, #step1-2, #step1-3, #step1-4, #step1-5');
-         const progressElement = document.getElementById('step1Progress');
-         const progressText = document.getElementById('step1ProgressText');
-         
-         function updateProgress() {
-            const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-            const totalCount = checkboxes.length;
-            
-            if (checkedCount === totalCount) {
-               progressElement.classList.add('completed');
-               progressText.textContent = '✓ All items completed! You can now proceed to Step 2';
-               enableTab('step2');
-            } else {
-               progressElement.classList.remove('completed');
-               progressText.textContent = `Complete all items to proceed to Step 2 (${checkedCount}/${totalCount})`;
-               disableTab('step2');
-            }
-         }
-         
-         checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateProgress, { passive: true });
-         });
-         
-         updateProgress();
-         disableTab('step2');
-      }
-      
-      // Step 2 Checklist Functionality
-      function initializeStep2Checklist() {
-         const checkboxes = document.querySelectorAll('#step2-1, #step2-2, #step2-3, #step2-4');
-         const progressElement = document.getElementById('step2Progress');
-         const progressText = document.getElementById('step2ProgressText');
-         
-         function updateProgress() {
-            const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-            const totalCount = checkboxes.length;
-            
-            if (checkedCount === totalCount) {
-               progressElement.classList.add('completed');
-               progressText.textContent = '✓ All items completed! You can now proceed to Step 3';
-               enableTab('step3');
-            } else {
-               progressElement.classList.remove('completed');
-               progressText.textContent = `Complete all items to proceed to Step 3 (${checkedCount}/${totalCount})`;
-               disableTab('step3');
-            }
-         }
-         
-         checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateProgress, { passive: true });
-         });
-         
-         updateProgress();
-         disableTab('step3');
-      }
-      
-      // Troubleshooting Checklist Functionality
-      function initializeTroubleshootingChecklist() {
-         const checkboxes = document.querySelectorAll('#troubleshoot1, #troubleshoot2, #troubleshoot3, #troubleshoot4, #troubleshoot5');
-         const progressElement = document.getElementById('troubleshootProgress');
-         const progressText = document.getElementById('progressText');
-         
-         function updateProgress() {
-            const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-            const totalCount = checkboxes.length;
-            
-            if (checkedCount === totalCount) {
-               progressElement.classList.add('completed');
-               progressText.textContent = '✓ All items completed! You can now proceed to Step 4';
-               enableTab('step4');
-            } else {
-               progressElement.classList.remove('completed');
-               progressText.textContent = `Complete all items to proceed to Step 4 (${checkedCount}/${totalCount})`;
-               disableTab('step4');
-            }
-         }
-         
-         checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateProgress, { passive: true });
-         });
-         
-         updateProgress();
-         disableTab('step4');
-      }
-      
-      // Step 3 Checklist Functionality
-      function initializeStep3Checklist() {
-         const checkboxes = document.querySelectorAll('#step3-1, #step3-2, #step3-3, #step3-4, #step3-5, #step3-6');
-         const progressElement = document.getElementById('step3Progress');
-         const progressText = document.getElementById('step3ProgressText');
-         
-         function updateProgress() {
-            const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-            const totalCount = checkboxes.length;
-            
-            if (checkedCount === totalCount) {
-               progressElement.classList.add('completed');
-               progressText.textContent = '✓ All items completed! You can now proceed to Step 4';
-               enableTab('step4');
-            } else {
-               progressElement.classList.remove('completed');
-               progressText.textContent = `Complete all items to proceed to Step 4 (${checkedCount}/${totalCount})`;
-               disableTab('step4');
-            }
-         }
-         
-         checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateProgress, { passive: true });
-         });
-         
-         updateProgress();
-         disableTab('step4');
-      }
-      
-      // Step 4 Checklist Functionality
-      function initializeStep4Checklist() {
-         const checkboxes = document.querySelectorAll('#step4-1, #step4-2, #step4-3, #step4-4, #step4-5');
-         const progressElement = document.getElementById('step4Progress');
-         const progressText = document.getElementById('step4ProgressText');
-         
-         function updateProgress() {
-            const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-            const totalCount = checkboxes.length;
-            
-            if (checkedCount === totalCount) {
-               progressElement.classList.add('completed');
-               progressText.textContent = '✓ All items completed! You can now proceed to Step 5';
-               enableTab('step5');
-            } else {
-               progressElement.classList.remove('completed');
-               progressText.textContent = `Complete all items to proceed to Step 5 (${checkedCount}/${totalCount})`;
-               disableTab('step5');
-            }
-         }
-         
-         checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateProgress, { passive: true });
-         });
-         
-         updateProgress();
-         disableTab('step5');
-      }
-      
-      // Tab Management Functions
-      function enableTab(tabId) {
-         const tabButton = document.querySelector(`[data-tab="${tabId}"]`);
-         if (tabButton) {
-            tabButton.style.opacity = '1';
-            tabButton.style.pointerEvents = 'auto';
-            tabButton.style.cursor = 'pointer';
-         }
-      }
-      
-      function disableTab(tabId) {
-         const tabButton = document.querySelector(`[data-tab="${tabId}"]`);
-         if (tabButton) {
-            tabButton.style.opacity = '0.5';
-            tabButton.style.pointerEvents = 'none';
-            tabButton.style.cursor = 'not-allowed';
-         }
-      }
-      
-      // Back to Top Button Functionality
-      function initializeBackToTop() {
-         const backToTopButton = document.createElement('button');
-         backToTopButton.className = 'back-to-top';
-         backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
-         backToTopButton.setAttribute('aria-label', 'Back to top');
-         document.body.appendChild(backToTopButton);
-         
-         // Show/hide button based on scroll position
-         window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-               backToTopButton.classList.add('visible');
-            } else {
-               backToTopButton.classList.remove('visible');
-            }
-         }, { passive: true });
-         
-         // Scroll to top when clicked
-         backToTopButton.addEventListener('click', function() {
-            window.scrollTo({
-               top: 0,
-               behavior: 'smooth'
-            });
-         }, { passive: true });
-      }
-      
-      // Initialize back to top button
-      initializeBackToTop();
    </script>
 </body>
 </html>
