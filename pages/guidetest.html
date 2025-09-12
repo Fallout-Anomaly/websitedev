@@ -1149,7 +1149,7 @@
                   <button class="tab-button" data-tab="step2">STEP 2: INSTALLATION</button>
                   <button class="tab-button" data-tab="step3">STEP 3: LAUNCHING</button>
                   <button class="tab-button" data-tab="step4">STEP 4: KNOWN ISSUES</button>
-                  <button class="tab-button" data-tab="step5">STEP 5: GAMEPLAY</button>
+                  <button class="tab-button" data-tab="step5">STEP 5: GAMEPLAY Guide</button>
                   <button class="tab-button" data-tab="ai-assistant">Character Build Generator</button>
                   <button class="tab-button" data-tab="support">SUPPORT & COMMUNITY</button>
                </div>
@@ -2939,77 +2939,158 @@ Playstyle Tips:
       }
       
       function generateBackstoryFromPrompt(prompt) {
-         const backstories = {
-            // Ex-raider themes
-            exRaider: `🔥 THE REDEEMED RAIDER
-                      
-Before the bombs fell, you were known as "Scar" - a ruthless raider who terrorized the Commonwealth. You led a gang called the "Iron Fangs" and showed no mercy to anyone who crossed your path. But something changed when you witnessed the destruction of a family settlement you had raided. The sight of children hiding in the rubble haunted you.
-
-Now, you wander the wasteland seeking redemption. Your combat skills are unmatched, but you've sworn to use them only to protect the innocent. You carry the guilt of your past actions, and every life you save is a small step toward forgiveness.
-
-Your expertise with pistols comes from years of close-quarters combat in raider camps. You know how to make every shot count, and you're not afraid to get your hands dirty when justice demands it.
-
-The wasteland has taught you that survival sometimes requires making difficult choices, but you've learned that there's always a better way than violence and cruelty.`,
-
-            // Scientist themes
-            scientist: `🧪 THE FEARFUL SCIENTIST
-                       
-Dr. Sarah Chen was a brilliant researcher at the Institute before the war. She specialized in radiation biology and was working on a cure for radiation sickness when the bombs fell. Trapped in her underground lab for months, she emerged to find a world she barely recognized.
-
-Now, you're a nervous wreck in the wasteland. Your intelligence is your greatest asset, but your fear of conflict often paralyzes you. You prefer to solve problems through science and reason rather than violence. When combat is unavoidable, you rely on energy weapons and chems to give you an edge.
-
-Your knowledge of chemistry and biology makes you invaluable to settlements, but your social anxiety makes it difficult to interact with people. You're constantly analyzing threats and calculating survival probabilities, which sometimes leads to indecision.
-
-Despite your fears, you're driven by a desire to help others and find a way to heal the wasteland. Your research could be the key to humanity's survival, if only you can overcome your own limitations.`,
-
-            // Vault dweller themes
-            vaultDweller: `🏠 THE VAULT OUTCAST
-                          
-You were born in Vault 111, but you never quite fit in. While others followed the Overseer's rules blindly, you questioned everything. Your rebellious nature and thirst for knowledge made you an outcast among your fellow vault dwellers.
-
-When the vault opened and you emerged into the wasteland, you were both terrified and exhilarated. The freedom was overwhelming, but so was the danger. You've had to learn quickly how to survive in a world where your vault education means nothing.
-
-Your adaptability and quick learning have served you well. You're not the strongest or most skilled fighter, but you're resourceful and determined. You approach every challenge with a mix of vault-bred caution and newfound wasteland cunning.
-
-The wasteland has become your real home now, and you've discovered that sometimes the best way to survive is to embrace the chaos rather than fight it.`,
-
-            // Mercenary themes
-            mercenary: `💰 THE PROFESSIONAL MERCENARY
-                        
-You're a hired gun with a reputation for getting the job done, no questions asked. Before the war, you were a private military contractor, and those skills have served you well in the wasteland. You've worked for everyone from the Brotherhood of Steel to raider gangs - whoever pays the most.
-
-Your combat skills are professional-grade, and you approach every situation with tactical precision. You're not driven by ideology or emotion, just cold, hard caps. But even mercenaries have their limits, and you've developed a code of honor over the years.
-
-You're excellent with all types of weapons, but you prefer reliable, well-maintained firearms. You invest heavily in your equipment and always have a backup plan. Your survival depends on your reputation, so you never leave a job unfinished.
-
-The wasteland is your office, and every contract is a new challenge. You've seen the worst of humanity, but you've also seen moments of heroism that remind you why you keep fighting.`,
-
-            // Default backstory
-            default: `🌟 THE WANDERING SURVIVOR
-                      
-You're a mystery to yourself and others. Your past is a blur of fragmented memories - perhaps you were a pre-war civilian, a soldier, or something else entirely. The radiation and trauma of the wasteland have left you with gaps in your memory that may never be filled.
-
-What you do know is that you're a survivor. You've learned to adapt to whatever the wasteland throws at you, developing skills through necessity rather than training. You're not the strongest, smartest, or most charismatic person in the Commonwealth, but you're resourceful and determined.
-
-Your approach to problems is pragmatic - you use whatever tools and methods work best for the situation. Sometimes that means stealth, sometimes direct confrontation, and sometimes just running away to fight another day.
-
-The wasteland has taught you that survival is about more than just staying alive. It's about finding purpose, building connections, and making a difference in a world that's been torn apart. You may not know where you came from, but you're determined to shape where you're going.`
-         };
+         // Create a seed based on prompt + current time for uniqueness
+         const seed = prompt.toLowerCase().split('').reduce((a, b) => {
+            a = ((a << 5) - a) + b.charCodeAt(0);
+            return a & a;
+         }, Date.now());
          
-         // Analyze prompt and select appropriate backstory
-         const lowerPrompt = prompt.toLowerCase();
-         
-         if (lowerPrompt.includes('raider') || lowerPrompt.includes('ex-raider') || lowerPrompt.includes('regretful')) {
-            return backstories.exRaider;
-         } else if (lowerPrompt.includes('scientist') || lowerPrompt.includes('smart') || lowerPrompt.includes('scared') || lowerPrompt.includes('avoids')) {
-            return backstories.scientist;
-         } else if (lowerPrompt.includes('vault') || lowerPrompt.includes('dweller') || lowerPrompt.includes('outcast')) {
-            return backstories.vaultDweller;
-         } else if (lowerPrompt.includes('mercenary') || lowerPrompt.includes('hired') || lowerPrompt.includes('professional')) {
-            return backstories.mercenary;
-         } else {
-            return backstories.default;
+         // Simple seeded random number generator
+         function seededRandom(seed) {
+            const x = Math.sin(seed) * 10000;
+            return x - Math.floor(x);
          }
+         
+         // Get random element from array using seed
+         function getRandomElement(array, seed) {
+            const index = Math.floor(seededRandom(seed) * array.length);
+            return array[index];
+         }
+         
+         // Character name generators
+         const firstNames = ['Alex', 'Jordan', 'Casey', 'Riley', 'Morgan', 'Taylor', 'Avery', 'Quinn', 'Blake', 'Sage', 'River', 'Phoenix', 'Skyler', 'Dakota', 'Cameron'];
+         const lastNames = ['Stone', 'Rivers', 'Winters', 'Storm', 'Black', 'Gray', 'Fox', 'Wolf', 'Hawk', 'Reed', 'Banks', 'Cross', 'Frost', 'Moon', 'Star'];
+         
+         // Background elements
+         const preWarJobs = ['engineer', 'teacher', 'soldier', 'nurse', 'mechanic', 'scientist', 'business owner', 'artist', 'musician', 'chef', 'lawyer', 'pilot'];
+         const locations = ['Boston', 'Cambridge', 'Lexington', 'Concord', 'Salem', 'Gloucester', 'Marblehead', 'Quincy', 'Newton', 'Brookline'];
+         const turningPoints = [
+            'witnessed the death of a loved one',
+            'discovered a hidden truth about your past',
+            'found an old family heirloom',
+            'met someone who changed your perspective',
+            'survived a near-death experience',
+            'made a choice that haunted you',
+            'discovered you had a hidden talent',
+            'learned something that shattered your worldview'
+         ];
+         
+         const motivations = [
+            'seeking redemption for past mistakes',
+            'protecting those who cannot protect themselves',
+            'finding your place in the world',
+            'uncovering the truth about your origins',
+            'building something better than what was lost',
+            'proving your worth to yourself and others',
+            'making amends for a terrible choice',
+            'discovering what it means to be human'
+         ];
+         
+         const skills = [
+            'expert marksmanship with pistols',
+            'exceptional hand-to-hand combat',
+            'brilliant tactical mind',
+            'natural leadership abilities',
+            'incredible survival instincts',
+            'masterful lockpicking skills',
+            'superior hacking abilities',
+            'exceptional charisma and persuasion',
+            'advanced medical knowledge',
+            'expertise with explosives',
+            'superior stealth and infiltration',
+            'masterful bartering and negotiation'
+         ];
+         
+         const personalityTraits = [
+            'fiercely loyal to those you trust',
+            'haunted by past decisions',
+            'driven by an unshakeable moral code',
+            'struggling with inner demons',
+            'possessing an unquenchable thirst for knowledge',
+            'burdened by survivor\'s guilt',
+            'motivated by a desire to protect the innocent',
+            'seeking to prove your worth',
+            'driven by a need for justice',
+            'possessing an iron will and determination',
+            'struggling with trust issues',
+            'motivated by a quest for truth'
+         ];
+         
+         const currentGoals = [
+            'establishing a safe haven for survivors',
+            'hunting down those who wronged you',
+            'discovering the fate of your family',
+            'building a new community from the ashes',
+            'uncovering the secrets of the old world',
+            'protecting a specific group of people',
+            'seeking revenge against your enemies',
+            'finding a cure for radiation sickness',
+            'restoring hope to the wasteland',
+            'proving that humanity can be better'
+         ];
+         
+         // Generate character details
+         const firstName = getRandomElement(firstNames, seed + 1);
+         const lastName = getRandomElement(lastNames, seed + 2);
+         const preWarJob = getRandomElement(preWarJobs, seed + 3);
+         const location = getRandomElement(locations, seed + 4);
+         const turningPoint = getRandomElement(turningPoints, seed + 5);
+         const motivation = getRandomElement(motivations, seed + 6);
+         const skill = getRandomElement(skills, seed + 7);
+         const personality = getRandomElement(personalityTraits, seed + 8);
+         const goal = getRandomElement(currentGoals, seed + 9);
+         
+         // Determine character type based on prompt
+         const lowerPrompt = prompt.toLowerCase();
+         let characterType = 'survivor';
+         let emoji = '🌟';
+         
+         if (lowerPrompt.includes('raider') || lowerPrompt.includes('ex-raider') || lowerPrompt.includes('regretful') || lowerPrompt.includes('redemption') || lowerPrompt.includes('guilt')) {
+            characterType = 'redeemed raider';
+            emoji = '🔥';
+         } else if (lowerPrompt.includes('scientist') || lowerPrompt.includes('smart') || lowerPrompt.includes('scared') || lowerPrompt.includes('avoids') || lowerPrompt.includes('research') || lowerPrompt.includes('intelligent') || lowerPrompt.includes('nerd')) {
+            characterType = 'fearful scientist';
+            emoji = '🧪';
+         } else if (lowerPrompt.includes('vault') || lowerPrompt.includes('dweller') || lowerPrompt.includes('outcast') || lowerPrompt.includes('vault-tec') || lowerPrompt.includes('underground')) {
+            characterType = 'vault outcast';
+            emoji = '🏠';
+         } else if (lowerPrompt.includes('mercenary') || lowerPrompt.includes('hired') || lowerPrompt.includes('professional') || lowerPrompt.includes('contractor') || lowerPrompt.includes('soldier') || lowerPrompt.includes('military')) {
+            characterType = 'professional mercenary';
+            emoji = '💰';
+         } else if (lowerPrompt.includes('brotherhood') || lowerPrompt.includes('steel') || lowerPrompt.includes('paladin') || lowerPrompt.includes('knight') || lowerPrompt.includes('outcast') || lowerPrompt.includes('betrayal')) {
+            characterType = 'brotherhood outcast';
+            emoji = '⚔️';
+         } else if (lowerPrompt.includes('ghoul') || lowerPrompt.includes('radiation') || lowerPrompt.includes('immortal') || lowerPrompt.includes('ancient') || lowerPrompt.includes('decayed') || lowerPrompt.includes('mutant')) {
+            characterType = 'ancient ghoul';
+            emoji = '☢️';
+         } else if (lowerPrompt.includes('synth') || lowerPrompt.includes('android') || lowerPrompt.includes('robot') || lowerPrompt.includes('artificial') || lowerPrompt.includes('institute') || lowerPrompt.includes('synthetic')) {
+            characterType = 'awakened synth';
+            emoji = '🤖';
+         } else if (lowerPrompt.includes('trader') || lowerPrompt.includes('merchant') || lowerPrompt.includes('business') || lowerPrompt.includes('caravan') || lowerPrompt.includes('caps') || lowerPrompt.includes('deal')) {
+            characterType = 'wandering merchant';
+            emoji = '💼';
+         } else if (lowerPrompt.includes('mechanic') || lowerPrompt.includes('engineer') || lowerPrompt.includes('repair') || lowerPrompt.includes('fix') || lowerPrompt.includes('scrap') || lowerPrompt.includes('workshop')) {
+            characterType = 'scrap mechanic';
+            emoji = '🔧';
+         } else if (lowerPrompt.includes('doctor') || lowerPrompt.includes('medic') || lowerPrompt.includes('healer') || lowerPrompt.includes('medical') || lowerPrompt.includes('hospital') || lowerPrompt.includes('nurse')) {
+            characterType = 'wasteland healer';
+            emoji = '🏥';
+         }
+         
+         // Generate unique backstory
+         const backstory = `${emoji} THE ${characterType.toUpperCase()}
+                      
+Before the bombs fell, you were ${firstName} ${lastName}, a ${preWarJob} living in ${location}. Your life was ordinary until the day everything changed. You ${turningPoint}, and that moment has defined everything you've become.
+
+Now, you wander the wasteland ${motivation}. Your ${skill} has kept you alive when others have fallen, but it's your ${personality} that drives you forward through the chaos.
+
+The wasteland has taught you that survival requires more than just strength - it requires purpose. You're currently focused on ${goal}, and every decision you make brings you closer to that goal.
+
+Your past in ${location} feels like a distant dream, but the lessons you learned there still guide you. The person you were before the war is gone, but the core of who you are remains - ${personality}.
+
+The Commonwealth is your home now, and you're determined to make it a better place, one choice at a time.`;
+
+         return backstory;
       }
       
       // Collapsible functionality for Step 5 sections
