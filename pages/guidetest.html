@@ -402,7 +402,7 @@
       
       /* Refined Retro Terminal Styling */
       .terminal-troubleshooting {
-         font-family: 'VT323', monospace;
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
          background: rgba(0, 0, 0, 0.3);
          border: 1px solid var(--terminal-border);
          border-radius: 4px;
@@ -453,7 +453,7 @@
       }
       
       .error-header, .download-header {
-         font-family: 'VT323', monospace;
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
          color: #00ff88;
          font-size: 1.1em;
          font-weight: bold;
@@ -475,12 +475,26 @@
          word-break: break-word;
          overflow-wrap: anywhere;
          white-space: normal;
+         text-indent: 0;
       }
       
       .solution-step strong {
          display: inline;
          white-space: nowrap;
          word-break: keep-all;
+         text-indent: 0;
+         margin: 0;
+         padding: 0;
+      }
+      
+      /* Global fix for bold text indentation issues */
+      strong {
+         display: inline;
+         white-space: nowrap;
+         word-break: keep-all;
+         text-indent: 0;
+         margin: 0;
+         padding: 0;
       }
       
       .terminal-divider {
