@@ -2047,33 +2047,6 @@
                            </div>
                         </div>
                      </div>
-                     
-                     <!-- Step 4 Checklist -->
-                     <div class="terminal-checklist">
-                        <div class="checklist-item">
-                           <input type="checkbox" id="step4-issues-1" class="checklist-box">
-                           <label for="step4-issues-1">
-                              <div class="checklist-instruction">
-                                 <div class="checklist-title">Known Issues Awareness</div>
-                                 <div class="checklist-body">→ I understand the known issues: main menu delays, stuck in menu, post-character creation freeze, vault falling, and crash-related overlay conflicts.</div>
-                              </div>
-                           </label>
-                        </div>
-                        
-                        <div class="checklist-item">
-                           <input type="checkbox" id="step4-issues-2" class="checklist-box">
-                           <label for="step4-issues-2">
-                              <div class="checklist-instruction">
-                                 <div class="checklist-title">Controller Support (Optional)</div>
-                                 <div class="checklist-body">→ I understand that PS5 controllers are supported with Xbox support planned for the future, and I know how to set up controller support if needed.</div>
-                              </div>
-                           </label>
-                        </div>
-                        
-                        <div class="checklist-progress" id="step4IssuesProgress">
-                           <span id="step4IssuesProgressText">Complete all items to proceed to Step 5</span>
-                        </div>
-                     </div>
                   </div>
                </div>
                <div class="tab-content" id="step5">
@@ -2925,7 +2898,6 @@
          initializeTroubleshootingChecklist();
          initializeStep3Checklist();
          initializeStep4Checklist();
-         initializeStep4IssuesChecklist();
          
       });
       
@@ -3050,35 +3022,6 @@
          const checkboxes = document.querySelectorAll('#step4-1, #step4-2, #step4-3, #step4-4, #step4-5');
          const progressElement = document.getElementById('step4Progress');
          const progressText = document.getElementById('step4ProgressText');
-         
-         function updateProgress() {
-            const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-            const totalCount = checkboxes.length;
-            
-            if (checkedCount === totalCount) {
-               progressElement.classList.add('completed');
-               progressText.textContent = '✓ All items completed! You can now proceed to Step 5';
-               enableTab('step5');
-            } else {
-               progressElement.classList.remove('completed');
-               progressText.textContent = `Complete all items to proceed to Step 5 (${checkedCount}/${totalCount})`;
-               disableTab('step5');
-            }
-         }
-         
-         checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateProgress);
-         });
-         
-         updateProgress();
-         disableTab('step5');
-      }
-      
-      // Step 4 Issues Checklist Functionality
-      function initializeStep4IssuesChecklist() {
-         const checkboxes = document.querySelectorAll('#step4-issues-1, #step4-issues-2');
-         const progressElement = document.getElementById('step4IssuesProgress');
-         const progressText = document.getElementById('step4IssuesProgressText');
          
          function updateProgress() {
             const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
