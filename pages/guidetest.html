@@ -554,6 +554,38 @@
          border: 1px solid rgba(255, 170, 0, 0.3);
       }
       
+      /* Back to Top Button */
+      .back-to-top {
+         position: fixed;
+         bottom: 20px;
+         right: 20px;
+         background: var(--terminal-highlight);
+         color: #000;
+         border: 1px solid var(--terminal-border);
+         border-radius: 50%;
+         width: 50px;
+         height: 50px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         cursor: pointer;
+         font-size: 18px;
+         z-index: 1000;
+         transition: all 0.3s ease;
+         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+      
+      .back-to-top:hover {
+         background: var(--terminal-text);
+         color: var(--terminal-highlight);
+         transform: translateY(-2px);
+         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+      
+      .back-to-top i {
+         text-shadow: none;
+      }
+      
       .collapsible-header {
          cursor: pointer;
          padding: 8px 12px;
@@ -1104,10 +1136,14 @@
 🚨 SET ANTI-VIRUS EXCLUSIONS                                  <p>Prevent interference with ENB and mods</p>
                                </div>
                             </div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
+                  </div>
+               </div>
                <div class="tab-content" id="step2">
                   <div class="terminal-list">
                      <!-- Collapsible Section 1: Before You Start -->
@@ -1309,6 +1345,10 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                            </div>
                         </div>
                      </div>
+                  </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
                   </div>
                </div>
                <div class="tab-content" id="step3">
@@ -1643,6 +1683,10 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                         </div>
                      </div>
                   </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
+                  </div>
                </div>
                <div class="tab-content" id="step4">
                   <div class="terminal-list">
@@ -1770,6 +1814,10 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                         </div>
                      </div>
                   </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
+                  </div>
                </div>
                <div class="tab-content" id="step5">
                   <div class="terminal-list">
@@ -1792,15 +1840,8 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                     <div class="skill-item">Ammo Has Weight: Every bullet, shell, or fusion cell you carry adds weight to your inventory, forcing smarter inventory management</div>
                                     <div class="skill-item">Illness & Injury: You can get sick, suffer broken limbs, or require items like antibiotics and splints for proper healing. Doctors may be needed to cure serious conditions</div>
                                     <div class="skill-item">Carry Weight Reduced: Your base carry weight is significantly lower, making every item choice matter. Backpacks and perks help extend capacity</div>
+                                    <div class="skill-item">Backpacks: Can be found or crafted using perks from the Junk Jockey skill to increase carry capacity</div>
                                  </div>
-                              </div>
-                           </div>
-                           <div class="sub-collapsible">
-                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
-🎒 Backpacks                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                              </div>
-                              <div class="sub-collapsible-content">
-                                 <p>Backpacks can be found or crafted using perks from the <em>Junk Jockey</em> skill.</p>
                               </div>
                            </div>
                            <div class="warning-box">
@@ -2081,8 +2122,89 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                                   <p>The Wastes are unforgiving. Radiation is no longer a simple number—it's a slow, creeping death that can take hold in seconds or over days. Always carry enough protective gear and medication. Stock up on bandages, painkillers, Rad meds, and limb restoration tools. Being prepared isn't optional—it's survival.</p>
                                </div>
                             </div>
-                         </div>
-                      </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 6: Keybind Preset -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-keyboard"></i>6. Keybind Preset                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🎮 Movement & Core Controls                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <ul class="compact-list">
+                                     <li>W/S/A/D – Move Forward/Backward/Strafe Left/Right</li>
+                                     <li>Left Shift – Sprint</li>
+                                     <li>C – Run</li>
+                                     <li>Spacebar – Jump</li>
+                                     <li>Left Ctrl – Sneak</li>
+                                     <li>Caps Lock – Toggle Always Run</li>
+                                     <li>X – Auto-Move</li>
+                                     <li>F – Activate / Interact</li>
+                                  </ul>
+                               </div>
+                            </div>
+                            
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+⚔️ Combat Controls                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <ul class="compact-list">
+                                     <li>Mouse1 – Attack / Fire</li>
+                                     <li>Mouse2 – Aim / Block</li>
+                                     <li>Left Alt – Bash / Power Attack / Grenade</li>
+                                     <li>R – Ready Weapon / Reload</li>
+                                     <li>Q – VATS</li>
+                                     <li>J – Holster / Lower Weapon</li>
+                                  </ul>
+                               </div>
+                            </div>
+                            
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+📱 Menu & Inventory                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <ul class="compact-list">
+                                     <li>Tab – Open Pip-Boy</li>
+                                     <li>Mouse3 – Toggle POV / Workshop</li>
+                                     <li>Esc – Pause</li>
+                                     <li>I – Quick Inventory</li>
+                                     <li>M – Quick Map</li>
+                                  </ul>
+                               </div>
+                            </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🛠️ Mod-Specific Keybinds                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Bullet in Chamber: R (Reload/Check), J (Holster)</div>
+                                    <div class="skill-item">Dank_ECO: PgDn (PA Workbench), PgUp (Universal), U (Attack Mode)</div>
+                                    <div class="skill-item">Enhanced Movement: N (Dodge)</div>
+                                    <div class="skill-item">HOTC: K (Examine Prey)</div>
+                                    <div class="skill-item">VAFS Redux: Z (Critical), G (Focus)</div>
+                                    <div class="skill-item">Immersive HUD: F2 (Toggle HUD)</div>
+                                    <div class="skill-item">MODExplorer: \ (Show Mod List)</div>
+                                    <div class="skill-item">Armor Plates: Y (Use Plate)</div>
+                                    <div class="skill-item">Wasteland Codex: Numpad 3 (Play Entry)</div>
+                                    <div class="skill-item">Vivid Weathers: Numpad / (Weather)</div>
+                                    <div class="skill-item">Wheel Menu: H (Open Wheel)</div>
+                                    <div class="skill-item">Workshop: Home (Workshop Mode)</div>
+                                    <div class="skill-item">Barber/Surgery: ↓ (Switch View)</div>
+                                    <div class="skill-item">Volume Sliders: Numpad 0 (Mute Music)</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
                      <!-- Collapsible Section 7: Weather & Environment -->
                      <div class="terminal-list-item collapsible-section">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
@@ -2376,85 +2498,10 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                            </div>
                         </div>
                      </div>
-                     <!-- Collapsible Section 6: Keybind Preset -->
-                     <div class="terminal-list-item collapsible-section">
-                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
-<i class="fas fa-keyboard"></i>6. Keybind Preset                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                        </div>
-                        <div class="collapsible-content">
-                            <div class="sub-collapsible">
-                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
-🎮 Movement & Core Controls                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                               </div>
-                               <div class="sub-collapsible-content">
-                                  <ul class="compact-list">
-                                     <li>W/S/A/D – Move Forward/Backward/Strafe Left/Right</li>
-                                     <li>Left Shift – Sprint</li>
-                                     <li>C – Run</li>
-                                     <li>Spacebar – Jump</li>
-                                     <li>Left Ctrl – Sneak</li>
-                                     <li>Caps Lock – Toggle Always Run</li>
-                                     <li>X – Auto-Move</li>
-                                     <li>F – Activate / Interact</li>
-                                  </ul>
-                               </div>
-                            </div>
-                            
-                            <div class="sub-collapsible">
-                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
-⚔️ Combat Controls                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                               </div>
-                               <div class="sub-collapsible-content">
-                                  <ul class="compact-list">
-                                     <li>Mouse1 – Attack / Fire</li>
-                                     <li>Mouse2 – Aim / Block</li>
-                                     <li>Left Alt – Bash / Power Attack / Grenade</li>
-                                     <li>R – Ready Weapon / Reload</li>
-                                     <li>Q – VATS</li>
-                                     <li>J – Holster / Lower Weapon</li>
-                                  </ul>
-                               </div>
-                            </div>
-                            
-                            <div class="sub-collapsible">
-                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
-📱 Menu & Inventory                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                               </div>
-                               <div class="sub-collapsible-content">
-                                  <ul class="compact-list">
-                                     <li>Tab – Open Pip-Boy</li>
-                                     <li>Mouse3 – Toggle POV / Workshop</li>
-                                     <li>Esc – Pause</li>
-                                     <li>I – Quick Inventory</li>
-                                     <li>M – Quick Map</li>
-                                  </ul>
-                               </div>
-                            </div>
-                           <div class="sub-collapsible">
-                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
-🛠️ Mod-Specific Keybinds                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
-                              </div>
-                              <div class="sub-collapsible-content">
-                                 <div class="skill-grid">
-                                    <div class="skill-item">Bullet in Chamber: R (Reload/Check), J (Holster)</div>
-                                    <div class="skill-item">Dank_ECO: PgDn (PA Workbench), PgUp (Universal), U (Attack Mode)</div>
-                                    <div class="skill-item">Enhanced Movement: N (Dodge)</div>
-                                    <div class="skill-item">HOTC: K (Examine Prey)</div>
-                                    <div class="skill-item">VAFS Redux: Z (Critical), G (Focus)</div>
-                                    <div class="skill-item">Immersive HUD: F2 (Toggle HUD)</div>
-                                    <div class="skill-item">MODExplorer: \ (Show Mod List)</div>
-                                    <div class="skill-item">Armor Plates: Y (Use Plate)</div>
-                                    <div class="skill-item">Wasteland Codex: Numpad 3 (Play Entry)</div>
-                                    <div class="skill-item">Vivid Weathers: Numpad / (Weather)</div>
-                                    <div class="skill-item">Wheel Menu: H (Open Wheel)</div>
-                                    <div class="skill-item">Workshop: Home (Workshop Mode)</div>
-                                    <div class="skill-item">Barber/Surgery: ↓ (Switch View)</div>
-                                    <div class="skill-item">Volume Sliders: Numpad 0 (Mute Music)</div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+                  </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
                   </div>
                </div>
                <div class="tab-content" id="support">
@@ -2482,6 +2529,10 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                         </ul>
                      </div>
                   </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
+                  </div>
                </div>
             </div>
          </div>
@@ -2491,6 +2542,14 @@ All Skills (26 Total)                                  <span class="sub-collapsi
    <script src="../src/js/script.js"></script>
    <script src="../src/js/navlinks.js"></script>
    <script>
+      // Back to Top functionality
+      function scrollToTop() {
+         window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+         });
+      }
+      
       // Collapsible functionality for Step 5 sections
       function toggleCollapsible(header) {
          const content = header.nextElementSibling;
