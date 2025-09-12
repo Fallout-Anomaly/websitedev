@@ -1904,7 +1904,7 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                  </div>
                                  <div class="card-content">
                                     <p>We announce updates on Discord and Nexus Mods.</p>
-                                    <p>To update: Re-run Wabbajack on the same path and check "Overwrite existing."</p>
+                                    <p>To update: Re-run Wabbajack on the same path you installed firstly."</p>
                                     <div class="warning-box">
                                        <p>⚠️ Wabbajack will delete any manually installed mods not part of the official modlist.</p>
                                     </div>
@@ -3759,24 +3759,54 @@ Playstyle Tips:
          } else if (lowerPrompt.includes('mercenary') || lowerPrompt.includes('hired') || lowerPrompt.includes('professional') || lowerPrompt.includes('contractor') || lowerPrompt.includes('soldier') || lowerPrompt.includes('military')) {
             characterType = 'professional mercenary';
             emoji = '💰';
-         } else if (lowerPrompt.includes('brotherhood') || lowerPrompt.includes('steel') || lowerPrompt.includes('paladin') || lowerPrompt.includes('knight') || lowerPrompt.includes('outcast') || lowerPrompt.includes('betrayal')) {
+         } else if (lowerPrompt.includes('brotherhood') || lowerPrompt.includes('steel') || lowerPrompt.includes('paladin') || lowerPrompt.includes('knight') || lowerPrompt.includes('outcast') || lowerPrompt.includes('betrayal') || lowerPrompt.includes('maxson') || lowerPrompt.includes('elder') || lowerPrompt.includes('scribe') || lowerPrompt.includes('initiate')) {
             characterType = 'brotherhood outcast';
             emoji = '⚔️';
-         } else if (lowerPrompt.includes('ghoul') || lowerPrompt.includes('radiation') || lowerPrompt.includes('immortal') || lowerPrompt.includes('ancient') || lowerPrompt.includes('decayed') || lowerPrompt.includes('mutant')) {
+         } else if (lowerPrompt.includes('minutemen') || lowerPrompt.includes('general') || lowerPrompt.includes('militia') || lowerPrompt.includes('settlement') || lowerPrompt.includes('freedom') || lowerPrompt.includes('liberty') || lowerPrompt.includes('patriot') || lowerPrompt.includes('garvey')) {
+            characterType = 'minutemen veteran';
+            emoji = '🎖️';
+         } else if (lowerPrompt.includes('railroad') || lowerPrompt.includes('freedom') || lowerPrompt.includes('underground') || lowerPrompt.includes('spy') || lowerPrompt.includes('agent') || lowerPrompt.includes('deacon') || lowerPrompt.includes('glory') || lowerPrompt.includes('tinker')) {
+            characterType = 'railroad operative';
+            emoji = '🚂';
+         } else if (lowerPrompt.includes('institute') || lowerPrompt.includes('director') || lowerPrompt.includes('scientist') || lowerPrompt.includes('division') || lowerPrompt.includes('courser') || lowerPrompt.includes('x6-88') || lowerPrompt.includes('father') || lowerPrompt.includes('shaun')) {
+            characterType = 'institute defector';
+            emoji = '🏛️';
+         } else if (lowerPrompt.includes('enclave') || lowerPrompt.includes('president') || lowerPrompt.includes('colonel') || lowerPrompt.includes('autumn') || lowerPrompt.includes('eden') || lowerPrompt.includes('oilrig') || lowerPrompt.includes('navarro') || lowerPrompt.includes('remnants')) {
+            characterType = 'enclave remnant';
+            emoji = '🦅';
+         } else if (lowerPrompt.includes('ncr') || lowerPrompt.includes('republic') || lowerPrompt.includes('ranger') || lowerPrompt.includes('trooper') || lowerPrompt.includes('bear') || lowerPrompt.includes('kimball') || lowerPrompt.includes('hanlon') || lowerPrompt.includes('mojave')) {
+            characterType = 'ncr veteran';
+            emoji = '🐻';
+         } else if (lowerPrompt.includes('legion') || lowerPrompt.includes('caesar') || lowerPrompt.includes('legate') || lowerPrompt.includes('centurion') || lowerPrompt.includes('lanius') || lowerPrompt.includes('vulpes') || lowerPrompt.includes('slaver') || lowerPrompt.includes('crucifixion')) {
+            characterType = 'legion deserter';
+            emoji = '⚡';
+         } else if (lowerPrompt.includes('followers') || lowerPrompt.includes('apocalypse') || lowerPrompt.includes('doctor') || lowerPrompt.includes('research') || lowerPrompt.includes('knowledge') || lowerPrompt.includes('boneyard') || lowerPrompt.includes('julie') || lowerPrompt.includes('arcade')) {
+            characterType = 'followers scholar';
+            emoji = '📚';
+         } else if (lowerPrompt.includes('great') || lowerPrompt.includes('khans') || lowerPrompt.includes('tribe') || lowerPrompt.includes('biker') || lowerPrompt.includes('drug') || lowerPrompt.includes('raider') || lowerPrompt.includes('jackal') || lowerPrompt.includes('vipers')) {
+            characterType = 'tribal warrior';
+            emoji = '🏍️';
+         } else if (lowerPrompt.includes('ghoul') || lowerPrompt.includes('radiation') || lowerPrompt.includes('immortal') || lowerPrompt.includes('ancient') || lowerPrompt.includes('decayed') || lowerPrompt.includes('mutant') || lowerPrompt.includes('feral') || lowerPrompt.includes('glowing')) {
             characterType = 'ancient ghoul';
             emoji = '☢️';
-         } else if (lowerPrompt.includes('synth') || lowerPrompt.includes('android') || lowerPrompt.includes('robot') || lowerPrompt.includes('artificial') || lowerPrompt.includes('institute') || lowerPrompt.includes('synthetic')) {
+         } else if (lowerPrompt.includes('synth') || lowerPrompt.includes('android') || lowerPrompt.includes('robot') || lowerPrompt.includes('artificial') || lowerPrompt.includes('institute') || lowerPrompt.includes('synthetic') || lowerPrompt.includes('gen3') || lowerPrompt.includes('nick')) {
             characterType = 'awakened synth';
             emoji = '🤖';
-         } else if (lowerPrompt.includes('trader') || lowerPrompt.includes('merchant') || lowerPrompt.includes('business') || lowerPrompt.includes('caravan') || lowerPrompt.includes('caps') || lowerPrompt.includes('deal')) {
+         } else if (lowerPrompt.includes('trader') || lowerPrompt.includes('merchant') || lowerPrompt.includes('business') || lowerPrompt.includes('caravan') || lowerPrompt.includes('caps') || lowerPrompt.includes('deal') || lowerPrompt.includes('barter') || lowerPrompt.includes('vendor')) {
             characterType = 'wandering merchant';
             emoji = '💼';
-         } else if (lowerPrompt.includes('mechanic') || lowerPrompt.includes('engineer') || lowerPrompt.includes('repair') || lowerPrompt.includes('fix') || lowerPrompt.includes('scrap') || lowerPrompt.includes('workshop')) {
+         } else if (lowerPrompt.includes('mechanic') || lowerPrompt.includes('engineer') || lowerPrompt.includes('repair') || lowerPrompt.includes('fix') || lowerPrompt.includes('scrap') || lowerPrompt.includes('workshop') || lowerPrompt.includes('tinker') || lowerPrompt.includes('jury')) {
             characterType = 'scrap mechanic';
             emoji = '🔧';
-         } else if (lowerPrompt.includes('doctor') || lowerPrompt.includes('medic') || lowerPrompt.includes('healer') || lowerPrompt.includes('medical') || lowerPrompt.includes('hospital') || lowerPrompt.includes('nurse')) {
+         } else if (lowerPrompt.includes('doctor') || lowerPrompt.includes('medic') || lowerPrompt.includes('healer') || lowerPrompt.includes('medical') || lowerPrompt.includes('hospital') || lowerPrompt.includes('nurse') || lowerPrompt.includes('surgeon') || lowerPrompt.includes('chemist')) {
             characterType = 'wasteland healer';
             emoji = '🏥';
+         } else if (lowerPrompt.includes('super') || lowerPrompt.includes('mutant') || lowerPrompt.includes('behemoth') || lowerPrompt.includes('master') || lowerPrompt.includes('unity') || lowerPrompt.includes('mariposa') || lowerPrompt.includes('nightkin') || lowerPrompt.includes('mutie')) {
+            characterType = 'mutant outcast';
+            emoji = '🧬';
+         } else if (lowerPrompt.includes('vault') || lowerPrompt.includes('dweller') || lowerPrompt.includes('outcast') || lowerPrompt.includes('vault-tec') || lowerPrompt.includes('underground') || lowerPrompt.includes('experiment') || lowerPrompt.includes('overseer') || lowerPrompt.includes('security')) {
+            characterType = 'vault outcast';
+            emoji = '🏠';
          }
          
          // Generate unique backstory
