@@ -454,11 +454,12 @@
       
       .error-header, .download-header {
          font-family: 'VT323', monospace;
-         color: var(--terminal-highlight);
-         font-size: 1em;
+         color: #00ff88;
+         font-size: 1.1em;
          font-weight: bold;
          margin-bottom: 8px;
-         text-shadow: var(--glow-effect);
+         text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
+         letter-spacing: 0.5px;
       }
       
       .error-solution, .download-solution {
@@ -471,6 +472,9 @@
          margin: 6px 0;
          padding-left: 8px;
          line-height: 1.4;
+         word-wrap: break-word;
+         overflow-wrap: break-word;
+         hyphens: auto;
       }
       
       .terminal-divider {
@@ -526,13 +530,130 @@
          color: var(--terminal-highlight);
          text-decoration: underline;
          text-decoration-color: var(--terminal-highlight);
+         text-decoration-thickness: 2px;
+         text-underline-offset: 2px;
          transition: all 0.3s ease;
+         font-weight: 500;
       }
       
       .terminal-link:hover {
          color: #fff;
          text-decoration-color: #fff;
          text-shadow: var(--glow-effect);
+      }
+      
+      .warning-text {
+         color: #ffaa00;
+         font-weight: bold;
+         text-shadow: 0 0 6px rgba(255, 170, 0, 0.8);
+         background: rgba(255, 170, 0, 0.1);
+         padding: 2px 4px;
+         border-radius: 2px;
+         border: 1px solid rgba(255, 170, 0, 0.3);
+      }
+      
+      /* Checklist Styling for Fallout Terminal */
+      .terminal-checklist {
+         margin-top: 16px;
+         padding: 12px;
+         background: rgba(0, 0, 0, 0.2);
+         border: 1px solid var(--terminal-border);
+         border-radius: 3px;
+      }
+      
+      .checklist-item {
+         display: flex;
+         align-items: flex-start;
+         margin-bottom: 12px;
+         padding: 8px;
+         background: rgba(var(--terminal-text-rgb), 0.03);
+         border-radius: 2px;
+         transition: background-color 0.3s ease;
+      }
+      
+      .checklist-item:hover {
+         background: rgba(var(--terminal-text-rgb), 0.08);
+      }
+      
+      .checklist-item input[type="checkbox"] {
+         -webkit-appearance: none;
+         -moz-appearance: none;
+         appearance: none;
+         width: 18px;
+         height: 18px;
+         border: 2px solid var(--terminal-border);
+         border-radius: 3px;
+         cursor: pointer;
+         margin-right: 12px;
+         position: relative;
+         top: 2px;
+         flex-shrink: 0;
+         background: rgba(0, 0, 0, 0.3);
+         transition: all 0.3s ease;
+      }
+      
+      .checklist-item input[type="checkbox"]:hover {
+         border-color: var(--terminal-highlight);
+         box-shadow: 0 0 6px rgba(var(--terminal-highlight-rgb), 0.3);
+      }
+      
+      .checklist-item input[type="checkbox"]:checked {
+         background-color: var(--terminal-highlight);
+         border-color: var(--terminal-highlight);
+         box-shadow: 0 0 8px rgba(var(--terminal-highlight-rgb), 0.5);
+      }
+      
+      .checklist-item input[type="checkbox"]:checked::after {
+         content: '✓';
+         font-size: 14px;
+         color: #000;
+         position: absolute;
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%, -50%);
+         font-weight: bold;
+         text-shadow: none;
+      }
+      
+      .checklist-item label {
+         cursor: pointer;
+         flex: 1;
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         color: var(--terminal-text);
+         line-height: 1.4;
+      }
+      
+      .checklist-instruction {
+         font-size: 0.95em;
+      }
+      
+      .checklist-title {
+         font-family: 'VT323', monospace;
+         color: var(--terminal-highlight);
+         font-weight: bold;
+         margin-bottom: 4px;
+         text-shadow: var(--glow-effect);
+      }
+      
+      .checklist-body {
+         color: var(--terminal-text);
+      }
+      
+      .checklist-progress {
+         margin-top: 16px;
+         padding: 8px 12px;
+         background: rgba(0, 0, 0, 0.4);
+         border: 1px solid var(--terminal-border);
+         border-radius: 3px;
+         text-align: center;
+         font-family: 'VT323', monospace;
+         color: var(--terminal-text);
+      }
+      
+      .checklist-progress.completed {
+         color: var(--terminal-highlight);
+         border-color: var(--terminal-highlight);
+         background: rgba(var(--terminal-highlight-rgb), 0.1);
       }
       
       .collapsible-header {
@@ -1178,7 +1299,7 @@
                                     <div class="error-header">"Mod Is Not a Whitelisted Download"</div>
                                     <div class="error-solution">
                                        <div class="solution-step">→ The modlist may have been updated, making an old mod link invalid</div>
-                                       <div class="solution-step">→ Wait for a new release or notify us on <strong>Discord</strong></div>
+                                       <div class="solution-step">→ Wait for a new release or notify us on <a href="#" class="terminal-link">Discord</a></div>
                                     </div>
                                  </div>
                                  
@@ -1197,7 +1318,7 @@
                                     <div class="error-header">"Wabbajack Could Not Find My Game Folder"</div>
                                     <div class="error-solution">
                                        <div class="solution-step">→ <strong>Pirated versions are not supported</strong></div>
-                                       <div class="solution-step">→ Ensure you own Fallout 4 on <strong>Steam</strong></div>
+                                       <div class="solution-step">→ Ensure you own Fallout 4 on <a href="#" class="terminal-link">Steam</a></div>
                                     </div>
                                  </div>
                               </div>
@@ -1229,8 +1350,9 @@
                                  <div class="terminal-download-block">
                                     <div class="download-header">ENB Download Issues</div>
                                     <div class="download-solution">
-                                       <div class="solution-step">→ If your ENB download fails, download it manually and move it to the <strong>Anomaly Downloads</strong> folder created by Wabbajack</div>
-                                       <div class="solution-step">→ <strong>❗ DO NOT extract the file</strong>—just place it in the folder</div>
+                                       <div class="solution-step">→ If your ENB download fails, download it manually and move it to the <strong>Anomaly Downloads</strong> folder</div>
+                                       <div class="solution-step">→ This folder is created by Wabbajack during installation</div>
+                                       <div class="solution-step">→ <span class="warning-text">❗ DO NOT extract the file</span>—just place it in the folder</div>
                                        <div class="solution-step">→ Restart Wabbajack and run the installer again</div>
                                     </div>
                                     <div class="terminal-buttons">
@@ -1238,6 +1360,62 @@
                                           <i class="fas fa-download"></i> Download ENB for Fallout 4
                                        </a>
                                     </div>
+                                 </div>
+                              </div>
+                              
+                              <div class="terminal-checklist">
+                                 <div class="checklist-item">
+                                    <input type="checkbox" id="troubleshoot1" class="checklist-box">
+                                    <label for="troubleshoot1">
+                                       <div class="checklist-instruction">
+                                          <div class="checklist-title">"Could Not Download MOD"</div>
+                                          <div class="checklist-body">→ I have manually downloaded the mod and placed it in Wabbajack's download folder. I have checked <a href="https://nexusmods.statuspage.io/" target="_blank" class="terminal-link">Nexus Mods Status</a> if needed.</div>
+                                       </div>
+                                    </label>
+                                 </div>
+                                 
+                                 <div class="checklist-item">
+                                    <input type="checkbox" id="troubleshoot2" class="checklist-box">
+                                    <label for="troubleshoot2">
+                                       <div class="checklist-instruction">
+                                          <div class="checklist-title">"Mod Is Not a Whitelisted Download"</div>
+                                          <div class="checklist-body">→ I understand the modlist may have updated and will wait for a new release or contact support on <a href="#" class="terminal-link">Discord</a>.</div>
+                                       </div>
+                                    </label>
+                                 </div>
+                                 
+                                 <div class="checklist-item">
+                                    <input type="checkbox" id="troubleshoot3" class="checklist-box">
+                                    <label for="troubleshoot3">
+                                       <div class="checklist-instruction">
+                                          <div class="checklist-title">"Missing Game Files"</div>
+                                          <div class="checklist-body">→ I have ensured my game is updated to the <strong>next-gen version</strong>.</div>
+                                       </div>
+                                    </label>
+                                 </div>
+                                 
+                                 <div class="checklist-item">
+                                    <input type="checkbox" id="troubleshoot4" class="checklist-box">
+                                    <label for="troubleshoot4">
+                                       <div class="checklist-instruction">
+                                          <div class="checklist-title">"Wabbajack Could Not Find My Game Folder"</div>
+                                          <div class="checklist-body">→ I understand that <strong>pirated versions are not supported</strong> and I own Fallout 4 on <a href="#" class="terminal-link">Steam</a>.</div>
+                                       </div>
+                                    </label>
+                                 </div>
+                                 
+                                 <div class="checklist-item">
+                                    <input type="checkbox" id="troubleshoot5" class="checklist-box">
+                                    <label for="troubleshoot5">
+                                       <div class="checklist-instruction">
+                                          <div class="checklist-title">ENB Download Issues</div>
+                                          <div class="checklist-body">→ I will manually move ENB files to the <strong>Anomaly Downloads</strong> folder if needed.<br>→ <span class="warning-text">❗ I WILL NOT extract the file</span>, I will just place it in the folder.</div>
+                                       </div>
+                                    </label>
+                                 </div>
+                                 
+                                 <div class="checklist-progress" id="troubleshootProgress">
+                                    <span id="progressText">Complete all items to proceed to Step 4</span>
                                  </div>
                               </div>
                            </div>
@@ -2324,7 +2502,62 @@
             searchInput.addEventListener('input', performSearch);
          }
          
+         // Initialize troubleshooting checklist
+         initializeTroubleshootingChecklist();
+         
       });
+      
+      // Troubleshooting Checklist Functionality
+      function initializeTroubleshootingChecklist() {
+         const checkboxes = document.querySelectorAll('.checklist-box');
+         const progressElement = document.getElementById('troubleshootProgress');
+         const progressText = document.getElementById('progressText');
+         
+         function updateProgress() {
+            const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+            const totalCount = checkboxes.length;
+            
+            if (checkedCount === totalCount) {
+               progressElement.classList.add('completed');
+               progressText.textContent = '✓ All items completed! You can now proceed to Step 4';
+               
+               // Enable Step 4 tab
+               const step4Button = document.querySelector('[data-tab="step4"]');
+               if (step4Button) {
+                  step4Button.style.opacity = '1';
+                  step4Button.style.pointerEvents = 'auto';
+                  step4Button.style.cursor = 'pointer';
+               }
+            } else {
+               progressElement.classList.remove('completed');
+               progressText.textContent = `Complete all items to proceed to Step 4 (${checkedCount}/${totalCount})`;
+               
+               // Disable Step 4 tab
+               const step4Button = document.querySelector('[data-tab="step4"]');
+               if (step4Button) {
+                  step4Button.style.opacity = '0.5';
+                  step4Button.style.pointerEvents = 'none';
+                  step4Button.style.cursor = 'not-allowed';
+               }
+            }
+         }
+         
+         // Add event listeners to all checkboxes
+         checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateProgress);
+         });
+         
+         // Initial progress update
+         updateProgress();
+         
+         // Disable Step 4 tab initially
+         const step4Button = document.querySelector('[data-tab="step4"]');
+         if (step4Button) {
+            step4Button.style.opacity = '0.5';
+            step4Button.style.pointerEvents = 'none';
+            step4Button.style.cursor = 'not-allowed';
+         }
+      }
    </script>
 </body>
 </html>
