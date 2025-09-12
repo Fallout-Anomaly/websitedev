@@ -815,6 +815,244 @@
          box-shadow: 0 8px 20px rgba(255, 20, 147, 0.4);
       }
       
+      /* Search Functionality */
+      .search-container {
+         position: relative;
+         margin-top: 20px;
+         max-width: 500px;
+         margin-left: auto;
+         margin-right: auto;
+      }
+      
+      .search-box {
+         position: relative;
+         display: flex;
+         align-items: center;
+         background: rgba(0, 0, 0, 0.8);
+         border: 2px solid var(--terminal-border);
+         border-radius: 8px;
+         padding: 12px 16px;
+         transition: all 0.3s ease;
+      }
+      
+      .search-box:focus-within {
+         border-color: var(--terminal-highlight);
+         box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+         background: rgba(0, 0, 0, 0.9);
+      }
+      
+      .search-icon {
+         color: var(--terminal-highlight);
+         margin-right: 12px;
+         font-size: 16px;
+         text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+      }
+      
+      #global-search {
+         flex: 1;
+         background: transparent;
+         border: none;
+         color: var(--terminal-text);
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         font-size: 14px;
+         outline: none;
+         padding: 0;
+      }
+      
+      #global-search::placeholder {
+         color: rgba(255, 255, 255, 0.5);
+         font-style: italic;
+      }
+      
+      .clear-search-btn {
+         background: none;
+         border: none;
+         color: var(--terminal-text);
+         cursor: pointer;
+         padding: 4px;
+         border-radius: 4px;
+         transition: all 0.2s ease;
+         margin-left: 8px;
+      }
+      
+      .clear-search-btn:hover {
+         color: var(--terminal-highlight);
+         background: rgba(255, 255, 255, 0.1);
+      }
+      
+      .search-results {
+         position: absolute;
+         top: 100%;
+         left: 0;
+         right: 0;
+         background: rgba(0, 0, 0, 0.95);
+         border: 2px solid var(--terminal-border);
+         border-top: none;
+         border-radius: 0 0 8px 8px;
+         max-height: 400px;
+         overflow-y: auto;
+         z-index: 1000;
+         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      }
+      
+      .search-result-item {
+         padding: 12px 16px;
+         border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+         cursor: pointer;
+         transition: all 0.2s ease;
+         display: flex;
+         flex-direction: column;
+         gap: 4px;
+      }
+      
+      .search-result-item:last-child {
+         border-bottom: none;
+      }
+      
+      .search-result-item:hover {
+         background: rgba(0, 255, 0, 0.1);
+         color: var(--terminal-highlight);
+      }
+      
+      .search-result-title {
+         font-weight: bold;
+         font-size: 14px;
+         color: var(--terminal-highlight);
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+      }
+      
+      .search-result-preview {
+         font-size: 12px;
+         color: var(--terminal-text);
+         opacity: 0.8;
+         line-height: 1.4;
+      }
+      
+      .search-result-section {
+         font-size: 11px;
+         color: var(--terminal-text-muted);
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+      }
+      
+      .search-highlight {
+         background: rgba(0, 255, 0, 0.3);
+         color: var(--terminal-highlight);
+         padding: 1px 2px;
+         border-radius: 2px;
+      }
+      
+      .no-results {
+         padding: 20px;
+         text-align: center;
+         color: var(--terminal-text-muted);
+         font-style: italic;
+      }
+      
+      .search-stats {
+         padding: 8px 16px;
+         background: rgba(0, 255, 0, 0.1);
+         border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+         font-size: 12px;
+         color: var(--terminal-highlight);
+         text-align: center;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+      }
+      
+      /* FAQ Styling */
+      .faq-section {
+         margin: 30px 0;
+         padding: 20px;
+         background: rgba(0, 0, 0, 0.3);
+         border: 1px solid var(--terminal-border);
+         border-radius: 8px;
+      }
+      
+      .faq-section h4 {
+         color: var(--terminal-highlight);
+         font-family: 'VT323', monospace;
+         font-size: 18px;
+         text-transform: uppercase;
+         letter-spacing: 1px;
+         margin-bottom: 20px;
+         padding-bottom: 8px;
+         border-bottom: 2px solid var(--terminal-highlight);
+         text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+      }
+      
+      .faq-item {
+         margin: 20px 0;
+         background: rgba(0, 0, 0, 0.5);
+         border: 1px solid rgba(0, 255, 0, 0.3);
+         border-radius: 6px;
+         overflow: hidden;
+         transition: all 0.3s ease;
+      }
+      
+      .faq-item:hover {
+         border-color: var(--terminal-highlight);
+         box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+      }
+      
+      .faq-question {
+         padding: 15px 20px;
+         background: rgba(0, 255, 0, 0.1);
+         border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+         cursor: pointer;
+         display: flex;
+         align-items: center;
+         gap: 12px;
+         transition: all 0.3s ease;
+      }
+      
+      .faq-question:hover {
+         background: rgba(0, 255, 0, 0.15);
+      }
+      
+      .faq-question i {
+         color: var(--terminal-highlight);
+         font-size: 16px;
+         text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+         min-width: 20px;
+      }
+      
+      .faq-question strong {
+         color: var(--terminal-text);
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         font-size: 14px;
+         line-height: 1.4;
+      }
+      
+      .faq-answer {
+         padding: 20px;
+         background: rgba(0, 0, 0, 0.7);
+         color: var(--terminal-text);
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         line-height: 1.6;
+      }
+      
+      .faq-answer p {
+         margin: 0 0 15px 0;
+         color: var(--terminal-text);
+      }
+      
+      .faq-answer ul {
+         margin: 10px 0;
+         padding-left: 20px;
+      }
+      
+      .faq-answer li {
+         margin: 8px 0;
+         color: var(--terminal-text);
+      }
+      
+      .faq-answer li strong {
+         color: var(--terminal-highlight);
+         font-weight: bold;
+      }
+      
       .collapsible-header {
          cursor: pointer;
          padding: 8px 12px;
@@ -1220,6 +1458,16 @@
          <div class="fallout-card-header">
             <i class="fas fa-book icon"></i>
             <h1>COMPLETE INSTALLATION GUIDE</h1>
+            <div class="search-container">
+               <div class="search-box">
+                  <i class="fas fa-search search-icon"></i>
+                  <input type="text" id="global-search" placeholder="Search guide content..." autocomplete="off">
+                  <button id="clear-search" class="clear-search-btn" style="display: none;">
+                     <i class="fas fa-times"></i>
+                  </button>
+               </div>
+               <div id="search-results" class="search-results" style="display: none;"></div>
+            </div>
          </div>
          <div class="terminal-text guide-content">
              <div class="banner-section">
@@ -1237,8 +1485,8 @@
                    </a>
                    <a href="https://www.nexusmods.com/fallout4/mods/74075" class="social-link nexus">
                       <i class="fas fa-download"></i>
-                      <span>DOWNLOAD MOD</span>
-                      <small>Nexus Mods</small>
+                      <span>nEXUS MODS</span>
+                      <small>View our nexus page.</small>
                    </a>
                    <a href="https://falloutanomaly.fillout.com/bugreports" class="social-link bug-report">
                       <i class="fas fa-bug"></i>
@@ -1288,6 +1536,7 @@
                   <button class="tab-button" data-tab="step4">STEP 4: KNOWN ISSUES</button>
                   <button class="tab-button" data-tab="step5">STEP 5: GAMEPLAY Guide</button>
                   <button class="tab-button" data-tab="ai-assistant">Character Build Generator</button>
+                  <button class="tab-button" data-tab="faq">❓ FAQ</button>
                   <button class="tab-button" data-tab="support">SUPPORT & COMMUNITY</button>
                </div>
                <div class="tab-content active" id="step1">
@@ -2776,6 +3025,193 @@ All Skills (26 Total)                                  <span class="sub-collapsi
                      <i class="fas fa-arrow-up"></i>
                   </div>
                </div>
+               <div class="tab-content" id="faq">
+                  <div class="info-card">
+                     <div class="card-header">
+                        <i class="fas fa-question-circle"></i><h3>Frequently Asked Questions</h3>
+                     </div>
+                     <div class="card-content">
+                        <p>Find answers to the most common questions about Fallout Anomaly installation, troubleshooting, and gameplay.</p>
+                        
+                        <div class="faq-section">
+                           <h4>🚨 Installation & Setup</h4>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-exclamation-triangle"></i>
+                                 <strong>Q: My game is crashing on startup. What should I do?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>Crashing on startup is often caused by a few common issues:</p>
+                                 <ul>
+                                    <li><strong>Overlays:</strong> Make sure you have disabled all overlays, including Steam, Discord, and any recording software like Medal or OBS.</li>
+                                    <li><strong>Antivirus:</strong> Your antivirus might be interfering with the modlist. Please ensure you have set up exclusions for the entire Fallout Anomaly installation folder.</li>
+                                    <li><strong>Missing Prerequisites:</strong> Double-check that you have installed all the required components from Step 1, including Visual C++ Redistributables and .NET Frameworks.</li>
+                                    <li><strong>Game Version:</strong> The modlist requires the latest version of Fallout 4 from Steam, which Wabbajack will then downgrade. Make sure your game is up to date before running the installer.</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-pause-circle"></i>
+                                 <strong>Q: I'm stuck on the main menu and can't start a new game.</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>This can happen if some of the initial scripts are slow to load. Please be patient and wait a few minutes. If it still doesn't work, refer to the "Stuck in Menu" section in the "Known Issues" tab for a video guide and alternative solutions.</p>
+                              </div>
+                           </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-sync-alt"></i>
+                                 <strong>Q: How do I update the modlist?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>To update, simply re-run the Wabbajack installer and point it to your existing installation directory. Make sure to check the "Overwrite existing" option. Wabbajack will handle the rest, only downloading the files that have changed.</p>
+                              </div>
+                           </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-download"></i>
+                                 <strong>Q: Wabbajack is downloading very slowly. What can I do?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>Slow downloads are usually due to:</p>
+                                 <ul>
+                                    <li><strong>Nexus Mods Rate Limiting:</strong> Free accounts have download speed limits. Consider getting Nexus Premium for faster downloads.</li>
+                                    <li><strong>Server Load:</strong> Nexus Mods servers can be busy during peak hours. Try downloading during off-peak times.</li>
+                                    <li><strong>Network Issues:</strong> Check your internet connection and try pausing/resuming the download.</li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                        
+                        <div class="faq-section">
+                           <h4>🎮 Gameplay & Performance</h4>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-tachometer-alt"></i>
+                                 <strong>Q: The game is running slowly. How can I improve performance?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>Performance issues can be addressed by:</p>
+                                 <ul>
+                                    <li><strong>ENB Settings:</strong> Lower ENB quality settings or disable certain effects in the ENB menu (Shift+Enter).</li>
+                                    <li><strong>BethINI:</strong> Use BethINI to optimize your Fallout4.ini files for better performance.</li>
+                                    <li><strong>Hardware:</strong> Ensure you meet the minimum requirements (16GB RAM, 6GB VRAM GPU).</li>
+                                    <li><strong>Background Programs:</strong> Close unnecessary programs and overlays while playing.</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-gamepad"></i>
+                                 <strong>Q: Can I use a controller with Fallout Anomaly?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>Yes! Controller support is included. Check the "Known Issues" tab for specific controller setup instructions and any known limitations.</p>
+                              </div>
+                           </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-save"></i>
+                                 <strong>Q: Can I use my old save files with Fallout Anomaly?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>No, Fallout Anomaly requires a fresh start. The modlist makes extensive changes to the game that are incompatible with vanilla or other modded saves. You'll need to start a new character.</p>
+                              </div>
+                           </div>
+                        </div>
+                        
+                        <div class="faq-section">
+                           <h4>🔧 Troubleshooting</h4>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-exclamation-circle"></i>
+                                 <strong>Q: I'm getting "Could Not Download MOD" errors. What should I do?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>This usually means:</p>
+                                 <ul>
+                                    <li><strong>Nexus Mods Issues:</strong> Check if Nexus Mods is experiencing downtime.</li>
+                                    <li><strong>Mod Updates:</strong> The mod may have been updated or removed. Wait for a new modlist release.</li>
+                                    <li><strong>Manual Download:</strong> You can manually download the mod and place it in Wabbajack's download folder.</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-folder-open"></i>
+                                 <strong>Q: Wabbajack can't find my Fallout 4 installation. What's wrong?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>This typically happens when:</p>
+                                 <ul>
+                                    <li><strong>Pirated Version:</strong> Only legitimate Steam versions are supported.</li>
+                                    <li><strong>Wrong Location:</strong> Make sure Fallout 4 is installed in the default Steam directory.</li>
+                                    <li><strong>Game Not Updated:</strong> Ensure your game is updated to the latest version before running Wabbajack.</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-shield-alt"></i>
+                                 <strong>Q: My antivirus is flagging files as threats. Is this normal?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>Yes, this is common with modded games. Antivirus software often flags mod files as suspicious. Add your entire Fallout Anomaly installation folder to your antivirus exclusions to prevent interference.</p>
+                              </div>
+                           </div>
+                        </div>
+                        
+                        <div class="faq-section">
+                           <h4>💬 Community & Support</h4>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-comments"></i>
+                                 <strong>Q: Where can I get help if I'm still having issues?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>For additional support:</p>
+                                 <ul>
+                                    <li><strong>Discord:</strong> Join our Discord community for real-time help from the team and other users.</li>
+                                    <li><strong>Bug Reports:</strong> Submit detailed bug reports through our official form.</li>
+                                    <li><strong>Documentation:</strong> Check all tabs in this guide for comprehensive troubleshooting information.</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-heart"></i>
+                                 <strong>Q: How can I support the Fallout Anomaly project?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>You can support us by:</p>
+                                 <ul>
+                                    <li><strong>Donations:</strong> Help fund server costs and development through our donation page.</li>
+                                    <li><strong>Community:</strong> Join our Discord and help other users with their questions.</li>
+                                    <li><strong>Feedback:</strong> Provide constructive feedback and report bugs to help improve the modlist.</li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
+                  </div>
+               </div>
                <div class="tab-content" id="support">
                   <div class="terminal-list">
                      <div class="terminal-list-item">
@@ -3228,6 +3664,210 @@ Your past in ${location} feels like a distant dream, but the lessons you learned
 The Commonwealth is your home now, and you're determined to make it a better place, one choice at a time.`;
 
          return backstory;
+      }
+      
+      // Global Search Functionality
+      document.addEventListener('DOMContentLoaded', function() {
+         const searchInput = document.getElementById('global-search');
+         const searchResults = document.getElementById('search-results');
+         const clearBtn = document.getElementById('clear-search');
+         let searchTimeout;
+         
+         if (searchInput && searchResults && clearBtn) {
+            searchInput.addEventListener('input', function() {
+               clearTimeout(searchTimeout);
+               const query = this.value.trim();
+               
+               if (query.length < 2) {
+                  hideSearchResults();
+                  return;
+               }
+               
+               searchTimeout = setTimeout(() => {
+                  performSearch(query);
+               }, 300);
+            });
+            
+            clearBtn.addEventListener('click', function() {
+               searchInput.value = '';
+               hideSearchResults();
+               searchInput.focus();
+            });
+            
+            // Hide results when clicking outside
+            document.addEventListener('click', function(e) {
+               if (!e.target.closest('.search-container')) {
+                  hideSearchResults();
+               }
+            });
+         }
+      });
+      
+      function performSearch(query) {
+         const results = [];
+         const searchTerms = query.toLowerCase().split(' ').filter(term => term.length > 0);
+         
+         // Search through all content sections
+         const searchableElements = document.querySelectorAll('.tab-content, .terminal-list-item, .info-card, .ai-feature-box, .collapsible-content, .sub-collapsible-content');
+         
+         searchableElements.forEach(element => {
+            const text = element.textContent.toLowerCase();
+            const title = element.querySelector('h1, h2, h3, h4, h5, h6, .card-header, .collapsible-header')?.textContent || '';
+            const section = getSectionName(element);
+            
+            // Check if all search terms are found
+            const matches = searchTerms.every(term => text.includes(term));
+            
+            if (matches) {
+               const preview = getTextPreview(element.textContent, query);
+               const relevance = calculateRelevance(text, title, query);
+               
+               results.push({
+                  element: element,
+                  title: title || 'Content Section',
+                  preview: preview,
+                  section: section,
+                  relevance: relevance
+               });
+            }
+         });
+         
+         // Sort by relevance
+         results.sort((a, b) => b.relevance - a.relevance);
+         
+         displaySearchResults(results, query);
+      }
+      
+      function getSectionName(element) {
+         // Try to find the section name from various selectors
+         const tabContent = element.closest('.tab-content');
+         if (tabContent) {
+            const tabButton = document.querySelector(`[data-tab="${tabContent.id}"]`);
+            if (tabButton) {
+               return tabButton.textContent.trim();
+            }
+         }
+         
+         const collapsible = element.closest('.collapsible-section');
+         if (collapsible) {
+            const header = collapsible.querySelector('.collapsible-header');
+            if (header) {
+               return header.textContent.replace(/[^\w\s]/g, '').trim();
+            }
+         }
+         
+         return 'Guide Content';
+      }
+      
+      function getTextPreview(text, query) {
+         const maxLength = 150;
+         const queryIndex = text.toLowerCase().indexOf(query.toLowerCase());
+         
+         if (queryIndex === -1) {
+            return text.substring(0, maxLength) + (text.length > maxLength ? '...' : '');
+         }
+         
+         const start = Math.max(0, queryIndex - 50);
+         const end = Math.min(text.length, start + maxLength);
+         let preview = text.substring(start, end);
+         
+         if (start > 0) preview = '...' + preview;
+         if (end < text.length) preview = preview + '...';
+         
+         return preview;
+      }
+      
+      function calculateRelevance(text, title, query) {
+         let score = 0;
+         const queryLower = query.toLowerCase();
+         const textLower = text.toLowerCase();
+         const titleLower = title.toLowerCase();
+         
+         // Title matches are worth more
+         if (titleLower.includes(queryLower)) score += 10;
+         
+         // Exact phrase matches
+         if (textLower.includes(queryLower)) score += 5;
+         
+         // Word boundary matches
+         const words = queryLower.split(' ');
+         words.forEach(word => {
+            if (titleLower.includes(word)) score += 3;
+            if (textLower.includes(word)) score += 1;
+         });
+         
+         return score;
+      }
+      
+      function displaySearchResults(results, query) {
+         const searchResults = document.getElementById('search-results');
+         const clearBtn = document.getElementById('clear-search');
+         
+         if (!searchResults || !clearBtn) return;
+         
+         if (results.length === 0) {
+            searchResults.innerHTML = '<div class="no-results">No results found for "' + query + '"</div>';
+         } else {
+            let html = `<div class="search-stats">${results.length} result${results.length !== 1 ? 's' : ''} found</div>`;
+            
+            results.slice(0, 10).forEach(result => {
+               const highlightedPreview = highlightText(result.preview, query);
+               const highlightedTitle = highlightText(result.title, query);
+               
+               html += `
+                  <div class="search-result-item" onclick="scrollToSearchResult('${result.element.id || 'content'}')">
+                     <div class="search-result-title">${highlightedTitle}</div>
+                     <div class="search-result-preview">${highlightedPreview}</div>
+                     <div class="search-result-section">${result.section}</div>
+                  </div>
+               `;
+            });
+            
+            searchResults.innerHTML = html;
+         }
+         
+         searchResults.style.display = 'block';
+         clearBtn.style.display = 'block';
+      }
+      
+      function highlightText(text, query) {
+         if (!query) return text;
+         
+         const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+         return text.replace(regex, '<span class="search-highlight">$1</span>');
+      }
+      
+      function hideSearchResults() {
+         const searchResults = document.getElementById('search-results');
+         const clearBtn = document.getElementById('clear-search');
+         
+         if (searchResults) searchResults.style.display = 'none';
+         if (clearBtn) clearBtn.style.display = 'none';
+      }
+      
+      function scrollToSearchResult(elementId) {
+         const element = document.getElementById(elementId);
+         if (element) {
+            // If it's in a collapsible section, expand it first
+            const collapsible = element.closest('.collapsible-section');
+            if (collapsible) {
+               const header = collapsible.querySelector('.collapsible-header');
+               if (header && collapsible.querySelector('.collapsible-content').style.display === 'none') {
+                  toggleCollapsible(header);
+               }
+            }
+            
+            // Scroll to element
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Highlight the element briefly
+            element.style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
+            setTimeout(() => {
+               element.style.backgroundColor = '';
+            }, 2000);
+         }
+         
+         hideSearchResults();
       }
       
       // Collapsible functionality for Step 5 sections
