@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting.">
+   <title>FALLOUT ANOMALY - COMPLETE GUIDE</title>
+   <!-- ================================================== -->
+   <!-- ========= Open Graph / Social Media Meta ========= -->
+   <!-- ================================================== -->
+   <meta property="og:title" content="Fallout Anomaly Installation Guide" />
+   <meta property="og:description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting." />
+   <meta property="og:url" content="https://fallout-anomaly.github.io/websitedev/pages/guide.html" />
+   <meta property="og:site_name" content="Fallout Anomaly" />
+   <meta property="og:type" content="article" />
+   <meta property="article:section" content="Guides" />
+   <meta property="article:tag" content="Fallout 4, Modding, Wabbajack, Installation, Guide, Fallout Anomaly" />
+   <meta property="og:image" content="https://s3.amazonaws.com/guildtag/file/14763/84412-8ff9de.png" />
+   <meta property="og:image:width" content="500" />
+   <meta property="og:image:height" content="500" />
+   <!-- ================================================== -->
+   <!-- ============ Twitter Card Meta Tags ============ -->
+   <!-- ================================================== -->
+   <meta name="twitter:card" content="summary" />
+   <meta name="twitter:title" content="Fallout Anomaly Installation Guide" />
+   <meta name="twitter:description" content="Complete step-by-step guide to installing Fallout Anomaly using Wabbajack. Covers requirements, setup, launching, and troubleshooting." />
+   <meta name="twitter:image" content="https://s3.amazonaws.com/guildtag/file/14763/84412-8ff9de.png" />
+   <!-- <meta name="twitter:site" content="@[YourSiteTwitterHandle]" /> -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="../src/css/style.css">
+   <link rel="stylesheet" href="../src/css/themes.css">
+   <link rel="stylesheet" href="../src/css/guide-styles.css">
+   <link rel="icon" href="data:image/svg+xml,
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+      <text y='.9em' font-size='90'>☢️</text>
+      </svg>">
+</head>
+<body class="body-textured crt">
+   <nav class="nav-menu">
+      <div class="nav-menu-container">
+         <a href="index.html" class="nav-logo">
+         <i class="fas fa-radiation icon"></i> FALLOUT ANOMALY </a>
+         <div id="nav-links-container"></div>
+      </div>
+   </nav>
+   <div class="loading-screen">
+      <div class="pip-os-boot"></div>
+      <div class="continue-prompt hidden">Press any key or click to continue...</div>
+   </div>
+   <div class="main-content">
+      <div class="fallout-card">
+         <div class="fallout-card-header">
+            <i class="fas fa-book icon"></i>
+            <h1>COMPLETE INSTALLATION GUIDE</h1>
+         </div>
+         <div class="terminal-text guide-content">
+             <div class="banner-section">
+                <div class="social-links">
+                   <a href="https://discord.gg/bBngBN5A" class="social-link discord">
+                      <i class="fab fa-discord"></i>
+                      <span>JOIN COMMUNITY</span>
+                      <small>Discord Server</small>
+                   </a>
+                   <a href="https://www.youtube.com/@FalloutAnomaly" class="social-link youtube">
+                      <i class="fab fa-youtube"></i>
+                      <span>WATCH VIDEOS</span>
+                      <small>YouTube Channel</small>
+                   </a>
+                   <a href="https://www.nexusmods.com/fallout4/mods/74075" class="social-link nexus">
+                      <i class="fas fa-download"></i>
+                      <span>nEXUS MODS</span>
+                      <small>View our nexus page.</small>
+                   </a>
+                   <a href="https://falloutanomaly.fillout.com/bugreports" class="social-link bug-report">
+                      <i class="fas fa-bug"></i>
+                      <span>REPORT ISSUES</span>
+                      <small>Bug Reports</small>
+                   </a>
+                   <a href="https://ko-fi.com/falloutanomaly" class="social-link donate">
+                      <i class="fas fa-heart"></i>
+                      <span>SUPPORT PROJECT</span>
+                      <small>Donate</small>
+                   </a>
+                </div>
+             </div>
+                
+                <div class="disclaimer">
+                   <h3>Disclaimer:</h3>
+                   <ul class="terminal-sublist">
+                      <li>Beta Stages: Fallout Anomaly is currently in beta, meaning changes and evolution are inevitable. Updates may require starting a new save. If you're not ready for this, we recommend waiting until Anomaly is out of beta. However, we're proud to have a community of nearly 2,000 members who understand and embrace this process.</li>
+                      <li>Steam Version Only: At this time, only the Steam version of Fallout 4 is supported. Ensure your game is updated to version 1.10.980.0 for compatibility with the Wabbajack downgrade process.</li>
+                   </ul>
+                </div>
+                
+                <div class="important-warning">
+                   <h3>⚠️ IMPORTANT - DO NOT SKIP ⚠️</h3>
+                   <ul class="terminal-sublist">
+                      <li>🚨 YOU ABSOLUTELY NEED TO UPDATE FALLOUT 4 TO THE NEXT-GEN VERSION. THIS IS MANDATORY FOR WABBAJACK TO RUN ITS DOWNGRADE INSTALL.</li>
+                      <li>🚨 YOU ABSOLUTELY NEED TO DISABLE OVERLAYS SUCH AS STEAM, MEDAL, ETC. THESE ARE KNOWN TO CAUSE CRASHES.</li>
+                      <li>🚨 YOU ABSOLUTELY NEED TO SET UP PAGE FILE. THIS WILL HELP PREVENT CRASHES OR PERFORMANCE ISSUES.</li>
+                      <li>🚨 YOU ABSOLUTELY NEED TO SET ANTI-VIRUS EXCLUSIONS. AV IS KNOWN TO WRECK HAVOC WITH MODS SUCH AS ENB, ETC.</li>
+                   </ul>
+                </div>
+             </div>
+             
+             <div class="video-disclaimer">
+                <i class="fas fa-info-circle"></i>
+                <strong>Video Disclaimer:</strong> This video shows a slightly outdated user interface, but all installation information and steps remain accurate and up-to-date.
+             </div>
+             
+             <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/uYRev9mF4Q0?si=a6ar_TsmgJdy9QGG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+             </div>
+             
+             <div class="search-container">
+                <div class="search-box">
+                   <i class="fas fa-search search-icon"></i>
+                   <input type="text" id="global-search" placeholder="Search guide content..." autocomplete="off">
+                   <button id="clear-search" class="clear-search-btn" style="display: none;">
+                      <i class="fas fa-times"></i>
+                   </button>
+                </div>
+                <div id="search-results" class="search-results" style="display: none;"></div>
+             </div>
+             
+            <div class="tab-container">
+               <div class="tab-buttons">
+                  <button class="tab-button active" data-tab="step1">STEP 1: GETTING STARTED</button>
+                  <button class="tab-button" data-tab="step2">STEP 2: INSTALLATION</button>
+                  <button class="tab-button" data-tab="step3">STEP 3: LAUNCHING</button>
+                  <button class="tab-button" data-tab="step4">STEP 4: KNOWN ISSUES</button>
+                  <button class="tab-button" data-tab="step5">STEP 5: GAMEPLAY Guide</button>
+                  <button class="tab-button" data-tab="ai-assistant">Character Build Generator</button>
+                  <button class="tab-button" data-tab="faq">FAQ</button>
+                  <button class="tab-button" data-tab="support">SUPPORT & COMMUNITY</button>
+               </div>
+               <div class="tab-content active" id="step1">
+                   <div class="cards-grid-4main">
+                      <div class="info-card-main">
+                         <div class="card-header-main">
+                            <i class="fas fa-microchip"></i>
+                            <h3>Hardware Requirements</h3>
+                         </div>
+                         <div class="card-content-main">
+                            <div class="requirements-list">
+                               <div class="req-item">CPU: 6+ cores, 3GHz</div>
+                               <div class="req-item">RAM: 16GB min, 32GB ideal</div>
+                               <div class="req-item">GPU: 6GB VRAM, 8GB recommended</div>
+                               <div class="req-item">OS: Windows 10/11 (64-bit)</div>
+                               <div class="req-item">Storage: 350GB SSD required</div>
+                               <div class="req-item">Skills: Basic computer knowledge</div>
+                            </div>
+                            <div class="warning-box">
+                               <p>🚨 Install in dedicated folder: <code>C:\Fallout Modlist\Fallout Anomaly</code></p>
+                            </div>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-main">
+                         <div class="card-header-main">
+                            <i class="fas fa-crown"></i>
+                            <h3>Nexus Premium</h3>
+                         </div>
+                         <div class="card-content-main">
+                            <p>Highly recommended for uncapped downloads and automated installation.</p>
+                            <a href="https://next.nexusmods.com/premium" class="cta-button" target="_blank">Subscribe to Nexus Premium</a>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-main">
+                         <div class="card-header-main">
+                            <i class="fas fa-download"></i>
+                            <h3>Required Components</h3>
+                         </div>
+                         <div class="card-content-main">
+                            <div class="download-grid">
+                               <a href="https://github.com/abbodi1406/vcredist/releases/download/v0.82.0/VisualCppRedist_AIO_x86_x64.exe" target="_blank" class="download-item">
+                                  <i class="fas fa-cog"></i>
+                                  <span>Microsoft Visual C++</span>
+                               </a>
+                               <a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net462-web-installer" target="_blank" class="download-item">
+                                  <i class="fas fa-code"></i>
+                                  <span>NET Framework 4.6.2 & 5.0</span>
+                               </a>
+                               <a href="https://www.microsoft.com/en-us/download/details.aspx?id=8109" target="_blank" class="download-item">
+                                  <i class="fas fa-gamepad"></i>
+                                  <span>DirectX Redist (June 2010)</span>
+                               </a>
+                               <a href="https://www.youtube.com/watch?v=8ARhusN5SFI&t=0s" target="_blank" class="download-item">
+                                  <i class="fas fa-play"></i>
+                                  <span>Launch Vanilla Game Once</span>
+                               </a>
+                               <a href="https://github.com/NomadsReach/Fallout-Anomaly/blob/master/PageFile.md" target="_blank" class="download-item">
+                                  <i class="fas fa-memory"></i>
+                                  <span>PageFile Setup</span>
+                               </a>
+                               <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=552541227" target="_blank" class="download-item">
+                                  <i class="fas fa-language"></i>
+                                  <span>English Voice Files</span>
+                               </a>
+                               <a href="https://www.youtube.com/watch?v=7e_kY6LmQ0Y" target="_blank" class="download-item">
+                                  <i class="fas fa-eye-slash"></i>
+                                  <span>Disable Overlays</span>
+                               </a>
+                               <a href="https://sharing.clickup.com/clip/p/t9014300118/775310b9-3dc0-402d-8726-2a184ee55560/How%20to%20remove%20HD%20Texture%20Pack..webm" target="_blank" class="download-item">
+                                  <i class="fas fa-trash"></i>
+                                  <span>HD Texture Pack Removal</span>
+                               </a>
+                            </div>
+                         </div>
+                      </div>
+                      
+                      <div class="info-card-main warning-card">
+                         <div class="card-header-main">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>Critical Setup Steps</h3>
+                         </div>
+                         <div class="card-content-main">
+                            <div class="critical-steps">
+                               <div class="step-item">
+🚨 UPDATE FALLOUT 4 TO NEXT-GEN VERSION                                  <p>Mandatory for Wabbajack downgrade install</p>
+                               </div>
+                               <div class="step-item">
+🚨 DISABLE ALL OVERLAYS                                  <p>Steam, Medal, etc. These cause crashes</p>
+                               </div>
+                               <div class="step-item">
+🚨 SET UP PAGE FILE                                  <p>Minimum 16GB required for performance</p>
+                               </div>
+                               <div class="step-item">
+🚨 SET ANTI-VIRUS EXCLUSIONS                                  <p>Prevent interference with ENB and mods</p>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
+                   </div>
+                </div>
+               <div class="tab-content" id="step2">
+                  <div class="terminal-list">
+                     <!-- Collapsible Section 1: Before You Start -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-check-circle"></i>1. Before You Start                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="checklist-item">
+                              <span class="check-icon">✅</span>
+                              <div>
+Log into Nexus in Wabbajack                                 <p>Open Wabbajack, click the ⚙️ cogwheel, and log in under the Nexus panel.</p>
+                                 <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/wabbajack.png" alt="Nexus Login in Wabbajack" class="guide-image">
+                              </div>
+                           </div>
+                           
+                           <div class="setup-section">
+                              <h4><i class="fas fa-shield-alt"></i> Antivirus Setup</h4>
+                              <p>To prevent interference, add a folder exclusion for your entire install directory:</p>
+                              <ol class="terminal-sublist">
+                                 <li>
+                                    Open Windows Security → <em>Virus & threat protection</em><br>
+                                    <img src="https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-defender-security-center/images/security-center-home.png" alt="Virus & threat protection home" class="screenshot">
+                                 </li>
+                                 <li>
+                                    Scroll to <em>Exclusions</em> and select <em>Add or remove exclusions</em><br>
+                                    <img src="https://www.avoiderrors.com/wp-content/uploads/2020/07/AEW10A-3.png" alt="Exclusions page" class="screenshot">
+                                 </li>
+                                 <li>
+                                    Click <em>Add an exclusion</em> → choose <em>Folder</em> and browse to your install folder<br>
+                                    <img src="https://www.tenforums.com/attachments/tutorials/256525d1574614840-add-remove-microsoft-defender-antivirus-exclusions-windows-10-a-windows_defender_exclusions-4.png" alt="Add folder exclusion dialog" class="screenshot">
+                                 </li>
+                              </ol>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 2: Installation Process -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-download"></i>2. Installation Process                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="install-step">
+                              <h4>📥 Downloading Fallout Anomaly</h4>
+                        <ul class="terminal-sublist">
+                                 <li>Locate <em>Fallout Anomaly</em> in the Wabbajack Browser and download the file.</li>
+                                 <li>Set both Install Location and Download Location on the same drive for best performance.</li>
+                        </ul>
+                              <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/wabbajack%20install.png" alt="Verify Installation" class="guide-image">
+                        </div>
+                     </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 3: Troubleshooting -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-tools"></i>3. Troubleshooting                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="terminal-troubleshooting">
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[ERROR]</span>
+                                    <span class="terminal-title">Common Error Messages</span>
+                     </div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">"Could Not Download MOD"</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Manually download the mod and place it in Wabbajack's download folder</div>
+                                       <div class="solution-step">→ Check <a href="https://nexusmods.statuspage.io/" target="_blank" class="terminal-link">Nexus Mods Status</a> if needed</div>
+                  </div>
+               </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">"Mod Is Not a Whitelisted Download"</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ The modlist may have been updated, making an old mod link invalid</div>
+                                       <div class="solution-step">→ Wait for a new release or notify us on <a href="#" class="terminal-link">Discord</a></div>
+                              </div>
+                           </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">"Missing Game Files"</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Ensure your game is updated to the next-gen version</div>
+                        </div>
+                     </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">"Wabbajack Could Not Find My Game Folder"</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Pirated versions are not supported</div>
+                                       <div class="solution-step">→ Ensure you own Fallout 4 on <a href="#" class="terminal-link">Steam</a></div>
+                     </div>
+                        </div>
+                        </div>
+                              
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[DOWNLOAD]</span>
+                                    <span class="terminal-title">Manual Downloads</span>
+                     </div>
+                                 
+                                 <div class="terminal-download-block">
+                                    <div class="download-header">Google Drive Issues</div>
+                                    <div class="download-solution">
+                                       <div class="solution-step">→ If downloads fail, download manually and place the file in your Wabbajack download folder</div>
+                                       <div class="solution-step">→ Restart the install</div>
+                     </div>
+                                    <div class="terminal-buttons">
+                                       <a href="https://drive.google.com/file/d/1sWpTDjSYC4xwhEveSuVhykjzHpZ2Qk1Y/view" class="terminal-button" target="_blank">
+                                          <i class="fas fa-download"></i> Download Link 1
+                                       </a>
+                                       <a href="https://drive.google.com/file/d/1APDBlK9UuPkXgptW0U1IHtKgEv4s9ruP/view" class="terminal-button" target="_blank">
+                                          <i class="fas fa-download"></i> Download Link 2
+                                       </a>
+                     </div>
+                        </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-download-block">
+                                    <div class="download-header">ENB Download Issues</div>
+                                    <div class="download-solution">
+                                       <div class="solution-step">→ If your ENB download fails, download it manually and move it to the Anomaly Downloads folder</div>
+                                       <div class="solution-step">→ This folder is created by Wabbajack during installation</div>
+                                       <div class="solution-step">→ <span class="warning-text">❗ DO NOT extract the file</span>—just place it in the folder</div>
+                                       <div class="solution-step">→ Restart Wabbajack and run the installer again</div>
+                        </div>
+                                    <div class="terminal-buttons">
+                                       <a href="http://enbdev.com/mod_fallout4_v0496.htm" class="terminal-button primary" target="_blank">
+                                          <i class="fas fa-download"></i> Download ENB for Fallout 4
+                                       </a>
+                     </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Collapsible Section 4: After Installation -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-check-double"></i>4. After Installation                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="cards-grid">
+                              <div class="info-card">
+                                 <div class="card-header">
+                                    <i class="fas fa-sync-alt"></i>
+                                    <h3>Updates</h3>
+                                 </div>
+                                 <div class="card-content">
+                                    <p>We announce updates on Discord and Nexus Mods.</p>
+                                    <p>To update: Re-run Wabbajack on the same path you installed firstly."</p>
+                                    <div class="warning-box">
+                                       <p>⚠️ Wabbajack will delete any manually installed mods not part of the official modlist.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                              
+                              <div class="info-card">
+                                 <div class="card-header">
+                                    <i class="fas fa-save"></i>
+                                    <h3>Save Files</h3>
+                                 </div>
+                                 <div class="card-content">
+                                    <p>Your save files remain intact unless we explicitly state otherwise.</p>
+                                    <p>Location: <code>(Install Folder)/Profiles/Fallout Anomaly/Saves</code></p>
+                                 </div>
+                              </div>
+                              
+                              <div class="info-card">
+                                 <div class="card-header">
+                                    <i class="fas fa-question-circle"></i>
+                                    <h3>Need Help?</h3>
+                                 </div>
+                                 <div class="card-content">
+                        <div class="support-links">
+                           <a href="https://discord.gg/aCa75Y3kX9" class="support-link discord" target="_blank">
+                              <i class="fab fa-discord"></i> Discord Support
+                           </a>
+                           <a href="https://wiki.wabbajack.org/" class="support-link wiki" target="_blank">
+                              <i class="fas fa-book"></i> Wabbajack Wiki
+                           </a>
+                           <a href="https://discord.gg/wabbajack" class="support-link discord" target="_blank">
+                              <i class="fab fa-discord"></i> Wabbajack Discord
+                           </a>
+                        </div>
+                     </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
+                  </div>
+               </div>
+               <div class="tab-content" id="step3">
+                  <div class="terminal-list">
+                     <!-- Collapsible Section 1: Launching Fallout Anomaly -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-rocket"></i>1. Launching Fallout Anomaly                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="terminal-troubleshooting">
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[LAUNCH]</span>
+                                    <span class="terminal-title">Game Launch Instructions</span>
+                              </div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Getting Started</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ When you open Mod Organizer 2 (MO2), the interface might seem complex at first</div>
+                                       <div class="solution-step">→ Don't worry—we've streamlined the process for you!</div>
+                           </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">How to Launch the Game</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ In the top-right corner of the MO2 interface, click "Launch Fallout Anomaly"</div>
+                                       <div class="solution-step">→ This will start the game with all mods properly loaded</div>
+                        </div>
+                     </div>
+                     
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Important Warning</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ <span class="warning-text">⚠️ DO NOT use the vanilla game launcher!</span></div>
+                                       <div class="solution-step">→ Always use the MO2 launcher to ensure proper mod loading</div>
+                        </div>
+                        </div>
+                     </div>
+                     </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 2: F4SE (Fallout 4 Script Extender) -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-tools"></i>2. F4SE (Fallout 4 Script Extender)                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="terminal-troubleshooting">
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[F4SE]</span>
+                                    <span class="terminal-title">Script Extender Information</span>
+                                 </div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">What is F4SE?</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ F4SE is essential for most Fallout mods and is required to run Fallout Anomaly</div>
+                                       <div class="solution-step">→ It extends the game's scripting capabilities beyond what's normally possible</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Automatic Setup</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ When using MO2, F4SE is automatically included in "Launch Fallout Anomaly"</div>
+                                       <div class="solution-step">→ <span class="warning-text">No extra setup needed!</span> Everything is handled automatically</div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Collapsible Section 3: Crash Handling -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-bug"></i>3. Crash Handling                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="terminal-troubleshooting">
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[CRASH]</span>
+                                    <span class="terminal-title">Crash Reporting Process</span>
+                                 </div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">If Your Game Crashes</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Follow these steps to report the issue and get help</div>
+                                       <div class="solution-step">→ The more information you provide, the faster we can help you</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 1: Save the Log</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Save the log to an easily accessible location</div>
+                                       <div class="solution-step">→ This contains important debugging information</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 2: Upload the Log</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Upload the log via our <a href="https://falloutanomaly.fillout.com/bugreports" target="_blank" class="terminal-link">bug report form</a></div>
+                                       <div class="solution-step">→ OR post it in our <a href="#" class="terminal-link">Discord support section</a></div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 3: Attach Save File</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Attach your most recent save file to help with debugging</div>
+                                       <div class="solution-step">→ This helps us reproduce the issue and find a solution</div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Collapsible Section 4: Changing Resolution (BethINI) -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-desktop"></i>4. Changing Resolution (BethINI)                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="terminal-troubleshooting">
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[BETHINI]</span>
+                                    <span class="terminal-title">Resolution Adjustment Tool</span>
+                                 </div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">When to Use BethINI</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ If your game's resolution isn't correct, use BethINI to adjust it</div>
+                                       <div class="solution-step">→ <span class="warning-text">Do NOT modify other settings!</span> Only change resolution</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 1: Close MO2</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Close Mod Organizer 2 before making changes</div>
+                                       <div class="solution-step">→ This ensures changes are applied correctly</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 2: Navigate to BethINI</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Navigate to your Anomaly installation folder</div>
+                                       <div class="solution-step">→ Open the <code>Tools</code> directory</div>
+                                       <div class="solution-step">→ Inside, find and open the BethINI folder</div>
+                                       <div class="solution-step">→ Right-click <code>BethINI.exe</code> and select "Run as Administrator"</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 3: Configure Settings</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ In BethINI, select Fallout 4</div>
+                                       <div class="solution-step">→ <span class="warning-text">DO NOT change INI paths!</span></div>
+                                       <div class="solution-step">→ Go to the Basic tab and adjust your resolution</div>
+                                       <div class="solution-step">→ Click Save & Exit to apply the changes</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-buttons">
+                                    <div class="guide-image">
+                           <img src="https://github.com/user-attachments/assets/e83c48cc-d321-4fd9-b17f-02d7f399c80c" alt="BethINI Screenshot" class="guide-image">
+                        </div>
+                     </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Collapsible Section 5: Apply the MCM Preset -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-exclamation-triangle"></i>5. Apply the MCM Preset!                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="terminal-troubleshooting">
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[MCM]</span>
+                                    <span class="terminal-title">Mod Configuration Menu Preset</span>
+                                 </div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Important: Apply the Preset</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ <span class="warning-text">Don't forget to apply the preset for proper settings!</span></div>
+                                       <div class="solution-step">→ This ensures all mods are configured correctly for the best experience</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-buttons">
+                                    <div class="guide-image">
+                        <img src="https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/mcmpreset.png" alt="Preset Screenshot" class="guide-image">
+                     </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Collapsible Section 6: Disabling Black Bars (Letterbox) in ENB -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-film"></i>6. Disabling Black Bars (Letterbox) in ENB                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="terminal-troubleshooting">
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[ENB]</span>
+                                    <span class="terminal-title">Disable Letterbox Effect</span>
+                                 </div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Removing Black Bars</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ If you don't like the black bars at the top and bottom of the screen, follow these steps</div>
+                                       <div class="solution-step">→ This will give you a full-screen experience without the letterbox effect</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 1: Open Console</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Press the <code>~</code> key (next to the <code>1</code> key) to open the console</div>
+                                       <div class="solution-step">→ This gives you access to the game's developer console</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 2: Open ENB Menu</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Press <code>END</code> to open the ENB menu</div>
+                                       <div class="solution-step">→ This will overlay the ENB configuration interface</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 3: Disable Letterbox</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Navigate to the Post Processing section</div>
+                                       <div class="solution-step">→ Uncheck the Letterbox option</div>
+                                       <div class="solution-step">→ Click Save Configuration (top-left)</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 4: Exit Menus</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Press <code>END</code> and <code>~</code> again to exit the menus</div>
+                                       <div class="solution-step">→ The changes will be applied immediately</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-buttons">
+                                    <div class="guide-image">
+                        <img src="https://github.com/user-attachments/assets/c416445f-e1b8-4bc3-9efa-7906d7eb586e" alt="ENB Menu Screenshot" class="guide-image">
+                     </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Collapsible Section 7: Optional Mods -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-puzzle-piece"></i>7. Optional Mods                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="terminal-troubleshooting">
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[MODS]</span>
+                                    <span class="terminal-title">Optional Modifications</span>
+                                 </div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Customize Your Experience</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Anomaly includes a collection of optional mods to enhance your gameplay experience</div>
+                                       <div class="solution-step">→ Browse through them and customize your experience to your liking</div>
+                                       <div class="solution-step">→ These mods are not required but can add extra features and improvements</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-buttons">
+                                    <div class="guide-image">
+                        <img src="https://github.com/user-attachments/assets/708ad0e6-37fe-4ecd-a215-82e110ae1c4f" alt="Optional Mods" class="guide-image">
+                     </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
+                  </div>
+               </div>
+               <div class="tab-content" id="step4">
+                  <div class="terminal-list">
+                     <!-- Collapsible Section 1: Known Issues -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-exclamation-triangle"></i>1. Known Issues                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="terminal-troubleshooting">
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[ISSUES]</span>
+                                    <span class="terminal-title">Known Game Issues</span>
+                              </div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Main Menu Delay</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ When launching the game you may experience a delay as scripts load</div>
+                                       <div class="solution-step">→ This delay varies based on your system's power</div>
+                                       <div class="solution-step">→ More powerful systems may not encounter this issue</div>
+                              </div>
+                     </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Stuck in Menu</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ If you find yourself unable to progress from the first loading or main menu</div>
+                                       <div class="solution-step">→ Watch <a href="https://www.youtube.com/watch?v=JTnhJsM3_hg&t" target="_blank" class="terminal-link">this video</a> for help with the issue</div>
+                                       <div class="solution-step">→ If the video doesn't resolve it, we've provided new save files for you to load and customize your character as needed</div>
+                     </div>
+                     </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Post-Character Creation Freeze</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ After creating your character, your game will save and may appear to freeze temporarily</div>
+                                       <div class="solution-step">→ This is due to multiple scripts loading simultaneously</div>
+                                       <div class="solution-step">→ <span class="warning-text">Be patient and wait for a few minutes</span>; the game will resume normally</div>
+                           </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Falling Through Vault Issue</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ If you're falling through the vault floor, this is likely due to the "Uneducated Shooter" mod</div>
+                                       <div class="solution-step">→ Solution: Only enable the "Uneducated Shooter" mod after leaving the vault</div>
+                        </div>
+                     </div>
+                     
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Known Crash Related Issues</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Programs like medal (recording software) or anything that adds an overlay can conflict with ENBS or other DLL hooked mods</div>
+                                       <div class="solution-step">→ If you are crashing right at the launch of game or at the main menu, this can be one of the main causes</div>
+                        </div>
+                     </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 2: Controller Support -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-gamepad"></i>2. Controller Support                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="terminal-troubleshooting">
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[CONTROLLER]</span>
+                                    <span class="terminal-title">Gamepad Configuration</span>
+                                 </div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Supported Controllers</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ We currently support PS5 controllers</div>
+                                       <div class="solution-step">→ Xbox support planned for the future</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 1: Configure Steam Settings</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Ensure your Steam controller settings are correctly set up as shown in the window below</div>
+                                       <div class="solution-step">→ Steam Overlay must be enabled for the controller to function properly</div>
+                                       <div class="solution-step">→ Steam Input: Paste the following link into your browser and open Steam when prompted:</div>
+                                       <div class="solution-step">→ <code>steam://controllerconfig/377160/3420527035</code></div>
+                                       <div class="solution-step">→ This will install the custom controller profile for Fallout Anomaly</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 2: Enable the Controller Support Mod</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ In MO2, activate the optional mod:</div>
+                                       <div class="solution-step">→ "A - OPT - Controller Support - PS5 Support"</div>
+                                       <div class="solution-step">→ This ensures full functionality for your PS5 controller in-game</div>
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="terminal-buttons">
+                                    <div class="guide-image">
+                                 <img src="https://github.com/user-attachments/assets/06e65ae6-05b8-4a1e-9d33-ca8ec5b9bc7f" alt="Steam Settings" class="guide-image">
+                                 <img src="https://github.com/user-attachments/assets/8b3ae832-e62e-4817-b858-d70256727bf8" alt="Controller Configuration" class="guide-image">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
+                  </div>
+               </div>
+               <div class="tab-content" id="step5">
+                  <div class="terminal-list">
+                     <!-- Collapsible Section 1: Survival Mechanics -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-heartbeat"></i>1. Survival Mechanics                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🍽️ Survival Mode Features                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Needs System: You must regularly eat, drink, and sleep to avoid penalties. Hunger, thirst, and fatigue will reduce your stats and eventually cause damage or even death</div>
+                                    <div class="skill-item">Fast Travel: Traditional fast travel is disabled. You can only fast travel by using the APC Travel System or navigating the expanded subway system found across the Commonwealth</div>
+                                    <div class="skill-item">Saving the Game: Manual saving and quicksaving are disabled. You can only save by smoking, using Survival Pack item found in the Aid menu or by sleeping.</div>
+                                    <div class="skill-item">Combat Difficulty: Both you and enemies deal more damage. Healing is slowed, and combat is more lethal across the board</div>
+                                    <div class="skill-item">Ammo Has Weight: Every bullet, shell, or fusion cell you carry adds weight to your inventory, forcing smarter inventory management</div>
+                                    <div class="skill-item">Illness & Injury: You can get sick, suffer broken limbs, or require items like antibiotics and splints for proper healing. Doctors may be needed to cure serious conditions</div>
+                                    <div class="skill-item">Carry Weight Reduced: Your base carry weight is significantly lower, making every item choice matter. Backpacks and perks help extend capacity</div>
+                                    <div class="skill-item">Backpacks: Can be found or crafted using perks from the Junk Jockey skill to increase carry capacity</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="warning-box">
+                              <p>Note: The mods featured in the sections below also play a major role in shaping the survival experience. Be sure to explore them to get the full intended gameplay challenge.</p>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Collapsible Section 2: Skills and Levels -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-graduation-cap"></i>2. Skills and Levels                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <ul class="terminal-sublist">
+                              <li>Utilizes the <a href="https://www.nexusmods.com/fallout4/mods/76739" target="_blank">YAE mod</a>, which introduces new skills and modifies the perk system.</li>
+                              <li>Adds new traits for enhanced character customization.</li>
+                           </ul>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🎯 You Are Exceptional – What Is It?                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <p>A major upgrade to Fallout 4's Skills and Perks system. Inspired by <em>Be Exceptional</em> and <em>You Are SPECIAL!</em>, but expands far beyond them.</p>
+                                 <div class="skill-grid">
+                                    <div class="skill-item">26 total Skills - Comprehensive skill system</div>
+                                    <div class="skill-item">250+ new and reworked Perks - Enhanced progression</div>
+                                    <div class="skill-item">More control over character growth - Better customization</div>
+                                    <div class="skill-item">Background Selection - Choose a Background at the start, which gives your character a backstory, starter gear, and Skill bonuses</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+⚡ What's Different?                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Reworked Perks: All vanilla perks have been reworked, split, or enhanced</div>
+                                    <div class="skill-item">Skill-Based Unlocks: Perks are unlocked through Skill levels, not SPECIAL stats</div>
+                                    <div class="skill-item">Tagged Skills: Choose 3 Skills to "Tag" at the start for a +25 bonus</div>
+                                    <div class="skill-item">Bonus Perk Points: Bonus Perk Point every 5 levels</div>
+                                    <div class="skill-item">Perk Cap: Perks cap at level 10</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🔧 How Skills Work                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <p>Each SPECIAL stat has 4 tied Skills (Luck has 2 but boosts all Skills slightly). Skills range from 0 to 100 and affect gameplay like damage, crafting, healing, and more.</p>
+                              </div>
+                           </div>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+All Skills (26 Total)                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <div class="skill-grid">
+                                     <div class="skill-item">[STR] Artillery: Heavy guns damage and handling</div>
+                                     <div class="skill-item">[CHR] Barter: Merchant prices and vendor perks</div>
+                                     <div class="skill-item">[INT] Chemistry: Chem crafting and duration</div>
+                                     <div class="skill-item">[PER] Demolitions: Explosives damage and crafting</div>
+                                     <div class="skill-item">[STR] Engineering: Machinery and power armor</div>
+                                     <div class="skill-item">[END] Fitness: Max health and swimming</div>
+                                     <div class="skill-item">[LCK] Gambling: Risk/reward perks and caps</div>
+                                     <div class="skill-item">[PER] Gunsmithery: Ballistic weapon crafting</div>
+                                     <div class="skill-item">[INT] Hacking: Terminal access and robot sabotage</div>
+                                     <div class="skill-item">[AGI] Handguns: Pistols and revolvers</div>
+                                     <div class="skill-item">[CHR] Influence: Companion damage and settlements</div>
+                                     <div class="skill-item">[PER] Lockpicking: Door and container access</div>
+                                     <div class="skill-item">[PER] Longarms: Rifles and shotguns</div>
+                                     <div class="skill-item">[INT] Medicine: Healing effectiveness</div>
+                                     <div class="skill-item">[LCK] Opportunity: Critical mechanics and perks</div>
+                                     <div class="skill-item">[CHR] Persuasion: Speech checks and social perks</div>
+                                     <div class="skill-item">[AGI] Pickpocket: Theft and inventory manipulation</div>
+                                     <div class="skill-item">[STR] Robustness: Carry weight and movement</div>
+                                     <div class="skill-item">[AGI] Salvage: Scrap yield and ingredient gathering</div>
+                                     <div class="skill-item">[INT] Science: Energy weapons and batteries</div>
+                                     <div class="skill-item">[AGI] Stealth: Detection and sneak attacks</div>
+                                     <div class="skill-item">[END] Survival: Food healing and environment</div>
+                                     <div class="skill-item">[END] Tinkering: Armor and melee weapon crafting</div>
+                                     <div class="skill-item">[END] Unarmed: Bare-handed combat</div>
+                                     <div class="skill-item">[STR] Weaponry: Melee weapons and power attacks</div>
+                                     <div class="skill-item">[CHR] Zoology: Animal companion damage</div>
+                                  </div>
+                               </div>
+                            </div>
+                           <div class="warning-box">
+                              <p>This system gives you more freedom to build the kind of character you want, with meaningful choices and better progression. Check your Pip-Boy after installing to get started.</p>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Collapsible Section 3: Combat Overhaul -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-crosshairs"></i>3. Combat Overhaul: Realistic Damage, Ammo, and Enemy Scaling                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🎯 True Damage – Realistic Weapon Behavior                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <p>True Damage reworks Fallout's combat mechanics for realism and balance:</p>
+                                 <div class="skill-grid">
+                                    <div class="skill-item">NPC Damage Reduction: All NPCs with guns get a perk that reduces base damage by 90%</div>
+                                    <div class="skill-item">Realistic Damage: Realistic damage is applied via ammo, scaled by caliber</div>
+                                    <div class="skill-item">Logical Ranges: Same-caliber weapons have logical damage ranges (e.g. .38 weapons do ~19–25 dmg)</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+⚙️ Weapon Customization                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Independent Sliders: For Pistols, Rifles, Snipers, Shotguns, Heavy, Melee, Suppressed, etc.</div>
+                                    <div class="skill-item">Damage Type Controls: Separate controls by damage type: Ballistic, Laser, Plasma, Gamma, Explosive</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+📈 Built-in Buffs                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Rifles: +100% range, +20% accuracy</div>
+                                    <div class="skill-item">Snipers: +300% range, +50% accuracy, +100% damage</div>
+                                    <div class="skill-item">Shotguns: +30% accuracy for tighter spread</div>
+                                    <div class="skill-item">Suppressors: Apply small stat penalties for balance</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🚀 Advanced Features                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Energy Weapons: Excluded from ammo scaling to preserve lore and balance</div>
+                                    <div class="skill-item">Global Damage Sliders: Easily override difficulty/damage mods via MCM</div>
+                                    <div class="skill-item">Smart Scaling: Incoming damage adapts to your HP to avoid bullet sponges</div>
+                                    <div class="skill-item">Perks Module: Gun perks are reworked with new effects (e.g. Gunslinger → Light Loadout)</div>
+                                    <div class="skill-item">Vehicle Module: Prevents vehicles from exploding too easily with added resistances</div>
+                                    <div class="skill-item">Optional Tweaks: Improve reload speed, range, and accuracy for more realism</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🔫 Munitions – Expanded Ammunition Framework                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <p>Munitions is a modular, lore-friendly ammo expansion project that adds new ballistic, energy, and explosive rounds into the game without breaking balance.</p>
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Seamless Integration: High-quality custom ammo types</div>
+                                    <div class="skill-item">Player Control: Toggle individual ammo types to control what's added</div>
+                                    <div class="skill-item">Lore-Friendly: Designed to match Fallout's existing universe and weapon lore</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🤖 SCOURGE – Smarter Enemy Scaling                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <p>SCOURGE brings realism to NPC combat by replacing predictable scaling with randomized stat generation.</p>
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Random Stats: Uses normal distribution to assign random but believable stats (health, resistance, damage)</div>
+                                    <div class="skill-item">Fully Customizable: Via MCM — includes race-specific tuning and NPC/stat exclusions</div>
+                                    <div class="skill-item">Optimized: Highly optimized scripting ensures no lag or save bloat</div>
+                                 </div>
+                                 <p>Example:</p>
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Deathclaw Health: Can now spawn with health between 500–900 (avg. ~700)</div>
+                                    <div class="skill-item">Stat Combinations: Over 12 million stat combinations are possible for just Deathclaws</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Collapsible Section 4: Healing Guide -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-medkit"></i>4. Healing Guide                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <p>MAIM is a realistic combat and medical overhaul that introduces lethal headshots, injuries, bleeding, pain, and more. It is highly customizable through the MCM, allowing most features to be tweaked or disabled. The system remains performance-friendly with minimal scripts.</p>
+                           <p>This is a major gameplay overhaul. We recommend reading the full mod page on Nexus Mods. A solid MCM setup is pre-configured for you out of the box.</p>
+                           <div class="warning-box">
+                              <p><a href="https://www.nexusmods.com/fallout4/mods/72235" target="_blank" rel="noopener noreferrer">MAIM – Locational Damage & Medical Overhaul<br>View full details on Nexus Mods</a></p>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+💊 MAIM Medical Items                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">SP-1 Stimpak: Gradual HP + AP regen, cures NPC injuries, strong poison resistance (180s)</div>
+                                    <div class="skill-item">SP-2 Stimpak: 3%/s HP & limb healing (40s). Most powerful heal, but requires weapon holstered</div>
+                                    <div class="skill-item">Med-X: Treats pain, shock, and contusion. Heals head 1%/s (180s). Addictive</div>
+                                    <div class="skill-item">Ibuprofen: Heals head & non-crippled limbs 0.5%/s (180s). Mildly addictive</div>
+                                    <div class="skill-item">Bandage: Stops light bleeds, heals injured limbs (1%/s for 60s)</div>
+                                    <div class="skill-item">QuikClot Injector: Stops heavy bleeds and prevents further bleeding until limb is healed</div>
+                                    <div class="skill-item">IFAK: Stops heavy bleed, removes crippled status, heals 1%/s (80s)</div>
+                                    <div class="skill-item">SAM Splint: Sets crippled limbs to 1 HP, downgrades heavy bleed</div>
+                                    <div class="skill-item">TXA Injector: Stops light bleeds, reduces heavy bleeds, +300s critical wound protection</div>
+                                    <div class="skill-item">Ca-DTPA: Removes 10 RAD/s for 60s. Requires weapon holstered. - Replaces Vanilla Radaway - Also 
+                                       slowly removes IRA.</div>
+                                    <div class="skill-item">Potassium Iodide: +200 RAD resistance, -0.5 RAD/s for 300s. Replaces Rad-X</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="warning-box">
+                              <p>Pro Tip: Healing items do not stack with themselves, but you can combine different effects (e.g., SP-1 + SP-2). Pre-med with TXA and ibuprofen before a firefight for best results.</p>
+                           </div>
+                        </div>
+                     </div>
+                      <!-- Collapsible Section 5: Radiation System -->
+                      <div class="terminal-list-item collapsible-section">
+                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-radiation"></i>5. Radiation System                            <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                         </div>
+                         <div class="collapsible-content">
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+⚛️ Radiation Mechanics                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                   <div class="hierarchical-content">
+                                      <div class="section-item">
+                                         <span class="section-header">Dual-layered System:</span> RAD (Tissue Damage) from environmental exposure + IRA (Ingested Radioactive Particles) from food/water/weather/hazards. These are two separate but interconnected systems that can feed into each other.
+                                      </div>
+                                      
+                                      <div class="radiation-loop-section">
+                                         <h4>The Radiation Loop</h4>
+                                         <div class="vicious-cycle">
+                                            <div class="cycle-box top">Untreated RAD Damage</div>
+                                            <div class="cycle-arrow down">↓</div>
+                                            <div class="cycle-box middle">IRA Acquired</div>
+                                            <div class="cycle-arrow down">↓</div>
+                                            <div class="cycle-box bottom">Disease Effects</div>
+                                            <div class="cycle-arrow vicious">VICIOUS CYCLE</div>
+                                         </div>
+                                      </div>
+                                      
+                                      <div class="section-item">
+                                         <span class="section-header">Breaking the Loop:</span>
+                                         <ul>
+                                            <li>Consuming alcohol lowers IRA levels, helping break this deadly cycle</li>
+                                            <li>Proper treatment with radiation medicines can interrupt the progression before it becomes fatal</li>
+                                            <li>Use protective gear to prevent initial exposure</li>
+                                         </ul>
+                                      </div>
+                                      
+                                      <div class="section-item">
+                                         <span class="section-header">Fatal Progression:</span> Untreated radiation will eventually kill the player—even leaving radioactive areas doesn't guarantee safety once the loop has started. The damage continues to compound until treated.
+                                      </div>
+                                      
+                                      <div class="section-item">
+                                         <span class="section-header">Geiger Alerts:</span> Your Geiger counter will indicate ambient particles, radiation poisoning, and dangerous IRA levels. Pay attention to these warnings—they're your early warning system.
+                                      </div>
+                                      
+                                      <div class="section-item">
+                                         <span class="section-header">Weather Hazards:</span> Radiation storms require functional protective gear (gas masks, hazmat suits, power helmets). Without proper protection, you'll quickly accumulate both RAD and IRA damage.
+                                      </div>
+                                      
+                                      <div class="three-column-section">
+                                         <div class="column">
+                                            <div class="column-icon">⚙️</div>
+                                            <h5>Breakable Gear</h5>
+                                            <ul>
+                                               <li>Protective gear is now breakable and must be maintained</li>
+                                               <li>A broken gas mask is worse than no mask at all—it gives false security</li>
+                                            </ul>
+                                         </div>
+                                         <div class="column">
+                                            <div class="column-icon">📡</div>
+                                            <h5>RadBoy Tool</h5>
+                                            <ul>
+                                               <li>Optional tool that notifies players via text or voice when radiation or IRA levels rise dangerously</li>
+                                               <li>Consider this essential equipment for survival in the wasteland</li>
+                                            </ul>
+                                         </div>
+                                      </div>
+                                      
+                                      <div class="section-item">
+                                         <span class="section-header">Doctor Fees:</span> Separate fees for small vs. large radiation treatments. Prevention is cheaper than cure—stock up on medicines before venturing into dangerous areas.
+                                      </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+📊 Radiation Types                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <div class="table-container">
+                                     <table class="radiation-table">
+                                        <thead>
+                                           <tr>
+                                              <th>Type</th>
+                                              <th>Description</th>
+                                              <th>Sources</th>
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                           <tr>
+                                              <td>RAD</td>
+                                              <td>Tissue Damage</td>
+                                              <td>Environmental exposure</td>
+                                           </tr>
+                                           <tr>
+                                              <td>IRA</td>
+                                              <td>Ingested Radioactive Particles</td>
+                                              <td>Food, water, weather, hazards, untreated RADs</td>
+                                           </tr>
+                                        </tbody>
+                                     </table>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+💊 Radiation Medicines                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <div class="table-container">
+                                     <table class="radiation-table">
+                                        <thead>
+                                           <tr>
+                                              <th>Medicine</th>
+                                              <th>Effect</th>
+                                              <th>Treats</th>
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                           <tr>
+                                              <td>Cleansing Tonic</td>
+                                              <td>Cures Radiation Poisoning. Spawned with Doctors and Carla: 100% chance 1 in stock, 25% chance 2</td>
+                                              <td>
+                                                 <div class="treats-single">
+                                                    <span class="treats-label">Poisoning:</span>
+                                                    <span class="treats-icon positive">✅</span>
+                                  </div>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td>Ca-DTPA Injector</td>
+                                              <td>Fast Rads/IRA removal. Removes Rads/IRA over 30s; perks can make it faster. Base effect: -25 Rads / -50 IRA; scales with Medicine skill/perks. Player cannot sprint while effect is active. Does NOT cure Radiation Poisoning</td>
+                                              <td>
+                                                 <div class="treats-grid">
+                                                    <div class="treats-item">
+                                                       <span class="treats-label">IRA:</span>
+                                                       <span class="treats-icon positive">✅</span>
+                                                    </div>
+                                                    <div class="treats-item">
+                                                       <span class="treats-label">RAD:</span>
+                                                       <span class="treats-icon positive">✅</span>
+                                                    </div>
+                                                 </div>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td>CaDTPA</td>
+                                              <td>Reduces 300 IRA & 150 RADs over 60s; cures radiation poisoning</td>
+                                              <td>
+                                                 <div class="treats-grid">
+                                                    <div class="treats-item">
+                                                       <span class="treats-label">IRA:</span>
+                                                       <span class="treats-icon positive">✅</span>
+                                                    </div>
+                                                    <div class="treats-item">
+                                                       <span class="treats-label">RAD:</span>
+                                                       <span class="treats-icon positive">✅</span>
+                                                    </div>
+                                                 </div>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td>MutAway</td>
+                                              <td>Heals RADs directly</td>
+                                              <td>
+                                                 <div class="treats-grid">
+                                                    <div class="treats-item">
+                                                       <span class="treats-label">IRA:</span>
+                                                       <span class="treats-icon negative">❌</span>
+                                                    </div>
+                                                    <div class="treats-item">
+                                                       <span class="treats-label">RAD:</span>
+                                                       <span class="treats-icon positive">✅</span>
+                                                    </div>
+                                                 </div>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td>Potassium Iodide</td>
+                                              <td>+200 RAD resistance and reduces RADs by 0.5/sec for 300s. Replaces Vanilla Rad-X. Increases IRA resistance</td>
+                                              <td>
+                                                 <div class="treats-grid">
+                                                    <div class="treats-item">
+                                                       <span class="treats-label">IRA:</span>
+                                                       <span class="treats-icon shield">🛡️</span>
+                                                    </div>
+                                                    <div class="treats-item">
+                                                       <span class="treats-label">RAD:</span>
+                                                       <span class="treats-icon shield">🛡️</span>
+                                                    </div>
+                                                 </div>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td>Pb-Jelly</td>
+                                              <td>Increases RAD resistance</td>
+                                              <td>
+                                                 <div class="treats-grid">
+                                                    <div class="treats-item">
+                                                       <span class="treats-label">IRA:</span>
+                                                       <span class="treats-icon negative">❌</span>
+                                                    </div>
+                                                    <div class="treats-item">
+                                                       <span class="treats-label">RAD:</span>
+                                                       <span class="treats-icon shield">🛡️</span>
+                                                    </div>
+                                                 </div>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td>Booze</td>
+                                              <td>Lowers IRA levels</td>
+                                              <td>
+                                                 <div class="treats-grid">
+                                                    <div class="treats-item">
+                                                       <span class="treats-label">IRA:</span>
+                                                       <span class="treats-icon positive">✅</span>
+                                                    </div>
+                                                    <div class="treats-item">
+                                                       <span class="treats-label">RAD:</span>
+                                                       <span class="treats-icon negative">❌</span>
+                                                    </div>
+                                                 </div>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td>Antibiotics</td>
+                                              <td>Cure infections caused by radiation exposure</td>
+                                              <td>
+                                                 <div class="treats-single">
+                                                    <span class="treats-label">Infections:</span>
+                                                    <span class="treats-icon positive">✅</span>
+                                                 </div>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td>Sleep Aid</td>
+                                              <td>Treats insomnia (Warning: may be addictive)</td>
+                                              <td>
+                                                 <div class="treats-single">
+                                                    <span class="treats-label">Insomnia:</span>
+                                                    <span class="treats-icon positive">✅</span>
+                                                 </div>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td>Anodyne</td>
+                                              <td>Relieves fatigue from radiation exposure</td>
+                                              <td>
+                                                 <div class="treats-single">
+                                                    <span class="treats-label">Fatigue:</span>
+                                                    <span class="treats-icon positive">✅</span>
+                                                 </div>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td>Anti-Parasitic</td>
+                                              <td>Removes parasites acquired from contaminated sources</td>
+                                              <td>
+                                                 <div class="treats-single">
+                                                    <span class="treats-label">Parasites:</span>
+                                                    <span class="treats-icon positive">✅</span>
+                                                 </div>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td>Stimulants</td>
+                                              <td>Counters lethargy caused by radiation sickness</td>
+                                              <td>
+                                                 <div class="treats-single">
+                                                    <span class="treats-label">Lethargy:</span>
+                                                    <span class="treats-icon positive">✅</span>
+                                                 </div>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td>Energy Pills</td>
+                                              <td>Mitigates weakness from radiation damage</td>
+                                              <td>
+                                                 <div class="treats-single">
+                                                    <span class="treats-label">Weakness:</span>
+                                                    <span class="treats-icon positive">✅</span>
+                                                 </div>
+                                              </td>
+                                           </tr>
+                                        </tbody>
+                                     </table>
+                                  </div>
+                                  <div class="emoji-legend">
+                                     <p><strong>Emoji Legend:</strong></p>
+                                     <p>✅ - Actively reduces value | ❌ - No effect | 🛡️ - Increases resistance/preventative effect</p>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="sub-collapsible">
+                               <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+⚠️ Survival Tips                                  <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                               </div>
+                               <div class="sub-collapsible-content">
+                                  <p>The Wastes are unforgiving. Radiation is no longer a simple number—it's a dual-layered system where RADs and IRAs feed into each other, creating a deadly loop that can take hold in seconds or over days. Untreated radiation will eventually kill you, even if you leave radioactive areas. Always carry enough protective gear and medication. Stock up on bandages, painkillers, radiation medicines (especially Cleansing Tonic for radiation poisoning), and limb restoration tools. Remember: consuming alcohol can help break the radiation loop by lowering IRA levels. Being prepared isn't optional—it's survival.</p>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                     
+                     <!-- Collapsible Section 6: Weather & Environment -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-cloud-rain"></i>6. Weather & Environment                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🌦️ Vivid Weathers System                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <p>Enhanced weather system with dynamic lighting and atmospheric effects.</p>
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Radiation Storms: Dangerous weather events requiring protective gear</div>
+                                    <div class="skill-item">Dynamic Lighting: Realistic day/night cycles with enhanced shadows</div>
+                                    <div class="skill-item">Weather Hotkey: Numpad / to access weather controls</div>
+                                    <div class="skill-item">Atmospheric Effects: Fog, rain, snow, and dust storms</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+⚠️ Environmental Hazards                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Radiation Zones: High-radiation areas requiring protective equipment</div>
+                                    <div class="skill-item">Weather Protection: Gas masks, hazmat suits, and power helmets</div>
+                                    <div class="skill-item">Temperature Effects: Cold and heat impact on character performance</div>
+                                    <div class="skill-item">Visibility: Weather affects visibility and detection ranges</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 7: Settlement & Building -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-hammer"></i>7. Settlement & Building                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🔨 Workshop Framework                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Workshop Mode: Home key to enter workshop mode</div>
+                                    <div class="skill-item">Enhanced Building: Expanded building options and materials</div>
+                                    <div class="skill-item">Settlement Items: New settlement objects and decorations</div>
+                                    <div class="skill-item">Power Systems: Advanced power generation and distribution</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🧱 Building Materials                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Scrap Requirements: More realistic material requirements</div>
+                                    <div class="skill-item">Salvage System: Enhanced scrap yield from junk items</div>
+                                    <div class="skill-item">Material Types: Wood, metal, concrete, and advanced materials</div>
+                                    <div class="skill-item">Storage Solutions: Improved storage and organization systems</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 8: Companions & NPCs -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-users"></i>8. Companions & NPCs                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🐕 Enhanced Companions                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Dogmeat: Enhanced AI and interaction options</div>
+                                    <div class="skill-item">Companion Damage: Improved companion combat effectiveness</div>
+                                    <div class="skill-item">Zoology Skill: Affects animal companion damage and abilities</div>
+                                    <div class="skill-item">Influence Skill: Affects humanoid companion damage</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🤖 NPC Behavior                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">SCOURGE System: Randomized NPC stats for variety</div>
+                                    <div class="skill-item">Enhanced AI: Smarter enemy behavior and tactics</div>
+                                    <div class="skill-item">Faction Relations: Improved faction interaction systems</div>
+                                    <div class="skill-item">Dialogue Options: Expanded conversation choices</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 9: Crafting & Equipment -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-tools"></i>9. Crafting & Equipment                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🔧 Enhanced Crafting                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Dank_ECO: Enhanced crafting options and workbenches</div>
+                                    <div class="skill-item">Universal Workbench: Page Up to drop universal workbench</div>
+                                    <div class="skill-item">Power Armor Workbench: Page Down to drop power armor workbench</div>
+                                    <div class="skill-item">Weapon Attack Modes: U key to switch weapon attack modes</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🛡️ Equipment Systems                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Armor Modding: Enhanced armor customization options</div>
+                                    <div class="skill-item">Weapon Mods: Expanded weapon modification system</div>
+                                    <div class="skill-item">Equipment Durability: Realistic wear and repair systems</div>
+                                    <div class="skill-item">Replaceable Armor Plates: Enhanced armor protection system</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 10: User Interface & HUD -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-desktop"></i>10. User Interface & HUD                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🖥️ Immersive HUD                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">HUD Toggle: F2 to toggle HUD on/off</div>
+                                    <div class="skill-item">Dynamic Elements: HUD elements appear/disappear based on context</div>
+                                    <div class="skill-item">Customization: Extensive HUD customization options</div>
+                                    <div class="skill-item">Minimal Mode: Clean interface for immersive gameplay</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+📋 Menu Systems                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Wheel Menu: Quick access wheel for items and actions</div>
+                                    <div class="skill-item">MODExplorer: Mod list and information display</div>
+                                    <div class="skill-item">Quick Inventory: Fast inventory access system</div>
+                                    <div class="skill-item">Quick Map: Instant map access system</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🎮 Movement & Core Controls                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                              <div class="sub-collapsible-content">
+                                 <ul class="compact-list">
+                                    <li>W/S/A/D – Move Forward/Backward/Strafe Left/Right</li>
+                                    <li>Left Shift – Sprint</li>
+                                    <li>C – Run</li>
+                                    <li>Spacebar – Jump</li>
+                                    <li>Left Ctrl – Sneak</li>
+                                    <li>Caps Lock – Toggle Always Run</li>
+                                    <li>X – Auto-Move</li>
+                                    <li>F – Activate / Interact</li>
+                                 </ul>
+                     </div>
+                        </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+⚔️ Combat Controls                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <ul class="compact-list">
+                                    <li>Mouse1 – Attack / Fire</li>
+                                    <li>Mouse2 – Aim / Block</li>
+                                    <li>Left Alt – Bash / Power Attack / Grenade</li>
+                                    <li>R – Ready Weapon / Reload</li>
+                                    <li>Q – VATS</li>
+                                    <li>J – Holster / Lower Weapon</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+📱 Menu & Inventory Controls                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <ul class="compact-list">
+                                    <li>Tab – Open Pip-Boy</li>
+                                    <li>Mouse3 – Toggle POV / Workshop</li>
+                                    <li>Esc – Pause</li>
+                                    <li>I – Quick Inventory</li>
+                                    <li>M – Quick Map</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🛠️ Mod-Specific Keybinds                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="keybind-categories">
+                                    <div class="keybind-category">
+                                       <h5>🎯 Combat & Weapons</h5>
+                                       <ul class="compact-list">
+                                          <li><strong>Bullet in Chamber:</strong> R (Reload/Check), J (Holster)</li>
+                                          <li><strong>VAFS Redux:</strong> Z (Critical), G (Focus)</li>
+                                          <li><strong>HOTC:</strong> K (Examine Prey)</li>
+                                          <li><strong>Replaceable Armor Plates:</strong> Y (Use Plate)</li>
+                                       </ul>
+                                    </div>
+                                    
+                                    <div class="keybind-category">
+                                       <h5>🏃 Movement & Actions</h5>
+                                       <ul class="compact-list">
+                                          <li><strong>Enhanced Movement:</strong> N (Dodge)</li>
+                                          <li><strong>Wheel Menu:</strong> H (Open Wheel)</li>
+                                          <li><strong>Workshop:</strong> Home (Workshop Mode)</li>
+                                       </ul>
+                                    </div>
+                                    
+                                    <div class="keybind-category">
+                                       <h5>🖥️ Interface & Display</h5>
+                                       <ul class="compact-list">
+                                          <li><strong>Immersive HUD:</strong> F2 (Toggle HUD)</li>
+                                          <li><strong>MODExplorer:</strong> \ (Show Mod List)</li>
+                                          <li><strong>Barber/Surgery:</strong> ↓ (Switch View)</li>
+                                       </ul>
+                                    </div>
+                                    
+                                    <div class="keybind-category">
+                                       <h5>🔧 Crafting & Equipment</h5>
+                                       <ul class="compact-list">
+                                          <li><strong>Dank_ECO:</strong> PgDn (PA Workbench), PgUp (Universal), U (Attack Mode)</li>
+                                       </ul>
+                                    </div>
+                                    
+                                    <div class="keybind-category">
+                                       <h5>🌍 Environment & Audio</h5>
+                                       <ul class="compact-list">
+                                          <li><strong>Vivid Weathers:</strong> Numpad / (Weather)</li>
+                                          <li><strong>Volume Sliders:</strong> Numpad 0 (Mute Music)</li>
+                                          <li><strong>Wasteland Codex:</strong> Numpad 3 (Play Entry)</li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 11: Audio & Visual -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-volume-up"></i>11. Audio & Visual                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🔊 Audio Systems                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Persistent Volume Sliders: Customizable audio controls</div>
+                                    <div class="skill-item">Enhanced Sound Effects: Improved weapon and environmental sounds</div>
+                                    <div class="skill-item">Dynamic Music: Context-sensitive music system</div>
+                                    <div class="skill-item">Audio Immersion: Realistic audio positioning and effects</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🎨 Visual Enhancements                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">ENB Integration: Enhanced visual effects and lighting</div>
+                                    <div class="skill-item">Letterbox Control: Disable black bars via ENB menu</div>
+                                    <div class="skill-item">Visual Filters: Customizable visual effects</div>
+                                    <div class="skill-item">Performance Options: Adjustable visual quality settings</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 12: Character Customization -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-user-edit"></i>12. Character Customization                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+👤 Appearance Systems                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Barber/Surgery Camera: Arrow Down to switch view</div>
+                                    <div class="skill-item">Enhanced Character Creation: More detailed appearance options</div>
+                                    <div class="skill-item">Clothing System: Expanded clothing and armor options</div>
+                                    <div class="skill-item">Hair & Facial Features: Detailed customization options</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+📈 Character Progression                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Background Selection: Choose character background for bonuses</div>
+                                    <div class="skill-item">Skill Tagging: Select 3 skills for +25 bonus</div>
+                                    <div class="skill-item">Trait System: Enhanced character traits and abilities</div>
+                                    <div class="skill-item">Perk Trees: Expanded perk system with new options</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Collapsible Section 13: Tips & Strategies -->
+                     <div class="terminal-list-item collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+<i class="fas fa-lightbulb"></i>13. Tips & Strategies                           <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="collapsible-content">
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+🛡️ Survival Tips                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Medical Supplies: Always carry bandages, stimpaks, and painkillers</div>
+                                    <div class="skill-item">Pre-medication: Use TXA and ibuprofen for protection before combat</div>
+                                    <div class="skill-item">Radiation Management: Carry protective gear and radiation meds</div>
+                                    <div class="skill-item">Route Planning: Use APC travel system and subway networks</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+⚔️ Combat Strategies                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Effective Cover: Take advantage of environmental protection</div>
+                                    <div class="skill-item">Ammunition Weight: Balance firepower with mobility</div>
+                                    <div class="skill-item">Weak Points: Aim for headshots and vulnerable areas</div>
+                                    <div class="skill-item">Stealth Approach: Avoid unnecessary confrontations</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sub-collapsible">
+                              <div class="sub-collapsible-header" onclick="toggleSubCollapsible(this)">
+📦 Resource Management                                 <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+                              </div>
+                              <div class="sub-collapsible-content">
+                                 <div class="skill-grid">
+                                    <div class="skill-item">Salvage Everything: Break down junk for materials</div>
+                                    <div class="skill-item">Settlement Planning: Build strategically placed safe houses</div>
+                                    <div class="skill-item">Essential Stockpiles: Food, water, and medical supplies</div>
+                                    <div class="skill-item">Equipment Maintenance: Repair armor and weapons regularly</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                        </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
+                               </div>
+               </div>
+               <div class="tab-content" id="ai-assistant">
+                  <div class="info-card">
+                     <div class="card-header">
+                        <i class="fas fa-robot"></i><h3>Wasteland Assistant</h3>
+                     </div>
+                     <div class="card-content">
+                        <p>Struggling with your new identity in the Commonwealth? Let our advanced RobCo terminal assist you. Describe your desired playstyle or character concept below, and we'll generate a custom build or backstory to get you started on your journey.</p>
+                        
+                        <!-- Character Build Generator -->
+                        <div class="ai-feature-box">
+                           <h4>Generate a Character Build</h4>
+                           <p>Describe the kind of survivor you want to be (e.g., "a sneaky sniper who uses rifles," "a charismatic leader who builds large settlements," or "a brute who smashes things with a sledgehammer").</p>
+                           <textarea id="build-prompt" placeholder="Enter your desired playstyle..."></textarea>
+                           <button id="generate-build-btn" class="social-link">Generate Build</button>
+                           <div id="build-result" class="ai-result-box"></div>
+                        </div>
+
+                        <!-- Backstory Generator -->
+                        <div class="ai-feature-box">
+                           <h4>Generate a Character Backstory</h4>
+                           <p>Provide a few keywords about your character's past or personality (e.g., "ex-raider, regretful, good with pistols" or "scared scientist, smart, avoids fights").</p>
+                           <textarea id="backstory-prompt" placeholder="Enter a few keywords..."></textarea>
+                           <button id="generate-backstory-btn" class="social-link">Generate Backstory</button>
+                           <div id="backstory-result" class="ai-result-box"></div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
+                  </div>
+               </div>
+               <div class="tab-content" id="faq">
+                  <div class="info-card">
+                     <div class="card-header">
+                        <i class="fas fa-question-circle"></i><h3>Frequently Asked Questions</h3>
+                     </div>
+                     <div class="card-content">
+                        <p>Find answers to the most common questions about Fallout Anomaly installation, troubleshooting, and gameplay.</p>
+                        
+                        <div class="faq-section">
+                           <h4>🚨 Installation & Setup</h4>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-exclamation-triangle"></i>
+                                 <strong>Q: My game is crashing on startup. What should I do?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>Crashing on startup is often caused by a few common issues:</p>
+                                 <ul>
+                                    <li><strong>Overlays:</strong> Make sure you have disabled all overlays, including Steam, Discord, and any recording software like Medal or OBS.</li>
+                                    <li><strong>Antivirus:</strong> Your antivirus might be interfering with the modlist. Please ensure you have set up exclusions for the entire Fallout Anomaly installation folder.</li>
+                                    <li><strong>Missing Prerequisites:</strong> Double-check that you have installed all the required components from Step 1, including Visual C++ Redistributables and .NET Frameworks.</li>
+                                    <li><strong>Game Version:</strong> The modlist requires the latest version of Fallout 4 from Steam, which Wabbajack will then downgrade. Make sure your game is up to date before running the installer.</li>
+                                  </ul>
+                               </div>
+                            </div>
+                            
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-pause-circle"></i>
+                                 <strong>Q: I'm stuck on the main menu and can't start a new game.</strong>
+                               </div>
+                              <div class="faq-answer">
+                                 <p>This can happen if some of the initial scripts are slow to load. Please be patient and wait a few minutes. If it still doesn't work, refer to the "Stuck in Menu" section in the "Known Issues" tab for a video guide and alternative solutions.</p>
+                              </div>
+                           </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-sync-alt"></i>
+                                 <strong>Q: How do I update the modlist?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>To update, simply re-run the Wabbajack installer and point it to your existing installation directory. Make sure to check the "Overwrite existing" option. Wabbajack will handle the rest, only downloading the files that have changed.</p>
+                              </div>
+                           </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-download"></i>
+                                 <strong>Q: Wabbajack is downloading very slowly. What can I do?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>Slow downloads are usually due to:</p>
+                                 <ul>
+                                    <li><strong>Nexus Mods Rate Limiting:</strong> Free accounts have download speed limits. Consider getting Nexus Premium for faster downloads.</li>
+                                    <li><strong>Server Load:</strong> Nexus Mods servers can be busy during peak hours. Try downloading during off-peak times.</li>
+                                    <li><strong>Network Issues:</strong> Check your internet connection and try pausing/resuming the download.</li>
+                                  </ul>
+                              </div>
+                               </div>
+                            </div>
+                            
+                        <div class="faq-section">
+                           <h4>🎮 Gameplay & Performance</h4>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-tachometer-alt"></i>
+                                 <strong>Q: The game is running slowly. How can I improve performance?</strong>
+                               </div>
+                              <div class="faq-answer">
+                                 <p>Performance issues can be addressed by:</p>
+                                 <ul>
+                                    <li><strong>ENB Settings:</strong> Lower ENB quality settings or disable certain effects in the ENB menu (Shift+Enter).</li>
+                                    <li><strong>BethINI:</strong> Use BethINI to optimize your Fallout4.ini files for better performance.</li>
+                                    <li><strong>Hardware:</strong> Ensure you meet the minimum requirements (16GB RAM, 6GB VRAM GPU).</li>
+                                    <li><strong>Background Programs:</strong> Close unnecessary programs and overlays while playing.</li>
+                                  </ul>
+                               </div>
+                            </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-gamepad"></i>
+                                 <strong>Q: Can I use a controller with Fallout Anomaly?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>Yes! Controller support is included. Check the "Known Issues" tab for specific controller setup instructions and any known limitations.</p>
+                                 </div>
+                              </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-save"></i>
+                                 <strong>Q: Can I use my old save files with Fallout Anomaly?</strong>
+                           </div>
+                              <div class="faq-answer">
+                                 <p>No, Fallout Anomaly requires a fresh start. The modlist makes extensive changes to the game that are incompatible with vanilla or other modded saves. You'll need to start a new character.</p>
+                        </div>
+                     </div>
+                        </div>
+                        
+                        <div class="faq-section">
+                           <h4>🔧 Troubleshooting</h4>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-exclamation-circle"></i>
+                                 <strong>Q: I'm getting "Could Not Download MOD" errors. What should I do?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>This usually means:</p>
+                                 <ul>
+                                    <li><strong>Nexus Mods Issues:</strong> Check if Nexus Mods is experiencing downtime.</li>
+                                    <li><strong>Mod Updates:</strong> The mod may have been updated or removed. Wait for a new modlist release.</li>
+                                    <li><strong>Manual Download:</strong> You can manually download the mod and place it in Wabbajack's download folder.</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-folder-open"></i>
+                                 <strong>Q: Wabbajack can't find my Fallout 4 installation. What's wrong?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>This typically happens when:</p>
+                                 <ul>
+                                    <li><strong>Pirated Version:</strong> Only legitimate Steam versions are supported.</li>
+                                    <li><strong>Wrong Location:</strong> Make sure Fallout 4 is installed in the default Steam directory.</li>
+                                    <li><strong>Game Not Updated:</strong> Ensure your game is updated to the latest version before running Wabbajack.</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-shield-alt"></i>
+                                 <strong>Q: My antivirus is flagging files as threats. Is this normal?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>Yes, this is common with modded games. Antivirus software often flags mod files as suspicious. Add your entire Fallout Anomaly installation folder to your antivirus exclusions to prevent interference.</p>
+                              </div>
+                           </div>
+                        </div>
+                        
+                        <div class="faq-section">
+                           <h4>💬 Community & Support</h4>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-comments"></i>
+                                 <strong>Q: Where can I get help if I'm still having issues?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>For additional support:</p>
+                                 <ul>
+                                    <li><strong>Discord:</strong> Join our Discord community for real-time help from the team and other users.</li>
+                                    <li><strong>Bug Reports:</strong> Submit detailed bug reports through our official form.</li>
+                                    <li><strong>Documentation:</strong> Check all tabs in this guide for comprehensive troubleshooting information.</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           
+                           <div class="faq-item">
+                              <div class="faq-question">
+                                 <i class="fas fa-heart"></i>
+                                 <strong>Q: How can I support the Fallout Anomaly project?</strong>
+                              </div>
+                              <div class="faq-answer">
+                                 <p>You can support us by:</p>
+                                 <ul>
+                                    <li><strong>Donations:</strong> Help fund server costs and development through our donation page.</li>
+                                    <li><strong>Community:</strong> Join our Discord and help other users with their questions.</li>
+                                    <li><strong>Feedback:</strong> Provide constructive feedback and report bugs to help improve the modlist.</li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
+                  </div>
+               </div>
+               <div class="tab-content" id="support">
+                  <div class="terminal-list">
+                     <div class="terminal-list-item">
+                        <i class="fas fa-users"></i>Community and Support                         <ul class="terminal-sublist">
+                           <li>The quickest way to receive support is by joining our Discord community</li>
+                           <li>If you encounter any issues or need assistance, our Discord channel provides direct access to our team and fellow users</li>
+                           <li>Alternatively, you can submit a bug report using the links below</li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <i class="fas fa-link"></i>Support Links                         <ul class="terminal-sublist">
+                           <li><a href="https://discord.gg/ECuAthsdwJ" target="_blank">💬 Discord Community</a> - Join our Discord community</li>
+                           <li><a href="https://loadorderlibrary.com/lists/fallout-anomaly-0-5" target="_blank">📋 Mod List</a> - View the mod list</li>
+                           <li><a href="https://falloutanomaly.fillout.com/bugreports" target="_blank">🐞 Bug Report</a> - Submit a bug report</li>
+                           <li><a href="https://falloutanomaly.fillout.com/suggestions" target="_blank">💡 Suggestions</a> - Share your suggestions</li>
+                           <li><a href="https://www.nexusmods.com/fallout4/mods/74075?tab=description" target="_blank">🎮 Nexus</a> - Visit our Nexus page</li>
+                           <li><a href="https://www.youtube.com/@FalloutAnomaly/videos" target="_blank">📺 YouTube</a> - Check out our YouTube channel</li>
+                        </ul>
+                     </div>
+                     <div class="terminal-list-item">
+                        <i class="fas fa-heart"></i>Thank You                         <ul class="terminal-sublist">
+                           <li>Thank you for your dedication to our community and team. We are excited about the future and confident that, together, we will continue to shape Anomaly into an extraordinary mod list for Fallout 4.</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <!-- Back to Top Button -->
+                  <div class="back-to-top" onclick="scrollToTop()">
+                     <i class="fas fa-arrow-up"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script src="../src/js/theme-switcher.js"></script>
+   <script src="../src/js/script.js"></script>
+   <script src="../src/js/navlinks.js"></script>
+   <script src="../src/js/guide-scripts.js"></script>
+</body>
+</html>
