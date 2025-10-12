@@ -132,3 +132,9 @@ test-files/
 
 # Image optimization cache
 .thumbnails/
+
+# Project-specific files
+temp_*.txt
+temp_*.html
+*.tmp
+css_errors*.txt

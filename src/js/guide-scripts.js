@@ -1,4 +1,294 @@
-// Back to Top functionality
+/* jshint esversion: 11, browser: true, node: false */
+/* global console */
+/**
+ * Fallout Anomaly Guide Scripts
+ * Enhanced functionality for the modernized guide interface
+ */
+
+// ==================================================
+// ============ UTILITY FUNCTIONS ==================
+// ==================================================
+
+/**
+ * Escape special regex characters
+ */
+function escapeRegExp(string) {
+   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/**
+ * Debounce function to limit function calls
+ */
+function debounce(func, wait) {
+   let timeout;
+   return function executedFunction(...args) {
+      const later = () => {
+         clearTimeout(timeout);
+         func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+   };
+}
+
+/**
+ * Throttle function to limit function calls
+ */
+function throttle(func, limit) {
+   let inThrottle;
+   return function() {
+      const args = arguments;
+      const context = this;
+      if (!inThrottle) {
+         func.apply(context, args);
+         inThrottle = true;
+         setTimeout(() => inThrottle = false, limit);
+      }
+   };
+}
+
+// ==================================================
+// ============ TAB NAVIGATION ======================
+// ==================================================
+
+/**
+ * Initialize tab navigation system
+ */
+function initializeTabNavigation() {
+   const tabButtons = document.querySelectorAll('.tab-button[data-section]');
+   const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+   
+   // Tab button click handlers
+   tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+         const sectionId = button.getAttribute('data-section');
+         switchToTab(sectionId);
+         
+         // Update URL hash
+         history.pushState(null, null, `#${sectionId}`);
+         
+         // Update active nav link
+         updateActiveNavLink(sectionId);
+      });
+   });
+   
+   // Nav link click handlers
+   navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+         e.preventDefault();
+         const sectionId = link.getAttribute('href').substring(1);
+         switchToTab(sectionId);
+         
+         // Update URL hash
+         history.pushState(null, null, `#${sectionId}`);
+         
+         // Update active nav link
+         updateActiveNavLink(sectionId);
+      });
+   });
+   
+   // Handle browser back/forward
+   window.addEventListener('popstate', () => {
+      const hash = window.location.hash.substring(1);
+      if (hash && document.getElementById(hash)) {
+         switchToTab(hash);
+         updateActiveNavLink(hash);
+      }
+   });
+   
+   // Handle initial hash on page load
+   const initialHash = window.location.hash.substring(1);
+   if (initialHash && document.getElementById(initialHash)) {
+      switchToTab(initialHash);
+      updateActiveNavLink(initialHash);
+   }
+}
+
+/**
+ * Switch to a specific tab
+ */
+function switchToTab(sectionId) {
+   console.log('Switching to tab:', sectionId);
+   
+   // Hide all tab contents
+   const tabContents = document.querySelectorAll('.tab-content');
+   tabContents.forEach(content => {
+      content.classList.remove('active');
+      content.style.display = 'none'; // Explicit fallback for CSS issues
+   });
+   
+   // Remove active class from all tab buttons and update ARIA attributes
+   const tabButtons = document.querySelectorAll('.tab-button');
+   tabButtons.forEach(button => {
+      button.classList.remove('active');
+      button.setAttribute('aria-selected', 'false');
+   });
+   
+   // Show the target tab content
+   const targetTabContent = document.getElementById(sectionId);
+   if (targetTabContent) {
+      targetTabContent.classList.add('active');
+      targetTabContent.style.display = 'block'; // Explicit fallback for CSS issues
+      console.log('Tab activated:', sectionId);
+   } else {
+      console.error('Tab content not found:', sectionId);
+   }
+   
+   // Activate the target tab button and update ARIA
+   const targetTabButton = document.querySelector(`[data-section="${sectionId}"]`);
+   if (targetTabButton) {
+      targetTabButton.classList.add('active');
+      targetTabButton.setAttribute('aria-selected', 'true');
+   } else {
+      console.warn('Tab button not found for:', sectionId);
+   }
+   
+   /* 
+   // Scroll to top of content - REMOVED TO PREVENT JUMPING
+   const mainContent = document.querySelector('.main-content');
+   if (mainContent) {
+      mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+   }
+   */
+}
+
+/**
+ * Update active navigation link
+ */
+function updateActiveNavLink(sectionId) {
+   const navLinks = document.querySelectorAll('.nav-link');
+   navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${sectionId}`) {
+         link.classList.add('active');
+      }
+   });
+}
+
+// ==================================================
+// ============ COLLAPSIBLE SECTIONS ===============
+// ==================================================
+
+/**
+ * Initialize collapsible sections
+ */
+function initializeCollapsibleSections() {
+   // Main collapsible sections
+   const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+   
+   collapsibleHeaders.forEach(header => {
+      // Add ARIA attributes
+      header.setAttribute('role', 'button');
+      header.setAttribute('aria-expanded', 'false');
+      header.setAttribute('tabindex', '0');
+      
+      // Add click listener
+      header.addEventListener('click', () => {
+         toggleCollapsible(header);
+      });
+      
+      // Add keyboard listener for Enter/Space
+      header.addEventListener('keydown', (e) => {
+         if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleCollapsible(header);
+         }
+      });
+   });
+   
+   // Sub-collapsible sections
+   const subCollapsibleHeaders = document.querySelectorAll('.sub-collapsible-header');
+   subCollapsibleHeaders.forEach(header => {
+      // Add ARIA attributes
+      header.setAttribute('role', 'button');
+      header.setAttribute('aria-expanded', 'false');
+      header.setAttribute('tabindex', '0');
+      
+      // Add click listener
+      header.addEventListener('click', () => {
+         toggleSubCollapsible(header);
+      });
+      
+      // Add keyboard listener for Enter/Space
+      header.addEventListener('keydown', (e) => {
+         if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleSubCollapsible(header);
+         }
+      });
+   });
+   
+   // FAQ sections
+   const faqQuestions = document.querySelectorAll('.faq-question');
+   faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+         toggleFAQItem(question);
+      });
+   });
+   
+   // Initialize all sections as closed
+   initializeCollapsibleState();
+}
+
+/**
+ * Toggle main collapsible section
+ */
+function toggleCollapsible(header) {
+   const content = header.nextElementSibling;
+   const icon = header.querySelector('.collapsible-icon i');
+   
+   if (!content) return;
+   
+   const isOpen = content.style.display === 'block' || content.classList.contains('open');
+   
+   if (isOpen) {
+      // Close section
+      content.style.display = 'none';
+      content.classList.remove('open');
+      icon.classList.remove('fa-chevron-up');
+      icon.classList.add('fa-chevron-down');
+      header.setAttribute('aria-expanded', 'false');
+   } else {
+      // Open section
+      content.style.display = 'block';
+      content.classList.add('open');
+      icon.classList.remove('fa-chevron-down');
+      icon.classList.add('fa-chevron-up');
+      header.setAttribute('aria-expanded', 'true');
+   }
+}
+
+/**
+ * Toggle sub-collapsible section
+ */
+function toggleSubCollapsible(header) {
+   const content = header.nextElementSibling;
+   const icon = header.querySelector('.sub-collapsible-icon i');
+   
+   if (!content) return;
+   
+   const isOpen = content.style.display === 'block' || content.classList.contains('open');
+   
+   if (isOpen) {
+      // Close section
+      content.style.display = 'none';
+      content.classList.remove('open');
+      icon.classList.remove('fa-chevron-up');
+      icon.classList.add('fa-chevron-down');
+      header.setAttribute('aria-expanded', 'false');
+   } else {
+      // Open section
+      content.style.display = 'block';
+      content.classList.add('open');
+      icon.classList.remove('fa-chevron-down');
+      icon.classList.add('fa-chevron-up');
+      header.setAttribute('aria-expanded', 'true');
+   }
+}
+
+/**
+ * Scroll to top of page smoothly
+ */
       function scrollToTop() {
          window.scrollTo({
             top: 0,
@@ -6,8 +296,243 @@
          });
       }
       
-      // AI Assistant functionality
-      document.addEventListener('DOMContentLoaded', function() {
+/**
+ * Toggle FAQ item
+ */
+function toggleFAQItem(question) {
+   const answer = question.nextElementSibling;
+   const faqItem = question.parentElement;
+   
+   if (!answer) return;
+   
+   const isOpen = faqItem.classList.contains('open');
+   
+   // Close all other FAQ items
+   const allFAQItems = document.querySelectorAll('.faq-item');
+   allFAQItems.forEach(item => {
+      if (item !== faqItem) {
+         item.classList.remove('open');
+         const otherAnswer = item.querySelector('.faq-answer');
+         if (otherAnswer) {
+            otherAnswer.style.display = 'none';
+         }
+      }
+   });
+   
+   if (isOpen) {
+      // Close this FAQ item
+      faqItem.classList.remove('open');
+      answer.style.display = 'none';
+   } else {
+      // Open this FAQ item
+      faqItem.classList.add('open');
+      answer.style.display = 'block';
+   }
+}
+
+/**
+ * Initialize collapsible sections state
+ */
+function initializeCollapsibleState() {
+   // Close all collapsible content by default
+   const collapsibleContents = document.querySelectorAll('.collapsible-content');
+   collapsibleContents.forEach(content => {
+      content.style.display = 'none';
+   });
+   
+   const subCollapsibleContents = document.querySelectorAll('.sub-collapsible-content');
+   subCollapsibleContents.forEach(content => {
+      content.style.display = 'none';
+   });
+   
+   const faqAnswers = document.querySelectorAll('.faq-answer');
+   faqAnswers.forEach(answer => {
+      answer.style.display = 'none';
+   });
+}
+
+// ==================================================
+// ============ SEARCH FUNCTIONALITY ===============
+// ==================================================
+
+/**
+ * Initialize search functionality
+ */
+function initializeSearch() {
+   const searchInput = document.getElementById('global-search');
+   const resultsContainer = document.getElementById('search-results');
+   const clearBtn = document.getElementById('clear-search');
+
+   if (!searchInput || !resultsContainer || !clearBtn) return;
+
+   const debouncedSearch = debounce(handleSearch, 300);
+
+   searchInput.addEventListener('input', () => {
+       const query = searchInput.value.trim();
+       if (query.length > 0) {
+           clearBtn.style.display = 'block';
+           if (query.length > 2) {
+               debouncedSearch();
+           }
+       } else {
+           clearBtn.style.display = 'none';
+           resultsContainer.style.display = 'none';
+       }
+   });
+
+   clearBtn.addEventListener('click', () => {
+       searchInput.value = '';
+       clearBtn.style.display = 'none';
+       resultsContainer.style.display = 'none';
+       searchInput.focus();
+   });
+
+   document.addEventListener('click', (e) => {
+       if (!e.target.closest('.search-container')) {
+           resultsContainer.style.display = 'none';
+       }
+   });
+}
+
+function handleSearch() {
+    const query = document.getElementById('global-search').value.toLowerCase();
+    const resultsContainer = document.getElementById('search-results');
+    if (query.length < 3) {
+        resultsContainer.style.display = 'none';
+        return;
+    }
+
+    const results = [];
+    const searchableElements = document.querySelectorAll('.collapsible-section, .sub-collapsible');
+
+    searchableElements.forEach(element => {
+        const headerEl = element.querySelector('.collapsible-header, .sub-collapsible-header');
+        const contentEl = element.querySelector('.collapsible-content, .sub-collapsible-content');
+
+        if (headerEl && contentEl) {
+            const headerText = headerEl.innerText;
+            const contentText = contentEl.innerText;
+            
+            if (contentText.toLowerCase().includes(query) || headerText.toLowerCase().includes(query)) {
+                const parentSection = element.closest('.collapsible-section');
+                // Ensure parent header exists before trying to read innerText
+                const parentHeader = parentSection ? parentSection.querySelector('.collapsible-header') : null;
+                const parentTitle = parentHeader ? parentHeader.innerText : 'Guide';
+                
+                // Create a snippet
+                const textToSearch = contentText.toLowerCase();
+                const queryIndex = textToSearch.indexOf(query);
+                const snippetStart = Math.max(0, queryIndex - 70);
+                const snippetEnd = Math.min(textToSearch.length, queryIndex + query.length + 70);
+                let snippet = contentText.substring(snippetStart, snippetEnd);
+                
+                if(snippetStart > 0) snippet = "..." + snippet;
+                if(snippetEnd < textToSearch.length) snippet = snippet + "...";
+
+                results.push({
+                    title: headerText,
+                    section: parentTitle,
+                    text: snippet,
+                    element: element
+                });
+            }
+        }
+    });
+
+    displayResults(results, query);
+}
+
+function displayResults(results, query) {
+    const resultsContainer = document.getElementById('search-results');
+    resultsContainer.innerHTML = '';
+
+    if (results.length === 0) {
+        resultsContainer.innerHTML = '<div class="result-item"><p>No results found.</p></div>';
+        resultsContainer.style.display = 'block';
+        return;
+    }
+
+    results.forEach(result => {
+        const item = document.createElement('div');
+        item.className = 'result-item';
+
+        // Escape regex special characters to safely highlight query
+        const escapedQuery = escapeRegExp(query);
+        const highlightedText = result.text.replace(new RegExp(escapedQuery, 'gi'), (match) => `<mark>${match}</mark>`);
+        
+        let context = result.title;
+        // Avoid redundant titles like "Gameplay Guide -> Gameplay Guide"
+        if (result.section && result.section.trim().toLowerCase() !== result.title.trim().toLowerCase()) {
+             context = `${result.section} &rarr; ${result.title}`;
+        }
+
+        item.innerHTML = `
+            <h4>${context}</h4>
+            <p>${highlightedText}</p>
+        `;
+
+        item.addEventListener('click', () => {
+            navigateToResult(result);
+        });
+        resultsContainer.appendChild(item);
+    });
+
+    resultsContainer.style.display = 'block';
+}
+
+function navigateToResult(result) {
+    const targetElement = result.element;
+    const resultsContainer = document.getElementById('search-results');
+
+    // 1. Switch to the correct tab
+    const parentTabContent = targetElement.closest('.tab-content');
+    if (parentTabContent) {
+        const tabId = parentTabContent.id;
+        switchToTab(tabId);
+    }
+
+    // 2. Open all parent collapsible sections
+    let parent = targetElement.parentElement.closest('.collapsible-section, .sub-collapsible');
+    while(parent) {
+        const header = parent.querySelector('.collapsible-header, .sub-collapsible-header');
+        const content = parent.querySelector('.collapsible-content, .sub-collapsible-content');
+        if (header && content && content.style.display === 'none') {
+            header.click();
+        }
+        parent = parent.parentElement.closest('.collapsible-section, .sub-collapsible');
+    }
+
+    // 3. Open the target element itself if it's a collapsible
+    const targetHeader = targetElement.querySelector('.collapsible-header, .sub-collapsible-header');
+    const targetContent = targetElement.querySelector('.collapsible-content, .sub-collapsible-content');
+    if (targetHeader && targetContent && targetContent.style.display === 'none') {
+         targetHeader.click();
+    }
+    
+    // 4. Scroll to the element and highlight
+    setTimeout(() => {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetElement.classList.add('search-highlight');
+        setTimeout(() => {
+            targetElement.classList.remove('search-highlight');
+        }, 2500);
+    }, 300);
+
+    // 5. Clear search
+    resultsContainer.style.display = 'none';
+    document.getElementById('global-search').value = '';
+    document.getElementById('clear-search').style.display = 'none';
+}
+
+
+// ==================================================
+// ============ AI ASSISTANT FUNCTIONALITY ==========
+// ==================================================
+
+/**
+ * Initialize AI assistant functionality
+ */
+function initializeAIAssistant() {
          const buildBtn = document.getElementById('generate-build-btn');
          const backstoryBtn = document.getElementById('generate-backstory-btn');
          const buildPrompt = document.getElementById('build-prompt');
@@ -15,19 +540,28 @@
          const buildResult = document.getElementById('build-result');
          const backstoryResult = document.getElementById('backstory-result');
          
+         // Early return if AI elements don't exist (e.g., removed or on different page)
+         if (!buildBtn || !backstoryBtn) {
+            console.warn('AI Assistant elements not found - skipping initialization');
+            return;
+         }
+         
          if (buildBtn && buildPrompt && buildResult) {
-            buildBtn.addEventListener('click', function() {
+      buildBtn.addEventListener('click', () => {
                generateCharacterBuild();
             });
          }
          
          if (backstoryBtn && backstoryPrompt && backstoryResult) {
-            backstoryBtn.addEventListener('click', function() {
+      backstoryBtn.addEventListener('click', () => {
                generateCharacterBackstory();
             });
          }
-      });
+}
       
+/**
+ * Generate character build
+ */
       function generateCharacterBuild() {
          const prompt = document.getElementById('build-prompt').value.trim();
          const resultBox = document.getElementById('build-result');
@@ -52,6 +586,9 @@
          }, 2000 + Math.random() * 2000); // 2-4 second delay
       }
       
+/**
+ * Generate character backstory
+ */
       function generateCharacterBackstory() {
          const prompt = document.getElementById('backstory-prompt').value.trim();
          const resultBox = document.getElementById('backstory-result');
@@ -76,19 +613,21 @@
          }, 2000 + Math.random() * 2000); // 2-4 second delay
       }
       
+/**
+ * Generate build from prompt (existing logic)
+ */
       function generateBuildFromPrompt(prompt) {
          const builds = {
-            // Sniper builds
             sniper: `🎯 SNIPER SPECIALIST BUILD
                      
-SPECIAL Distribution:
-• Perception: 8 (Essential for VATS accuracy and rifle damage)
-• Agility: 7 (AP for VATS and stealth)
-• Intelligence: 6 (Mod crafting and energy weapons)
-• Strength: 3 (Minimal carry weight)
-• Endurance: 4 (Survival basics)
-• Charisma: 2 (Lone wanderer)
-• Luck: 6 (Critical hits and better loot)
+SPECIAL Distribution (7 points total):
+• Perception: 3 (Essential for VATS accuracy and rifle damage)
+• Agility: 2 (AP for VATS and stealth)
+• Intelligence: 1 (Mod crafting and energy weapons)
+• Strength: 0 (Minimal carry weight)
+• Endurance: 1 (Survival basics)
+• Charisma: 0 (Lone wanderer)
+• Luck: 0 (Critical hits and better loot)
 
 Key Perks:
 • Rifleman (Perception) - Core damage perk
@@ -111,17 +650,16 @@ Playstyle Tips:
 • Keep distance from enemies
 • Use VATS for guaranteed hits on moving targets`,
 
-            // Melee builds
             melee: `⚔️ MELEE BRUTE BUILD
                     
-SPECIAL Distribution:
-• Strength: 10 (Maximum melee damage and carry weight)
-• Endurance: 8 (Survival and damage resistance)
-• Agility: 6 (AP for power attacks and movement)
-• Intelligence: 3 (Minimal crafting)
-• Perception: 2 (Basic awareness)
-• Charisma: 2 (Lone wanderer)
-• Luck: 5 (Critical hits and loot)
+SPECIAL Distribution (7 points total):
+• Strength: 3 (Maximum melee damage and carry weight)
+• Endurance: 2 (Survival and damage resistance)
+• Agility: 1 (AP for power attacks and movement)
+• Intelligence: 0 (Minimal crafting)
+• Perception: 0 (Basic awareness)
+• Charisma: 0 (Lone wanderer)
+• Luck: 1 (Critical hits and loot)
 
 Key Perks:
 • Big Leagues (Strength) - Core melee damage
@@ -144,17 +682,16 @@ Playstyle Tips:
 • Use chems for damage boosts
 • Target multiple enemies with sweeping attacks`,
 
-            // Charismatic leader builds
             leader: `👑 CHARISMATIC LEADER BUILD
                      
-SPECIAL Distribution:
-• Charisma: 10 (Maximum companion benefits and settlement)
-• Intelligence: 7 (Settlement building and crafting)
-• Endurance: 5 (Survival basics)
-• Agility: 4 (Basic combat)
-• Strength: 4 (Carry weight for settlement materials)
-• Perception: 3 (Basic awareness)
-• Luck: 3 (Minimal investment)
+SPECIAL Distribution (7 points total):
+• Charisma: 3 (Maximum companion benefits and settlement)
+• Intelligence: 2 (Settlement building and crafting)
+• Endurance: 1 (Survival basics)
+• Agility: 1 (Basic combat)
+• Strength: 0 (Carry weight for settlement materials)
+• Perception: 0 (Basic awareness)
+• Luck: 0 (Minimal investment)
 
 Key Perks:
 • Local Leader (Charisma) - Settlement supply lines
@@ -176,17 +713,16 @@ Playstyle Tips:
 • Build supply lines between settlements
 • Use alcohol for temporary charisma boosts`,
 
-            // Stealth builds
             stealth: `🥷 STEALTH ASSASSIN BUILD
                       
-SPECIAL Distribution:
-• Agility: 10 (Maximum stealth and AP)
-• Perception: 7 (Detection and VATS)
-• Intelligence: 6 (Crafting and energy weapons)
-• Endurance: 4 (Basic survival)
-• Strength: 3 (Minimal carry weight)
-• Charisma: 2 (Lone wanderer)
-• Luck: 4 (Critical hits)
+SPECIAL Distribution (7 points total):
+• Agility: 3 (Maximum stealth and AP)
+• Perception: 2 (Detection and VATS)
+• Intelligence: 1 (Crafting and energy weapons)
+• Endurance: 1 (Basic survival)
+• Strength: 0 (Minimal carry weight)
+• Charisma: 0 (Lone wanderer)
+• Luck: 0 (Critical hits)
 
 Key Perks:
 • Sneak (Agility) - Core stealth ability
@@ -210,17 +746,16 @@ Playstyle Tips:
 • Pickpocket enemies for sabotage
 • Focus on one-shot kills`,
 
-            // Default balanced build
             default: `⚖️ BALANCED SURVIVOR BUILD
                       
-SPECIAL Distribution:
-• Strength: 5 (Moderate carry weight)
-• Perception: 5 (Good awareness)
-• Endurance: 5 (Decent survival)
-• Charisma: 5 (Basic social skills)
-• Intelligence: 5 (Good crafting)
-• Agility: 5 (Moderate stealth and AP)
-• Luck: 5 (Balanced loot and crits)
+SPECIAL Distribution (7 points total):
+• Strength: 1 (Moderate carry weight)
+• Perception: 1 (Good awareness)
+• Endurance: 1 (Decent survival)
+• Charisma: 1 (Basic social skills)
+• Intelligence: 1 (Good crafting)
+• Agility: 1 (Moderate stealth and AP)
+• Luck: 1 (Balanced loot and crits)
 
 Key Perks:
 • Gun Nut (Intelligence) - Weapon crafting
@@ -259,12 +794,17 @@ Playstyle Tips:
          }
       }
       
+/**
+ * Generate backstory from prompt (existing logic)
+ */
       function generateBackstoryFromPrompt(prompt) {
          // Create a seed based on prompt + current time for uniqueness
+         /* jshint bitwise: false */
          const seed = prompt.toLowerCase().split('').reduce((a, b) => {
             a = ((a << 5) - a) + b.charCodeAt(0);
             return a & a;
          }, Date.now());
+         /* jshint bitwise: true */
          
          // Simple seeded random number generator
          function seededRandom(seed) {
@@ -378,54 +918,6 @@ Playstyle Tips:
          } else if (lowerPrompt.includes('mercenary') || lowerPrompt.includes('hired') || lowerPrompt.includes('professional') || lowerPrompt.includes('contractor') || lowerPrompt.includes('soldier') || lowerPrompt.includes('military')) {
             characterType = 'professional mercenary';
             emoji = '💰';
-         } else if (lowerPrompt.includes('brotherhood') || lowerPrompt.includes('steel') || lowerPrompt.includes('paladin') || lowerPrompt.includes('knight') || lowerPrompt.includes('outcast') || lowerPrompt.includes('betrayal') || lowerPrompt.includes('maxson') || lowerPrompt.includes('elder') || lowerPrompt.includes('scribe') || lowerPrompt.includes('initiate')) {
-            characterType = 'brotherhood outcast';
-            emoji = '⚔️';
-         } else if (lowerPrompt.includes('minutemen') || lowerPrompt.includes('general') || lowerPrompt.includes('militia') || lowerPrompt.includes('settlement') || lowerPrompt.includes('freedom') || lowerPrompt.includes('liberty') || lowerPrompt.includes('patriot') || lowerPrompt.includes('garvey')) {
-            characterType = 'minutemen veteran';
-            emoji = '🎖️';
-         } else if (lowerPrompt.includes('railroad') || lowerPrompt.includes('freedom') || lowerPrompt.includes('underground') || lowerPrompt.includes('spy') || lowerPrompt.includes('agent') || lowerPrompt.includes('deacon') || lowerPrompt.includes('glory') || lowerPrompt.includes('tinker')) {
-            characterType = 'railroad operative';
-            emoji = '🚂';
-         } else if (lowerPrompt.includes('institute') || lowerPrompt.includes('director') || lowerPrompt.includes('scientist') || lowerPrompt.includes('division') || lowerPrompt.includes('courser') || lowerPrompt.includes('x6-88') || lowerPrompt.includes('father') || lowerPrompt.includes('shaun')) {
-            characterType = 'institute defector';
-            emoji = '🏛️';
-         } else if (lowerPrompt.includes('enclave') || lowerPrompt.includes('president') || lowerPrompt.includes('colonel') || lowerPrompt.includes('autumn') || lowerPrompt.includes('eden') || lowerPrompt.includes('oilrig') || lowerPrompt.includes('navarro') || lowerPrompt.includes('remnants')) {
-            characterType = 'enclave remnant';
-            emoji = '🦅';
-         } else if (lowerPrompt.includes('ncr') || lowerPrompt.includes('republic') || lowerPrompt.includes('ranger') || lowerPrompt.includes('trooper') || lowerPrompt.includes('bear') || lowerPrompt.includes('kimball') || lowerPrompt.includes('hanlon') || lowerPrompt.includes('mojave')) {
-            characterType = 'ncr veteran';
-            emoji = '🐻';
-         } else if (lowerPrompt.includes('legion') || lowerPrompt.includes('caesar') || lowerPrompt.includes('legate') || lowerPrompt.includes('centurion') || lowerPrompt.includes('lanius') || lowerPrompt.includes('vulpes') || lowerPrompt.includes('slaver') || lowerPrompt.includes('crucifixion')) {
-            characterType = 'legion deserter';
-            emoji = '⚡';
-         } else if (lowerPrompt.includes('followers') || lowerPrompt.includes('apocalypse') || lowerPrompt.includes('doctor') || lowerPrompt.includes('research') || lowerPrompt.includes('knowledge') || lowerPrompt.includes('boneyard') || lowerPrompt.includes('julie') || lowerPrompt.includes('arcade')) {
-            characterType = 'followers scholar';
-            emoji = '📚';
-         } else if (lowerPrompt.includes('great') || lowerPrompt.includes('khans') || lowerPrompt.includes('tribe') || lowerPrompt.includes('biker') || lowerPrompt.includes('drug') || lowerPrompt.includes('raider') || lowerPrompt.includes('jackal') || lowerPrompt.includes('vipers')) {
-            characterType = 'tribal warrior';
-            emoji = '🏍️';
-         } else if (lowerPrompt.includes('ghoul') || lowerPrompt.includes('radiation') || lowerPrompt.includes('immortal') || lowerPrompt.includes('ancient') || lowerPrompt.includes('decayed') || lowerPrompt.includes('mutant') || lowerPrompt.includes('feral') || lowerPrompt.includes('glowing')) {
-            characterType = 'ancient ghoul';
-            emoji = '☢️';
-         } else if (lowerPrompt.includes('synth') || lowerPrompt.includes('android') || lowerPrompt.includes('robot') || lowerPrompt.includes('artificial') || lowerPrompt.includes('institute') || lowerPrompt.includes('synthetic') || lowerPrompt.includes('gen3') || lowerPrompt.includes('nick')) {
-            characterType = 'awakened synth';
-            emoji = '🤖';
-         } else if (lowerPrompt.includes('trader') || lowerPrompt.includes('merchant') || lowerPrompt.includes('business') || lowerPrompt.includes('caravan') || lowerPrompt.includes('caps') || lowerPrompt.includes('deal') || lowerPrompt.includes('barter') || lowerPrompt.includes('vendor')) {
-            characterType = 'wandering merchant';
-            emoji = '💼';
-         } else if (lowerPrompt.includes('mechanic') || lowerPrompt.includes('engineer') || lowerPrompt.includes('repair') || lowerPrompt.includes('fix') || lowerPrompt.includes('scrap') || lowerPrompt.includes('workshop') || lowerPrompt.includes('tinker') || lowerPrompt.includes('jury')) {
-            characterType = 'scrap mechanic';
-            emoji = '🔧';
-         } else if (lowerPrompt.includes('doctor') || lowerPrompt.includes('medic') || lowerPrompt.includes('healer') || lowerPrompt.includes('medical') || lowerPrompt.includes('hospital') || lowerPrompt.includes('nurse') || lowerPrompt.includes('surgeon') || lowerPrompt.includes('chemist')) {
-            characterType = 'wasteland healer';
-            emoji = '🏥';
-         } else if (lowerPrompt.includes('super') || lowerPrompt.includes('mutant') || lowerPrompt.includes('behemoth') || lowerPrompt.includes('master') || lowerPrompt.includes('unity') || lowerPrompt.includes('mariposa') || lowerPrompt.includes('nightkin') || lowerPrompt.includes('mutie')) {
-            characterType = 'mutant outcast';
-            emoji = '🧬';
-         } else if (lowerPrompt.includes('vault') || lowerPrompt.includes('dweller') || lowerPrompt.includes('outcast') || lowerPrompt.includes('vault-tec') || lowerPrompt.includes('underground') || lowerPrompt.includes('experiment') || lowerPrompt.includes('overseer') || lowerPrompt.includes('security')) {
-            characterType = 'vault outcast';
-            emoji = '🏠';
          }
          
          // Generate unique backstory
@@ -444,329 +936,167 @@ The Commonwealth is your home now, and you're determined to make it a better pla
          return backstory;
       }
       
-      // Global Search Functionality
-      document.addEventListener('DOMContentLoaded', function() {
-         const searchInput = document.getElementById('global-search');
-         const searchResults = document.getElementById('search-results');
-         const clearBtn = document.getElementById('clear-search');
-         let searchTimeout;
-         
-         if (searchInput && searchResults && clearBtn) {
-            searchInput.addEventListener('input', function() {
-               clearTimeout(searchTimeout);
-               const query = this.value.trim();
-               
-               if (query.length < 2) {
-                  hideSearchResults();
+// ==================================================
+// ============ SMOOTH SCROLLING ====================
+// ==================================================
+
+/**
+ * Initialize smooth scrolling for anchor links
+ */
+function initializeSmoothScrolling() {
+   // Handle all anchor links
+   document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      
+      const href = link.getAttribute('href');
+      if (href === '#' || href === '#top') {
+         e.preventDefault();
+         scrollToTop();
                   return;
                }
                
-               searchTimeout = setTimeout(() => {
-                  performSearch(query);
-               }, 300);
-            });
-            
-            clearBtn.addEventListener('click', function() {
-               searchInput.value = '';
-               hideSearchResults();
-               searchInput.focus();
-            });
-            
-            // Hide results when clicking outside
-            document.addEventListener('click', function(e) {
-               if (!e.target.closest('.search-container')) {
-                  hideSearchResults();
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+         e.preventDefault();
+         targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+         });
                }
             });
          }
-      });
-      
-      function performSearch(query) {
-         const results = [];
-         const searchTerms = query.toLowerCase().split(' ').filter(term => term.length > 0);
+
+// ==================================================
+// ============ KEYBOARD NAVIGATION =================
+// ==================================================
+
+/**
+ * Initialize keyboard navigation
+ */
+function initializeKeyboardNavigation() {
+   document.addEventListener('keydown', (e) => {
+      // Tab navigation with arrow keys
+      if (e.altKey && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+         e.preventDefault();
+         const tabButtons = Array.from(document.querySelectorAll('.tab-button'));
+         const activeIndex = tabButtons.findIndex(btn => btn.classList.contains('active'));
          
-         // Search through all content sections
-         const searchableElements = document.querySelectorAll('.tab-content, .terminal-list-item, .info-card, .ai-feature-box, .collapsible-content, .sub-collapsible-content');
-         
-         searchableElements.forEach(element => {
-            const text = element.textContent.toLowerCase();
-            const title = element.querySelector('h1, h2, h3, h4, h5, h6, .card-header, .collapsible-header')?.textContent || '';
-            const section = getSectionName(element);
-            
-            // Check if all search terms are found
-            const matches = searchTerms.every(term => text.includes(term));
-            
-            if (matches) {
-               const preview = getTextPreview(element.textContent, query);
-               const relevance = calculateRelevance(text, title, query);
-               
-               results.push({
-                  element: element,
-                  title: title || 'Content Section',
-                  preview: preview,
-                  section: section,
-                  relevance: relevance
-               });
-            }
-         });
-         
-         // Sort by relevance
-         results.sort((a, b) => b.relevance - a.relevance);
-         
-         displaySearchResults(results, query);
-      }
-      
-      function getSectionName(element) {
-         // Try to find the section name from various selectors
-         const tabContent = element.closest('.tab-content');
-         if (tabContent) {
-            const tabButton = document.querySelector(`[data-tab="${tabContent.id}"]`);
-            if (tabButton) {
-               return tabButton.textContent.trim();
-            }
-         }
-         
-         const collapsible = element.closest('.collapsible-section');
-         if (collapsible) {
-            const header = collapsible.querySelector('.collapsible-header');
-            if (header) {
-               return header.textContent.replace(/[^\w\s]/g, '').trim();
-            }
-         }
-         
-         return 'Guide Content';
-      }
-      
-      function getTextPreview(text, query) {
-         const maxLength = 150;
-         const queryIndex = text.toLowerCase().indexOf(query.toLowerCase());
-         
-         if (queryIndex === -1) {
-            return text.substring(0, maxLength) + (text.length > maxLength ? '...' : '');
-         }
-         
-         const start = Math.max(0, queryIndex - 50);
-         const end = Math.min(text.length, start + maxLength);
-         let preview = text.substring(start, end);
-         
-         if (start > 0) preview = '...' + preview;
-         if (end < text.length) preview = preview + '...';
-         
-         return preview;
-      }
-      
-      function calculateRelevance(text, title, query) {
-         let score = 0;
-         const queryLower = query.toLowerCase();
-         const textLower = text.toLowerCase();
-         const titleLower = title.toLowerCase();
-         
-         // Title matches are worth more
-         if (titleLower.includes(queryLower)) score += 10;
-         
-         // Exact phrase matches
-         if (textLower.includes(queryLower)) score += 5;
-         
-         // Word boundary matches
-         const words = queryLower.split(' ');
-         words.forEach(word => {
-            if (titleLower.includes(word)) score += 3;
-            if (textLower.includes(word)) score += 1;
-         });
-         
-         return score;
-      }
-      
-      function displaySearchResults(results, query) {
-         const searchResults = document.getElementById('search-results');
-         const clearBtn = document.getElementById('clear-search');
-         
-         if (!searchResults || !clearBtn) return;
-         
-         if (results.length === 0) {
-            searchResults.innerHTML = '<div class="no-results">No results found for "' + query + '"</div>';
-         } else {
-            let html = `<div class="search-stats">${results.length} result${results.length !== 1 ? 's' : ''} found</div>`;
-            
-            results.slice(0, 10).forEach((result, index) => {
-               const highlightedPreview = highlightText(result.preview, query);
-               const highlightedTitle = highlightText(result.title, query);
-               
-               html += `
-                  <div class="search-result-item" onclick="navigateToSearchResult(${index})">
-                     <div class="search-result-title">${highlightedTitle}</div>
-                     <div class="search-result-preview">${highlightedPreview}</div>
-                     <div class="search-result-section">${result.section}</div>
-                  </div>
-               `;
-            });
-            
-            searchResults.innerHTML = html;
-            
-            // Store results globally for navigation
-            window.searchResults = results;
-         }
-         
-         searchResults.style.display = 'block';
-         clearBtn.style.display = 'block';
-      }
-      
-      function highlightText(text, query) {
-         if (!query) return text;
-         
-         const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-         return text.replace(regex, '<span class="search-highlight">$1</span>');
-      }
-      
-      function hideSearchResults() {
-         const searchResults = document.getElementById('search-results');
-         const clearBtn = document.getElementById('clear-search');
-         
-         if (searchResults) searchResults.style.display = 'none';
-         if (clearBtn) clearBtn.style.display = 'none';
-      }
-      
-      function navigateToSearchResult(resultIndex) {
-         if (!window.searchResults || !window.searchResults[resultIndex]) {
-            hideSearchResults();
-            return;
-         }
-         
-         const result = window.searchResults[resultIndex];
-         const element = result.element;
-         
-         // Find which tab this element belongs to
-         const tabContent = element.closest('.tab-content');
-         if (tabContent) {
-            const tabId = tabContent.id;
-            const tabButton = document.querySelector(`[data-tab="${tabId}"]`);
-            
-            if (tabButton) {
-               // Switch to the correct tab
-               switchTab(tabId);
-               
-               // Wait for tab switch to complete, then navigate to element
-               setTimeout(() => {
-                  navigateToElement(element);
-               }, 100);
-            }
-         } else {
-            // If not in a tab, just navigate directly
-            navigateToElement(element);
-         }
-         
-         hideSearchResults();
-      }
-      
-      function navigateToElement(element) {
-         // If it's in a collapsible section, expand it first
-         const collapsible = element.closest('.collapsible-section');
-         if (collapsible) {
-            const header = collapsible.querySelector('.collapsible-header');
-            if (header) {
-               const content = collapsible.querySelector('.collapsible-content');
-               if (content && (content.style.display === 'none' || content.style.display === '')) {
-                  toggleCollapsible(header);
-               }
-            }
-         }
-         
-         // If it's in a sub-collapsible section, expand it too
-         const subCollapsible = element.closest('.sub-collapsible');
-         if (subCollapsible) {
-            const header = subCollapsible.querySelector('.sub-collapsible-header');
-            if (header) {
-               const content = subCollapsible.querySelector('.sub-collapsible-content');
-               if (content && (content.style.display === 'none' || content.style.display === '')) {
-                  toggleSubCollapsible(header);
-               }
-            }
-         }
-         
-         // Scroll to element
-         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-         
-         // Highlight the element briefly
-         element.style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
-         setTimeout(() => {
-            element.style.backgroundColor = '';
-         }, 2000);
-      }
-      
-      function switchTab(tabId) {
-         // Hide all tab contents
-         const allTabContents = document.querySelectorAll('.tab-content');
-         allTabContents.forEach(content => {
-            content.classList.remove('active');
-         });
-         
-         // Remove active class from all tab buttons
-         const allTabButtons = document.querySelectorAll('.tab-button');
-         allTabButtons.forEach(button => {
-            button.classList.remove('active');
-         });
-         
-         // Show the target tab content
-         const targetTabContent = document.getElementById(tabId);
-         if (targetTabContent) {
-            targetTabContent.classList.add('active');
-         }
-         
-         // Activate the target tab button
-         const targetTabButton = document.querySelector(`[data-tab="${tabId}"]`);
-         if (targetTabButton) {
-            targetTabButton.classList.add('active');
+         if (e.key === 'ArrowLeft' && activeIndex > 0) {
+            tabButtons[activeIndex - 1].click();
+         } else if (e.key === 'ArrowRight' && activeIndex < tabButtons.length - 1) {
+            tabButtons[activeIndex + 1].click();
          }
       }
       
-      // Collapsible functionality for Step 5 sections
-      function toggleCollapsible(header) {
-         const content = header.nextElementSibling;
-         const icon = header.querySelector('.collapsible-icon i');
-         
-         if (content.style.display === 'none' || content.style.display === '') {
-            content.style.display = 'block';
-            icon.classList.remove('fa-chevron-down');
-            icon.classList.add('fa-chevron-up');
-         } else {
-            content.style.display = 'none';
-            icon.classList.remove('fa-chevron-up');
-            icon.classList.add('fa-chevron-down');
-         }
-      }
-      
-      // Sub-collapsible functionality
-      function toggleSubCollapsible(header) {
-         const content = header.nextElementSibling;
-         const icon = header.querySelector('.sub-collapsible-icon i');
-         
-         if (content.style.display === 'none' || content.style.display === '') {
-            content.style.display = 'block';
-            icon.classList.remove('fa-chevron-down');
-            icon.classList.add('fa-chevron-up');
-         } else {
-            content.style.display = 'none';
-            icon.classList.remove('fa-chevron-up');
-            icon.classList.add('fa-chevron-down');
-         }
-      }
-      
-      // Initialize collapsible sections - all closed by default
-      document.addEventListener('DOMContentLoaded', function() {
-         const collapsibleContents = document.querySelectorAll('.collapsible-content');
-         collapsibleContents.forEach(content => {
-            content.style.display = 'none';
-         });
-         
-         const subCollapsibleContents = document.querySelectorAll('.sub-collapsible-content');
-         subCollapsibleContents.forEach(content => {
-            content.style.display = 'none';
-         });
-         
-         // Initialize search functionality
-         const searchInput = document.getElementById('step5Search');
+      // Quick search with Ctrl+F
+      if (e.ctrlKey && e.key === 'f') {
+         e.preventDefault();
+         const searchInput = document.getElementById('global-search');
          if (searchInput) {
-            searchInput.addEventListener('input', performSearch);
+            searchInput.focus();
          }
-         
+      }
+      
+      // Escape to close search results
+      if (e.key === 'Escape') {
+         const searchResults = document.getElementById('search-results');
+         if (searchResults) searchResults.style.display = 'none';
+      }
+   });
+}
+
+// ==================================================
+// ============ PERFORMANCE OPTIMIZATIONS ===========
+// ==================================================
+
+/**
+ * Initialize performance optimizations
+ */
+function initializePerformanceOptimizations() {
+   // Lazy load images
+   if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+         entries.forEach(entry => {
+            if (entry.isIntersecting) {
+               const img = entry.target;
+               if (img.dataset.src) {
+                  img.src = img.dataset.src;
+                  img.removeAttribute('data-src');
+                  observer.unobserve(img);
+               }
+            }
+         });
       });
+      
+      document.querySelectorAll('img[data-src]').forEach(img => {
+         imageObserver.observe(img);
+      });
+   }
+   
+   // Preload critical resources
+   const criticalResources = [
+      '../src/css/style.css',
+      '../src/css/themes.css',
+      '../src/css/guide-styles.css'
+   ];
+   
+   criticalResources.forEach(resource => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.href = resource;
+      link.as = 'style';
+      document.head.appendChild(link);
+   });
+}
+
+// ==================================================
+// ============ INITIALIZATION ======================
+// ==================================================
+
+/**
+ * Initialize all guide functionality
+ */
+function initializeGuide() {
+   // Core functionality
+   initializeTabNavigation();
+   initializeCollapsibleSections();
+   initializeSearch();
+   initializeSmoothScrolling();
+   initializeKeyboardNavigation();
+   
+   // AI Assistant
+   initializeAIAssistant();
+   
+   // Performance optimizations
+   initializePerformanceOptimizations();
+   
+   // Activate default tab if no hash present
+   if (!window.location.hash || window.location.hash === '#') {
+      console.log('No hash found, activating default tab: getting-started');
+      switchToTab('getting-started');
+         } else {
+      const hash = window.location.hash.substring(1);
+      console.log('Hash found, activating tab:', hash);
+      switchToTab(hash);
+   }
+   
+   // Show loading complete
+   console.log('Fallout Anomaly Guide initialized successfully');
+}
+
+// ==================================================
+// ============ DOM CONTENT LOADED ==================
+// ==================================================
+
+/**
+ * Initialize when DOM is ready
+ */
+document.addEventListener('DOMContentLoaded', initializeGuide);
+
+// Make functions globally accessible
+window.toggleCollapsible = toggleCollapsible;
+window.toggleSubCollapsible = toggleSubCollapsible;
+window.scrollToTop = scrollToTop;

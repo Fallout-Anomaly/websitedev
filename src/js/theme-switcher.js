@@ -1,3 +1,6 @@
+/* jshint esversion: 11, browser: true, node: false */
+/* global console */
+(function() {
 'use strict';
 
 class ThemeSwitcher {
@@ -13,6 +16,11 @@ class ThemeSwitcher {
     }
 
     async init() {
+        // Skip initialization on guide pages
+        if (window.location.pathname.includes('/guide.html') || window.location.pathname.includes('/pages/guide.html')) {
+            return;
+        }
+
         this.initializationAttempts++;
 
         // Show loading state
@@ -242,7 +250,7 @@ class ThemeSwitcher {
         }
 
         // Ensure default theme exists and is valid
-        if (!this.themes['fallout4'] || validationErrors.some(e => e.themeId === 'fallout4')) {
+        if (!this.themes.fallout4 || validationErrors.some(e => e.themeId === 'fallout4')) {
             console.warn('Default theme (fallout4) is invalid, attempting to use first valid theme');
             const firstValidTheme = Object.keys(this.themes).find(id =>
                 !validationErrors.some(e => e.themeId === id)
@@ -820,7 +828,7 @@ class ThemeSwitcher {
         this.applyTheme(themeId);
 
         // Save to localStorage for persistence
-        const saved = this.saveTheme(themeId);
+        this.saveTheme(themeId);
 
         // Update session storage
         try {
@@ -963,3 +971,4 @@ class ThemeSwitcher {
 
 // Global instance
 window.themeSwitcher = new ThemeSwitcher();
+})();

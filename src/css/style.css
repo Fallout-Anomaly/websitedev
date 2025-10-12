@@ -26,6 +26,7 @@
 
     /* --- RGB Values --- */
     --terminal-text-rgb: 64, 255, 64;
+    --terminal-highlight-rgb: 96, 255, 96;
     --terminal-bg-rgb: 26, 26, 26;
     --card-bg-rgb: 34, 34, 34;
     --card-border-rgb: 48, 187, 48;
@@ -330,6 +331,19 @@ pre {
 .nav-logo .icon {
     font-size: 1.5em;
     margin-right: var(--spacing-sm);
+    animation: rotate 4s linear infinite;
+    filter: drop-shadow(0 0 8px var(--terminal-highlight));
+    transition: all 0.3s ease;
+}
+
+.nav-logo:hover .icon {
+    animation-duration: 2s;
+    filter: drop-shadow(0 0 12px var(--terminal-highlight));
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .application-card .card-header .icon {
@@ -759,12 +773,40 @@ body.no-fx .continue-prompt {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(var(--terminal-bg-rgb), 0.9);
-    border-bottom: 1px solid var(--terminal-border);
+    background: linear-gradient(135deg, 
+        rgba(var(--terminal-bg-rgb), 0.95), 
+        rgba(var(--terminal-bg-rgb), 0.85)
+    );
+    border-bottom: 2px solid var(--terminal-highlight);
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(var(--terminal-highlight-rgb), 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     z-index: var(--z-nav);
     padding: var(--spacing-sm) var(--spacing-md);
-    backdrop-filter: blur(9px);
-    -webkit-backdrop-filter: blur(9px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    position: relative;
+}
+
+.nav-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--terminal-highlight), 
+        transparent
+    );
+    animation: scanline 3s linear infinite;
+}
+
+@keyframes scanline {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
 }
 
 .nav-menu-container {
@@ -785,12 +827,27 @@ body.no-fx .continue-prompt {
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-bold);
     text-decoration: none;
-    transition: color var(--transition-fast);
+    transition: all 0.3s ease;
     flex-shrink: 0;
+    position: relative;
+    padding: var(--spacing-xs);
+    border-radius: 4px;
+    background: linear-gradient(45deg, 
+        transparent, 
+        rgba(var(--terminal-highlight-rgb), 0.05), 
+        transparent
+    );
+    background-size: 200% 200%;
+    background-position: 0% 0%;
+    text-shadow: 0 0 8px rgba(var(--terminal-highlight-rgb), 0.3);
 }
 
 .nav-logo:hover {
     color: var(--terminal-highlight);
+    background-position: 100% 100%;
+    text-shadow: 0 0 15px var(--terminal-highlight);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(var(--terminal-highlight-rgb), 0.2);
 }
 
 #nav-links-container {
@@ -811,26 +868,98 @@ body.no-fx .continue-prompt {
 
 .nav-link {
     display: block;
+    position: relative;
     padding: var(--spacing-xs) var(--spacing-sm);
     color: var(--terminal-text);
     font-family: var(--font-terminal);
     font-size: var(--font-size-terminal-base);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     text-decoration: none;
     border: 1px solid transparent;
-    transition: color var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
+    background: linear-gradient(45deg, transparent, rgba(var(--terminal-highlight-rgb), 0.1), transparent);
+    background-size: 200% 200%;
+    background-position: 0% 0%;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    text-shadow: 0 0 5px rgba(var(--terminal-highlight-rgb), 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.nav-link:hover,
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(var(--terminal-highlight-rgb), 0.2), transparent);
+    transition: left 0.6s ease;
+    z-index: -1;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--terminal-highlight), var(--terminal-text));
+    transition: width 0.4s ease;
+}
+
+.nav-link:hover {
+    color: var(--terminal-highlight);
+    border-color: var(--terminal-highlight);
+    background-position: 100% 100%;
+    background-color: rgba(var(--terminal-highlight-rgb), 0.15);
+    text-shadow: 0 0 10px var(--terminal-highlight);
+    box-shadow: 0 4px 16px rgba(var(--terminal-highlight-rgb), 0.3);
+    transform: translateY(-2px);
+}
+
+.nav-link:hover::before {
+    left: 100%;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
 .nav-link.active {
     color: var(--terminal-highlight);
-    border-color: var(--terminal-border);
-    background-color: rgba(var(--terminal-text-rgb), 0.05);
+    border-color: var(--terminal-highlight);
+    background-color: rgba(var(--terminal-highlight-rgb), 0.2);
+    text-shadow: 0 0 15px var(--terminal-highlight);
+    box-shadow: 0 0 20px rgba(var(--terminal-highlight-rgb), 0.4);
+    animation: activePulse 2s ease-in-out infinite;
 }
 
-.nav-link.active {
-    text-shadow: 0 0 5px var(--terminal-shadow-color);
+.nav-link.active::after {
+    width: 100%;
+    background: linear-gradient(90deg, var(--terminal-highlight), #00ff88);
+    animation: activeGlow 2s ease-in-out infinite;
+}
+
+@keyframes activePulse {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(var(--terminal-highlight-rgb), 0.4);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 30px rgba(var(--terminal-highlight-rgb), 0.6);
+        transform: scale(1.02);
+    }
+}
+
+@keyframes activeGlow {
+    0%, 100% { 
+        box-shadow: 0 0 5px var(--terminal-highlight);
+    }
+    50% { 
+        box-shadow: 0 0 15px var(--terminal-highlight);
+    }
 }
 
 /* Enhanced Media Styling */
@@ -981,7 +1110,6 @@ textarea.form-control {
 .tab-content {
     display: none;
     padding: var(--spacing-xxl);
-    opacity: 0;
     transition: opacity var(--transition-normal);
     color: var(--terminal-text);
     background: rgba(var(--card-bg-rgb), 0.3);
@@ -989,7 +1117,7 @@ textarea.form-control {
 
 .tab-content.active {
     display: block;
-    opacity: 1;
+    opacity: 1; /* This was the missing rule */
     animation: fadeIn 0.4s ease-out;
 }
 
@@ -1695,9 +1823,13 @@ body.no-fx .pip-os-boot {
     text-shadow: none !important;
 }
 
-body.no-fx .nav-link.active {
-    text-shadow: none !important;
-}
+/* Navlink effects are always enabled regardless of FX toggle state */
+
+/* Nav-logo effects are always enabled regardless of FX toggle state */
+
+/* Rotating radiation icon is always enabled regardless of FX toggle state */
+
+/* Nav-menu scanline animation is always enabled regardless of FX toggle state */
 
 body.no-fx .staff-role-tag {
     text-shadow: none !important;
@@ -1863,7 +1995,7 @@ body.no-fx .donation-card {
     margin: var(--spacing-lg) auto;
     border: var(--card-border);
     border-radius: var(--border-radius);
-    max-width: 800px;
+    max-width: none !important;
     background-color: #000;
     box-shadow: var(--shadow-medium);
 }
@@ -3897,6 +4029,7 @@ nced Link and Button Styling */
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
     transform: scale(1.2);
 }
+
 
 /* Responsive Design for Merged Card */
 @media (max-width: 768px) {

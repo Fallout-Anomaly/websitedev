@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,10 +31,8 @@
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/style.css">
     <link rel="stylesheet" href="../src/css/themes.css">
-    <link rel="icon" href="data:image/svg+xml,
-        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-            <text y='.9em' font-size='90'>☢️</text>
-        </svg>">
+    <link rel="stylesheet" href="../src/css/guide-styles.css">
+    <link rel="icon" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%26%239762%3B%3C/text%3E%3C/svg%3E">
 </head>
 	<body class="body-textured crt">
 		<nav class="nav-menu">
@@ -61,231 +60,293 @@
 				</div>
 			</div>
 			<div class="fallout-card">
-				<div class="tab-container">
-					<div class="tab-buttons">
-						<button class="tab-button active" data-tab="overview">Overview</button>
-						<button class="tab-button" data-tab="features">Key Features</button>
-						<button class="tab-button" data-tab="mechanics">Survival Mechanics</button>
-						<button class="tab-button" data-tab="mods">Included Mods</button>
-						<button class="tab-button" data-tab="community">Community</button>
-					</div>
-					<div id="overview" class="tab-content active">
-						<div class="feature-grid">
-							<div class="feature-card">
-								<div class="card-header">
-									<span class="icon">
-										<i class="fas fa-radiation"></i>
-									</span>
-									<h3>Radical Realism</h3>
+				<div class="terminal-list">
+					<!-- Collapsible Section 1: Overview -->
+					<div class="terminal-list-item collapsible-section">
+						<div class="collapsible-header">
+							<i class="fas fa-info-circle"></i>1. Overview <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+						</div>
+						<div class="collapsible-content">
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-radiation"></i> Radical Realism <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
 								</div>
-								<ul class="mod-list">
-									<li>Experience a wasteland that truly wants you dead. No more bullet sponges or unrealistic mechanics.</li>
-								</ul>
+								<div class="sub-collapsible-content">
+									<p>Experience a wasteland that truly wants you dead. No more bullet sponges or unrealistic mechanics.</p>
+								</div>
 							</div>
-							<div class="feature-card">
-								<div class="card-header">
-									<span class="icon">
-										<i class="fas fa-gun"></i>
-									</span>
-									<h3>Lethal Combat</h3>
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-gun"></i> Lethal Combat <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
 								</div>
-								<ul class="mod-list">
-									<li>Every encounter could be your last. Combat is strategic, unforgiving, and requires careful planning.</li>
-								</ul>
+								<div class="sub-collapsible-content">
+									<p>Every encounter could be your last. Combat is strategic, unforgiving, and requires careful planning.</p>
+								</div>
 							</div>
-							<div class="feature-card">
-								<div class="card-header">
-									<span class="icon">
-										<i class="fas fa-globe"></i>
-									</span>
-									<h3>Dynamic World</h3>
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-globe"></i> Dynamic World <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
 								</div>
-								<ul class="mod-list">
-									<li>A living, breathing wasteland that responds to your actions with unprecedented depth and complexity.</li>
-								</ul>
+								<div class="sub-collapsible-content">
+									<p>A living, breathing wasteland that responds to your actions with unprecedented depth and complexity.</p>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div id="features" class="tab-content">
-						<div class="feature-grid">
-							<div class="feature-card">
-								<div class="card-header">
-									<span class="icon">
-										<i class="fas fa-bullseye"></i>
-									</span>
-									<h3>Advanced Damage System</h3>
+					<!-- Collapsible Section 2: Key Features -->
+					<div class="terminal-list-item collapsible-section">
+						<div class="collapsible-header">
+							<i class="fas fa-star"></i>2. Key Features <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+						</div>
+						<div class="collapsible-content">
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-bullseye"></i> Advanced Damage System <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
 								</div>
-								<ul class="mod-list">
-									<li>Realistic locational damage that makes every encounter potentially fatal.</li>
-								</ul>
+								<div class="sub-collapsible-content">
+									<p>Realistic locational damage that makes every encounter potentially fatal.</p>
+								</div>
 							</div>
-							<div class="feature-card">
-								<div class="card-header">
-									<span class="icon">
-										<i class="fas fa-heart"></i>
-									</span>
-									<h3>Survival Mechanics</h3>
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-heart"></i> Survival Mechanics <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
 								</div>
-								<ul class="mod-list">
-									<li>Complex healing, resource management, and environmental challenges.</li>
-								</ul>
+								<div class="sub-collapsible-content">
+									<p>Complex healing, resource management, and environmental challenges.</p>
+								</div>
 							</div>
-							<div class="feature-card">
-								<div class="card-header">
-									<span class="icon">
-										<i class="fas fa-gun"></i>
-									</span>
-									<h3>Enhanced Weaponry</h3>
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-gun"></i> Enhanced Weaponry <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
 								</div>
-								<ul class="mod-list">
-									<li>Expanded arsenal with realistic weapon behaviors and modifications.</li>
-								</ul>
+								<div class="sub-collapsible-content">
+									<p>Expanded arsenal with realistic weapon behaviors and modifications.</p>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div id="mechanics" class="tab-content">
-						<div class="feature-grid">
-							<div class="feature-card">
-								<div class="card-header">
-									<span class="icon">
-										<i class="fas fa-radiation"></i>
-									</span>
-									<h3>Radiation System</h3>
+					<!-- Collapsible Section 3: Survival Mechanics -->
+					<div class="terminal-list-item collapsible-section">
+						<div class="collapsible-header">
+							<i class="fas fa-heartbeat"></i>3. Survival Mechanics <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+						</div>
+						<div class="collapsible-content">
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-radiation"></i> Radiation System <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
 								</div>
-								<ul class="mod-list">
-									<li>Advanced radiation mechanics with real-world inspired health impacts.</li>
-								</ul>
+								<div class="sub-collapsible-content">
+									<p>Advanced radiation mechanics with real-world inspired health impacts.</p>
+								</div>
 							</div>
-							<div class="feature-card">
-								<div class="card-header">
-									<span class="icon">
-										<i class="fas fa-syringe"></i>
-									</span>
-									<h3>Medical Complexity</h3>
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-syringe"></i> Medical Complexity <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
 								</div>
-								<ul class="mod-list">
-									<li>Detailed injury and healing system that goes beyond traditional game mechanics.</li>
-								</ul>
+								<div class="sub-collapsible-content">
+									<p>Detailed injury and healing system that goes beyond traditional game mechanics.</p>
+								</div>
 							</div>
-							<div class="feature-card">
-								<div class="card-header">
-									<span class="icon">
-										<i class="fas fa-cloud-sun"></i>
-									</span>
-									<h3>Environmental Challenges</h3>
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-cloud-sun"></i> Environmental Challenges <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
 								</div>
-								<ul class="mod-list">
-									<li>Weather, terrain, and environmental factors significantly impact survival.</li>
-								</ul>
+								<div class="sub-collapsible-content">
+									<p>Weather, terrain, and environmental factors significantly impact survival.</p>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div id="mods" class="tab-content">
-						<div class="mods-grid">
-							<div class="mods-column">
-								<h3>Core Overhaul Mods</h3>
-								<ul class="mod-list">
-									<li>
-										<span class="icon">
-											<i class="fas fa-star"></i>
-										</span> Damn Apocalypse
-									</li>
-									<li>
-										<span class="icon">
-											<i class="fas fa-star"></i>
-										</span> MAIM
-									</li>
-									<li>
-										<span class="icon">
-											<i class="fas fa-star"></i>
-										</span> Hunter of the Commonwealth
-									</li>
-								</ul>
-								<h3>Gameplay Enhancements</h3>
-								<ul class="mod-list">
-									<li>
-										<span class="icon">
-											<i class="fas fa-star"></i>
-										</span> You Are Exceptional Perk Overhaul
-									</li>
-									<li>
-										<span class="icon">
-											<i class="fas fa-star"></i>
-										</span> MAIM MEDICAL
-									</li>
-									<li>
-										<span class="icon">
-											<i class="fas fa-star"></i>
-										</span> Dynamic Music Overhaul
-									</li>
-								</ul>
+					<!-- Collapsible Section 4: Included Mods -->
+					<div class="terminal-list-item collapsible-section">
+						<div class="collapsible-header">
+							<i class="fas fa-puzzle-piece"></i>4. Included Mods <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+						</div>
+						<div class="collapsible-content">
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-star"></i> Core Overhaul Mods <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+								</div>
+								<div class="sub-collapsible-content">
+									<ul class="compact-list">
+										<li><i class="fas fa-star"></i> Damn Apocalypse</li>
+										<li><i class="fas fa-star"></i> MAIM</li>
+										<li><i class="fas fa-star"></i> Hunter of the Commonwealth</li>
+									</ul>
+								</div>
 							</div>
-							<div class="mods-column">
-								<h3>Combat & Movement</h3>
-								<ul class="mod-list">
-									<li>
-										<span class="icon">
-											<i class="fas fa-star"></i>
-										</span> SCOURGE Combat Overhaul
-									</li>
-									<li>
-										<span class="icon">
-											<i class="fas fa-star"></i>
-										</span> Deadeye Mod
-									</li>
-									<li>
-										<span class="icon">
-											<i class="fas fa-star"></i>
-										</span> Munitions Expansion Project
-									</li>
-									<li>
-										<span class="icon">
-											<i class="fas fa-star"></i>
-										</span> Enhanced Movement
-									</li>
-									<li>
-										<span class="icon">
-											<i class="fas fa-star"></i>
-										</span> Survival XP Gain Adjustment
-									</li>
-								</ul>
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-cogs"></i> Gameplay Enhancements <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+								</div>
+								<div class="sub-collapsible-content">
+									<ul class="compact-list">
+										<li><i class="fas fa-star"></i> You Are Exceptional Perk Overhaul</li>
+										<li><i class="fas fa-star"></i> MAIM MEDICAL</li>
+										<li><i class="fas fa-star"></i> Dynamic Music Overhaul</li>
+									</ul>
+								</div>
+							</div>
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-fist-raised"></i> Combat & Movement <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+								</div>
+								<div class="sub-collapsible-content">
+									<ul class="compact-list">
+										<li><i class="fas fa-star"></i> SCOURGE Combat Overhaul</li>
+										<li><i class="fas fa-star"></i> Deadeye Mod</li>
+										<li><i class="fas fa-star"></i> Munitions Expansion Project</li>
+										<li><i class="fas fa-star"></i> Enhanced Movement</li>
+										<li><i class="fas fa-star"></i> Survival XP Gain Adjustment</li>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div id="community" class="tab-content">
-						<div class="feature-grid">
-							<div class="feature-card">
-								<div class="card-header">
-									<span class="icon">
-										<i class="fas fa-comments"></i>
-									</span>
-									<h3>Discord Community</h3>
+					<!-- Collapsible Section 5: World & Factions -->
+					<div class="terminal-list-item collapsible-section">
+						<div class="collapsible-header">
+							<i class="fas fa-globe"></i>5. World & Factions <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+						</div>
+						<div class="collapsible-content">
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-cloud-rain"></i> Weather & Environment <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
 								</div>
-								<ul class="mod-list">
-									<li>Connect with fellow survivors, share strategies, and get support.</li>
-								</ul>
+								<div class="sub-collapsible-content">
+									<div class="skill-grid">
+										<div class="skill-item"><strong>Vivid Weathers:</strong> Enhanced weather system with dynamic lighting and atmospheric effects</div>
+										<div class="skill-item"><strong>Radiation Storms:</strong> Dangerous weather events requiring protective gear</div>
+										<div class="skill-item"><strong>Environmental Hazards:</strong> High-radiation zones, temperature effects, and visibility impacts</div>
+										<div class="skill-item"><strong>Weather Protection:</strong> Gas masks, hazmat suits, and power helmets for survival</div>
+									</div>
+								</div>
 							</div>
-							<div class="feature-card">
-								<div class="card-header">
-									<span class="icon">
-										<i class="fas fa-sync"></i>
-									</span>
-									<h3>Continuous Development</h3>
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-hammer"></i> Settlement & Building <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
 								</div>
-								<ul class="mod-list">
-									<li>Regular updates and improvements based on community feedback.</li>
-								</ul>
+								<div class="sub-collapsible-content">
+									<div class="skill-grid">
+										<div class="skill-item"><strong>Workshop Framework:</strong> Enhanced building options and expanded settlement items</div>
+										<div class="skill-item"><strong>Building Materials:</strong> More realistic material requirements and salvage systems</div>
+										<div class="skill-item"><strong>Power Systems:</strong> Advanced power generation and distribution</div>
+										<div class="skill-item"><strong>Storage Solutions:</strong> Improved storage and organization systems</div>
+									</div>
+								</div>
 							</div>
-							<div class="feature-card">
-								<div class="card-header">
-									<span class="icon">
-										<i class="fas fa-users"></i>
-									</span>
-									<h3>Collaborative Modding</h3>
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-users"></i> Companions & NPCs <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
 								</div>
-								<ul class="mod-list">
-									<li>Contribute ideas, report issues, and help shape the future of Anomaly.</li>
-								</ul>
+								<div class="sub-collapsible-content">
+									<div class="skill-grid">
+										<div class="skill-item"><strong>Enhanced Companions:</strong> Improved AI and interaction options for Dogmeat and others</div>
+										<div class="skill-item"><strong>NPC Behavior:</strong> SCOURGE system with randomized stats and smarter AI</div>
+										<div class="skill-item"><strong>Faction Relations:</strong> Improved faction interaction and dialogue systems</div>
+										<div class="skill-item"><strong>Skill Integration:</strong> Zoology and Influence skills affect companion effectiveness</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Collapsible Section 6: Systems & Interface -->
+					<div class="terminal-list-item collapsible-section">
+						<div class="collapsible-header">
+							<i class="fas fa-cogs"></i>6. Systems & Interface <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+						</div>
+						<div class="collapsible-content">
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-tools"></i> Crafting & Equipment <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+								</div>
+								<div class="sub-collapsible-content">
+									<div class="skill-grid">
+										<div class="skill-item"><strong>Enhanced Crafting:</strong> Dank_ECO with universal and power armor workbenches</div>
+										<div class="skill-item"><strong>Equipment Systems:</strong> Enhanced armor modding and weapon modification</div>
+										<div class="skill-item"><strong>Durability Systems:</strong> Realistic wear and repair mechanics</div>
+										<div class="skill-item"><strong>Replaceable Armor Plates:</strong> Enhanced armor protection system</div>
+									</div>
+								</div>
+							</div>
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-desktop"></i> User Interface & HUD <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+								</div>
+								<div class="sub-collapsible-content">
+									<div class="skill-grid">
+										<div class="skill-item"><strong>Immersive HUD:</strong> Dynamic elements with extensive customization options</div>
+										<div class="skill-item"><strong>Menu Systems:</strong> Wheel menu, MODExplorer, and quick access systems</div>
+										<div class="skill-item"><strong>Movement Controls:</strong> Enhanced movement with sprint, sneak, and auto-move</div>
+										<div class="skill-item"><strong>Quick Access:</strong> Fast inventory and map access systems</div>
+									</div>
+								</div>
+							</div>
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-volume-up"></i> Audio & Visual <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+								</div>
+								<div class="sub-collapsible-content">
+									<div class="skill-grid">
+										<div class="skill-item"><strong>Audio Systems:</strong> Persistent volume sliders and enhanced sound effects</div>
+										<div class="skill-item"><strong>Dynamic Music:</strong> Context-sensitive music system</div>
+										<div class="skill-item"><strong>Visual Enhancements:</strong> ENB integration with customizable effects</div>
+										<div class="skill-item"><strong>Performance Options:</strong> Adjustable visual quality settings</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Collapsible Section 7: Customization -->
+					<div class="terminal-list-item collapsible-section">
+						<div class="collapsible-header">
+							<i class="fas fa-user-edit"></i>7. Customization <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+						</div>
+						<div class="collapsible-content">
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-user-edit"></i> Character Customization <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+								</div>
+								<div class="sub-collapsible-content">
+									<div class="skill-grid">
+										<div class="skill-item"><strong>Appearance Systems:</strong> Enhanced character creation with detailed options</div>
+										<div class="skill-item"><strong>Clothing System:</strong> Expanded clothing and armor customization</div>
+										<div class="skill-item"><strong>Barber/Surgery:</strong> Advanced appearance modification tools</div>
+										<div class="skill-item"><strong>Visual Variety:</strong> More diverse character appearance options</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Collapsible Section 8: Community -->
+					<div class="terminal-list-item collapsible-section">
+						<div class="collapsible-header">
+							<i class="fas fa-users"></i>8. Community <span class="collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+						</div>
+						<div class="collapsible-content">
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-comments"></i> Discord Community <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+								</div>
+								<div class="sub-collapsible-content">
+									<p>Connect with fellow survivors, share strategies, and get support.</p>
+								</div>
+							</div>
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-sync"></i> Continuous Development <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+								</div>
+								<div class="sub-collapsible-content">
+									<p>Regular updates and improvements based on community feedback.</p>
+								</div>
+							</div>
+							<div class="sub-collapsible">
+								<div class="sub-collapsible-header">
+									<i class="fas fa-users"></i> Collaborative Modding <span class="sub-collapsible-icon"><i class="fas fa-chevron-down"></i></span>
+								</div>
+								<div class="sub-collapsible-content">
+									<p>Contribute ideas, report issues, and help shape the future of Anomaly.</p>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -310,7 +371,7 @@
 					<div class="cta-buttons">
 						<a href="apply.html" class="terminal-button">
 							<i class="fas fa-file-alt icon"></i> APPLY NOW </a>
-						<a href="https://discord.gg/TAueAV8Utk" class="fallout-btn-discord" target="_blank">
+						<a href="https://discord.gg/aCa75Y3kX9" class="fallout-btn-discord" target="_blank">
 							<i class="fab fa-discord icon"></i> JOIN DISCORD </a>
 					</div>
 				</div>
@@ -319,5 +380,6 @@
 		<script src="../src/js/theme-switcher.js"></script>
 		<script src="../src/js/script.js"></script>
 		<script src="../src/js/navlinks.js"></script>
+		<script src="../src/js/guide-scripts.js"></script>
 	</body>
 </html>

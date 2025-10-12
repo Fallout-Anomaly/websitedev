@@ -1,3 +1,6 @@
+/* jshint esversion: 11, browser: true, node: false */
+/* global YT, Promise, console, Set */
+(function() {
 'use strict';
 
 // Video Carousel functionality
@@ -269,7 +272,7 @@ function displayAllBootMessagesInstantly(pageKey) {
 	if (!pipOsBoot) return;
 
 	pipOsBoot.innerHTML = '';
-	const messages = bootMessages[pageKey] || bootMessages['index'];
+	const messages = bootMessages[pageKey] || bootMessages.index;
 	if (!messages) {
 		const line = document.createElement('div');
 		line.className = 'pip-os-line visible';
@@ -294,7 +297,7 @@ async function initializeBootMessagesWithTypewriter(pageKey, controller) {
 	}
 	pipOsBoot.innerHTML = '';
 
-	const messages = bootMessages[pageKey] || bootMessages['index'];
+	const messages = bootMessages[pageKey] || bootMessages.index;
 	if (!messages) {
 		const line = document.createElement('div');
 		line.className = 'pip-os-line visible';
@@ -515,6 +518,11 @@ function initializeThemeSwitcherIfNeeded() {
 }
 
 async function loadFooter() {
+	// Skip footer loading on guide pages
+	if (window.location.pathname.includes('/guide.html') || window.location.pathname.includes('/pages/guide.html')) {
+		return;
+	}
+	
 	if (document.querySelector('.fallout-footer') || document.body.classList.contains('footer-loading')) {
 		return;
 	}
@@ -689,9 +697,8 @@ async function loadStaffData() {
 
 					socialLinks.forEach(link => {
 						const linkA = document.createElement('a');
-						const url = (link.startsWith('http://') || link.startsWith('https://') || link.startsWith('mailto:'))
-							? link
-							: `https://${link}`;
+						const url = (link.startsWith('http://') || link.startsWith('https://') || link.startsWith('mailto:')) ?
+							link : `https://${link}`;
 						linkA.href = url;
 						linkA.target = '_blank';
 						linkA.rel = 'noopener noreferrer';
@@ -794,6 +801,10 @@ function getIconForRank(rank) {
 }
 
 function initializeTabs() {
+	// Skip tab initialization on guide pages, as they have a custom system
+	if (window.location.pathname.includes('/guide.html') || window.location.pathname.includes('/pages/guide.html')) {
+		return;
+	}
 	const tabContainers = document.querySelectorAll('.tab-container');
 	if (tabContainers.length === 0) return;
 
@@ -873,6 +884,12 @@ function initializeTabs() {
 }
 
 function initializeAccordions() {
+	// Only initialize accordions if we're NOT on the guide page
+	// The guide page uses its own collapsible system via guide-scripts.js
+	if (window.location.pathname.includes('/guide.html') || window.location.pathname.includes('/pages/guide.html')) {
+		return; // Skip accordion initialization on guide pages
+	}
+	
 	const accordionHeaders = document.querySelectorAll('.accordion-header');
 	
 	accordionHeaders.forEach(header => {
@@ -1010,3 +1027,4 @@ async function initializeThemeSwitcher() {
 		console.error('Failed to initialize theme switcher:', error);
 	}
 }
+})();

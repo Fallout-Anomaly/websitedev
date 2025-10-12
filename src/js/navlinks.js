@@ -1,3 +1,7 @@
+/* jshint esversion: 11, browser: true, node: false */
+(function() {
+'use strict';
+
 function getBasePath() {
     const hostname = window.location.hostname;
     const pathname = window.location.pathname; 
@@ -96,9 +100,9 @@ function initializeFxToggle() {
     toggleButton.addEventListener('click', () => {
         const isDisabled = document.body.classList.toggle('no-fx');
         localStorage.setItem('fxDisabled', isDisabled);
-        toggleButton.innerHTML = isDisabled
-            ? '<i class="fas fa-eye"></i> Enable Effects'
-            : '<i class="fas fa-eye-slash"></i> Disable Effects';
+        toggleButton.innerHTML = isDisabled ?
+            '<i class="fas fa-eye"></i> Enable Effects' :
+            '<i class="fas fa-eye-slash"></i> Disable Effects';
 
         if (!isDisabled) {
              document.body.style.animation = 'none';
@@ -113,7 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
     fixLogoLink(basePath);
     loadNavLinks(basePath);
 
-    if (!document.querySelector('.fx-toggle-button')) { 
+    // Only initialize FX toggle if not on the guide page
+    if (!document.querySelector('.fx-toggle-button') && !(window.location.pathname.includes('/guide.html') || window.location.pathname.includes('/pages/guide.html'))) { 
         initializeFxToggle();
     }
 });
+})();
