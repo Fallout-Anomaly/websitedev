@@ -393,7 +393,110 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                           <a href="http://enbdev.com/mod_fallout4_v0499.htm" class="terminal-button download-btn" target="_blank"><i class="fas fa-download"></i> Download ENB for Fallout 4</a>
                      </div>
                         </div>
+                                    <div class="terminal-buttons">
+                                       <a href="http://enbdev.com/mod_fallout4_v0501.htm" class="terminal-button primary" target="_blank">
+                                          <i class="fas fa-download"></i> Download ENB for Fallout 4
+                                       </a>
                      </div>
+                              </div>
+                              
+                              <div class="terminal-section">
+                                 <div class="terminal-header">
+                                    <span class="terminal-prompt">[DISPLAY]</span>
+                                    <span class="terminal-title">Resolution & Visual Issues</span>
+                     </div>
+                                 
+                                 <div class="terminal-info-block">
+                                    <div class="info-text">
+                                       <div class="solution-step">→ Users running 1080p (1920x1080) resolutions shouldn't run into any issues</div>
+                                       <div class="solution-step">→ Issues more commonly occur with 1440p or higher resolutions</div>
+                                       <div class="solution-step">→ <span class="warning-text">Super and ultra-wide monitors require the provided patches to be active in Mod Organizer 2</span></div>
+                     </div>
+                                 </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Refracted/Boxed Display (Screen in Upper Left Corner)</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step"><strong>This issue has multiple causes related to .ini settings interacting with your Windows resolution.</strong></div>
+                                       <div class="solution-step">Check each step in order and launch the game after each to see if the issue is resolved:</div>
+                        </div>
+                     </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 1: Check Third-Party Software</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Ensure you are NOT running any 3rd party software to adjust your resolution</div>
+                                       <div class="solution-step">→ These applications are always considered incompatible with the modlist</div>
+                        </div>
+                     </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 2: Verify Monitor Settings</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Check that your monitor is running at its native resolution</div>
+                                       <div class="solution-step">→ This is for troubleshooting purposes - you can change it back later</div>
+                        </div>
+                     </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 3: Set Correct Resolution in BethINI</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ <span class="warning-text">IMPORTANT: Close MO2 before running BethINI</span></div>
+                                       <div class="solution-step">→ Run BethINI as an administrator</div>
+                                       <div class="solution-step">→ Set the correct resolution for your monitor</div>
+                                       <div class="solution-step">→ Save and close BethINI</div>
+                        </div>
+                     </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 4: Verify Display Mode Settings</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step">→ Open Mod Organizer 2</div>
+                                       <div class="solution-step">→ Navigate to your Falloutprefs.ini file in MO2</div>
+                                       <div class="solution-step">→ Verify that you have either <code>bFullscreen=1</code> or <code>bBorderless=1</code> set</div>
+                                       <div class="solution-step">→ Only one should be set to 1, not both</div>
+                        </div>
+                     </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-error-block">
+                                    <div class="error-header">Step 5: DPI Scaling Override (Last Resort)</div>
+                                    <div class="error-solution">
+                                       <div class="solution-step"><strong>If all above steps fail, try this DPI scaling fix:</strong></div>
+                                       <div class="solution-step">1. Navigate to your Stock Folder inside your Installation Directory</div>
+                                       <div class="solution-step">2. Right-click on <code>Fallout4.exe</code> and select Properties</div>
+                                       <div class="solution-step">3. Navigate to the Compatibility tab</div>
+                                       <div class="solution-step">4. Click on "Change High DPI settings"</div>
+                                       <div class="solution-step">5. Check the box for "High DPI Scaling Override"</div>
+                                       <div class="solution-step">6. Ensure the drop-down menu is set to <strong>Application</strong></div>
+                                       <div class="solution-step">7. Click OK and Apply</div>
+                        </div>
+                     </div>
+                                 
+                                 <div class="terminal-divider"></div>
+                                 
+                                 <div class="terminal-info-block">
+                                    <div class="info-text" style="text-align: center;">
+                                       <div class="solution-step"><strong>Still Having Issues?</strong></div>
+                                       <div class="solution-step">If none of the above solutions work, you have a unique issue that requires support assistance.</div>
+                     </div>
+                                    <div class="terminal-buttons">
+                                       <a href="https://falloutanomaly.fillout.com/bugreports" class="terminal-button primary" target="_blank">
+                                          <i class="fas fa-bug"></i> Submit Bug Report
+                                       </a>
+                     </div>
+                                 </div>
                               </div>
                            </div>
                         </div>
@@ -885,8 +988,14 @@ Log into Nexus in Wabbajack                                 <p>Open Wabbajack, c
                                               <td>Fast Rads/IRA removal. Removes Rads/IRA over 30s; perks can make it faster. Base effect: -25 Rads / -50 IRA; scales with Medicine skill/perks. Player cannot sprint while effect is active. Does NOT cure Radiation Poisoning</td>
                                               <td>
                                                  <div class="treats-grid">
-                                                         <div class="treats-item"> <span class="treats-label">IRA:</span> <span class="treats-icon positive">✅</span> </div>
-                                                         <div class="treats-item"> <span class="treats-label">RAD:</span> <span class="treats-icon positive">✅</span> </div>
+                                                    <div class="treats-item">
+                                                       <span class="treats-label">IRA:</span>
+                                                       <span class="treats-icon positive">✅</span>
+                                                    </div>
+                                                    <div class="treats-item">
+                                                       <span class="treats-label">RAD:</span>
+                                                       <span class="treats-icon positive">✅</span>
+                                                    </div>
                                                  </div>
                                               </td>
                                            </tr>
