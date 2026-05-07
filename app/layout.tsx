@@ -8,6 +8,7 @@ import { isStaffAccount } from "@/src/lib/staff-access";
 import { displayNameForUser } from "@/src/lib/display-name";
 import { avatarPresetForUser } from "@/src/lib/profile-avatar";
 import Providers from "@/app/providers";
+import BrandRenameModal from "@/src/components/BrandRenameModal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -59,6 +60,7 @@ export default async function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#0a0a0a]">
         <Providers>
+          <BrandRenameModal />
           <Header
             user={user}
             isStaff={isStaff}
