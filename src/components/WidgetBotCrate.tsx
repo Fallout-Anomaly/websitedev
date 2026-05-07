@@ -12,7 +12,6 @@ export default function WidgetBotCrate() {
   const server = env("NEXT_PUBLIC_WIDGETBOT_SERVER_ID");
   const channel = env("NEXT_PUBLIC_WIDGETBOT_CHANNEL_ID");
   const [useFallbackCdn, setUseFallbackCdn] = useState(false);
-  const [loaded, setLoaded] = useState(false);
 
   // Keep it opt-in and non-breaking in dev/CI.
   if (!server || !channel) return null;
@@ -21,7 +20,7 @@ export default function WidgetBotCrate() {
     () =>
       useFallbackCdn
         ? "https://unpkg.com/@widgetbot/crate@3"
-        : "https://cdn.jsdelivr.net/npm/@widgetbot/crate@3",
+        : "/vendor/widgetbot-crate.js",
     [useFallbackCdn],
   );
 
@@ -51,9 +50,9 @@ export default function WidgetBotCrate() {
     }
   }, [server, channel]);
 
-  // When switching CDNs, reset "loaded" so init re-runs.
+  // When switching script sources, re-run init after load.
   useEffect(() => {
-    setLoaded(false);
+    // no-op; keeps src change reactive for Script
   }, [src]);
 
   return (
@@ -62,29 +61,12 @@ export default function WidgetBotCrate() {
         id="widgetbot-crate"
         src={src}
         strategy="afterInteractive"
-        onLoad={() => {
-          setLoaded(true);
-          init();
-        }}
+        onLoad={init}
         onError={() => {
-          // try the other CDN once
+          // If local/self-hosted is blocked/missing, try a public CDN once.
           setUseFallbackCdn(true);
         }}
       />
-
-      {/* Match WidgetBot docs: init after script loads */}
-      {loaded ? (
-        <Script id="widgetbot-crate-init" strategy="afterInteractive">
-          {`
-            try {
-              if (typeof window !== 'undefined' && typeof window.Crate === 'function' && !window.__fwWidgetBotCrateInitialized) {
-                window.__fwWidgetBotCrateInitialized = true;
-                new window.Crate({ server: ${JSON.stringify(server)}, channel: ${JSON.stringify(channel)} });
-              }
-            } catch (e) {}
-          `}
-        </Script>
-      ) : null}
     </>
   );
 }
