@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
 function env(key: string): string | undefined {
   const v = process.env[key];
@@ -11,6 +11,7 @@ function env(key: string): string | undefined {
 export default function WidgetBotCrate() {
   const server = env("NEXT_PUBLIC_WIDGETBOT_SERVER_ID");
   const channel = env("NEXT_PUBLIC_WIDGETBOT_CHANNEL_ID");
+  const [useFallbackCdn, setUseFallbackCdn] = useState(false);
 
   // Keep it opt-in and non-breaking in dev/CI.
   if (!server || !channel) return null;
@@ -45,9 +46,14 @@ export default function WidgetBotCrate() {
     <>
       <Script
         id="widgetbot-crate"
-        src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3"
+        src={
+          useFallbackCdn
+            ? "https://unpkg.com/@widgetbot/crate@3"
+            : "https://cdn.jsdelivr.net/npm/@widgetbot/crate@3"
+        }
         strategy="afterInteractive"
         onLoad={init}
+        onError={() => setUseFallbackCdn(true)}
       />
     </>
   );

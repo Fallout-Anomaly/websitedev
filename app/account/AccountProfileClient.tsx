@@ -315,13 +315,6 @@ export default function AccountProfileClient({
         <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-400">
           Profile picture
         </h2>
-        <p className="mt-1 text-xs text-slate-500">
-          Pick a portrait for comments and the header. If your project has WebP
-          files in storage under{" "}
-          <code className="rounded bg-slate-950 px-1">presets/1.webp</code> …{" "}
-          <code className="rounded bg-slate-950 px-1">6.webp</code>, those
-          are used; otherwise a built-in preview is shown.
-        </p>
         <div className="mt-4 flex flex-wrap gap-3">
           {PROFILE_AVATAR_PRESET_IDS.map((id) => {
             const selected = avatarPreset === id;
