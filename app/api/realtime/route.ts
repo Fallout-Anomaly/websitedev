@@ -51,7 +51,7 @@ export const GET = configured
       },
     })
   : async () =>
-      new Response("Realtime not configured", {
-        status: 503,
-      });
+      // Returning 503 causes the realtime client to reconnect in a tight loop.
+      // 204 is treated as "no realtime" without spamming errors.
+      new Response(null, { status: 204 });
 
