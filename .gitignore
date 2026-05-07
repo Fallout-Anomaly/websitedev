@@ -45,7 +45,8 @@ AGENTS.md
 CLAUDE.md
 README.md
 *.bat
-/*.sql
+*.sql
+supabase/migrations/
 
 # typescript
 *.tsbuildinfo
