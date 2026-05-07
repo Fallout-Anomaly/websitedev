@@ -49,6 +49,7 @@ export default function Header({ user, isStaff, displayName, avatarPreset }: Hea
               { name: 'HOME', href: '/' },
               { name: 'JOIN OUR TEAM', href: '/apply' },
               { name: 'GUIDE', href: '/guide' },
+              { name: 'ROADMAP', href: '/roadmap' },
               { name: 'REPORT BUG', href: '/support/bug-report' },
             ].map((link) => (
               <Link

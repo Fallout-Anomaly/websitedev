@@ -1,14 +1,8 @@
 import Link from 'next/link';
-import { createClient } from '@/lib/supabase/server';
 import HeroCarousel from '@/src/components/HeroCarousel';
 import BootSequence from '@/src/components/BootSequence';
 
 export default async function Home() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
   return (
     <div className="min-h-screen bg-black text-[#e3e3e3] font-sans selection:bg-emerald-500/30">
       <BootSequence />

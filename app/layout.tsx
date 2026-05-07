@@ -30,9 +30,23 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  const isStaff = user ? await isStaffAccount(supabase, user) : false;
+  let user: Awaited<ReturnType<Awaited<ReturnType<typeof createClient>>["auth"]["getUser"]>>["data"]["user"] =
+    null;
+  let isStaff = false;
+
+  try {
+    const supabase = await createClient();
+    const {
+      data: { user: u },
+    } = await supabase.auth.getUser();
+    user = u;
+    isStaff = user ? await isStaffAccount(supabase, user) : false;
+  } catch {
+    // If Supabase env vars are missing/misconfigured in production, don't crash the entire app shell.
+    user = null;
+    isStaff = false;
+  }
+
   const displayName = displayNameForUser(user);
   const avatarPreset = avatarPresetForUser(user);
 

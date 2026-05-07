@@ -16,6 +16,13 @@ const NAV_BASE = [
     countKey: null as keyof StaffNavCounts | null,
   },
   {
+    href: "/staff/roadmap",
+    label: "Roadmap",
+    description: "Public roadmap board",
+    match: (p: string) => p.startsWith("/staff/roadmap"),
+    countKey: null as keyof StaffNavCounts | null,
+  },
+  {
     href: "/staff/modlist",
     label: "Mod registry",
     description: "Search & filter package",
