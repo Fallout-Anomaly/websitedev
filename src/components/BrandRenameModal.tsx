@@ -57,10 +57,16 @@ export default function BrandRenameModal() {
 
         <div className="px-5 py-6 text-sm leading-relaxed text-gray-300">
           <p>
-            This change comes from big changes in Anomaly — for the better.
+            This change comes from big changes — for the better.
             <span className="text-white font-semibold"> Fallen World</span> has
-            grown into its own thing, with its own direction, systems, and
-            identity.
+            evolved into a far more brutal experience and we want it to stand on
+            its own.
+          </p>
+          <p className="mt-4 text-gray-400">
+            We don’t want the project to feel like it’s living in the shadow of
+            games like STALKER. The gameplay you came to love isn’t going
+            anywhere — this is about identity and direction, so Fallen World can
+            be its own thing.
           </p>
           <p className="mt-4 text-gray-400">
             You’re in the right place. Links, docs, and branding will continue
