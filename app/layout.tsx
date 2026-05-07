@@ -7,7 +7,6 @@ import { createClient } from "@/lib/supabase/server";
 import { isStaffAccount } from "@/src/lib/staff-access";
 import { displayNameForUser } from "@/src/lib/display-name";
 import { avatarPresetForUser } from "@/src/lib/profile-avatar";
-import WidgetBotCrate from "@/src/components/WidgetBotCrate";
 import Providers from "@/app/providers";
 
 const geistSans = Geist({
@@ -30,6 +29,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const widgetbotServer = process.env.NEXT_PUBLIC_WIDGETBOT_SERVER_ID;
+  const widgetbotChannel = process.env.NEXT_PUBLIC_WIDGETBOT_CHANNEL_ID;
+
   let user: Awaited<ReturnType<Awaited<ReturnType<typeof createClient>>["auth"]["getUser"]>>["data"]["user"] =
     null;
   let isStaff = false;
@@ -64,8 +66,21 @@ export default async function RootLayout({
             avatarPreset={avatarPreset}
           />
           {children}
-          <WidgetBotCrate />
         </Providers>
+
+        {/* WidgetBot Crate embed (per docs): bottom of body */}
+        {widgetbotServer && widgetbotChannel ? (
+          <script
+            src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3"
+            async
+            defer
+          >{`
+new Crate({
+  server: ${JSON.stringify(widgetbotServer)},
+  channel: ${JSON.stringify(widgetbotChannel)}
+})
+`}</script>
+        ) : null}
       </body>
     </html>
   );
