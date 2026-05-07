@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { normalizeTicketReference } from "@/lib/support-ticket-token";
 import { isStaffAccount } from "@/src/lib/staff-access";
+import { assertSameOrigin } from "@/src/lib/assert-same-origin";
 import { displayNameForUser } from "@/src/lib/display-name";
 import { avatarPresetForUser } from "@/src/lib/profile-avatar";
 import {
@@ -19,6 +20,12 @@ type Body = {
 };
 
 export async function POST(request: Request) {
+  try {
+    assertSameOrigin(request);
+  } catch {
+    return NextResponse.json({ ok: false, error: "Bad origin" }, { status: 403 });
+  }
+
   const supabase = await createClient();
   const {
     data: { user },
@@ -102,11 +109,8 @@ export async function POST(request: Request) {
   if (insErr || !row) {
     console.error("staff reply insert:", insErr);
     const msg = insErr?.message ?? "Could not post message";
-    const hint = /schema cache|does not exist|relation/i.test(msg)
-      ? "Run Supabase migrations through 20260218120000_ensure_support_ticket_messages.sql (creates fallen_world_support_ticket_messages), then reload the schema in the dashboard if needed."
-      : undefined;
     return NextResponse.json(
-      { ok: false, error: msg, hint },
+      { ok: false, error: msg },
       { status: 500 },
     );
   }

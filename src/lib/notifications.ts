@@ -1,4 +1,3 @@
-import { getRealtime } from "@/lib/realtime";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 export type NotificationInput = {
@@ -29,16 +28,10 @@ export async function emitNotificationToChannel(
   channel: string,
   input: NotificationInput,
 ) {
-  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
-    return;
-  }
-  await getRealtime().channel(channel).emit("notification.created", {
-    id: crypto.randomUUID(),
-    title: input.title,
-    body: input.body,
-    href: input.href,
-    createdAt: new Date().toISOString(),
-  });
+  // Deprecated: Upstash Realtime was removed for "no outside services".
+  // Supabase Realtime listens to postgres_changes on user_notifications instead.
+  void channel;
+  void input;
 }
 
 export async function createUserNotifications(
@@ -77,28 +70,8 @@ export async function createAndEmitUserNotifications(
   recipientUserIds: string[],
   input: NotificationInput,
 ) {
-  const rows = await createUserNotifications(recipientUserIds, input);
-
-  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
-    return rows;
-  }
-
-  await Promise.all(
-    rows.map((row) =>
-      getRealtime()
-        .channel(`user:${row.recipient_user_id}`)
-        .emit("notification.created", {
-          id: String(row.id),
-          title: String(row.title),
-          body: row.body ?? undefined,
-          href: row.href ?? undefined,
-          createdAt: String(row.created_at),
-          readAt: row.read_at,
-        }),
-    ),
-  );
-
-  return rows;
+  // Insert-only. Clients receive updates through Supabase Realtime table subscriptions.
+  return await createUserNotifications(recipientUserIds, input);
 }
 
 export async function resolveStaffHandles(handles: string[]): Promise<string[]> {

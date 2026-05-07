@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import XLSX from "xlsx";
+import ExcelJS from "exceljs";
 import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
 
@@ -46,10 +46,15 @@ function normalizeNumber(value) {
 function excelDateToISO(value) {
   if (value === null || value === undefined || value === "") return null;
 
+  if (value instanceof Date) {
+    return value.toISOString().slice(0, 10);
+  }
+
   if (typeof value === "number") {
-    const parsed = XLSX.SSF.parse_date_code(value);
-    if (!parsed) return null;
-    const date = new Date(Date.UTC(parsed.y, parsed.m - 1, parsed.d));
+    // Excel serial date (1900 system): day 0 is 1899-12-30
+    const epoch = Date.UTC(1899, 11, 30);
+    const date = new Date(epoch + value * 24 * 60 * 60 * 1000);
+    if (Number.isNaN(date.getTime())) return null;
     return date.toISOString().slice(0, 10);
   }
 
@@ -128,18 +133,29 @@ async function insertInBatches(table, rows, batchSize = 200) {
 async function run() {
   console.log(`Reading workbook: ${workbookPath}`);
 
-  const wb = XLSX.readFile(workbookPath, { cellDates: false });
+  const wb = new ExcelJS.Workbook();
+  await wb.xlsx.readFile(workbookPath);
   const sourceFileName = path.basename(workbookPath);
 
-  const modlistSheet = wb.Sheets["Modlist"];
-  const bugSheet = wb.Sheets["Bug Tracker"];
+  const modlistSheet = wb.getWorksheet("Modlist");
+  const bugSheet = wb.getWorksheet("Bug Tracker");
 
   if (!modlistSheet || !bugSheet) {
     throw new Error("Workbook must contain sheets named 'Modlist' and 'Bug Tracker'.");
   }
 
-  const modlistRowsRaw = XLSX.utils.sheet_to_json(modlistSheet, { header: 1, defval: "" });
-  const bugRowsRaw = XLSX.utils.sheet_to_json(bugSheet, { header: 1, defval: "" });
+  function worksheetToRows(ws) {
+    const rows = [];
+    ws.eachRow({ includeEmpty: true }, (row) => {
+      // row.values is 1-indexed; index 0 is always empty.
+      const values = Array.isArray(row.values) ? row.values.slice(1) : [];
+      rows.push(values.map((v) => (v === undefined ? "" : v)));
+    });
+    return rows;
+  }
+
+  const modlistRowsRaw = worksheetToRows(modlistSheet);
+  const bugRowsRaw = worksheetToRows(bugSheet);
 
   const modRows = parseModlistRows(modlistRowsRaw, sourceFileName);
   const bugRows = parseBugRows(bugRowsRaw, sourceFileName);

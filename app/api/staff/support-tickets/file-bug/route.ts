@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { normalizeTicketReference } from "@/lib/support-ticket-token";
 import { isStaffAccount } from "@/src/lib/staff-access";
+import { assertSameOrigin } from "@/src/lib/assert-same-origin";
 
 const MAX_DESC = 48_000;
 
@@ -11,6 +12,12 @@ type Body = {
 };
 
 export async function POST(request: Request) {
+  try {
+    assertSameOrigin(request);
+  } catch {
+    return NextResponse.json({ ok: false, error: "Bad origin" }, { status: 403 });
+  }
+
   const supabase = await createClient();
   const {
     data: { user },

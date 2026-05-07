@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { canViewStaffAuditLog } from "@/src/lib/staff-audit-admin";
+import { canManageStaffRoles } from "@/src/lib/staff-role-admin";
 
 export default async function StaffPage() {
   const supabase = await createClient();
@@ -16,6 +17,7 @@ export default async function StaffPage() {
   const modCount = modsResult.count ?? 0;
   const bugCount = bugsResult.count ?? 0;
   const showAudit = await canViewStaffAuditLog(supabase, user);
+  const showAccess = canManageStaffRoles(user);
 
   const resources = [
     {
@@ -44,6 +46,15 @@ export default async function StaffPage() {
             href: "/staff/activity",
             title: "Activity log",
             body: "Audit trail of staff actions.",
+          },
+        ] as const)
+      : []),
+    ...(showAccess
+      ? ([
+          {
+            href: "/staff/access",
+            title: "Access",
+            body: "Assign staff roles to user accounts.",
           },
         ] as const)
       : []),

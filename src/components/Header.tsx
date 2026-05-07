@@ -24,19 +24,19 @@ export default function Header({ user, isStaff, displayName, avatarPreset }: Hea
   return (
 
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#031516]/90 backdrop-blur-md transition-all duration-300">
-      <div className="mx-auto grid h-16 max-w-7xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-4 sm:gap-3 sm:px-6 lg:px-8">
+      <div className="mx-auto grid h-14 max-w-7xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-4 sm:gap-3 sm:px-6 lg:px-8">
         {/* Left: Logo & Title */}
         <div className="flex min-w-0 items-center gap-3 sm:gap-4">
           <Link href="/" className="flex items-center gap-3 group transition-transform hover:scale-[1.02] active:scale-95">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#10b981] shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-shadow group-hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] overflow-hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-7 h-7 animate-[spin_10s_linear_infinite] fill-black">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#10b981] shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-shadow group-hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] overflow-hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-6 h-6 animate-[spin_10s_linear_infinite] fill-black">
                 <circle cx="50" cy="50" r="12" />
                 <path d="M50 50 L50 14 A36 36 0 0 1 81.2 35.8 L50 50 Z" />
                 <path d="M50 50 L18.8 64.2 A36 36 0 0 1 18.8 35.8 L50 50 Z" />
                 <path d="M50 50 L81.2 64.2 A36 36 0 0 1 50 86 L50 50 Z" />
               </svg>
             </div>
-            <span className="hidden sm:block text-xl font-black tracking-widest text-white uppercase italic select-none">
+            <span className="hidden sm:block text-lg font-black tracking-widest text-white uppercase italic select-none">
               Fallen World
             </span>
           </Link>
@@ -44,18 +44,19 @@ export default function Header({ user, isStaff, displayName, avatarPreset }: Hea
 
         {/* Center: Navigation - Hide on Staff Pages */}
         {!isStaffPage && (
-          <nav className="hidden min-w-0 justify-center md:flex md:items-center md:gap-6 lg:gap-10">
+          <nav className="hidden min-w-0 justify-center md:flex md:items-center md:gap-4 lg:gap-6">
             {[
               { name: 'HOME', href: '/' },
               { name: 'JOIN OUR TEAM', href: '/apply' },
               { name: 'GUIDE', href: '/guide' },
+              { name: 'WIKI', href: '/wiki' },
               { name: 'ROADMAP', href: '/roadmap' },
               { name: 'REPORT BUG', href: '/support/bug-report' },
             ].map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-xs font-black tracking-[0.2em] text-gray-400 hover:text-white transition-colors duration-200"
+                className="text-[10px] font-black tracking-[0.18em] text-gray-400 hover:text-white transition-colors duration-200"
               >
                 {link.name}
               </Link>

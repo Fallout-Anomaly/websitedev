@@ -16,6 +16,13 @@ const NAV_BASE = [
     countKey: null as keyof StaffNavCounts | null,
   },
   {
+    href: "/staff/projects",
+    label: "Projects",
+    description: "Kanban boards & tasks",
+    match: (p: string) => p.startsWith("/staff/projects"),
+    countKey: null as keyof StaffNavCounts | null,
+  },
+  {
     href: "/staff/roadmap",
     label: "Roadmap",
     description: "Public roadmap board",
@@ -62,11 +69,19 @@ const NAV_AUDIT = {
   match: (p: string) => p.startsWith("/staff/activity"),
 } as const;
 
+const NAV_ACCESS = {
+  href: "/staff/access",
+  label: "Access",
+  description: "Manage staff roles",
+  match: (p: string) => p.startsWith("/staff/access"),
+} as const;
+
 type Props = {
   userId: string;
   displayName: string;
   avatarPreset: ProfileAvatarPresetId;
   canViewAuditLog: boolean;
+  canManageStaffRoles: boolean;
   navCounts: StaffNavCounts;
 };
 
@@ -93,10 +108,12 @@ export default function StaffDashboardSidebar({
   displayName,
   avatarPreset,
   canViewAuditLog,
+  canManageStaffRoles,
   navCounts,
 }: Props) {
   const pathname = usePathname() || "";
-  const navItems = canViewAuditLog ? [...NAV_BASE, NAV_AUDIT] : [...NAV_BASE];
+  const navItemsBase = canViewAuditLog ? [...NAV_BASE, NAV_AUDIT] : [...NAV_BASE];
+  const navItems = canManageStaffRoles ? [...navItemsBase, NAV_ACCESS] : navItemsBase;
 
   return (
     <aside className="flex min-h-0 flex-col gap-6 pb-8 lg:w-56 lg:shrink-0 lg:pb-0 lg:pr-8">

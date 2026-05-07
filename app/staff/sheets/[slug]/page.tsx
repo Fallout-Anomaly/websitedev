@@ -15,7 +15,7 @@ export default async function StaffSheetDetailPage({
   const supabase = await createClient();
   const { data: sheet, error } = await supabase
     .from("staff_google_sheets")
-    .select("*")
+    .select("title, category, google_sheets_url, notes, comments")
     .eq("slug", slug)
     .maybeSingle();
 

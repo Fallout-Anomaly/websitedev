@@ -68,7 +68,9 @@ export async function getModComments(modId: number) {
     const { supabase } = await assertStaffSession();
     const { data, error } = await supabase
     .from("mod_comments")
-    .select("*")
+    .select(
+      "id, mod_id, user_id, user_email, display_name, author_avatar_preset, content, parent_id, created_at",
+    )
     .eq("mod_id", modId)
     .order("created_at", { ascending: true });
 
@@ -104,7 +106,9 @@ export async function loadModDrawerInitial(modId: number, modName: string) {
       .eq("mod_name", modName),
     supabase
       .from("mod_comments")
-      .select("*")
+      .select(
+        "id, mod_id, user_id, user_email, display_name, author_avatar_preset, content, parent_id, created_at",
+      )
       .eq("mod_id", modId)
       .order("created_at", { ascending: true }),
   ]);
@@ -257,7 +261,9 @@ export async function getModActivity(modId: number) {
     const { supabase } = await assertStaffSession();
     const { data, error } = await supabase
     .from("activity_log")
-    .select("*")
+    .select(
+      "id, mod_id, user_id, user_email, user_display_name, action_type, details, created_at",
+    )
     .eq("mod_id", modId)
     .order("created_at", { ascending: false });
 
@@ -283,7 +289,10 @@ export async function getAllActivity(page: number = 1, pageSize: number = 50) {
 
     const { data, error, count } = await supabase
       .from("activity_log")
-      .select("*", { count: 'exact' })
+      .select(
+        "id, mod_id, user_id, user_email, user_display_name, action_type, details, created_at",
+        { count: "exact" },
+      )
       .order("created_at", { ascending: false })
       .range(offset, offset + pageSize - 1);
 

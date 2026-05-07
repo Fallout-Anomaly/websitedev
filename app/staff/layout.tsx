@@ -4,8 +4,9 @@ import { canViewStaffAuditLog } from "@/src/lib/staff-audit-admin";
 import { displayNameForUser } from "@/src/lib/display-name";
 import { avatarPresetForUser } from "@/src/lib/profile-avatar";
 import { isStaffAccount } from "@/src/lib/staff-access";
+import { canManageStaffRoles } from "@/src/lib/staff-role-admin";
 import StaffWorkspaceShell from "@/src/components/staff/StaffWorkspaceShell";
-import { getStaffNavCounts } from "./queries";
+import { getStaffNavCountsWithSupabase } from "./queries";
 
 export default async function StaffLayout({
   children,
@@ -25,8 +26,9 @@ export default async function StaffLayout({
     redirect("/");
   }
 
-  const navCounts = await getStaffNavCounts();
+  const navCounts = await getStaffNavCountsWithSupabase(supabase);
   const canAudit = await canViewStaffAuditLog(supabase, user);
+  const canManage = canManageStaffRoles(user);
 
   return (
     <StaffWorkspaceShell
@@ -34,6 +36,7 @@ export default async function StaffLayout({
       displayName={displayNameForUser(user)}
       avatarPreset={avatarPresetForUser(user)}
       canViewAuditLog={canAudit}
+      canManageStaffRoles={canManage}
       navCounts={navCounts}
     >
       {children}

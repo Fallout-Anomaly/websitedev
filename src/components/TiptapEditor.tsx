@@ -17,6 +17,46 @@ import {
   forwardRef,
 } from "react";
 
+type MentionItem = { id: string; label: string };
+
+// Shared cache across all editors on the page.
+// This avoids the "first @ press" latency when multiple editors mount (task description + comment, etc.).
+const mentionItemsByEndpoint = new Map<string, MentionItem[]>();
+const mentionFetchByEndpoint = new Map<string, Promise<MentionItem[]>>();
+
+async function fetchMentionItems(endpoint: string): Promise<MentionItem[]> {
+  const cached = mentionItemsByEndpoint.get(endpoint);
+  if (cached) return cached;
+
+  const inFlight = mentionFetchByEndpoint.get(endpoint);
+  if (inFlight) return inFlight;
+
+  const p = fetch(endpoint, { cache: "no-store" })
+    .then((r) => (r.ok ? r.json() : []))
+    .then((rows: any[]) => {
+      const items: MentionItem[] = Array.isArray(rows)
+        ? rows
+            .map((x) => ({
+              id: typeof x?.id === "string" ? x.id : "",
+              label: typeof x?.label === "string" ? x.label : "",
+            }))
+            .filter((x) => x.id && x.label)
+        : [];
+      mentionItemsByEndpoint.set(endpoint, items);
+      return items;
+    })
+    .catch(() => {
+      mentionItemsByEndpoint.set(endpoint, []);
+      return [];
+    })
+    .finally(() => {
+      mentionFetchByEndpoint.delete(endpoint);
+    });
+
+  mentionFetchByEndpoint.set(endpoint, p);
+  return p;
+}
+
 export type TiptapEditorHandle = {
   getHTML: () => string;
   clear: () => void;
@@ -39,15 +79,14 @@ type Props = {
   onChange: (content: string) => void;
   placeholder?: string;
   onSubmit?: () => void;
+  mentionEndpoint?: string;
 };
-
-const STAFF_MEMBERS = ["falloutanomaly", "voidframe", "staff", "admin"];
 
 const ON_CHANGE_DEBOUNCE_MS = 120;
 
 const TiptapEditor = forwardRef<TiptapEditorHandle, Props>(
   function TiptapEditor(
-    { content, onChange, placeholder, onSubmit }: Props,
+    { content, onChange, placeholder, onSubmit, mentionEndpoint }: Props,
     ref
   ) {
     const onChangeRef = useRef(onChange);
@@ -56,6 +95,7 @@ const TiptapEditor = forwardRef<TiptapEditorHandle, Props>(
     const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
       null
     );
+    const mentionCacheRef = useRef<MentionItem[] | null>(null);
 
     useEffect(() => {
       onChangeRef.current = onChange;
@@ -64,6 +104,15 @@ const TiptapEditor = forwardRef<TiptapEditorHandle, Props>(
     useEffect(() => {
       onSubmitRef.current = onSubmit;
     }, [onSubmit]);
+
+    useEffect(() => {
+      const endpoint = mentionEndpoint || "/api/staff/list";
+      // Prime the cache in the background so the dropdown appears instantly.
+      // (Ignore errors; suggestions fall back to empty.)
+      void fetchMentionItems(endpoint).then((items) => {
+        mentionCacheRef.current = items;
+      });
+    }, [mentionEndpoint]);
 
     const editor = useEditor({
       immediatelyRender: false,
@@ -88,14 +137,148 @@ const TiptapEditor = forwardRef<TiptapEditorHandle, Props>(
               "bg-emerald-500/10 text-emerald-400 font-bold px-1 rounded border border-emerald-500/20",
           },
           suggestion: {
-            items: ({ query }) => {
-              return STAFF_MEMBERS.filter((item) =>
-                item.toLowerCase().startsWith(query.toLowerCase())
-              ).slice(0, 5);
+            // NOTE: TipTap suggestion expects item objects. We return { id, label }.
+            items: async ({ query }): Promise<MentionItem[]> => {
+              const q = (query ?? "").toLowerCase();
+              const endpoint = mentionEndpoint || "/api/staff/list";
+              const items =
+                mentionCacheRef.current ??
+                (await fetchMentionItems(endpoint).then((it) => {
+                  mentionCacheRef.current = it;
+                  return it;
+                })) ??
+                [];
+              if (!q) return items.slice(0, 6);
+              return items
+                .filter((it) => it.label.toLowerCase().includes(q))
+                .slice(0, 6);
+            },
+            command: ({ editor, range, props }) => {
+              const item = props as MentionItem;
+              // Insert the mention and a trailing space.
+              editor
+                .chain()
+                .focus()
+                .insertContentAt(range, [
+                  {
+                    type: "mention",
+                    attrs: { id: item.id, label: item.label },
+                  },
+                  { type: "text", text: " " },
+                ])
+                .run();
             },
             render: () => {
+              let root: HTMLDivElement | null = null;
+              let list: HTMLDivElement | null = null;
+              let selectedIndex = 0;
+
+              const cleanup = () => {
+                if (root?.parentNode) root.parentNode.removeChild(root);
+                root = null;
+                list = null;
+                selectedIndex = 0;
+              };
+
+              const renderItems = (items: MentionItem[]) => {
+                if (!list) return;
+                list.innerHTML = "";
+                items.forEach((item, idx) => {
+                  const row = document.createElement("button");
+                  row.type = "button";
+                  row.className =
+                    "w-full text-left px-3 py-2 text-xs hover:bg-white/5 transition-colors";
+                  if (idx === selectedIndex) {
+                    row.className += " bg-white/5";
+                  }
+                  row.textContent = item.label;
+                  row.addEventListener("mousedown", (e) => {
+                    // Prevent editor blur.
+                    e.preventDefault();
+                  });
+                  row.addEventListener("click", () => {
+                    (row as any).__mention_select?.();
+                  });
+                  // Hook for selection; filled in onUpdate where we have command()
+                  (row as any).__mention_item = item;
+                  list!.appendChild(row);
+                });
+              };
+
               return {
-                onStart: () => {},
+                onStart: (props: any) => {
+                  cleanup();
+                  root = document.createElement("div");
+                  root.className =
+                    "fixed z-[60] w-[280px] overflow-hidden rounded-xl border border-white/10 bg-[#0a0a0a]/95 shadow-2xl backdrop-blur";
+                  list = document.createElement("div");
+                  list.className = "max-h-[240px] overflow-auto";
+                  root.appendChild(list);
+                  document.body.appendChild(root);
+
+                  selectedIndex = 0;
+                  renderItems(props.items as MentionItem[]);
+
+                  const rect = props.clientRect?.();
+                  if (rect && root) {
+                    root.style.left = `${Math.max(8, rect.left)}px`;
+                    root.style.top = `${Math.min(window.innerHeight - 260, rect.bottom + 6)}px`;
+                  }
+
+                  // attach selection handler
+                  const children = Array.from(list!.children) as any[];
+                  children.forEach((el: any) => {
+                    el.__mention_select = () => props.command(el.__mention_item);
+                  });
+                },
+                onUpdate: (props: any) => {
+                  selectedIndex = 0;
+                  renderItems(props.items as MentionItem[]);
+                  const rect = props.clientRect?.();
+                  if (rect && root) {
+                    root.style.left = `${Math.max(8, rect.left)}px`;
+                    root.style.top = `${Math.min(window.innerHeight - 260, rect.bottom + 6)}px`;
+                  }
+                  const children = Array.from(list!.children) as any[];
+                  children.forEach((el: any) => {
+                    el.__mention_select = () => props.command(el.__mention_item);
+                  });
+                },
+                onKeyDown: (props: any) => {
+                  const items = props.items as MentionItem[];
+                  if (props.event.key === "Escape") {
+                    cleanup();
+                    return true;
+                  }
+                  if (props.event.key === "ArrowDown") {
+                    selectedIndex = Math.min(items.length - 1, selectedIndex + 1);
+                    renderItems(items);
+                    const children = Array.from(list!.children) as any[];
+                    children.forEach((el: any) => {
+                      el.__mention_select = () => props.command(el.__mention_item);
+                    });
+                    return true;
+                  }
+                  if (props.event.key === "ArrowUp") {
+                    selectedIndex = Math.max(0, selectedIndex - 1);
+                    renderItems(items);
+                    const children = Array.from(list!.children) as any[];
+                    children.forEach((el: any) => {
+                      el.__mention_select = () => props.command(el.__mention_item);
+                    });
+                    return true;
+                  }
+                  if (props.event.key === "Enter") {
+                    const item = items[selectedIndex];
+                    if (item) props.command(item);
+                    cleanup();
+                    return true;
+                  }
+                  return false;
+                },
+                onExit: () => {
+                  cleanup();
+                },
               };
             },
           },

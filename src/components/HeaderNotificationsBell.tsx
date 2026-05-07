@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useRealtime } from "@/lib/realtime-client";
+import { createClient } from "@/lib/supabase/client";
 
 type NotificationPayload = {
   id: string;
@@ -18,12 +18,7 @@ type Props = {
 };
 
 export default function HeaderNotificationsBell({ userId, isStaff }: Props) {
-  const channels = useMemo(() => {
-    const out: string[] = [];
-    if (userId) out.push(`user:${userId}`);
-    if (isStaff) out.push("staff");
-    return out;
-  }, [isStaff, userId]);
+  const supabase = useMemo(() => createClient(), []);
 
   const [items, setItems] = useState<NotificationPayload[]>([]);
   const [unread, setUnread] = useState<number>(0);
@@ -48,14 +43,39 @@ export default function HeaderNotificationsBell({ userId, isStaff }: Props) {
     }
   }, []);
 
-  useRealtime({
-    channels,
-    events: ["notification.created"],
-    onData({ data }) {
-      setItems((prev) => [data, ...prev].slice(0, 50));
-      setUnread((n) => Math.min(99, n + 1));
-    },
-  });
+  useEffect(() => {
+    if (!userId) return;
+
+    const channel = supabase
+      .channel(`user-notifications:${userId}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "user_notifications",
+          filter: `recipient_user_id=eq.${userId}`,
+        },
+        (payload) => {
+          const n = payload.new as any;
+          const next: NotificationPayload = {
+            id: String(n.id),
+            title: String(n.title ?? ""),
+            body: n.body ?? undefined,
+            href: n.href ?? undefined,
+            createdAt: String(n.created_at ?? new Date().toISOString()),
+            readAt: n.read_at ? String(n.read_at) : null,
+          };
+          setItems((prev) => [next, ...prev].slice(0, 50));
+          setUnread((c) => Math.min(99, c + 1));
+        },
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [supabase, userId]);
 
   useEffect(() => {
     void load();
@@ -94,22 +114,22 @@ export default function HeaderNotificationsBell({ userId, isStaff }: Props) {
     };
   }, [open]);
 
-  if (channels.length === 0) return null;
+  if (!userId) return null;
 
   return (
     <div ref={panelRef} className="relative shrink-0">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="relative grid h-9 w-9 place-items-center rounded-md border border-white/10 bg-white/[0.03] text-white/80 hover:bg-white/[0.06] hover:text-white transition-colors"
+        className="relative grid h-8 w-8 place-items-center rounded-md border border-white/10 bg-white/[0.03] text-white/80 hover:bg-white/[0.06] hover:text-white transition-colors"
         aria-expanded={open}
         aria-label="Notifications"
         title="Notifications"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
