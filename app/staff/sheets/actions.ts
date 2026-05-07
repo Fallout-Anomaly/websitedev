@@ -133,7 +133,7 @@ export async function updateStaffSheetMeta(formData: FormData): Promise<{
 export async function addStaffSheetComment(
   slug: string,
   body: string
-): Promise<{ ok?: boolean; error?: string }> {
+): Promise<{ ok?: boolean; comment?: SheetComment; error?: string }> {
   const text = body.trim();
   if (!text) return { error: "Comment cannot be empty." };
 
@@ -158,16 +158,17 @@ export async function addStaffSheetComment(
   if (fetchErr || !row) return { error: "Sheet not found." };
 
   const prev = Array.isArray(row.comments) ? row.comments : [];
+  const created: SheetComment = {
+    id: crypto.randomUUID(),
+    author_email: null,
+    author_display_name: authorLabel,
+    author_avatar_preset: authorPreset,
+    body: text,
+    created_at: new Date().toISOString(),
+  };
   const next: SheetComment[] = [
     ...prev.map((c: unknown) => c as SheetComment),
-    {
-      id: crypto.randomUUID(),
-      author_email: null,
-      author_display_name: authorLabel,
-      author_avatar_preset: authorPreset,
-      body: text,
-      created_at: new Date().toISOString(),
-    },
+    created,
   ];
 
   const { error } = await supabase
@@ -180,7 +181,7 @@ export async function addStaffSheetComment(
 
   if (error) return { error: error.message };
   revalidatePath(`/staff/sheets/${slug}`);
-  return { ok: true };
+  return { ok: true, comment: created };
 }
 
 export async function deleteStaffSheet(

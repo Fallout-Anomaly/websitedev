@@ -37,7 +37,7 @@ export default function StaffTicketReplyForm({ reference }: Props) {
           return;
         }
         setText("");
-        router.refresh();
+        // Parent page can reconcile via client state or later navigation; avoid forced refresh.
       } catch {
         setError("Network error");
       } finally {

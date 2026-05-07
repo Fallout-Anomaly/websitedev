@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { addStaffSheetComment, type SheetComment } from "../actions";
 import { displayNameOrTeamMember } from "@/src/lib/display-name";
@@ -19,17 +18,17 @@ export default function SheetComments({
   slug: string;
   comments: SheetComment[];
 }) {
-  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [localComments, setLocalComments] = useState<SheetComment[]>(comments);
 
   return (
     <div className="space-y-4">
       <ul className="space-y-3" role="list">
-        {comments.length === 0 ? (
+        {localComments.length === 0 ? (
           <li className="text-sm text-[#8b949e]">No comments yet.</li>
         ) : (
-          comments.map((c) => (
+          localComments.map((c) => (
             <li
               key={c.id}
               className="rounded-md border border-[#30363d] bg-[#161b22] px-3 py-2"
@@ -72,7 +71,7 @@ export default function SheetComments({
           if (r.error) setError(r.error);
           else {
             ta.value = "";
-            router.refresh();
+            if (r.comment) setLocalComments((prev) => [...prev, r.comment!]);
           }
         }}
       >

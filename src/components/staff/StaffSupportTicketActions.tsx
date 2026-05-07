@@ -46,7 +46,6 @@ export default function StaffSupportTicketActions({
           return;
         }
         setStatus(data.status ?? next);
-        router.refresh();
       } catch {
         setError("Network error");
       } finally {
@@ -77,7 +76,6 @@ export default function StaffSupportTicketActions({
 
       if (res.status === 409 && data?.bugReportId != null) {
         setFiledId(data.bugReportId);
-        router.refresh();
         return;
       }
 
@@ -87,7 +85,6 @@ export default function StaffSupportTicketActions({
       }
 
       setFiledId(data.bugReportId);
-      router.refresh();
     } catch {
       setError("Network error");
     } finally {

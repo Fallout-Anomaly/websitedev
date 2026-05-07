@@ -59,7 +59,7 @@ export default function WikiEditForm({
 
       const data = (await res.json()) as { path: string };
       router.push(`/wiki/${data.path}`);
-      router.refresh();
+      // Navigation to the page is enough; avoid extra refresh.
     } catch (e) {
       setError((e as Error)?.message ?? "Failed to save.");
     } finally {
