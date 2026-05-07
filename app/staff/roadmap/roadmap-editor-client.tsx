@@ -3,6 +3,7 @@
 import { memo, useCallback, useMemo, useState, useTransition } from "react";
 import type { RoadmapBoard, RoadmapCardRow, RoadmapColumnRow } from "@/src/lib/roadmap";
 import {
+  addRoadmapReaction,
   createRoadmapCard,
   createRoadmapColumn,
   deleteRoadmapCard,
@@ -42,8 +43,24 @@ export default function RoadmapEditorClient({ initialBoard }: Props) {
     [...initialBoard.cards].sort(bySort),
   );
   const [dirtyOrder, setDirtyOrder] = useState(false);
+  const [reactions, setReactions] = useState(initialBoard.reactions);
 
   const cardsByCol = useMemo(() => groupCards(cards), [cards]);
+  const reactionsByCard = useMemo(() => {
+    const map = new Map<number, { emoji: string; count: number }[]>();
+    for (const r of reactions) {
+      const list = map.get(r.card_id) ?? [];
+      list.push({ emoji: r.emoji, count: r.count });
+      map.set(r.card_id, list);
+    }
+    for (const [k, v] of map.entries()) {
+      map.set(
+        k,
+        v.slice().sort((a, b) => b.count - a.count || a.emoji.localeCompare(b.emoji)),
+      );
+    }
+    return map;
+  }, [reactions]);
 
   const [newColumnTitle, setNewColumnTitle] = useState("");
 
@@ -331,7 +348,37 @@ export default function RoadmapEditorClient({ initialBoard }: Props) {
                           onDrop={(e) => onDropOnCard(e, col.id, card.id)}
                           className="rounded-lg bg-white/5 p-3 shadow-[0_1px_2px_rgba(0,0,0,0.35)] ring-1 ring-white/10 hover:bg-white/7"
                         >
-                          <CardEditor card={card} disabled={isPending} onError={setErr} />
+                          <CardEditor
+                            card={card}
+                            disabled={isPending}
+                            onError={setErr}
+                            reactions={reactionsByCard.get(card.id) ?? []}
+                            onReact={(emoji) => {
+                              setErr(null);
+                              startTransition(async () => {
+                                const res = await addRoadmapReaction(card.id, emoji);
+                                if ("error" in res && res.error) {
+                                  setErr(res.error);
+                                  return;
+                                }
+                                setReactions((prev) => {
+                                  const next = [...prev];
+                                  const idx = next.findIndex(
+                                    (r) => r.card_id === card.id && r.emoji === emoji,
+                                  );
+                                  if (idx !== -1) {
+                                    next[idx] = {
+                                      ...next[idx],
+                                      count: next[idx].count + 1,
+                                    };
+                                  } else {
+                                    next.push({ card_id: card.id, emoji, count: 1 });
+                                  }
+                                  return next;
+                                });
+                              });
+                            }}
+                          />
                         </div>
                       ))}
                     </div>
@@ -405,10 +452,14 @@ const CardEditor = memo(function CardEditor({
   card,
   disabled,
   onError,
+  reactions,
+  onReact,
 }: {
   card: RoadmapCardRow;
   disabled: boolean;
   onError: (msg: string | null) => void;
+  reactions: { emoji: string; count: number }[];
+  onReact: (emoji: string) => void;
 }) {
   const [isPending, startTransition] = useTransition();
   const [editing, setEditing] = useState(false);
@@ -421,10 +472,43 @@ const CardEditor = memo(function CardEditor({
         <>
           <h3 className="text-sm font-semibold text-neutral-100">{card.title}</h3>
           {card.body ? (
-            <p className="mt-2 whitespace-pre-wrap text-xs leading-relaxed text-neutral-300">
+            <p className="mt-2 whitespace-pre-wrap break-words [overflow-wrap:anywhere] text-xs leading-relaxed text-neutral-300">
               {card.body}
             </p>
           ) : null}
+
+          <div className="mt-2 flex flex-wrap items-center gap-1.5">
+            {reactions.map((r) => (
+              <button
+                key={r.emoji}
+                type="button"
+                disabled={disabled || isPending}
+                onClick={() => onReact(r.emoji)}
+                className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/80 hover:bg-white/10 disabled:opacity-60"
+                title="Add reaction"
+              >
+                <span>{r.emoji}</span>
+                <span className="font-mono text-[10px] text-white/60">
+                  {r.count}
+                </span>
+              </button>
+            ))}
+            <div className="ml-0.5 flex items-center gap-1">
+              {["👍", "❤️", "🚀", "🎉", "👀"].map((emoji) => (
+                <button
+                  key={emoji}
+                  type="button"
+                  disabled={disabled || isPending}
+                  onClick={() => onReact(emoji)}
+                  className="rounded-md border border-white/10 bg-white/5 px-1.5 py-0.5 text-[12px] hover:bg-white/10 disabled:opacity-60"
+                  title="Add reaction"
+                >
+                  {emoji}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="mt-3 flex items-center justify-between">
             <button
               type="button"

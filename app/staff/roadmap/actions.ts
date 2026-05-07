@@ -155,6 +155,30 @@ export async function deleteRoadmapCard(cardId: number) {
   }
 }
 
+const ALLOWED_REACTION_EMOJIS = new Set(["👍", "👎", "❤️", "🚀", "🎉", "😄", "👀"]);
+
+export async function addRoadmapReaction(cardId: number, emojiRaw: string) {
+  const emoji = String(emojiRaw ?? "").trim();
+  if (!ALLOWED_REACTION_EMOJIS.has(emoji)) return { error: "Invalid reaction." };
+
+  try {
+    const { supabase, user } = await assertStaffSession();
+    const id = mustInt(cardId, "card id");
+    const { error } = await supabase.from("roadmap_card_reactions").insert({
+      card_id: id,
+      emoji,
+      created_by: user.id,
+      client_id: crypto.randomUUID(),
+    });
+    if (error) return { error: error.message };
+    revalidatePath("/roadmap");
+    revalidatePath("/staff/roadmap");
+    return { ok: true };
+  } catch (e) {
+    return { error: e instanceof Error ? e.message : "Could not react." };
+  }
+}
+
 type SaveBoardPayload = {
   columns: { id: number; sort_order: number }[];
   cards: { id: number; column_id: number; sort_order: number }[];

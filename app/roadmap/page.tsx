@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { loadRoadmapBoard, type RoadmapCardRow } from "@/src/lib/roadmap";
+import RoadmapCardMarkdown from "@/src/components/RoadmapCardMarkdown";
+import RoadmapReactions from "./RoadmapReactions";
 
 export const metadata: Metadata = {
   title: "Roadmap | Fallen World",
@@ -24,6 +26,12 @@ export default async function RoadmapPage() {
   const supabase = await createClient();
   const board = await loadRoadmapBoard(supabase);
   const cardsByCol = groupCardsByColumnId(board.cards);
+  const reactionsByCard = new Map<number, { emoji: string; count: number }[]>();
+  for (const r of board.reactions) {
+    const list = reactionsByCard.get(r.card_id) ?? [];
+    list.push({ emoji: r.emoji, count: r.count });
+    reactionsByCard.set(r.card_id, list);
+  }
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100">
@@ -41,9 +49,6 @@ export default async function RoadmapPage() {
             <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
               Roadmap
             </h1>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-neutral-400">
-              A public, Trello-style board — maintained by staff.
-            </p>
           </div>
           <div className="text-xs text-neutral-500">
             Tip: scroll sideways for more columns.
@@ -87,10 +92,15 @@ export default async function RoadmapPage() {
                               {card.title}
                             </h3>
                             {card.body ? (
-                              <p className="mt-2 whitespace-pre-wrap text-xs leading-relaxed text-neutral-300">
-                                {card.body}
-                              </p>
+                              <div className="mt-2">
+                                <RoadmapCardMarkdown source={card.body} />
+                              </div>
                             ) : null}
+
+                            <RoadmapReactions
+                              cardId={card.id}
+                              initial={reactionsByCard.get(card.id) ?? []}
+                            />
                           </article>
                         ))
                       )}
