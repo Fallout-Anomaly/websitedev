@@ -45,8 +45,18 @@ export async function POST(request: Request) {
 
   if (ticketErr) {
     console.error("ticket lookup:", ticketErr);
+    const msg = ticketErr?.message ?? "Lookup failed";
+    const code = "code" in ticketErr ? String((ticketErr as any).code) : undefined;
+    const hint =
+      /relation .* does not exist/i.test(msg) ||
+      /schema cache/i.test(msg) ||
+      code === "42P01"
+        ? "Support ticket tables are missing in Supabase. Apply the support ticket migrations to your production database."
+        : /column/i.test(msg) || code === "42703"
+          ? "Support ticket schema is out of date in Supabase. Apply the latest migrations for support tickets."
+        : undefined;
     return NextResponse.json(
-      { ok: false, error: "Lookup failed" },
+      { ok: false, error: msg, code, hint },
       { status: 500 },
     );
   }
@@ -66,8 +76,18 @@ export async function POST(request: Request) {
 
   if (msgErr) {
     console.error("ticket messages:", msgErr);
+    const msg = msgErr?.message ?? "Could not load messages";
+    const code = "code" in msgErr ? String((msgErr as any).code) : undefined;
+    const hint =
+      /relation .* does not exist/i.test(msg) ||
+      /schema cache/i.test(msg) ||
+      code === "42P01"
+        ? "Support ticket message tables are missing in Supabase. Apply the support ticket migrations to your production database."
+        : /column/i.test(msg) || code === "42703"
+          ? "Support ticket message schema is out of date in Supabase. Apply the latest migrations for support tickets."
+        : undefined;
     return NextResponse.json(
-      { ok: false, error: "Could not load messages" },
+      { ok: false, error: msg, code, hint },
       { status: 500 },
     );
   }
