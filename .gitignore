@@ -55,6 +55,4 @@ next-env.d.ts
 # local docs
 issues.md
 
-# local performance exports
-Supabase Query Performance Statements*.csv
 task.md
