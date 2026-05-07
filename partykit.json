@@ -1,0 +1,9 @@
+{
+  "main": "party/main.ts",
+  "name": "fallen-world-chat",
+  "compatibilityDate": "2024-09-01",
+  "parties": {
+    "chatroom": "party/chatRoom.ts",
+    "chatrooms": "party/chatRooms.ts"
+  }
+}
