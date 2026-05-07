@@ -23,6 +23,7 @@
 # misc
 .DS_Store
 *.pem
+prod-ca-2021.crt
 
 # debug
 npm-debug.log*

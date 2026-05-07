@@ -1,7 +1,5 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
-import fs from "node:fs";
-import path from "node:path";
 
 function getDatabaseUrl() {
   const url = process.env.DATABASE_URL;
@@ -60,8 +58,10 @@ function getSslConfig():
     return { rejectUnauthorized: false };
   }
 
-  const caPath = path.resolve(process.cwd(), "prod-ca-2021.crt");
-  const ca = fs.readFileSync(caPath, "utf8");
+  const ca = process.env.DATABASE_SSL_CA_PEM;
+  if (!ca || ca.trim().length === 0) {
+    throw new Error("Missing DATABASE_SSL_CA_PEM (required when DATABASE_SSL_VERIFY=true).");
+  }
   return { rejectUnauthorized: true, ca };
 }
 
