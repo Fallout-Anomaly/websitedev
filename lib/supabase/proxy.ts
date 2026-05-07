@@ -38,78 +38,89 @@ function redirectPreservingSupabaseCookies(
  * uses getClaims() so the JWT is verified (important for cookie-based sessions).
  */
 export async function updateSession(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({
-    request,
-  });
+  try {
+    let supabaseResponse = NextResponse.next({
+      request,
+    });
 
-  if (!hasPublicSupabaseConfig) {
-    return supabaseResponse;
-  }
+    if (!hasPublicSupabaseConfig) {
+      return supabaseResponse;
+    }
 
-  const supabase = createServerClient(getSupabaseUrl(), getSupabasePublishableKey(), {
-    cookies: {
-      getAll() {
-        return request.cookies.getAll();
+    const supabase = createServerClient(
+      getSupabaseUrl(),
+      getSupabasePublishableKey(),
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll();
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value }) => {
+              request.cookies.set(name, value);
+            });
+            supabaseResponse = NextResponse.next({
+              request,
+            });
+            cookiesToSet.forEach(({ name, value, options }) => {
+              supabaseResponse.cookies.set(name, value, options);
+            });
+          },
+        },
       },
-      setAll(cookiesToSet) {
-        cookiesToSet.forEach(({ name, value }) => {
-          request.cookies.set(name, value);
-        });
-        supabaseResponse = NextResponse.next({
-          request,
-        });
-        cookiesToSet.forEach(({ name, value, options }) => {
-          supabaseResponse.cookies.set(name, value, options);
-        });
-      },
-    },
-  });
-
-  const { data } = await supabase.auth.getClaims();
-  const claims = data?.claims as
-    | { sub?: string; app_metadata?: User["app_metadata"] }
-    | undefined;
-  const userStub = userFromVerifiedClaims(claims);
-
-  const isStaffRoute = request.nextUrl.pathname.startsWith("/staff");
-  const isLoginRoute = request.nextUrl.pathname.startsWith("/login");
-
-  if (isStaffRoute && !userStub) {
-    const loginUrl = new URL("/login", request.url);
-    loginUrl.searchParams.set("next", request.nextUrl.pathname);
-    return redirectPreservingSupabaseCookies(loginUrl, supabaseResponse);
-  }
-
-  if (isStaffRoute && userStub && !(await isStaffAccount(supabase, userStub))) {
-    return redirectPreservingSupabaseCookies(
-      new URL("/", request.url),
-      supabaseResponse,
     );
-  }
 
-  if (isLoginRoute && userStub) {
-    const nextRaw = request.nextUrl.searchParams.get("next");
-    const dest = safeInternalPath(nextRaw, "");
+    const { data } = await supabase.auth.getClaims();
+    const claims = data?.claims as
+      | { sub?: string; app_metadata?: User["app_metadata"] }
+      | undefined;
+    const userStub = userFromVerifiedClaims(claims);
+
+    const isStaffRoute = request.nextUrl.pathname.startsWith("/staff");
+    const isLoginRoute = request.nextUrl.pathname.startsWith("/login");
+
+    if (isStaffRoute && !userStub) {
+      const loginUrl = new URL("/login", request.url);
+      loginUrl.searchParams.set("next", request.nextUrl.pathname);
+      return redirectPreservingSupabaseCookies(loginUrl, supabaseResponse);
+    }
+
     if (
-      dest &&
-      (dest.startsWith("/account") || dest.startsWith("/auth/"))
+      isStaffRoute &&
+      userStub &&
+      !(await isStaffAccount(supabase, userStub))
     ) {
       return redirectPreservingSupabaseCookies(
-        new URL(dest, request.url),
+        new URL("/", request.url),
         supabaseResponse,
       );
     }
-    if (await isStaffAccount(supabase, userStub)) {
-      return redirectPreservingSupabaseCookies(
-        new URL("/staff", request.url),
-        supabaseResponse,
-      );
-    }
-    return redirectPreservingSupabaseCookies(
-      new URL("/", request.url),
-      supabaseResponse,
-    );
-  }
 
-  return supabaseResponse;
+    if (isLoginRoute && userStub) {
+      const nextRaw = request.nextUrl.searchParams.get("next");
+      const dest = safeInternalPath(nextRaw, "");
+      if (dest && (dest.startsWith("/account") || dest.startsWith("/auth/"))) {
+        return redirectPreservingSupabaseCookies(
+          new URL(dest, request.url),
+          supabaseResponse,
+        );
+      }
+      if (await isStaffAccount(supabase, userStub)) {
+        return redirectPreservingSupabaseCookies(
+          new URL("/staff", request.url),
+          supabaseResponse,
+        );
+      }
+      return redirectPreservingSupabaseCookies(
+        new URL("/", request.url),
+        supabaseResponse,
+      );
+    }
+
+    return supabaseResponse;
+  } catch (e) {
+    // Never take down the whole site due to proxy/session refresh failures.
+    console.error("Supabase proxy error:", (e as Error)?.message ?? e);
+    return NextResponse.next({ request });
+  }
 }
