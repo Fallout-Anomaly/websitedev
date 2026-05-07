@@ -24,6 +24,21 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Fallen World",
   description: "The ultimate hardcore survival modlist for Fallout 4",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://fallenworld.nexus"),
+  openGraph: {
+    title: "Fallen World",
+    description: "The ultimate hardcore survival modlist for Fallout 4",
+    url: "/",
+    siteName: "Fallen World",
+    images: [{ url: "/img/HomeImage.png", width: 1200, height: 630 }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fallen World",
+    description: "The ultimate hardcore survival modlist for Fallout 4",
+    images: ["/img/HomeImage.png"],
+  },
 };
 
 export default async function RootLayout({

@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { displayNameOrTeamMember } from "@/src/lib/display-name";
 import ProfileAvatar from "@/src/components/ProfileAvatar";
 import { useRealtime } from "@/lib/realtime-client";
+import SupportTicketMarkdown from "@/src/components/staff/SupportTicketMarkdown";
 
 type Ticket = {
   id: string;
@@ -218,9 +219,9 @@ export default function SupportTicketLookup() {
             <summary className="cursor-pointer px-3 py-2 text-xs font-medium text-neutral-400">
               Original report
             </summary>
-            <pre className="max-h-64 overflow-auto border-t border-white/[0.06] p-3 text-xs whitespace-pre-wrap text-neutral-300">
-              {ticket.report_body}
-            </pre>
+            <div className="max-h-64 overflow-auto border-t border-white/[0.06] p-3">
+              <SupportTicketMarkdown source={ticket.report_body ?? ""} />
+            </div>
           </details>
 
           <section>
@@ -268,7 +269,9 @@ export default function SupportTicketLookup() {
                         })}
                       </span>
                     </div>
-                    <p className="whitespace-pre-wrap">{m.body}</p>
+                    <div className="whitespace-pre-wrap">
+                      <SupportTicketMarkdown source={m.body ?? ""} />
+                    </div>
                   </li>
                 ))}
               </ul>

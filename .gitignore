@@ -50,3 +50,6 @@ supabase/migrations/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local docs
+issues.md

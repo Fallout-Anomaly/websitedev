@@ -3,17 +3,11 @@
 import Script from "next/script";
 import { useMemo, useState } from "react";
 
-function env(key: string): string | undefined {
-  const v = process.env[key];
-  return typeof v === "string" && v.trim() ? v.trim() : undefined;
-}
-
 export default function WidgetBotCrate() {
-  const server = env("NEXT_PUBLIC_WIDGETBOT_SERVER_ID");
-  const channel = env("NEXT_PUBLIC_WIDGETBOT_CHANNEL_ID");
+  const server = process.env.NEXT_PUBLIC_WIDGETBOT_SERVER_ID?.trim();
+  const channel = process.env.NEXT_PUBLIC_WIDGETBOT_CHANNEL_ID?.trim();
   const [useFallbackCdn, setUseFallbackCdn] = useState(false);
 
-  // Keep it opt-in and non-breaking in dev/CI.
   if (!server || !channel) return null;
 
   const src = useMemo(
@@ -61,7 +55,6 @@ export default function WidgetBotCrate() {
         src={src}
         strategy="afterInteractive"
         onError={() => {
-          // If jsDelivr is blocked by the client, fall back to self-hosted.
           setUseFallbackCdn(true);
         }}
       />

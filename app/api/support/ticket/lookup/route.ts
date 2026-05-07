@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { normalizeTicketReference } from "@/lib/support-ticket-token";
 import { scrubEmailsFromText } from "@/src/lib/public-ticket-redact";
+import type { PostgrestError } from "@supabase/supabase-js";
 
 type Body = {
   reference?: unknown;
@@ -68,11 +69,45 @@ export async function POST(request: Request) {
     );
   }
 
-  const { data: messages, error: msgErr } = await admin
+  const fullSelect =
+    "id, author_role, body, staff_display_name, staff_avatar_preset, created_at";
+  const minimalSelect = "id, author_role, body, created_at";
+
+  let messages: Array<{
+    id: string;
+    author_role: string;
+    body: string;
+    staff_display_name?: string | null;
+    staff_avatar_preset?: string | null;
+    created_at: string;
+  }> | null = null;
+  let msgErr: PostgrestError | null = null;
+
+  const attemptFull = await admin
     .from("fallen_world_support_ticket_messages")
-    .select("id, author_role, body, staff_display_name, staff_avatar_preset, created_at")
+    .select(fullSelect)
     .eq("ticket_id", ticket.id)
     .order("created_at", { ascending: true });
+
+  messages = attemptFull.data as typeof messages;
+  msgErr = attemptFull.error;
+
+  if (msgErr) {
+    const msg = msgErr.message ?? "Could not load messages";
+    const code = msgErr.code ? String(msgErr.code) : undefined;
+    const isColumnErr = /column/i.test(msg) || code === "42703";
+
+    if (isColumnErr) {
+      const attemptMinimal = await admin
+        .from("fallen_world_support_ticket_messages")
+        .select(minimalSelect)
+        .eq("ticket_id", ticket.id)
+        .order("created_at", { ascending: true });
+
+      messages = attemptMinimal.data as typeof messages;
+      msgErr = attemptMinimal.error;
+    }
+  }
 
   if (msgErr) {
     console.error("ticket messages:", msgErr);
