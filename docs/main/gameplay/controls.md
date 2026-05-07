@@ -8,7 +8,7 @@ import TerminalCard from '@site/src/components/TerminalCard';
 
 # Controls & UI
 
-Fallout Anomaly features a highly customized interface designed to minimize clutter and maximize immersion. Many UI elements are dynamic and will only appear when relevant.
+Fallen World features a highly customized interface designed to minimize clutter and maximize immersion. Many UI elements are dynamic and will only appear when relevant.
 
 ---
 

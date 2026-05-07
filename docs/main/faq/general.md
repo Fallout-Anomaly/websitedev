@@ -13,14 +13,14 @@ import TerminalCard from '@site/src/components/TerminalCard';
 Re-run the Wabbajack installer and point it to the same installation and download folders. Wabbajack will identify new or changed files and update automatically.
 
 ### Can I use my old save files?
-No. Fallout Anomaly is a complete overhaul. Using saves from vanilla or other modlists will cause immediate crashes and character corruption.
+No. Fallen World is a complete overhaul. Using saves from vanilla or other modlists will cause immediate crashes and character corruption.
 
 ### Can I use a controller?
-Yes. Fallout Anomaly has full controller support. If you are using a PS5 DualSense controller, ensure Steam Input is enabled. For Xbox controllers, it should work natively.
+Yes. Fallen World has full controller support. If you are using a PS5 DualSense controller, ensure Steam Input is enabled. For Xbox controllers, it should work natively.
 
 ### How can I improve performance?
 *   **ENB/ReShade:** Press **END** (ENB) or **Home** (ReShade) in-game to toggle effects or lower quality settings.
-*   **Shadows:** Lower shadow distance and godrays in the Anomaly Launcher.
+*   **Shadows:** Lower shadow distance and godrays in the Fallen World Launcher.
 *   **Optional Mods:** Disable performance-heavy optional mods in Mod Organizer 2.
 
 </TerminalCard>

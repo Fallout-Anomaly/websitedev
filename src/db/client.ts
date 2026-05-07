@@ -51,7 +51,7 @@ function stripSslMode(connectionString: string) {
 
 function getSslConfig():
   | { rejectUnauthorized: false }
-  | { rejectUnauthorized: true; ca: string } {
+  | { rejectUnauthorized: true; ca?: string } {
   // Default: local dev is permissive to avoid TLS chain issues on Windows.
   // Opt into strict verification by setting DATABASE_SSL_VERIFY=true.
   if (process.env.DATABASE_SSL_VERIFY !== "true") {
@@ -59,8 +59,10 @@ function getSslConfig():
   }
 
   const ca = process.env.DATABASE_SSL_CA_PEM;
+  // If a custom CA is provided (recommended for pinned verification), pass it.
+  // Otherwise fall back to Node's default trust store while still requiring verification.
   if (!ca || ca.trim().length === 0) {
-    throw new Error("Missing DATABASE_SSL_CA_PEM (required when DATABASE_SSL_VERIFY=true).");
+    return { rejectUnauthorized: true };
   }
   return { rejectUnauthorized: true, ca };
 }

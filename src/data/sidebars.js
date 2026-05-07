@@ -1,5 +1,5 @@
 /**
- * Fallout Anomaly - Guide sidebar
+ * Fallen World - Guide sidebar
  */
 
 // @ts-check

@@ -45,8 +45,7 @@ AGENTS.md
 CLAUDE.md
 README.md
 *.bat
-*.sql
-supabase/migrations/
+/*.sql
 
 # typescript
 *.tsbuildinfo
@@ -54,3 +53,7 @@ next-env.d.ts
 
 # local docs
 issues.md
+
+# local performance exports
+Supabase Query Performance Statements*.csv
+task.md

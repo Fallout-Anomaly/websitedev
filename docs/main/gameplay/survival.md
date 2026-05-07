@@ -8,7 +8,7 @@ import TerminalCard from '@site/src/components/TerminalCard';
 
 # Survival mechanics
 
-Fallout Anomaly is a brutal experience where staying alive is a constant struggle. Understanding these systems is the difference between thriving and dying.
+Fallen World is a brutal experience where staying alive is a constant struggle. Understanding these systems is the difference between thriving and dying.
 
 ---
 
@@ -69,7 +69,7 @@ Healing items do not stack with themselves, but you can combine different items.
 
 <TerminalCard title="Radiation System">
 
-Radiation in Anomaly is not just a nuisance—it is a lethal poison that accumulates and degrades your body until treated.
+Radiation in Fallen World is not just a nuisance—it is a lethal poison that accumulates and degrades your body until treated.
 
 <details>
 <summary>View Radiation Poisoning & Medicines</summary>

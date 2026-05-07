@@ -3,6 +3,12 @@ import { createClient } from "@/lib/supabase/server";
 import { canViewStaffAuditLog } from "@/src/lib/staff-audit-admin";
 import { getAllActivity } from "../modlist/actions";
 
+function formatTimestampUtc(iso: string) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toISOString().replace("T", " ").slice(0, 19) + "Z";
+}
+
 export default async function GlobalActivityPage({
   searchParams,
 }: {
@@ -102,7 +108,7 @@ export default async function GlobalActivityPage({
                           className="text-xs text-[#6e7681]"
                           dateTime={a.created_at}
                         >
-                          {new Date(a.created_at).toLocaleString()}
+                          {formatTimestampUtc(a.created_at)}
                         </time>
                       </div>
 

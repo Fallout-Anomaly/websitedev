@@ -22,6 +22,12 @@ type MessageRow = {
   created_at: string;
 };
 
+function formatWhenUtc(iso: string) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toISOString().replace("T", " ").slice(0, 19) + "Z";
+}
+
 export async function generateMetadata({ params }: PageProps) {
   const { reference: raw } = await params;
   const reference = normalizeTicketReference(decodeURIComponent(raw));
@@ -59,10 +65,7 @@ export default async function StaffSupportTicketDetailPage({ params }: PageProps
     .order("created_at", { ascending: true });
 
   const thread = (messages ?? []) as MessageRow[];
-  const when = new Date(ticket.created_at).toLocaleString(undefined, {
-    dateStyle: "medium",
-    timeStyle: "short",
-  });
+  const when = formatWhenUtc(ticket.created_at);
 
   const filedId =
     ticket.filed_bug_report_id != null
@@ -175,10 +178,7 @@ export default async function StaffSupportTicketDetailPage({ params }: PageProps
                       "Player"
                     )}{" "}
                     ·{" "}
-                    {new Date(m.created_at).toLocaleString(undefined, {
-                      dateStyle: "medium",
-                      timeStyle: "short",
-                    })}
+                    {formatWhenUtc(m.created_at)}
                   </span>
                 </div>
                 <p className="whitespace-pre-wrap break-words text-sm leading-relaxed text-[#c9d1d9]">

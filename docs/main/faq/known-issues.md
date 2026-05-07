@@ -10,7 +10,7 @@ import TerminalCard from '@site/src/components/TerminalCard';
 <TerminalCard title="Common Bugs & Fixes">
 
 ### Crashes at launch
-Usually caused by anti-virus blocking the launcher or active overlays (Discord, Steam, OBS). Add the Anomaly folder to your antivirus exclusions.
+Usually caused by anti-virus blocking the launcher or active overlays (Discord, Steam, OBS). Add the Fallen World folder to your antivirus exclusions.
 
 ### Main menu delay
 Wait a few moments for scripts to initialize. If it takes longer than 2 minutes, check for overlay conflicts.

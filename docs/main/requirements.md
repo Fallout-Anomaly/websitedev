@@ -21,7 +21,7 @@ Prefer a video tutorial? Watch the full installation process here:
   <iframe 
     src="https://www.youtube.com/embed/HrzANxCwUx0" 
     style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} 
-    title="Fallout Anomaly Installation Guide" 
+    title="Fallen World Installation Guide" 
     frameBorder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
     allowFullScreen
@@ -37,7 +37,7 @@ Prefer a video tutorial? Watch the full installation process here:
 
 ## The ultimate all-in-one experience
 
-Fallout Anomaly is designed to offer a truly streamlined installation. Forget days of manual patching—our custom launcher handles the heavy lifting for you.
+Fallen World is designed to offer a truly streamlined installation. Forget days of manual patching—our custom launcher handles the heavy lifting for you.
 
 To get started, simply:
 1.  **Check your hardware:** Ensure you meet the requirements below.
@@ -45,7 +45,7 @@ To get started, simply:
 3.  **Run the launcher:** Launch our custom tool to begin the installation.
 
 :::tip Simplified Installation
-Unlike other modlists that require hours of preparation, Anomaly only requires you to set your game to English, remove the HD textures, and set Steam updates to "Only update this game when I launch it."
+Unlike other modlists that require hours of preparation, Fallen World only requires you to set your game to English, remove the HD textures, and set Steam updates to "Only update this game when I launch it."
 :::
 
 ## Hardware requirements
@@ -64,7 +64,7 @@ Before starting the installation, you must ensure your game is correctly configu
 <div style={{marginBottom: '2rem'}}>
 <TerminalCard title="Set Language to English">
 
-Fallout Anomaly requires the **English** version of Fallout 4. If your game is set to another language, Wabbajack will fail to hash the files.
+Fallen World requires the **English** version of Fallout 4. If your game is set to another language, Wabbajack will fail to hash the files.
 
 1. Right-click **Fallout 4** in your Steam Library.
 2. Select **Properties** > **Language**.

@@ -135,6 +135,15 @@ export async function createProjectCategory(input: {
   const name = input.name.trim();
   if (!name) throw new Error("Category name required");
 
+  const { data: maxRow, error: maxErr } = await supabase
+    .from("staff_project_categories")
+    .select("position")
+    .order("position", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (maxErr) throw new Error(maxErr.message);
+  const nextPosition = (Number((maxRow as any)?.position ?? 0) || 0) + 10;
+
   const { data, error } = await supabase
     .from("staff_project_categories")
     .insert({
@@ -142,7 +151,7 @@ export async function createProjectCategory(input: {
       description: input.description ?? null,
       icon: input.icon ?? null,
       color: input.color ?? "#3b82f6",
-      position: Date.now(),
+      position: nextPosition,
       created_by: user.id,
     })
     .select("id, name, description, color, icon, position, archived, created_by, created_at, updated_at")
@@ -211,6 +220,16 @@ export async function createProjectTask(input: {
 
   const descriptionHtml = input.descriptionHtml ?? "";
 
+  const { data: maxRow, error: maxErr } = await supabase
+    .from("staff_project_tasks")
+    .select("sort_order")
+    .eq("category_id", input.categoryId)
+    .order("sort_order", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (maxErr) throw new Error(maxErr.message);
+  const nextSortOrder = (Number((maxRow as any)?.sort_order ?? 0) || 0) + 1024;
+
   const { data, error } = await supabase
     .from("staff_project_tasks")
     .insert({
@@ -220,7 +239,7 @@ export async function createProjectTask(input: {
       priority: input.priority ?? "Medium",
       description_html: descriptionHtml,
       due_date: input.dueDate ?? null,
-      sort_order: Date.now(),
+      sort_order: nextSortOrder,
       created_by: user.id,
       external_url: input.externalUrl ?? null,
       thumbnail_url: input.thumbnailUrl ?? null,

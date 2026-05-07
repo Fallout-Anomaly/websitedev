@@ -6,6 +6,13 @@ import { plainTextPreview } from "@/src/lib/plain-text-preview";
 
 export const dynamic = "force-dynamic";
 
+function formatDateUtc(value: Date | string) {
+  const d = typeof value === "string" ? new Date(value) : value;
+  if (Number.isNaN(d.getTime())) return "";
+  // Stable across server/client (no locale/timezone differences).
+  return d.toISOString().slice(0, 10);
+}
+
 export default async function WikiIndexPage({
   searchParams,
 }: {
@@ -97,7 +104,7 @@ export default async function WikiIndexPage({
                 </div>
               </div>
               <span className="shrink-0 text-xs text-zinc-500">
-                {new Date(p.updatedAt).toLocaleDateString()}
+                {formatDateUtc(p.updatedAt)}
               </span>
             </div>
           </Link>

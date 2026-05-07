@@ -59,7 +59,7 @@ Workarounds for known bugs, startup crashes, and game freezes.
 
 *   **[Discord Server](https://discord.gg/aCa75Y3kX9)** — The best place for live support and community discussion.
 *   **[Full Mod List](https://loadorderlibrary.com/lists/fallout-anomaly-0-5)** — View exactly what is inside the list.
-*   **[YouTube Tutorials](https://www.youtube.com/@FalloutAnomaly/videos)** — Visual guides for setup and gameplay.
+*   **[YouTube Tutorials](https://www.youtube.com/@FallenWorld/videos)** — Visual guides for setup and gameplay.
 *   **[Support Development](https://ko-fi.com/falloutanomaly)** — Help keep the project alive via Ko-fi.
 
 </TerminalCard>

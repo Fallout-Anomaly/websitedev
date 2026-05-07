@@ -7,7 +7,7 @@ import TerminalCard from '@site/src/components/TerminalCard';
 
 # Tips & strategies
 
-Survival in the Anomaly isn't just about fast reflexes—it's about preparation, knowledge, and patience. Here are the essential strategies to help you navigate the wasteland.
+Survival in Fallen World isn't just about fast reflexes—it's about preparation, knowledge, and patience. Here are the essential strategies to help you navigate the wasteland.
 
 ---
 
@@ -30,7 +30,7 @@ The basics of staying alive in a world that wants you dead.
 
 <TerminalCard title="Combat Tactics">
 
-Fights in Anomaly are won before the first shot is fired.
+Fights in Fallen World are won before the first shot is fired.
 
 <details>
 <summary>View Tactical Rules</summary>

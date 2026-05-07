@@ -11,7 +11,7 @@ import TerminalCard from '@site/src/components/TerminalCard';
 
 ### Screen is in the upper left corner
 This is usually a resolution mismatch or third-party overlay conflict.
-1.  **Anomaly Launcher:** Rerun the launcher and ensure your native resolution is selected.
+1.  **Fallen World Launcher:** Rerun the launcher and ensure your native resolution is selected.
 2.  **Disable Overlays:** Turn off Steam, Discord, and Medal overlays.
 3.  **DPI Scaling:** Right-click `Fallout4.exe` in your Stock folder → Properties → Compatibility → Change High DPI settings → Enable **High DPI Scaling Override** (Set to Application).
 

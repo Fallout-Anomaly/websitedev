@@ -8,17 +8,17 @@ sidebar_label: Intro
 import TerminalCard from '@site/src/components/TerminalCard';
 import LinkCard from '@site/src/components/LinkCard';
 
-# Fallout Anomaly
+# Fallen World
 
-**Fallout Anomaly** is a true hardcore survival modlist for Fallout 4. With over 100,000 downloads, it has established itself as the #1 hardcore survival experience for players who want every choice, every battle, and every step into the wasteland to feel meaningful.
+**Fallen World** is a true hardcore survival modlist for Fallout 4. With over 100,000 downloads, it has established itself as the #1 hardcore survival experience for players who want every choice, every battle, and every step into the wasteland to feel meaningful.
 
-Easily installed with Wabbajack, Anomaly weaves together hundreds of carefully selected mods into a cohesive package that transforms the Commonwealth into a savage and unforgiving land where survival is never assured.
+Easily installed with Wabbajack, Fallen World weaves together hundreds of carefully selected mods into a cohesive package that transforms the Commonwealth into a savage and unforgiving land where survival is never assured.
 
 ---
 
-<TerminalCard title="The Anomaly Experience">
+<TerminalCard title="The Fallen World Experience">
 
-### What makes Fallout Anomaly unique?
+### What makes Fallen World unique?
 
 *   **Deadly Combat**: Strategic systems that make every encounter tactical and lethal.
 *   **Core Survival**: Hunger, thirst, injuries, and radiation demand constant attention.
@@ -28,9 +28,9 @@ Easily installed with Wabbajack, Anomaly weaves together hundreds of carefully s
 
 </TerminalCard>
 
-## The Pillars of Anomaly
+## The Pillars of Fallen World
 
-The Anomaly experience is built upon several foundational modules that work in harmony.
+The Fallen World experience is built upon several foundational modules that work in harmony.
 
 <TerminalCard title="Survival & Realism">
 
@@ -73,7 +73,7 @@ The Anomaly experience is built upon several foundational modules that work in h
 <div style={{marginTop: '2rem'}}>
   <LinkCard
     title="View Full Modlist"
-    meta="Check out every mod, plugin, and asset included in Fallout Anomaly on Load Order Library."
+    meta="Check out every mod, plugin, and asset included in Fallen World on Load Order Library."
     href="https://loadorderlibrary.com/lists/fallout-anomaly-0-5"
   />
 </div>
@@ -139,7 +139,7 @@ Quick links to the most common fixes and questions.
 <div style={{marginTop: '2rem'}}>
 
 :::danger Beta stage
-Fallout Anomaly is currently in **beta**. Updates may require starting a new save. We recommend waiting until release if you're not ready for this process.
+Fallen World is currently in **beta**. Updates may require starting a new save. We recommend waiting until release if you're not ready for this process.
 :::
 
 :::warning Steam only

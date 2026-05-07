@@ -13,7 +13,7 @@ import TerminalCard from '@site/src/components/TerminalCard';
 If you encounter errors during the installation process, check the common issues below.
 
 ### Could not download mod
-Download the mod manually from the provided link, then move the **archive (.zip/.7z/etc)** into your Anomaly Downloads folder. **Do not extract it.** Relaunch Wabbajack to continue.
+Download the mod manually from the provided link, then move the **archive (.zip/.7z/etc)** into your Fallen World Downloads folder. **Do not extract it.** Relaunch Wabbajack to continue.
 
 ### Mod is not a whitelisted download
 This usually means the modlist has been updated recently. Check the [Discord](https://discord.gg/aCa75Y3kX9) for the latest version.

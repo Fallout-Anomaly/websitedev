@@ -7,7 +7,7 @@ sidebar_label: Gameplay guide
 
 # Gameplay guide
 
-Fallout Anomaly transforms Fallout 4 into a hardcore survival experience with realistic combat, advanced needs systems, and deep customization.
+Fallen World transforms Fallout 4 into a hardcore survival experience with realistic combat, advanced needs systems, and deep customization.
 
 ## What's changed
 
@@ -34,5 +34,5 @@ Start with **[Survival mechanics](./survival)** to understand the core systems, 
 :::
 
 :::warning Difficulty
-Fallout Anomaly is **significantly harder** than vanilla Fallout 4. Don't skip the survival and medical sections—they're essential for staying alive.
+Fallen World is **significantly harder** than vanilla Fallout 4. Don't skip the survival and medical sections—they're essential for staying alive.
 :::

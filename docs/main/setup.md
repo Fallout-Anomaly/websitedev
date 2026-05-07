@@ -18,7 +18,7 @@ Prefer a video tutorial? Watch the full installation process here:
   <iframe 
     src="https://www.youtube.com/embed/HrzANxCwUx0" 
     style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} 
-    title="Fallout Anomaly Installation Guide" 
+    title="Fallen World Installation Guide" 
     frameBorder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
     allowFullScreen
@@ -30,7 +30,7 @@ Prefer a video tutorial? Watch the full installation process here:
 
 ## What is Wabbajack?
 
-[Wabbajack](https://www.wabbajack.org/) is an automated modlist installer that allows you to download and install complex setups like Fallout Anomaly with minimal manual effort. Instead of spending days following a guide and resolving conflicts yourself, Wabbajack handles the downloading, patching, and configuration of over 600 mods automatically.
+[Wabbajack](https://www.wabbajack.org/) is an automated modlist installer that allows you to download and install complex setups like Fallen World with minimal manual effort. Instead of spending days following a guide and resolving conflicts yourself, Wabbajack handles the downloading, patching, and configuration of over 600 mods automatically.
 
 It ensures that everyone has the exact same stable environment, making it the most reliable way to experience modern Fallout 4.
 
@@ -45,19 +45,19 @@ Open Wabbajack, click the Settings (gear) icon, and log in under the Nexus panel
 
 At this point, we **highly suggest** subscribing to [Nexus Premium](https://next.nexusmods.com/premium) for uncapped speeds and fully automated installation. Without Premium, you will have to manually click 'Download' for every single mod in the list.
 
-![Nexus Login](https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/wabbajack.png)
+![Nexus Login](/img/fallen-world-guide/wabbajack.png)
 
 </TerminalCard>
 </div>
 
 <div style={{marginBottom: '2rem'}}>
-<TerminalCard title="Step 2 - Download and install Fallout Anomaly">
+<TerminalCard title="Step 2 - Download and install Fallen World">
 
-- Locate **Fallout Anomaly** in the Wabbajack Browser and download the file.
+- Locate **Fallen World** in the Wabbajack Browser and download the file.
 - Set both **Install Location** and **Download Location** on the same drive for best performance.
 - **Important:** Ensure you have enough disk space before starting.
 
-![Wabbajack Install](https://raw.githubusercontent.com/Fallout-Anomaly/changelog/refs/heads/main/imagedrops/wabbajack%20install.png)
+![Wabbajack Install](/img/fallen-world-guide/wabbajack%20install.png)
 
 </TerminalCard>
 </div>

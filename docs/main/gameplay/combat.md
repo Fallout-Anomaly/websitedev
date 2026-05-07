@@ -8,7 +8,7 @@ import TerminalCard from '@site/src/components/TerminalCard';
 
 # Combat systems
 
-Combat in Fallout Anomaly is tactical, lethal, and realistic. You cannot rely on high-HP pools or bullet-sponge mechanics. Survival depends on your equipment, your character's skills, and your tactical positioning.
+Combat in Fallen World is tactical, lethal, and realistic. You cannot rely on high-HP pools or bullet-sponge mechanics. Survival depends on your equipment, your character's skills, and your tactical positioning.
 
 ---
 
@@ -18,7 +18,7 @@ Character growth is managed via **[S7 Skills](https://www.nexusmods.com/fallout4
 
 :::info Key Progression Features
 *   **Tag Skills**: Choose starting specializations for significant early-game bonuses.
-*   **Backgrounds**: Select your pre-Anomaly history to define your starting stats and gear.
+*   **Backgrounds**: Select your pre-Fallen World history to define your starting stats and gear.
 *   **Skill Perks**: Powerful abilities unlock naturally as you level up your skills through use.
 :::
 
@@ -26,7 +26,7 @@ Character growth is managed via **[S7 Skills](https://www.nexusmods.com/fallout4
 
 <TerminalCard title="True Damage - Realistic Lethality">
 
-Anomaly utilizes **True Damage** to ensure that gunfights feel consistent and dangerous. Damage is determined by **caliber and projectile type**, not by magical weapon levels.
+Fallen World utilizes **True Damage** to ensure that gunfights feel consistent and dangerous. Damage is determined by **caliber and projectile type**, not by magical weapon levels.
 
 <details>
 <summary>Explore Projectile & Damage Mechanics</summary>

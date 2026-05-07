@@ -9,7 +9,6 @@ import { displayNameForUser } from "@/src/lib/display-name";
 import { avatarPresetForUser } from "@/src/lib/profile-avatar";
 import Providers from "@/app/providers";
 import BrandRenameModal from "@/src/components/BrandRenameModal";
-import WidgetBotCrate from "@/src/components/WidgetBotCrate";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -81,7 +80,6 @@ export default async function RootLayout({
             avatarPreset={avatarPreset}
           />
           {children}
-          <WidgetBotCrate />
         </Providers>
       </body>
     </html>

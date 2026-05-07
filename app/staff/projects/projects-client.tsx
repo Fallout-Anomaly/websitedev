@@ -406,6 +406,7 @@ export default function ProjectsClient({
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
   const [newCategoryName, setNewCategoryName] = useState("");
   const [newCategoryColor, setNewCategoryColor] = useState("#3B82F6");
+  const [categoryError, setCategoryError] = useState<string | null>(null);
 
   const [createTaskStatus, setCreateTaskStatus] = useState<ColumnKey>("Backlog");
   const [createTaskOpen, setCreateTaskOpen] = useState(false);
@@ -414,6 +415,7 @@ export default function ProjectsClient({
   const [newTaskExternalUrl, setNewTaskExternalUrl] = useState("");
   const [newTaskThumbnailUrl, setNewTaskThumbnailUrl] = useState("");
   const [newTaskDescription, setNewTaskDescription] = useState("");
+  const [createTaskError, setCreateTaskError] = useState<string | null>(null);
 
   const [activeTaskId, setActiveTaskId] = useState<string | null>(null);
   const [taskComments, setTaskComments] = useState<any[] | null>(null);
@@ -496,53 +498,133 @@ export default function ProjectsClient({
   }, []);
 
   useEffect(() => {
-    const channel = supabase
-      .channel("staff-projects")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "staff_project_categories" },
-        (payload) => {
-          setCategories((prev) => {
-            const next = [...prev];
-            const id = (payload.new as any)?.id ?? (payload.old as any)?.id;
-            if (!id) return prev;
-            if (payload.eventType === "DELETE") {
-              return next.filter((c) => c.id !== id);
-            }
-            const row = payload.new as any;
-            const idx = next.findIndex((c) => c.id === id);
-            if (idx >= 0) next[idx] = row;
-            else next.push(row);
-            next.sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
-            return next.filter((c) => !c.archived);
-          });
+    let channel: ReturnType<typeof supabase.channel> | null = null;
+    let cancelled = false;
+
+    const onCategoryChange = (payload: any) => {
+      setCategories((prev) => {
+        const next = [...prev];
+        const id = payload?.new?.id ?? payload?.old?.id;
+        if (!id) return prev;
+        if (payload.eventType === "DELETE") {
+          return next.filter((c) => c.id !== id);
         }
-      )
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "staff_project_tasks" },
-        (payload) => {
-          setTasks((prev) => {
-            const next = [...prev];
-            const id = (payload.new as any)?.id ?? (payload.old as any)?.id;
-            if (!id) return prev;
-            if (payload.eventType === "DELETE") {
-              return next.filter((t) => t.id !== id);
-            }
-            const row = payload.new as any;
-            const idx = next.findIndex((t) => t.id === id);
-            if (idx >= 0) next[idx] = row;
-            else next.push(row);
-            return next;
-          });
+        const row = payload.new as any;
+        const idx = next.findIndex((c) => c.id === id);
+        if (idx >= 0) next[idx] = row;
+        else next.push(row);
+        next.sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
+        return next.filter((c) => !c.archived);
+      });
+    };
+
+    const onTaskChange = (payload: any) => {
+      const row = (payload.eventType === "DELETE" ? payload.old : payload.new) as any;
+      const id = row?.id;
+      if (!id) return;
+
+      // Keep tasks in memory scoped to the active category only.
+      const rowCategoryId = String(row?.category_id ?? "");
+      if (!rowCategoryId || rowCategoryId !== activeCategoryId) {
+        // If a task moved away from the active category, remove it locally.
+        if (payload.eventType !== "INSERT") {
+          setTasks((prev) => prev.filter((t) => t.id !== id));
         }
-      )
-      .subscribe();
+        return;
+      }
+
+      setTasks((prev) => {
+        const next = [...prev];
+        if (payload.eventType === "DELETE") {
+          return next.filter((t) => t.id !== id);
+        }
+        const idx = next.findIndex((t) => t.id === id);
+        if (idx >= 0) next[idx] = payload.new as any;
+        else next.push(payload.new as any);
+        return next;
+      });
+    };
+
+    function subscribe() {
+      if (cancelled) return;
+      if (typeof document !== "undefined" && document.visibilityState !== "visible") return;
+
+      channel = supabase
+        .channel("staff-projects")
+        .on(
+          "postgres_changes",
+          { event: "INSERT", schema: "public", table: "staff_project_categories" },
+          onCategoryChange,
+        )
+        .on(
+          "postgres_changes",
+          { event: "UPDATE", schema: "public", table: "staff_project_categories" },
+          onCategoryChange,
+        )
+        .on(
+          "postgres_changes",
+          { event: "DELETE", schema: "public", table: "staff_project_categories" },
+          onCategoryChange,
+        )
+        .on(
+          "postgres_changes",
+          {
+            event: "INSERT",
+            schema: "public",
+            table: "staff_project_tasks",
+            filter: `category_id=eq.${activeCategoryId}`,
+          },
+          onTaskChange,
+        )
+        .on(
+          "postgres_changes",
+          {
+            event: "UPDATE",
+            schema: "public",
+            table: "staff_project_tasks",
+            filter: `category_id=eq.${activeCategoryId}`,
+          },
+          onTaskChange,
+        )
+        .on(
+          "postgres_changes",
+          {
+            event: "DELETE",
+            schema: "public",
+            table: "staff_project_tasks",
+            filter: `category_id=eq.${activeCategoryId}`,
+          },
+          onTaskChange,
+        )
+        .subscribe();
+    }
+
+    function unsubscribe() {
+      if (channel) {
+        supabase.removeChannel(channel);
+        channel = null;
+      }
+    }
+
+    const onVisibility = () => {
+      if (typeof document === "undefined") return;
+      if (document.visibilityState === "visible") subscribe();
+      else unsubscribe();
+    };
+
+    subscribe();
+    if (typeof document !== "undefined") {
+      document.addEventListener("visibilitychange", onVisibility);
+    }
 
     return () => {
-      supabase.removeChannel(channel);
+      cancelled = true;
+      if (typeof document !== "undefined") {
+        document.removeEventListener("visibilitychange", onVisibility);
+      }
+      unsubscribe();
     };
-  }, [supabase]);
+  }, [supabase, activeCategoryId]);
 
   useEffect(() => {
     if (!activeCategoryId && categories[0]?.id) setActiveCategoryId(categories[0].id);
@@ -565,15 +647,22 @@ export default function ProjectsClient({
   }
 
   async function onCreateCategory() {
+    setCategoryError(null);
     const name = newCategoryName.trim();
     if (!name) return;
-    const created = await createProjectCategory({ name, color: newCategoryColor });
-    setNewCategoryName("");
-    setCategoryModalOpen(false);
-    setActiveCategoryId(created.id);
+    try {
+      const created = await createProjectCategory({ name, color: newCategoryColor });
+      setNewCategoryName("");
+      setCategoryModalOpen(false);
+      setActiveCategoryId(created.id);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Could not create category.";
+      setCategoryError(msg);
+    }
   }
 
   async function onCreateTask() {
+    setCreateTaskError(null);
     if (!activeCategoryId) return;
     const title = newTaskTitle.trim();
     if (!title) return;
@@ -585,22 +674,27 @@ export default function ProjectsClient({
       /^https?:\/\//i.test(thumbnailUrl) &&
       descriptionText.length >= 10;
     if (!valid) return;
-    const created = await createProjectTask({
-      categoryId: activeCategoryId,
-      title,
-      status: createTaskStatus,
-      priority: newTaskPriority,
-      descriptionHtml: plainTextToHtml(descriptionText),
-      externalUrl: externalUrl || null,
-      thumbnailUrl: thumbnailUrl || null,
-    });
-    setNewTaskTitle("");
-    setNewTaskExternalUrl("");
-    setNewTaskThumbnailUrl("");
-    setNewTaskDescription("");
-    setCreateTaskOpen(false);
-    setActiveTaskId(created.id);
-    setTaskComments([]);
+    try {
+      const created = await createProjectTask({
+        categoryId: activeCategoryId,
+        title,
+        status: createTaskStatus,
+        priority: newTaskPriority,
+        descriptionHtml: plainTextToHtml(descriptionText),
+        externalUrl: externalUrl || null,
+        thumbnailUrl: thumbnailUrl || null,
+      });
+      setNewTaskTitle("");
+      setNewTaskExternalUrl("");
+      setNewTaskThumbnailUrl("");
+      setNewTaskDescription("");
+      setCreateTaskOpen(false);
+      setActiveTaskId(created.id);
+      setTaskComments([]);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Could not create task.";
+      setCreateTaskError(msg);
+    }
   }
 
   function onDragStart(event: DragStartEvent) {
@@ -761,7 +855,7 @@ export default function ProjectsClient({
                 }}
                 className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-semibold text-[#f0f6fc] hover:bg-white/[0.06] transition-colors"
               >
-                + New Project
+                + New Task
               </button>
               <button
                 type="button"
@@ -945,7 +1039,10 @@ export default function ProjectsClient({
       <Modal
         open={categoryModalOpen}
         title="Create category"
-        onClose={() => setCategoryModalOpen(false)}
+        onClose={() => {
+          setCategoryError(null);
+          setCategoryModalOpen(false);
+        }}
       >
         <div className="space-y-4">
           <label className="block">
@@ -959,6 +1056,11 @@ export default function ProjectsClient({
           </label>
 
           <ColorWheelPicker value={newCategoryColor} onChange={setNewCategoryColor} />
+          {categoryError ? (
+            <div className="rounded-xl border border-rose-500/25 bg-rose-500/10 px-3 py-2 text-xs text-rose-100">
+              {categoryError}
+            </div>
+          ) : null}
         </div>
         <div className="mt-5 flex items-center justify-end gap-2">
           <button
@@ -978,7 +1080,14 @@ export default function ProjectsClient({
         </div>
       </Modal>
 
-      <Modal open={createTaskOpen} title="Create task" onClose={() => setCreateTaskOpen(false)}>
+      <Modal
+        open={createTaskOpen}
+        title="Create task"
+        onClose={() => {
+          setCreateTaskError(null);
+          setCreateTaskOpen(false);
+        }}
+      >
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block sm:col-span-2">
             <span className="text-xs font-semibold text-[#8b949e]">Title</span>
@@ -1051,6 +1160,11 @@ export default function ProjectsClient({
               {createTaskValidation.descLen}/10 characters
             </p>
           </label>
+          {createTaskError ? (
+            <div className="sm:col-span-2 rounded-xl border border-rose-500/25 bg-rose-500/10 px-3 py-2 text-xs text-rose-100">
+              {createTaskError}
+            </div>
+          ) : null}
         </div>
         <div className="mt-5 flex items-center justify-end gap-2">
           <button
