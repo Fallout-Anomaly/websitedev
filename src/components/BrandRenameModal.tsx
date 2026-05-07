@@ -57,16 +57,15 @@ export default function BrandRenameModal() {
 
         <div className="px-5 py-6 text-sm leading-relaxed text-gray-300">
           <p>
-            This change comes from big changes — for the better.
+            Big changes have been happening — for the better.
             <span className="text-white font-semibold"> Fallen World</span> has
-            evolved into a far more brutal experience and we want it to stand on
-            its own.
+            grown into a far more brutal experience with its own direction, and
+            the new name reflects that.
           </p>
           <p className="mt-4 text-gray-400">
-            We don’t want the project to feel like it’s living in the shadow of
-            games like STALKER. The gameplay you came to love isn’t going
-            anywhere — this is about identity and direction, so Fallen World can
-            be its own thing.
+            The gameplay you came to love isn’t going anywhere. This is a
+            branding shift so the project can stand on its own, without
+            confusion about what it is (and what it’s becoming).
           </p>
           <p className="mt-4 text-gray-400">
             You’re in the right place. Links, docs, and branding will continue
