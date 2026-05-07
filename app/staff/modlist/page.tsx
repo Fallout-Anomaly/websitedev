@@ -2,6 +2,10 @@ import Link from "next/link";
 import { searchModlist, getModlistFilters } from "../queries";
 import ModlistClient from "./ModlistClient";
 
+function formatCount(n: number) {
+  return new Intl.NumberFormat("en-US").format(n);
+}
+
 export default async function ModlistPage({
   searchParams,
 }: {
@@ -33,7 +37,7 @@ export default async function ModlistPage({
           Mod registry
         </h1>
         <p className="mt-2 max-w-2xl text-sm text-[#8b949e]">
-          {modlistResult.total.toLocaleString()} mods in the Fallen World package.
+          {formatCount(modlistResult.total)} mods in the Fallen World package.
           Search, filter by status and category, open a mod for notes and activity.
         </p>
       </header>

@@ -24,7 +24,8 @@ function isActivePath(pathname: string, href: string) {
 function formatUpdated(updatedAt: string | Date) {
   const d = typeof updatedAt === "string" ? new Date(updatedAt) : updatedAt;
   if (Number.isNaN(d.getTime())) return "";
-  return d.toLocaleString();
+  // Stable across server/client.
+  return d.toISOString().replace("T", " ").slice(0, 19) + "Z";
 }
 
 export default function WikiShell({

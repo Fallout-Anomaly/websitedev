@@ -3,6 +3,10 @@ import { createClient } from "@/lib/supabase/server";
 import { canViewStaffAuditLog } from "@/src/lib/staff-audit-admin";
 import { canManageStaffRoles } from "@/src/lib/staff-role-admin";
 
+function formatCount(n: number) {
+  return new Intl.NumberFormat("en-US").format(n);
+}
+
 export default async function StaffPage() {
   const supabase = await createClient();
   const {
@@ -92,7 +96,7 @@ export default async function StaffPage() {
           <div>
             <p className="text-xs font-medium text-[#8b949e]">Mods in package</p>
             <p className="mt-1 font-mono text-2xl font-semibold tabular-nums text-[#f0f6fc] group-hover:text-[#58a6ff] sm:text-3xl">
-              {modCount.toLocaleString()}
+              {formatCount(modCount)}
             </p>
           </div>
           <span className="shrink-0 text-xs text-[#58a6ff] group-hover:underline">
@@ -107,7 +111,7 @@ export default async function StaffPage() {
           <div>
             <p className="text-xs font-medium text-[#8b949e]">Known issues</p>
             <p className="mt-1 font-mono text-2xl font-semibold tabular-nums text-[#f0f6fc] group-hover:text-[#f85149] sm:text-3xl">
-              {bugCount.toLocaleString()}
+              {formatCount(bugCount)}
             </p>
           </div>
           <span className="shrink-0 text-xs text-[#58a6ff] group-hover:underline">

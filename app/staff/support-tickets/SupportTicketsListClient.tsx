@@ -14,11 +14,14 @@ export type SupportTicketRow = {
   filed_bug_report_id: number | null;
 };
 
+function formatWhenUtc(iso: string) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toISOString().replace("T", " ").slice(0, 19) + "Z";
+}
+
 function SupportTicketListItem({ row }: { row: SupportTicketRow }) {
-  const when = new Date(row.created_at).toLocaleString(undefined, {
-    dateStyle: "medium",
-    timeStyle: "short",
-  });
+  const when = formatWhenUtc(row.created_at);
   const href = `/staff/support-tickets/${encodeURIComponent(row.reference)}`;
   const subjectLine = row.subject?.trim()
     ? plainTextPreview(row.subject, 240)

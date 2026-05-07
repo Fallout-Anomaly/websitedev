@@ -57,6 +57,12 @@ const COLUMN_COLOR_BY_KEY: Record<ColumnKey, string> = {
   Blocked: "#ff5555",
 };
 
+function formatWhenUtc(iso: string) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toISOString().replace("T", " ").slice(0, 19) + "Z";
+}
+
 function clampProgress(n: number) {
   if (!Number.isFinite(n)) return 0;
   return Math.max(0, Math.min(100, Math.round(n)));
@@ -185,7 +191,7 @@ function SortableTaskCard({
                 {task.title}
               </p>
               <p className="mt-1 text-[11px] text-[#8b949e]">
-                Updated {new Date(task.updated_at).toLocaleString()}
+                Updated {formatWhenUtc(task.updated_at)}
               </p>
             </div>
             <div className="flex shrink-0 items-center gap-2">
@@ -1256,7 +1262,7 @@ export default function ProjectsClient({
                           <div className="flex items-center justify-between gap-3">
                             <p className="text-[11px] text-[#8b949e]">
                               {c.author_name ?? c.created_by ?? "Team member"} ·{" "}
-                              {new Date(c.created_at).toLocaleString()}
+                              {formatWhenUtc(c.created_at)}
                             </p>
                           </div>
                           <div
@@ -1416,10 +1422,10 @@ export default function ProjectsClient({
 
               <div className="text-xs text-[#6e7681]">
                 <p>
-                  Created {new Date(activeTask.created_at).toLocaleString()}
+                  Created {formatWhenUtc(activeTask.created_at)}
                 </p>
                 <p>
-                  Updated {new Date(activeTask.updated_at).toLocaleString()}
+                  Updated {formatWhenUtc(activeTask.updated_at)}
                 </p>
               </div>
 

@@ -6,6 +6,12 @@ import { addStaffSheetComment, type SheetComment } from "../actions";
 import { displayNameOrTeamMember } from "@/src/lib/display-name";
 import ProfileAvatar from "@/src/components/ProfileAvatar";
 
+function formatWhenUtc(iso: string) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toISOString().replace("T", " ").slice(0, 19) + "Z";
+}
+
 export default function SheetComments({
   slug,
   comments,
@@ -42,7 +48,7 @@ export default function SheetComments({
                   {displayNameOrTeamMember(c.author_display_name ?? undefined)}{" "}
                   ·{" "}
                   {c.created_at
-                    ? new Date(c.created_at).toLocaleString()
+                    ? formatWhenUtc(c.created_at)
                     : ""}
                 </span>
               </p>

@@ -2,6 +2,10 @@ import Link from "next/link";
 import { searchBugReports, getBugStatusOptions, getBugCounts } from "../queries";
 import BugTrackerClient from "./BugTrackerClient";
 
+function formatCount(n: number) {
+  return new Intl.NumberFormat("en-US").format(n);
+}
+
 export default async function BugTrackerPage({
   searchParams,
 }: {
@@ -34,7 +38,7 @@ export default async function BugTrackerPage({
         </h1>
         <p className="mt-2 max-w-2xl text-sm text-[#8b949e]">
           {counts.open + counts.closed > 0
-            ? `${(counts.open + counts.closed).toLocaleString()} report${(counts.open + counts.closed) !== 1 ? "s" : ""} on file. Open an issue to read details and post staff notes.`
+            ? `${formatCount(counts.open + counts.closed)} report${counts.open + counts.closed !== 1 ? "s" : ""} on file. Open an issue to read details and post staff notes.`
             : "No bug reports yet. Issues filed from the mod registry will appear here."}
         </p>
       </header>

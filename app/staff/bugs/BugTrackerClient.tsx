@@ -30,7 +30,8 @@ function formatBugDate(dateStr: string | null) {
   if (diffDays === 0) return "today";
   if (diffDays === 1) return "yesterday";
   if (diffDays < 7) return `${diffDays} days ago`;
-  return `on ${date.toLocaleDateString("en-US", { month: "short", day: "numeric" })}`;
+  // Stable output (avoid locale/timezone differences during hydration).
+  return `on ${date.toISOString().slice(5, 10)}`;
 }
 
 const BugIssueRow = memo(function BugIssueRow({
