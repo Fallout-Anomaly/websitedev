@@ -1,0 +1,18 @@
+---
+sidebar_position: 3
+title: Audio Fixes
+sidebar_label: Audio Fixes
+---
+import TerminalCard from '@site/src/components/TerminalCard';
+
+# Audio Fixes
+
+<TerminalCard title="Audio Solutions">
+
+### Game audio is too quiet
+If your master volume is at 100% but the game is still quiet:
+1.  Open **MCM** → **Audio** → **Persistent Volume Sliders**.
+2.  Ensure all sliders (Sound Effects, Radio, Music, Voice) are set to **1**.
+3.  Reset these values if they have been adjusted away from the default.
+
+</TerminalCard>

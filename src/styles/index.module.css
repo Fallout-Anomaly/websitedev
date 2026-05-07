@@ -1,0 +1,465 @@
+/*
+ * Fallen World - Homepage (high-impact terminal style)
+ */
+.homeRoot {
+  /* --card-bg: #1a1a1a; */
+  --card-bg: #111; /* Slightly darker to match full page aesthetic */
+  --card-border: #374151;
+  --card-header-bg: #141414;
+  --card-accent: #0d9488;
+  --text: #f5f5f5;
+  --text-muted: #9ca3af;
+  --highlight: #0d9488;
+  --highlight-hover: #2dd4bf;
+  --glow: rgba(13, 148, 136, 0.12);
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ----- Hero banner: full-width, dramatic ----- */
+.heroBanner {
+  position: relative;
+  min-height: 60vh;
+  padding: 3rem 2rem 3.5rem;
+  text-align: center;
+  overflow: hidden;
+  background: transparent;
+  border-bottom: 2px solid var(--card-accent);
+  box-shadow: 0 0 60px var(--glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroVideoWrap {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* Promo to own layer to avoid repaint on scroll */
+  will-change: transform;
+}
+
+.heroVideoScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.75) 60%, rgba(10, 10, 10, 0.9) 100%);
+}
+
+.heroVideoIframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.78vh;
+  height: 100vh;
+  min-width: 100%;
+  min-height: 56.25vw;
+  transform: translate(-50%, -50%);
+}
+
+.heroGlow {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(13, 148, 136, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.heroBadge {
+  margin-bottom: 1rem;
+}
+
+.heroLogo {
+  max-width: 140px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 12px var(--glow));
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.05); }
+}
+
+.heroTitle {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-shadow: 0 0 30px var(--glow);
+  line-height: 1.1;
+}
+
+.heroTagline {
+  margin: 0 0 1.25rem;
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.heroCTAs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.heroBtnPrimary,
+.heroBtnSecondary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.heroBtnPrimary {
+  background: var(--card-accent);
+  color: #0a0a0a !important;
+  border: none;
+  box-shadow: 0 0 20px var(--glow);
+}
+
+.heroBtnPrimary:hover {
+  background: var(--highlight-hover);
+  color: #0a0a0a !important;
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(13, 148, 136, 0.25);
+}
+
+.heroBtnSecondary {
+  background: transparent;
+  color: var(--card-accent) !important;
+  border: 2px solid var(--card-accent);
+}
+
+.heroBtnSecondary:hover {
+  background: rgba(13, 148, 136, 0.08);
+  color: var(--highlight-hover) !important;
+  transform: translateY(-2px);
+}
+
+/* ----- Main content: full width ----- */
+.homeRoot > .falloutCard:first-of-type {
+  max-width: 100%;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* Main card needs transparency at top to show video */
+.falloutCard {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  border-left: 4px solid var(--card-accent);
+  border-radius: 6px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+/* Apply background color only to the content below hero section */
+.cardHeader, 
+.terminalText {
+  background: var(--card-bg);
+}
+
+.falloutCard:hover {
+  box-shadow: none;
+}
+
+.heroCard {
+  margin-bottom: 1rem;
+}
+
+/* New Card Hero with Video Background */
+.cardHeroSection {
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--card-border);
+  background: transparent;
+  width: 100%;
+}
+
+.cardHeroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+}
+
+.cardHeroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 1rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--card-header-bg);
+  padding: 1rem max(1.5rem, calc((100% - 1200px) / 2));
+  border-bottom: 1px solid var(--card-border);
+}
+
+.cardHeader .icon {
+  font-size: 1.35rem;
+  color: var(--card-accent);
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.05em;
+}
+
+.terminalText {
+  padding: 1.25rem max(1.5rem, calc((100% - 1200px) / 2));
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.terminalText p {
+  margin-bottom: 1rem;
+}
+
+.terminalText p:last-child {
+  margin-bottom: 0;
+}
+
+/* Hero content: text + media */
+.heroContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 996px) {
+  .heroContent {
+    grid-template-columns: 1fr;
+  }
+  .homeRoot > .falloutCard:first-of-type {
+    margin-top: -0.75rem;
+  }
+}
+
+.heroIntro {
+  font-size: 1.08rem;
+  color: var(--text);
+}
+
+.heroDescription {
+  color: var(--text-muted);
+}
+
+.featuresSection {
+  margin: 1.25rem 0;
+}
+
+.featuresHeading {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--card-accent);
+  font-weight: 600;
+}
+
+.featuresList {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--text-muted);
+}
+
+.featuresList li {
+  margin-bottom: 0.4rem;
+}
+
+.sectionDivider {
+  height: 1px;
+  background: var(--card-border);
+  margin: 1.25rem 0;
+}
+
+.singleGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+  .singleGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 996px) {
+  .singleGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.innerBlock {
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  background: rgba(17, 17, 17, 0.6);
+  overflow: hidden;
+}
+
+.innerHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1rem;
+  background: var(--card-header-bg);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.innerTitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.loIcon {
+  color: #22c55e !important;
+  font-family: 'VT323', ui-monospace, monospace;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  font-size: 1.5rem !important;
+}
+
+.innerBody {
+  padding: 1rem;
+  color: var(--text-muted);
+}
+
+.innerBody p {
+  margin-bottom: 0.75rem;
+}
+
+.innerBody p:last-child {
+  margin-bottom: 0;
+}
+
+/* CTA buttons */
+.ctaButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.terminalButton {
+  display: inline-block;
+  padding: 0.6rem 1.25rem;
+  background: var(--card-accent);
+  color: #0a0a0a !important;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  text-decoration: none !important;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.terminalButton:hover {
+  background: var(--highlight-hover);
+  color: #0a0a0a !important;
+  transform: translateY(-1px);
+}
+
+/* ----- Pip-Boy terminal loading overlay ----- */
+.loadingScreen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 1.5rem;
+  transition: opacity 0.7s ease-out, visibility 0s linear 0.7s;
+}
+
+.loadingScreen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.pipOsBoot {
+  font-family: 'VT323', ui-monospace, monospace;
+  color: #34d399;
+  text-align: left;
+  line-height: 1.5;
+  width: 90%;
+  max-width: 600px;
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.pipOsLine {
+  margin: 0.25rem 0;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 1.1rem;
+}
+
+.pipOsLine.visible {
+  opacity: 1;
+}
+
+.continuePrompt {
+  font-family: 'VT323', ui-monospace, monospace;
+  color: #34d399;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  opacity: 0;
+  animation: bootPromptFade 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes bootPromptFade {
+  to {
+    opacity: 1;
+  }
+}

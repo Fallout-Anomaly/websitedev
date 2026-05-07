@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Fallen World radiation mark (green) -->
+  <circle cx="50" cy="50" r="12" fill="#34d399"/>
+  <path d="M50 50 L50 14 A36 36 0 0 1 81.2 35.8 L50 50 Z" fill="#34d399"/>
+  <path d="M50 50 L18.8 64.2 A36 36 0 0 1 18.8 35.8 L50 50 Z" fill="#34d399"/>
+  <path d="M50 50 L81.2 64.2 A36 36 0 0 1 50 86 L50 50 Z" fill="#34d399"/>
+</svg>

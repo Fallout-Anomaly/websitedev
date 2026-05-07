@@ -1,0 +1,48 @@
+{
+  "name": "websitedev-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "dev:turbo": "next dev --turbo",
+    "build": "next build",
+    "start": "next start",
+    "import:workbook": "node ./scripts/import-workbook.mjs"
+  },
+  "dependencies": {
+    "@upstash/redis": "^1.38.0",
+    "@upstash/realtime": "^1.0.3",
+    "@supabase/ssr": "^0.10.2",
+    "@supabase/supabase-js": "^2.105.3",
+    "@tailwindcss/typography": "^0.5.19",
+    "@tiptap/extension-link": "^3.22.5",
+    "@tiptap/extension-mention": "^3.22.5",
+    "@tiptap/extension-placeholder": "^3.22.5",
+    "@tiptap/pm": "^3.22.5",
+    "@tiptap/react": "^3.22.5",
+    "@tiptap/starter-kit": "^3.22.5",
+    "dotenv": "^17.4.2",
+    "gray-matter": "^4.0.3",
+    "nanoid": "^5.1.11",
+    "next": "16.2.4",
+    "partykit": "^0.0.115",
+    "partysocket": "^1.1.18",
+    "random-word-slugs": "^0.1.7",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-markdown": "^10.1.0",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.1",
+    "tiptap-markdown": "^0.9.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "concurrently": "^9.2.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
