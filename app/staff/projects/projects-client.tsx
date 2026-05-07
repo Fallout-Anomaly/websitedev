@@ -658,6 +658,12 @@ export default function ProjectsClient({
     if (!name) return;
     try {
       const created = await createProjectCategory({ name, color: newCategoryColor });
+      setCategories((prev) => {
+        const next = [...prev, created].sort(
+          (a, b) => (a.position ?? 0) - (b.position ?? 0)
+        );
+        return next.filter((c) => !c.archived);
+      });
       setNewCategoryName("");
       setCategoryModalOpen(false);
       setActiveCategoryId(created.id);
@@ -689,6 +695,11 @@ export default function ProjectsClient({
         descriptionHtml: plainTextToHtml(descriptionText),
         externalUrl: externalUrl || null,
         thumbnailUrl: thumbnailUrl || null,
+      });
+      setTasks((prev) => {
+        // Avoid duplicates if realtime also delivers the INSERT.
+        if (prev.some((t) => t.id === created.id)) return prev;
+        return [created, ...prev];
       });
       setNewTaskTitle("");
       setNewTaskExternalUrl("");
