@@ -39,6 +39,14 @@ yarn-error.log*
 # cursor / editor
 .cursor/
 
+# local-only / do-not-commit files (project policy)
+AGENTS.md
+CLAUDE.md
+README.md
+*.bat
+*.sql
+supabase/migrations/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
